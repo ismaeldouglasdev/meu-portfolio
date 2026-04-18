@@ -312,6 +312,7 @@ footer {
 
 .experiencia-item p {
     color: var(--texto-secundario);
+    margin-bottom: 30px;
 }
 
 /* Botão tema */
