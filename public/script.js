@@ -67,17 +67,32 @@ function exibirProjetos(projetos) {
 // Quando a página carrega, busca os projetos
 document.addEventListener("DOMContentLoaded", buscarProjetos);
 
+// Lista de temas (ciclo)
+const temas = ['escuro', 'claro', 'roxo', 'azul', 'verde'];
+const icones = {
+    'escuro': 'fas fa-moon',
+    'claro': 'fas fa-sun',
+    'roxo': 'fas fa-gem',
+    'azul': 'fas fa-water',
+    'verde': 'fas fa-leaf'
+};
+
 // Função para alternar tema
 const botaoTema = document.getElementById("trocar-tema");
 const html = document.documentElement;
 
 botaoTema.addEventListener("click", () => {
     const temaAtual = html.getAttribute("data-tema");
-    const novoTema = temaAtual === 'escuro' ? 'claro' : 'escuro';
+
+    const indiceAtual = temas.indexOf(temaAtual);
+    const proximoIndice = (indiceAtual + 1) % temas.length;
+
+    const novoTema = temas[proximoIndice];
+
     html.setAttribute('data-tema', novoTema);
     localStorage.setItem('tema', novoTema);
 
     const icone = botaoTema.querySelector('i');
-    icone.className = novoTema === 'escuro' ? 'fas fa-moon' : 'fas fa-sun';
+    icone.className = icones[novoTema];
     
 })

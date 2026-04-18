@@ -26,6 +26,41 @@
     --texto-secundario: #6c757d;
 }
 
+/* Tema Roxo */
+[data-tema="roxo"] {
+    --bg-principal: #1a1a2e;
+    --bg-secundario: #2d1b4e;
+    --bg-card: #2d1b4e;
+    --cor-principal: #4a2c7a;
+    --cor-destaque: #9d4edd;
+    --texto-principal: #ffffff;
+    --texto-secundario: #b8b8b8;
+}
+
+/* Tema Azul */
+[data-tema="azul"] {
+    --bg-principal: #0a1628;
+    --bg-secundario: #0f2744;
+    --bg-card: #0f2744;
+    --cor-principal: #1e4d6b;
+    --cor-destaque: #38bdf8;
+    --texto-principal: #e0f2fe;
+    --texto-secundario: #94a3b8;
+}
+
+/* Tema Verde */
+[data-tema="verde"] {
+    --bg-principal: #0f1f0f;
+    --bg-secundario: #1a3a1a;
+    --bg-card: #1a3a1a;
+    --cor-principal: #2d5a2d;
+    --cor-destaque: #4ade80;
+    --texto-principal: #f0fdf4;
+    --texto-secundario: #86efac;
+}
+
+
+
 /* Aplica variáveis */
 body {
     font-family: Arial, sans-serif;
