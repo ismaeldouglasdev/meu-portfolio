@@ -5,28 +5,50 @@
     box-sizing: border-box;
 }
 
-/* Corpo da página */
+/* Variáveis de tema */
+:root {
+    --bg-principal: #1a1a2e;
+    --bg-secundario: #16213e;
+    --bg-card: #16213e;
+    --cor-principal: #0f3460;
+    --cor-destaque: #e94560;
+    --texto-principal: #ffffff;
+    --texto-secundario: #cccccc;   
+}
+
+[data-tema="claro"] {
+    --bg-principal: #f5f5f5;
+    --bg-secundario: #ffffff;
+    --bg-card: #ffffff;
+    --cor-principal: #e0e0e0;
+    --cor-destaque: #e94560;
+    --texto-principal: #1a1a2e;
+    --texto-secundario: #555555;
+}
+
+/* Aplica variáveis */
 body {
     font-family: Arial, sans-serif;
-    background-color: #1a1a2e;
-    color: #ffffff;
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
     line-height: 1.6;
 }
 
 /* Cabeçalho */
 header {
-    background-color: #16213e;
+    background-color: var(--bg-secundario);
     padding: 40px 20px;
     text-align: center;
+    position: relative;
 }
 
 header h1 {
     font-size: 2.5rem;
-    color: #0f3460;
+    color: var(--cor-principal);
 }
 
 header p {
-    color: #e94560;
+    color: var(--cor-destaque);
     font-size: 1.2rem;
 }
 
@@ -42,9 +64,9 @@ section {
 }
 
 h2 {
-    color: #e94560;
+    color: var(--cor-destaque);
     margin-bottom: 20px;
-    border-bottom: 2px solid #e94560;
+    border-bottom: 2px solid var(--cor-destaque);
     padding-bottom: 10px;
 }
 
@@ -56,30 +78,99 @@ h2 {
 }
 
 .projeto {
-    background-color: #16213e;
+    background-color: var(--bg-card);
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #0f3460;
+    border: 1px solid var(--cor-principal);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.projeto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .projeto h3 {
-    color: #ffffff;
+    color: var(--texto-principal);
     margin-bottom: 10px;
+    font-size: 1.1rem;
 }
 
 .projeto p {
-    color: #cccccc;
+    color: var(--texto-secundario);
     font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.projeto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.projeto-icon {
+    font-size: 2rem;
+}
+
+.projeto-ano {
+    color: var(--texto-secundario);
+    font-size: 0.8rem;
+}
+
+.projeto-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 10px;
 }
 
 .projeto .linguagem {
-    color: #e94560;
+    color: var(--cor-destaque);
+    font-size: 0.8rem;
+    background: rgba(233, 69, 96, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.projeto-stats {
+    display: flex;
+    gap: 10px;
+    color: var(--texto-secundario);
+    font-size: 0.8rem;
+}
+
+.botao-projeto {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: var(--cor-principal);
+    color: var(--texto-principal);
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.botao-projeto:hover {
+    background-color: var(--cor-destaque);
+}
+
+.botao-projeto i {
+    margin-right: 5px;
+}
+
+.projeto .linguagem {
+    color: var(--cor-destaque);
     font-size: 0.8rem;
 }
 
 /* Rodapé */
 footer {
-    background-color: #16213e;
+    background-color: var(--bg-secundario);
     text-align: center;
     padding: 20px;
     margin-top: 40px;
@@ -88,7 +179,7 @@ footer {
 /* Seção sobre mim*/
 #sobre p {
     margin-bottom: 15px;
-    color: #cccccc;
+    color: var(--texto-secundario);
 }
 
 /* Seção Habilidades*/
@@ -100,7 +191,7 @@ footer {
 }
 
 #skills li {
-    background-color: #0f3460;
+    background-color: var(--cor-principal);
     padding: 10px 20px;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -109,7 +200,11 @@ footer {
 
 #skills li:hover {
     transform: scale(1.1);
-    background-color: #e94560;
+    background-color: var(--cor-destaque);
+}
+
+#skills li i {
+    margin-right: 8px;
 }
 
 /* Seção contato*/
@@ -125,15 +220,15 @@ footer {
     display: inline-block;
     margin: 10px 15px;
     padding: 12px 25px;
-    background-color: #16213e;
-    color: #ffffff;
+    background-color: var(--bg-card);
+    color: var(--texto-principal);
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.3s;
 }
 
 .social-link:hover {
-    background-color: #e94560;
+    background-color: var(--cor-destaque);
     transform: translateY(-3px);
 }
 
@@ -155,4 +250,52 @@ footer {
         margin: 10px 0;
     }
 }
+/* Seção Experiência*/
+#experiencia {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
+.experiencia-item {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--cor-destaque);
+}
+
+.experiencia-item h3 {
+    color: var(--texto-principal);
+    margin-bottom: 5px;
+}
+
+.experiencia-item .periodo {
+    color: var(--cor-destaque);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.experiencia-item p {
+    color: var(--texto-secundario);
+}
+
+/* Botão tema */
+.botao-tema {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--cor-destaque);
+    color: var(--cor-destaque);
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.botao-tema:hover {
+    background: var(--cor-destaque);
+    color: var(--texto-principal);
+}

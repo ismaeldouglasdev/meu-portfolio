@@ -30,13 +30,33 @@ function exibirProjetos(projetos) {
         const card = document.createElement("div");
         card.className = "projeto";
 
+        const ano = projeto.updated_at ? projeto.updated_at.split('T')[0].split('-')[0] : '';
+
+        let icon = '📁';
+
+        if (projeto.language === 'JavaScript') icon = '🟨';
+        if (projeto.language === 'Python')  icon = '🐍';
+        if (projeto.language === 'Java') icon = '☕';
+        if (projeto.language === 'TypeScript') icon = '🟦';
+        if (projeto.language === 'HTML') icon = '📄';
+        if (projeto.language === 'CSS') icon = '🎨';
+
         // Preenche com informações do projeto
         card.innerHTML = `
+            <div class="projeto-header>
+                <span class="projeto-icon">${icon}</span>
+                <span class="projeto-ano">${ano}</span>
+            </div>
             <h3>${projeto.name}</h3>
             <p>${projeto.description || "Sem descrição"}</p>
-            <p class="linguagem">${projeto.language || "Sem linguagem"}</p>
-            <p>⭐ ${projeto.stargazers_count} | 🍴 ${projeto.forks_count}</p>
-            <a href="${projeto.html_url}" target="_blank" style="color: #094560;">Ver no Github</a>
+            <div class="projeto-footer">
+                <span class="linguagem">${projeto.language || "Sem linguagem"}</span>
+                <div class="projeto-stats">
+                    <span>⭐ ${projeto.stargazers_count}</span> 
+                    <span>🍴 ${projeto.forks_count}</span>
+                </div>
+            <a href="${projeto.html_url}" target="_blank" class="botao-projeto">
+                    <i class="fab fa-github"></i>Ver no Github</a>
             `;
 
             // Adiciona ao container
@@ -46,3 +66,18 @@ function exibirProjetos(projetos) {
 
 // Quando a página carrega, busca os projetos
 document.addEventListener("DOMContentLoaded", buscarProjetos);
+
+// Função para alternar tema
+const botaoTema = document.getElementById("trocar-tema");
+const html = document.documentElement;
+
+botaoTema.addEventListener("click", () => {
+    const temaAtual = html.getAttribute("data-tema");
+    const novoTema = temaAtual === 'escuro' ? 'claro' : 'escuro';
+    html.setAttribute('data-tema', novoTema);
+    localStorage.setItem('tema', novoTema);
+
+    const icone = botaoTema.querySelector('i');
+    icone.className = novoTema === 'escuro' ? 'fas fa-moon' : 'fas fa-sun';
+    
+})

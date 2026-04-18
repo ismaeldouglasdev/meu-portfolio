@@ -6,11 +6,16 @@
     <title>Meu Portfólio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script> // Verifica se há tema salvo 
+        const temaSalvo = localStorage.getItem('tema') || 'escuro';
+        document.documentElement.setAttribute('data-tema', temaSalvo);
+    </script>
 </head>
 <body>
     <header>
         <h1>Ismael Douglas</h1>
         <p>Desenvolvedor Full Stack</p>
+        <button id="trocar-tema" class="botao-tema"><i class="fas fa-moon"></i></button>
     </header>
     
     <main>
@@ -32,10 +37,14 @@
         <section id="skills">
             <h2>Habilidades</h2>
             <ul>
-                <li>JavaScript</li>
-                <li>HTML & CSS</li>
-                <li>Python</li>
-                <li>Java</li>
+                <li><i class="fab fa-js"> </i> Javascript</li>
+                <li><i class="fab fa-html5"> </i> HTML & CSS</li>
+                <li><i class="fab fa-python"> </i> Python</li>
+                <li><i class="fab fa-java"> </i> Java</li>
+                <li><i class="fab fa-git-alt"></i> Git</li>
+                <li><i class="fas fa-database"></i> SQL</li>
+                <li><i class="fab fa-docker"> </i> Docker</li>
+                <li><i class="fas fa-server"> </i> FastAPI</li>
             </ul>
         </section>
 
@@ -45,6 +54,17 @@
             <p>Telefone: (11) 95987-3202</p>
             <a href="https://www.linkedin.com/in/ismael-douglas-dev/?locale=en" target="_blank" class="social-link"><i class="fab fa-linkedin"></i>Linkedin</a>
             <a href="https://github.com/ismaeldouglasdev" target="_blank" class="social-link"><i class="fab fa-github"></i>Github</a>
+            <section id="experiencia">
+                <h2>Experiência Profissional</h2>
+                <div class="experiencia-item">
+                    <h3>Encarregado no setor Comercial</h3>
+                    <p class="periodo">2020 - Presente</p>
+                    <p>Responsável por liderar a equipe comercial e desenvolver estratégias para aumentar as vendas, aumentar a fidelização dos clientes e otimizar os processos de vendas por meio da implementação de soluções tecnológicas.</p>
+                    <h3>Contribuidor Open Source</h3>
+                    <p class="periodo">2026 - Presente</p>
+                    <p>Contribuo para projetos open source, ajudando a desenvolver e manter soluções de código aberto que beneficiam a comunidade de desenvolvedores.</p>
+                </div>
+            </section>
         </section>
     </main>
 
