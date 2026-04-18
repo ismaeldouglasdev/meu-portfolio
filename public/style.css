@@ -17,13 +17,13 @@
 }
 
 [data-tema="claro"] {
-    --bg-principal: #f5f5f5;
-    --bg-secundario: #ffffff;
+    --bg-principal: #f5f0e8;
+    --bg-secundario: #faf6f0;
     --bg-card: #ffffff;
-    --cor-principal: #e0e0e0;
-    --cor-destaque: #e94560;
-    --texto-principal: #1a1a2e;
-    --texto-secundario: #555555;
+    --cor-principal: #6b8cae;
+    --cor-destaque: #d46a7e;
+    --texto-principal: #3d3d3d;
+    --texto-secundario: #6c757d;
 }
 
 /* Aplica variáveis */
