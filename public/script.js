@@ -1,9 +1,30 @@
 const username = "ismaeldouglasdev";
+const projetosPrioritarios = [
+    "Cronograma-Projeto",
+    "PeakVault",
+    "Python3-studies",
+    "HTML5-and-CSS3-studies",
+    "meu-portfolio",
+    "Organizador_Automatico_de_Pastas"
+];
 
 // Função para buscar projetos do GitHub
 async function buscarProjetos() {
     try {
-        // Busca os repositórios do usuário
+        // Primeiro, busca os repositorios prioritários
+        if (projetosPrioritarios.length > 0) {
+            const promises = projetosPrioritarios.map(async (nome) =>{
+                const response = await fetch(`https://api.github.com/repos/${username}/${nome}`);
+                if (!response.ok) return null;
+                return await response.json();
+            });
+            const projetos = await Promise.all(promises);
+            const projetosValidos = projetos.filter(p => p !== null);
+            exibirProjetos(projetosValidos);
+            return;
+        }
+        
+        // Se não tem lista, busca os repositórios normais do usuário
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
 
         if (!response.ok) {

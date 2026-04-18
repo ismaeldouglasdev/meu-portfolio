@@ -273,16 +273,66 @@ footer {
 
 /* Responsividade para celular */
 @media (max-width: 600px) {
+    /* Header */
+    header {
+        padding: 30px 15px;
+    }
     header h1 {
         font-size: 1.8rem;
+    }
+    header p {
+        font-size: 1rem;
     }
     main {
         padding: 15px;
     }
 
+    /* Botão tema menor */
+    .botao-tema {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 1rem;
+    }
+
+    /* Main */
+    main {
+        padding: 15px;
+    }
+
+    /* Títulos menores */
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Seção skills - reduzir tamanho */
+    #skills li {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+
+    /* Cards de projetos - ocupar a tela toda */
+    #lista-projetos {
+        grid-template-columns: 1fr;
+    }
+
+    /* Social links - ocupa a tela inteira */
     .social-link {
         display: block;
+        width: 100%;
         margin: 10px 0;
+        text-align: center;
+    }
+
+    /* Experiência */
+    .experiencia-item {
+        padding: 15px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 15px;
+        font-size: 0.8rem;
     }
 }
 /* Seção Experiência*/
@@ -335,3 +385,44 @@ footer {
     background: var(--cor-destaque);
     color: var(--texto-principal);
 }
+
+/* Animações de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplicar nas seções */
+section {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+/* Delays para cada seção aparecer em sequência */
+#projetos { animation-delay: 0.1s; }
+#sobre { animation-delay: 0.2s; }
+#skills { animation-delay: 0.3s; }
+#contato { animation-delay: 0.4s; }
+
+/* Transições mais suaves */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Hover mais suave nos cards */
+.projeto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Hover nas skills */
+#skills li:hover {
+    transform: scale(1.08) rotate(2deg);
+}
+
