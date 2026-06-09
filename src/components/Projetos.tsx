@@ -47,9 +47,9 @@ function StatusBadge({ url }: { url: string }) {
 
   const checkServer = useCallback(async () => {
     try {
-      const res = await fetch(url, { method: 'GET', mode: 'cors', cache: 'no-store' });
-      setStatus(res.ok ? 'online' : 'offline');
-      return res.ok;
+      await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' });
+      setStatus('online');
+      return true;
     } catch {
       setStatus('offline');
       return false;
@@ -67,8 +67,8 @@ function StatusBadge({ url }: { url: string }) {
       const interval = setInterval(async () => {
         setWakingAttempts(prev => prev + 1);
         try {
-          const res = await fetch(url, { method: 'GET', mode: 'cors', cache: 'no-store' });
-          if (!cancelled && res.ok) {
+          await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' });
+          if (!cancelled) {
             setStatus('online');
             setWakingAttempts(0);
           }
@@ -83,11 +83,8 @@ function StatusBadge({ url }: { url: string }) {
     setStatus('waking');
     setWakingAttempts(0);
     try {
-      const res = await fetch(url, { method: 'GET', mode: 'cors', cache: 'no-store' });
-      if (res.ok) {
-        setStatus('online');
-        return;
-      }
+      await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' });
+      setStatus('online');
     } catch {
     }
   };
