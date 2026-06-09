@@ -1,7 +1,6 @@
 {
-    "public": true,
-    "rewrites": [
-        { "source": "/(.*)",
-    "destination": "/index.html"}
-    ]
+  "framework": "vite",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install"
 }
