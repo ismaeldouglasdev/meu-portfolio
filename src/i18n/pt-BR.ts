@@ -225,7 +225,7 @@ const ptBR: Translation = {
       },
       {
         title: 'Atendo o Brasil todo (e fora dele)',
-        desc: '100% remoto. Já atendi clientes de várias regiões do Brasil e também em inglês para clientes internacionais.',
+        desc: '100% remoto. Já atendi clientes de várias regiões do Brasil e do exterior.',
       },
       {
         title: 'Suporte de verdade depois da entrega',

@@ -225,7 +225,7 @@ const en: Translation = {
       },
       {
         title: 'I work with clients worldwide',
-        desc: '100% remote. I\'ve worked with clients across Brazil and internationally (fluent English).',
+        desc: '100% remote. I\'ve worked with clients across Brazil and internationally.',
       },
       {
         title: 'Real support after delivery',
