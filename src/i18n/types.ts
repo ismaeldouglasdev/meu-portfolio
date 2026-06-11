@@ -11,7 +11,6 @@ export interface Translation {
     tag: string;
     title1: string;
     title2: string;
-    titleGradient: string;
     subtitle: string;
     ctaProjetos: string;
     ctaContato: string;
@@ -50,13 +49,38 @@ export interface Translation {
       duration: string;
     }>;
   };
-  faq: {
+  depoimentos: {
     label: string;
     title: string;
     items: Array<{
-      q: string;
-      a: string;
+      text: string;
+      name: string;
+      role: string;
     }>;
+  };
+  precos: {
+    label: string;
+    title: string;
+    subtitle: string;
+    popular: string;
+    items: Array<{
+      name: string;
+      price: string;
+      period: string;
+      features: string[];
+      highlighted: boolean;
+    }>;
+    cta: string;
+  };
+  beneficios: {
+    label: string;
+    title: string;
+    subtitle: string;
+    items: Array<{
+      title: string;
+      desc: string;
+    }>;
+    cta: string;
   };
   skills: {
     label: string;
@@ -73,7 +97,11 @@ export interface Translation {
     serverOffline: string;
     semDesc: string;
     destaque: string;
+    desktopApp: string;
+    serverSleeping: string;
+    serverStarting: string;
     desc: Record<string, string>;
+    names: Record<string, string>;
   };
   experiencia: {
     label: string;
@@ -82,7 +110,7 @@ export interface Translation {
       cargo: string;
       empresa: string;
       periodo: string;
-      descricao: string;
+      descricao: string[];
     }>;
   };
   contato: {

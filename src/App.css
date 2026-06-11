@@ -605,11 +605,12 @@
   gap: 0.35rem;
   font-size: 0.7rem;
   padding: 0.25rem 0.6rem;
-  border: none;
+  border: 1px solid var(--border);
   cursor: default;
   font-family: inherit;
   margin-top: 0.5rem;
-  transition: opacity 0.2s ease;
+  background: var(--bg);
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .status-badge.status-offline {
@@ -647,39 +648,98 @@
   line-height: 1;
 }
 
-/* ----- Experiencia ----- */
 #experiencia {
   text-align: center;
+  padding: 4rem 1.5rem;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
-.experiencia-list {
-  max-width: 600px;
-  margin: 1rem auto 0;
+.exp-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+.exp-timeline {
+  position: relative;
   text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
 }
 
-.experiencia-card {
-  padding: 1.25rem;
-  border: 1px solid var(--border);
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: calc(1rem - 0.5px);
+  top: 4px;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.25);
 }
 
-.experiencia-card h3 {
-  margin-bottom: 0.25rem;
+.exp-entry {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.experiencia-meta {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
+.exp-entry:last-child {
+  margin-bottom: 0;
 }
 
-.experiencia-card p {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
+.exp-dot {
+  position: absolute;
+  left: calc(1rem - 5px);
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.exp-content {
+  min-width: 0;
+}
+
+.exp-cargo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.15rem;
+}
+
+.exp-meta {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 0.6rem;
+}
+
+.exp-desc {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exp-desc li {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.exp-desc li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #ffffff;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .exp-timeline {
+    padding-left: 1.5rem;
+  }
 }
 
 /* ----- Contato ----- */
@@ -774,4 +834,313 @@
 
 .App {
   position: relative;
+}
+
+/* ----- Depoimentos ----- */
+#depoimentos {
+  text-align: center;
+}
+
+.depoimentos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.depoimento-card {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  position: relative;
+}
+
+.depoimento-stars {
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 0.75rem;
+  color: #f59e0b;
+  font-size: 0.75rem;
+}
+
+.depoimento-quote {
+  color: var(--border);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.depoimento-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.depoimento-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.depoimento-avatar {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.depoimento-author strong {
+  display: block;
+  font-size: 0.85rem;
+}
+
+.depoimento-author span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ----- Precos ----- */
+#precos {
+  text-align: center;
+  max-width: 900px;
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: -1rem auto 2rem;
+  line-height: 1.6;
+}
+
+.precos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: stretch;
+}
+
+.preco-card {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.preco-highlight {
+  border-color: var(--text);
+  border-width: 2px;
+  transform: scale(1.03);
+}
+
+.preco-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.2rem 0.75rem;
+  white-space: nowrap;
+}
+
+.preco-card h3 {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preco-price {
+  margin-bottom: 1rem;
+}
+
+.preco-period {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.preco-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.preco-features {
+  list-style: none;
+  text-align: left;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.preco-features li {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  padding: 0.35rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preco-features svg {
+  font-size: 0.6rem;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.preco-cta {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+/* ----- Beneficios ----- */
+#beneficios {
+  text-align: center;
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.beneficio-card {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.beneficio-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  font-size: 1.1rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.beneficio-card h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.beneficio-card p {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.beneficios-cta {
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .precos-grid {
+    grid-template-columns: 1fr;
+  }
+  .preco-highlight {
+    transform: none;
+  }
+  .beneficios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- Scroll Animations ----- */
+section:not(#hero) {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section:not(#hero).visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay cards dentro de seções animadas */
+section.visible .servico-card,
+section.visible .processo-card,
+section.visible .projeto-card,
+section.visible .beneficio-card,
+section.visible .preco-card,
+section.visible .depoimento-card,
+section.visible .exp-entry {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: cardFadeIn 0.5s ease forwards;
+}
+
+section.visible .servico-card:nth-child(1),
+section.visible .processo-card:nth-child(1),
+section.visible .projeto-card:nth-child(1),
+section.visible .beneficio-card:nth-child(1),
+section.visible .preco-card:nth-child(1),
+section.visible .depoimento-card:nth-child(1),
+section.visible .journey-entry:nth-child(1) { animation-delay: 0.05s; }
+section.visible .servico-card:nth-child(2),
+section.visible .processo-card:nth-child(2),
+section.visible .projeto-card:nth-child(2),
+section.visible .beneficio-card:nth-child(2),
+section.visible .preco-card:nth-child(2),
+section.visible .depoimento-card:nth-child(2),
+section.visible .journey-entry:nth-child(2) { animation-delay: 0.1s; }
+section.visible .servico-card:nth-child(3),
+section.visible .processo-card:nth-child(3),
+section.visible .projeto-card:nth-child(3),
+section.visible .beneficio-card:nth-child(3),
+section.visible .preco-card:nth-child(3),
+section.visible .depoimento-card:nth-child(3),
+section.visible .journey-entry:nth-child(3) { animation-delay: 0.15s; }
+section.visible .servico-card:nth-child(4),
+section.visible .projeto-card:nth-child(4),
+section.visible .preco-card:nth-child(4),
+section.visible .depoimento-card:nth-child(4) { animation-delay: 0.2s; }
+section.visible .servico-card:nth-child(5),
+section.visible .projeto-card:nth-child(5),
+section.visible .preco-card:nth-child(5) { animation-delay: 0.25s; }
+section.visible .servico-card:nth-child(6),
+section.visible .projeto-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cta-strip {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.cta-strip .btn-lg {
+  font-size: 1.1rem;
+  padding: 0.85rem 2.5rem;
 }

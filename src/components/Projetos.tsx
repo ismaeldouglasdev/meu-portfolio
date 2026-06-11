@@ -105,9 +105,9 @@ function StatusBadge({ url }: { url: string }) {
       onClick={status === 'offline' ? handleWake : undefined}
       title={
         status === 'offline'
-          ? 'Servidor dormindo. Clique para acordar.'
+          ? t.projetos.serverSleeping
           : status === 'waking'
-          ? 'Render está iniciando o servidor (~30s)…'
+          ? t.projetos.serverStarting
           : undefined
       }
       disabled={status === 'waking' || status === 'checking'}
@@ -127,14 +127,14 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
       <div className="projeto-body">
         <div className="projeto-header">
           <FaFolder className="projeto-folder-icon" />
-          <h3>{projeto.name}</h3>
+          <h3>{t.projetos.names[projeto.name] || projeto.name}</h3>
         </div>
         <p>{desc}</p>
         <div className="projeto-footer">
           <div className="projeto-langs">
             {projeto.language && <span>{projeto.language}</span>}
             {projeto.stars > 0 && <span>★ {projeto.stars}</span>}
-            {!projeto.deploy_url && <span className="tag-desktop">Desktop App</span>}
+            {!projeto.deploy_url && <span className="tag-desktop">{t.projetos.desktopApp}</span>}
           </div>
           <div className="projeto-actions">
             {projeto.deploy_url && (

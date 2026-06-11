@@ -11,11 +11,10 @@ const en: Translation = {
   },
   hero: {
     tag: 'Full Stack Developer',
-    title1: 'Turning',
-    titleGradient: 'ideas',
-    title2: 'into code',
+    title1: 'Websites, systems & APIs',
+    title2: 'that make your business run',
     subtitle:
-      'Specialized in building modern web applications with React, TypeScript and Python. Passionate about clean code, open-source, and solutions that make a difference.',
+      'Landing pages, custom web systems and complete e-commerce. From business sites to API integrations — no bullshit, no surprises, no ghosting.',
     ctaProjetos: 'View Projects',
     ctaContato: 'Get in Touch',
     stat1: '2+',
@@ -83,8 +82,17 @@ const en: Translation = {
     wakingServer: 'Waking up server...',
     serverOnline: 'Online',
     serverOffline: 'Offline',
+    desktopApp: 'Desktop App',
+    serverSleeping: 'Server is asleep. Click to wake up.',
+    serverStarting: 'Render is starting the server (~30s)…',
     semDesc: 'Featured portfolio project.',
     destaque: 'Featured project',
+    names: {
+      PeakVault: 'PeakVault',
+      'Cronograma-Projeto': 'Study Schedule',
+      'mensageiros-da-esperanca': 'Messengers of Hope',
+      Engram: 'Engram',
+    },
     desc: {
       PeakVault: 'JSON file analysis and processing system with GUI (CustomTkinter). Dynamic CRUD, grouping, and graphical visualization.',
       'Cronograma-Projeto': 'Full-stack gamified study schedule system with levels, progression, and streaks. Python, Flask, PostgreSQL, and Docker.',
@@ -100,15 +108,21 @@ const en: Translation = {
         cargo: 'Commercial Manager',
         empresa: 'Loja Quase Tudo',
         periodo: '2020 — Present',
-        descricao:
-          'Leading the sales team and developing strategies to increase revenue, customer loyalty, and process optimization through technological solutions.',
+        descricao: [
+          'Leading the sales team with a focus on results',
+          'Strategies to increase revenue and customer loyalty',
+          'Process optimization through technological solutions',
+        ],
       },
       {
         cargo: 'Open Source Contributor',
         empresa: 'Engram',
         periodo: '2026 — Present',
-        descricao:
-          'Top Contributor at Engram. Responsible for developing critical features, code review, and implementing continuous improvements that impact other developers\' workflows.',
+        descricao: [
+          'Top Contributor — 90+ merged PRs, 130+ commits',
+          'Critical feature development and code review',
+          'Architecture documentation and continuous improvements',
+        ],
       },
     ],
   },
@@ -136,27 +150,89 @@ const en: Translation = {
       },
     ],
   },
-  faq: {
-    label: 'FAQ',
-    title: 'Frequently Asked Questions',
+  depoimentos: {
+    label: 'Testimonials',
+    title: 'Who trusted my work',
     items: [
       {
-        q: 'How long does it take to build a website?',
-        a: 'A business site or landing page is ready in 3 to 5 days. Web apps and e-commerce take 1 to 4 weeks depending on complexity.',
+        text: 'On behalf of NGO Messengers of Hope, I want to thank you for building a solution for our registration and attendance records. This is our most important process. It\'s heartwarming to see academic work making a real impact. Thank you for being a problem-solver and gifting us these solutions!',
+        name: 'Verônica',
+        role: 'NGO Messengers of Hope',
       },
       {
-        q: 'How much does it cost?',
-        a: 'Landing pages and business sites start at US$ 300. Web apps and e-commerce are quoted per project — each one has different needs. Reach out and I\'ll prepare a no-obligation proposal.',
-      },
-      {
-        q: 'Do you work with clients outside Brazil?',
-        a: 'Absolutely! I work 100% remotely and I\'m fluent in English (C1/C2). I\'ve worked with clients across Brazil and internationally.',
-      },
-      {
-        q: 'I need a custom system, where do I start?',
-        a: 'Send me a message on WhatsApp or email. We do a quick 15-minute call to understand your needs and I prepare a tailored proposal.',
+        text: 'Your contributions speak for themselves: 90+ merged PRs, 130+ commits, architecture documentation, SQLite/Postgres conflict fixes, Slack and Neovim integrations — you\'ve been an incredible force on this project. Thank you for everything you\'ve poured into Engram.',
+        name: 'Joshua',
+        role: 'Founder / Engram',
       },
     ],
+  },
+  precos: {
+    label: 'Investment',
+    title: 'Plans & Pricing',
+    subtitle: 'Fair pricing, fast delivery, no fine print. Every plan includes support during development.',
+    items: [
+      {
+        name: 'Landing Page / Business Site',
+        price: '$300',
+        period: 'starting at',
+        features: [
+          'Responsive design (mobile + desktop)',
+          'Optimized performance',
+          'Contact form',
+          'Social media integration',
+          'Delivery in 3 to 5 days',
+        ],
+        highlighted: false,
+      },
+      {
+        name: 'Custom System',
+        price: 'Get a quote',
+        period: '',
+        features: [
+          'Authentication & access levels',
+          'Admin dashboard',
+          'Database + custom API',
+          'Can include e-commerce',
+          'Built from scratch for your problem',
+        ],
+        highlighted: true,
+      },
+      {
+        name: 'Support & Maintenance',
+        price: '$100',
+        period: 'starting at',
+        features: [
+          'Ongoing maintenance',
+          'Weekly backups',
+          'Uptime monitoring',
+          'Priority support',
+          'Security updates',
+        ],
+        highlighted: false,
+      },
+    ],
+    popular: 'Most Popular',
+    cta: 'Get a Proposal',
+  },
+  beneficios: {
+    label: 'Why me',
+    title: 'Direct with you, from start to finish',
+    subtitle: 'No chatbot, no middleman, no empty promises.',
+    items: [
+      {
+        title: 'Fast & fairly priced',
+        desc: 'Landing page live in 3 to 5 days from $300. Larger systems quoted per project — you know the cost before we start.',
+      },
+      {
+        title: 'I work with clients worldwide',
+        desc: '100% remote. I\'ve worked with clients across Brazil and internationally (fluent English).',
+      },
+      {
+        title: 'Real support after delivery',
+        desc: 'I don\'t vanish after the site goes live. Maintenance plans available and I\'m always around when you need me.',
+      },
+    ],
+    cta: 'Let\'s talk',
   },
   contato: {
     label: 'Get in touch',

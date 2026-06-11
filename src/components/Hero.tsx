@@ -15,8 +15,7 @@ function Hero() {
         <span className="hero-tag">{t.hero.tag}</span>
 
         <h1 className="hero-title">
-          {t.hero.title1}{' '}
-          <span className="hero-gradient">{t.hero.titleGradient}</span>
+          {t.hero.title1}
           <br />
           {t.hero.title2}
         </h1>

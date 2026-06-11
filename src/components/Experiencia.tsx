@@ -5,16 +5,21 @@ function Experiencia() {
 
   return (
     <section id="experiencia">
-      <span className="section-label">{t.experiencia.label}</span>
-      <h2>{t.experiencia.title}</h2>
-      <div className="experiencia-list">
+      <h2 className="exp-title">{t.experiencia.title}</h2>
+
+      <div className="exp-timeline">
         {t.experiencia.items.map((exp, i) => (
-          <div key={i} className="experiencia-card">
-            <h3>{exp.cargo}</h3>
-            <div className="experiencia-meta">
-              {exp.empresa} • {exp.periodo}
+          <div key={i} className="exp-entry">
+            <div className="exp-dot" />
+            <div className="exp-content">
+              <h3 className="exp-cargo">{exp.cargo}</h3>
+              <p className="exp-meta">{exp.empresa} • {exp.periodo}</p>
+              <ul className="exp-desc">
+                {exp.descricao.map((item, j) => (
+                  <li key={j}>{item}</li>
+                ))}
+              </ul>
             </div>
-            <p>{exp.descricao}</p>
           </div>
         ))}
       </div>

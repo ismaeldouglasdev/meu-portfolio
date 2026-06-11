@@ -11,11 +11,10 @@ const ptBR: Translation = {
   },
   hero: {
     tag: 'Desenvolvedor Full Stack',
-    title1: 'Transformando',
-    titleGradient: 'ideias',
-    title2: 'em código',
+    title1: 'Sites, sistemas e APIs',
+    title2: 'que fazem seu negócio rodar',
     subtitle:
-      'Especializado em criar aplicações web modernas com React, TypeScript e Python. Apaixonado por código limpo, open-source e soluções que fazem a diferença.',
+      'Landing pages, sistemas web sob medida e e-commerce completos. Da página institucional à integração com APIs — sem enrolação, sem surpresas, sem ghosting.',
     ctaProjetos: 'Ver Projetos',
     ctaContato: 'Entrar em Contato',
     stat1: '2+',
@@ -83,8 +82,17 @@ const ptBR: Translation = {
     wakingServer: 'Acordando servidor...',
     serverOnline: 'Online',
     serverOffline: 'Offline',
+    desktopApp: 'Desktop App',
+    serverSleeping: 'Servidor dormindo. Clique para acordar.',
+    serverStarting: 'Render está iniciando o servidor (~30s)…',
     semDesc: 'Projeto em destaque no portfólio.',
     destaque: 'Projeto em destaque',
+    names: {
+      PeakVault: 'PeakVault',
+      'Cronograma-Projeto': 'Cronograma de Estudos',
+      'mensageiros-da-esperanca': 'Mensageiros da Esperança',
+      Engram: 'Engram',
+    },
     desc: {
       PeakVault: 'Sistema de análise e processamento de arquivos JSON com interface gráfica (CustomTkinter). CRUD dinâmico, agrupamento e visualização gráfica.',
       'Cronograma-Projeto': 'Sistema full-stack de cronograma de estudos gamificado com níveis, progressão e streaks. Python, Flask, PostgreSQL e Docker.',
@@ -100,15 +108,21 @@ const ptBR: Translation = {
         cargo: 'Encarregado no setor Comercial',
         empresa: 'Loja Quase Tudo',
         periodo: '2020 — Presente',
-        descricao:
-          'Responsável por liderar a equipe comercial e desenvolver estratégias para aumentar as vendas, fidelização de clientes e otimização de processos por meio de soluções tecnológicas.',
+        descricao: [
+          'Liderança da equipe comercial com foco em resultados',
+          'Estratégias para aumento de vendas e fidelização de clientes',
+          'Otimização de processos via soluções tecnológicas',
+        ],
       },
       {
         cargo: 'Contribuidor Open Source',
         empresa: 'Engram',
         periodo: '2026 — Presente',
-        descricao:
-          'Top Contributor do projeto Engram. Responsável pelo desenvolvimento de features críticas, code review e implementação de melhorias contínuas, impactando o fluxo de trabalho de outros desenvolvedores.',
+        descricao: [
+          'Top Contributor — 90+ PRs mesclados, 130+ commits',
+          'Desenvolvimento de features críticas e code review',
+          'Documentação de arquitetura e melhorias contínuas',
+        ],
       },
     ],
   },
@@ -136,27 +150,89 @@ const ptBR: Translation = {
       },
     ],
   },
-  faq: {
-    label: 'Dúvidas',
-    title: 'Perguntas Frequentes',
+  depoimentos: {
+    label: 'Depoimentos',
+    title: 'Quem confiou no meu trabalho',
     items: [
       {
-        q: 'Quanto tempo leva para fazer um site?',
-        a: 'Site institucional ou landing page fica pronto em 3 a 5 dias. Sistemas web e e-commerce levam de 1 a 4 semanas dependendo da complexidade.',
+        text: 'Quero em nome da ONG Mensageiros da Esperança agradecer pelo apoio na construção de uma solução para nossos cadastros e listas de presença. Esse é o nosso processo mais importante. É bom saber que um trabalho acadêmico pode impactar vidas. Gratidão por ser um solucionador da Esperança e nos presentear com essas soluções!',
+        name: 'Verônica',
+        role: 'ONG Mensageiros da Esperança',
       },
       {
-        q: 'Quanto custa?',
-        a: 'Landing pages e sites institucionais a partir de R$ 1.500. Sistemas web e e-commerce sob consulta — cada projeto tem necessidades diferentes. Me chama que faço uma proposta sem compromisso.',
-      },
-      {
-        q: 'Atende empresas de outros estados?',
-        a: 'Sim! Trabalho 100% remoto. Já atendi clientes de várias regiões do Brasil. Também atendo clientes internacionais (falando inglês fluente).',
-      },
-      {
-        q: 'Preciso de um sistema sob medida, como começo?',
-        a: 'Me chama no WhatsApp ou email. Fazemos uma call rápida de 15 minutos para entender sua necessidade e eu preparo uma proposta personalizada.',
+        text: 'Suas contribuições falam por si: 90+ PRs mesclados, 130+ commits, documentação de arquitetura, correções de conflitos SQLite/Postgres, integrações Slack e Neovim — você tem sido uma força incrível neste projeto. Obrigado por tudo que você investiu no Engram.',
+        name: 'Joshua',
+        role: 'Fundador / Engram',
       },
     ],
+  },
+  precos: {
+    label: 'Investimento',
+    title: 'Planos & Preços',
+    subtitle: 'Preço justo, entregas rápidas e sem letras miúdas. Cada plano inclui suporte durante o desenvolvimento.',
+    items: [
+      {
+        name: 'Landing Page / Site',
+        price: 'R$ 1.500',
+        period: 'a partir de',
+        features: [
+          'Design responsivo (celular + desktop)',
+          'Performance otimizada',
+          'Formulário de contato',
+          'Integração com redes sociais',
+          'Entrega em 3 a 5 dias',
+        ],
+        highlighted: false,
+      },
+      {
+        name: 'Sistema Sob Medida',
+        price: 'Sob consulta',
+        period: '',
+        features: [
+          'Autenticação e níveis de acesso',
+          'Dashboard administrativo',
+          'Banco de dados + API própria',
+          'Pode incluir e-commerce',
+          'Feito do zero pro seu problema',
+        ],
+        highlighted: true,
+      },
+      {
+        name: 'Suporte & Manutenção',
+        price: 'R$ 400',
+        period: 'a partir de',
+        features: [
+          'Manutenção contínua',
+          'Backups semanais',
+          'Monitoramento de disponibilidade',
+          'Suporte prioritário',
+          'Atualizações de segurança',
+        ],
+        highlighted: false,
+      },
+    ],
+    popular: 'Mais Popular',
+    cta: 'Solicitar Proposta',
+  },
+  beneficios: {
+    label: 'Por que me escolher',
+    title: 'Direto com você, do começo ao fim',
+    subtitle: 'Sem chatbot, sem intermediate, sem promessa vazia.',
+    items: [
+      {
+        title: 'Rápido e preço justo',
+        desc: 'Landing page no ar em 3 a 5 dias a partir de R$ 1.500. Sistemas maiores sob consulta — você sabe o valor antes de começar.',
+      },
+      {
+        title: 'Atendo o Brasil todo (e fora dele)',
+        desc: '100% remoto. Já atendi clientes de várias regiões do Brasil e também em inglês para clientes internacionais.',
+      },
+      {
+        title: 'Suporte de verdade depois da entrega',
+        desc: 'Não sumo depois que o site vai ao ar. Ofereço planos de manutenção contínua e suporte sempre que precisar.',
+      },
+    ],
+    cta: 'Vamos conversar',
   },
   contato: {
     label: 'Entre em contato',
