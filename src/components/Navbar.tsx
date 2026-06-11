@@ -63,7 +63,7 @@ function Navbar() {
         className="navbar-logo"
         onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}
       >
-        {'<'}<span>Ismael</span>{'/>'}
+        {'<'}<span className="navbar-logo-name">Ismael</span>{'/>'}
       </a>
 
       <ul className={`navbar-links${menuOpen ? ' open' : ''}`}>
