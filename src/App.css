@@ -308,8 +308,8 @@
 }
 
 .processo-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .processo-phase {
@@ -448,9 +448,9 @@
 }
 
 .skill-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.04);
   border-color: var(--text);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
 .skill-item svg {
@@ -483,8 +483,8 @@
 }
 
 .servico-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .servico-icon {
@@ -909,8 +909,8 @@
 }
 
 .depoimento-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .depoimento-stars {
@@ -1093,8 +1093,8 @@
 }
 
 .beneficio-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .beneficio-icon {
