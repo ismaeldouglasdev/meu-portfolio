@@ -18,11 +18,11 @@ const en: Translation = {
     ctaProjetos: 'View Projects',
     ctaContato: 'Get in Touch',
     stat1: '2+',
-    stat2: '10+',
-    stat3: 'Open Source',
+    stat2: '20+',
+    stat3: 'Since 2024',
     stat1Label: 'Years of Experience',
     stat2Label: 'Projects',
-    stat3Label: 'Active Contributor',
+    stat3Label: 'Building Software',
   },
   sobre: {
     label: 'About',
@@ -112,6 +112,7 @@ const en: Translation = {
           'Leading the sales team with a focus on results',
           'Strategies to increase revenue and customer loyalty',
           'Process optimization through technological solutions',
+          'Researched and implemented PDV, ERP, and e-commerce systems in store operations, focusing on omnichannel integration and event sourcing',
         ],
       },
       {
@@ -173,7 +174,7 @@ const en: Translation = {
     items: [
       {
         name: 'Landing Page / Business Site',
-        price: '$300',
+        price: '$500',
         period: 'starting at',
         features: [
           'Responsive design (mobile + desktop)',
@@ -199,7 +200,7 @@ const en: Translation = {
       },
       {
         name: 'Support & Maintenance',
-        price: '$100',
+        price: '$200',
         period: 'starting at',
         features: [
           'Ongoing maintenance',
@@ -221,7 +222,7 @@ const en: Translation = {
     items: [
       {
         title: 'Fast & fairly priced',
-        desc: 'Landing page live in 3 to 5 days from $300. Larger systems quoted per project — you know the cost before we start.',
+        desc: 'Landing page live in 3 to 5 days from $500. Larger systems quoted per project — you know the cost before we start.',
       },
       {
         title: 'I work with clients worldwide',

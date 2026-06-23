@@ -1,8 +1,8 @@
 import {
   FaJs, FaPython, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaDocker, FaReact,
-  FaDatabase, FaTerminal,
+  FaDatabase, FaTerminal, FaPhp, FaDesktop,
 } from 'react-icons/fa';
-import { SiTypescript } from 'react-icons/si';
+import { SiTypescript, SiFastapi, SiPostgresql, SiFlask, SiFirebase } from 'react-icons/si';
 import { useTranslation } from '../i18n';
 
 const skillsList = [
@@ -11,9 +11,15 @@ const skillsList = [
   { icon: <FaJs />, label: 'JavaScript' },
   { icon: <FaNodeJs />, label: 'Node.js' },
   { icon: <FaPython />, label: 'Python' },
+  { icon: <FaPhp />, label: 'PHP' },
+  { icon: <SiFastapi />, label: 'FastAPI' },
+  { icon: <SiFlask />, label: 'Flask' },
   { icon: <FaHtml5 />, label: 'HTML5' },
   { icon: <FaCss3Alt />, label: 'CSS3' },
+  { icon: <SiPostgresql />, label: 'PostgreSQL' },
+  { icon: <SiFirebase />, label: 'Firebase' },
   { icon: <FaDatabase />, label: 'SQL' },
+  { icon: <FaDesktop />, label: 'CustomTkinter' },
   { icon: <FaGitAlt />, label: 'Git' },
   { icon: <FaDocker />, label: 'Docker' },
   { icon: <FaTerminal />, label: 'Bash/Linux' },

@@ -18,11 +18,11 @@ const ptBR: Translation = {
     ctaProjetos: 'Ver Projetos',
     ctaContato: 'Entrar em Contato',
     stat1: '2+',
-    stat2: '10+',
-    stat3: 'Open Source',
+    stat2: '20+',
+    stat3: 'Desde 2024',
     stat1Label: 'Anos de Experiência',
     stat2Label: 'Projetos',
-    stat3Label: 'Contribuidor Ativo',
+    stat3Label: 'Construindo Software',
   },
   sobre: {
     label: 'Sobre',
@@ -112,6 +112,7 @@ const ptBR: Translation = {
           'Liderança da equipe comercial com foco em resultados',
           'Estratégias para aumento de vendas e fidelização de clientes',
           'Otimização de processos via soluções tecnológicas',
+          'Pesquisa e implementação de sistemas PDV, ERP e e-commerce na operação da loja, com foco em integração omnichannel e event sourcing',
         ],
       },
       {
@@ -173,7 +174,7 @@ const ptBR: Translation = {
     items: [
       {
         name: 'Landing Page / Site',
-        price: 'R$ 1.500',
+        price: 'R$ 2.500',
         period: 'a partir de',
         features: [
           'Design responsivo (celular + desktop)',
@@ -199,7 +200,7 @@ const ptBR: Translation = {
       },
       {
         name: 'Suporte & Manutenção',
-        price: 'R$ 400',
+        price: 'R$ 600',
         period: 'a partir de',
         features: [
           'Manutenção contínua',
@@ -221,7 +222,7 @@ const ptBR: Translation = {
     items: [
       {
         title: 'Rápido e preço justo',
-        desc: 'Landing page no ar em 3 a 5 dias a partir de R$ 1.500. Sistemas maiores sob consulta — você sabe o valor antes de começar.',
+        desc: 'Landing page no ar em 3 a 5 dias a partir de R$ 2.500. Sistemas maiores sob consulta — você sabe o valor antes de começar.',
       },
       {
         title: 'Atendo o Brasil todo (e fora dele)',

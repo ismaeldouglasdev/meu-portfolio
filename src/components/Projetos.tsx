@@ -13,9 +13,9 @@ interface Projeto {
 }
 
 const curatedRepos = [
-  'PeakVault',
   'Cronograma-Projeto',
   'mensageiros-da-esperanca',
+  'PeakVault',
 ];
 
 const manualEntries: Projeto[] = [
@@ -222,9 +222,9 @@ function Projetos() {
           throw new Error('empty curated list');
         }
 
-        if (!cancelled) setProjetos([...curated, ...manualEntries]);
+        if (!cancelled) setProjetos([...manualEntries, ...curated]);
       } catch {
-        if (!cancelled) setProjetos(buildFallback().concat(manualEntries));
+        if (!cancelled) setProjetos([...manualEntries, ...buildFallback()]);
       } finally {
         if (!cancelled) setLoading(false);
       }
