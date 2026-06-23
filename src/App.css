@@ -141,6 +141,18 @@
 .hero-content {
   text-align: center;
   max-width: 640px;
+  animation: heroFadeIn 0.8s ease forwards;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-badge {
@@ -262,6 +274,13 @@
   color: var(--text);
   padding: 0.4rem 0.75rem;
   border: 1px solid var(--border);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sobre-highlight:hover {
+  transform: translateY(-2px);
+  border-color: var(--text);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 .sobre-highlight svg {
@@ -285,6 +304,12 @@
   padding: 1.5rem;
   border: 1px solid var(--border);
   text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.processo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
 }
 
 .processo-phase {
@@ -419,11 +444,23 @@
   border: 1px solid var(--border);
   font-size: 0.8rem;
   color: var(--text-secondary);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--text);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 .skill-item svg {
   font-size: 0.9rem;
   color: var(--text);
+  transition: transform 0.3s ease;
+}
+
+.skill-item:hover svg {
+  transform: scale(1.15);
 }
 
 /* ----- Services ----- */
@@ -442,6 +479,12 @@
 .servico-card {
   padding: 1.5rem;
   border: 1px solid var(--border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.servico-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
 }
 
 .servico-icon {
@@ -770,11 +813,14 @@
   color: var(--text-secondary);
   font-size: 0.8rem;
   text-decoration: none;
+  transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .contato-link:hover {
   color: var(--text);
   border-color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 .contato-link svg {
@@ -859,6 +905,12 @@
   border: 1px solid var(--border);
   text-align: left;
   position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.depoimento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
 }
 
 .depoimento-stars {
@@ -1037,6 +1089,12 @@
   padding: 1.5rem;
   border: 1px solid var(--border);
   text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.beneficio-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
 }
 
 .beneficio-icon {
@@ -1097,7 +1155,10 @@ section.visible .projeto-card,
 section.visible .beneficio-card,
 section.visible .preco-card,
 section.visible .depoimento-card,
-section.visible .exp-entry {
+section.visible .exp-entry,
+section.visible .skill-item,
+section.visible .sobre-highlight,
+section.visible .contato-link {
   opacity: 0;
   transform: translateY(16px);
   animation: cardFadeIn 0.5s ease forwards;
@@ -1109,30 +1170,52 @@ section.visible .projeto-card:nth-child(1),
 section.visible .beneficio-card:nth-child(1),
 section.visible .preco-card:nth-child(1),
 section.visible .depoimento-card:nth-child(1),
-section.visible .journey-entry:nth-child(1) { animation-delay: 0.05s; }
+section.visible .journey-entry:nth-child(1),
+section.visible .skill-item:nth-child(1),
+section.visible .sobre-highlight:nth-child(1),
+section.visible .contato-link:nth-child(1) { animation-delay: 0.05s; }
 section.visible .servico-card:nth-child(2),
 section.visible .processo-card:nth-child(2),
 section.visible .projeto-card:nth-child(2),
 section.visible .beneficio-card:nth-child(2),
 section.visible .preco-card:nth-child(2),
 section.visible .depoimento-card:nth-child(2),
-section.visible .journey-entry:nth-child(2) { animation-delay: 0.1s; }
+section.visible .journey-entry:nth-child(2),
+section.visible .skill-item:nth-child(2),
+section.visible .sobre-highlight:nth-child(2),
+section.visible .contato-link:nth-child(2) { animation-delay: 0.1s; }
 section.visible .servico-card:nth-child(3),
 section.visible .processo-card:nth-child(3),
 section.visible .projeto-card:nth-child(3),
 section.visible .beneficio-card:nth-child(3),
 section.visible .preco-card:nth-child(3),
 section.visible .depoimento-card:nth-child(3),
-section.visible .journey-entry:nth-child(3) { animation-delay: 0.15s; }
+section.visible .journey-entry:nth-child(3),
+section.visible .skill-item:nth-child(3),
+section.visible .sobre-highlight:nth-child(3) { animation-delay: 0.15s; }
 section.visible .servico-card:nth-child(4),
 section.visible .projeto-card:nth-child(4),
 section.visible .preco-card:nth-child(4),
-section.visible .depoimento-card:nth-child(4) { animation-delay: 0.2s; }
+section.visible .depoimento-card:nth-child(4),
+section.visible .skill-item:nth-child(4) { animation-delay: 0.2s; }
 section.visible .servico-card:nth-child(5),
 section.visible .projeto-card:nth-child(5),
-section.visible .preco-card:nth-child(5) { animation-delay: 0.25s; }
+section.visible .preco-card:nth-child(5),
+section.visible .skill-item:nth-child(5) { animation-delay: 0.25s; }
 section.visible .servico-card:nth-child(6),
-section.visible .projeto-card:nth-child(6) { animation-delay: 0.3s; }
+section.visible .projeto-card:nth-child(6),
+section.visible .skill-item:nth-child(6) { animation-delay: 0.3s; }
+section.visible .skill-item:nth-child(7) { animation-delay: 0.35s; }
+section.visible .skill-item:nth-child(8) { animation-delay: 0.4s; }
+section.visible .skill-item:nth-child(9) { animation-delay: 0.45s; }
+section.visible .skill-item:nth-child(10) { animation-delay: 0.5s; }
+section.visible .skill-item:nth-child(11) { animation-delay: 0.55s; }
+section.visible .skill-item:nth-child(12) { animation-delay: 0.6s; }
+section.visible .skill-item:nth-child(13) { animation-delay: 0.65s; }
+section.visible .skill-item:nth-child(14) { animation-delay: 0.7s; }
+section.visible .skill-item:nth-child(15) { animation-delay: 0.75s; }
+section.visible .skill-item:nth-child(16) { animation-delay: 0.8s; }
+section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
 
 @keyframes cardFadeIn {
   to {
