@@ -521,6 +521,14 @@
   padding: 0.15rem 0.5rem;
   border: 1px solid var(--border);
   color: var(--text-muted);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.servico-techs span:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  color: var(--text);
 }
 
 /* ----- Projetos ----- */
@@ -618,6 +626,14 @@
   padding: 0.15rem 0.5rem;
   border: 1px solid var(--border);
   color: var(--text-muted);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.projeto-langs span:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  color: var(--text);
 }
 
 .tag-desktop {
