@@ -23,10 +23,10 @@ const manualEntries: Projeto[] = [
     id: 999,
     name: 'Engram',
     description: null,
-    html_url: 'https://github.com/ismaeldouglasdev/Engram',
+    html_url: 'https://github.com/Agentscreator/engram-memory',
     deploy_url: 'https://www.engram-memory.com/',
     language: 'Python',
-    stars: 1,
+    stars: 82,
   },
 ];
 

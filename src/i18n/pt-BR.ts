@@ -97,7 +97,7 @@ const ptBR: Translation = {
       PeakVault: 'Sistema de análise e processamento de arquivos JSON com interface gráfica (CustomTkinter). CRUD dinâmico, agrupamento e visualização gráfica.',
       'Cronograma-Projeto': 'Sistema full-stack de cronograma de estudos gamificado com níveis, progressão e streaks. Python, Flask, PostgreSQL e Docker.',
       'mensageiros-da-esperanca': 'Sistema web para gestão de ONG — cadastro de cursos, inscrições, presença digital e dashboard com Firebase. HTML, CSS, JavaScript e Firestore.',
-      Engram: 'Plataforma de consistência de memória multi-agente. Top contributor — desenvolvimento de funcionalidades críticas, code review e melhorias contínuas.',
+      Engram: 'Plataforma de consistência de memória multi-agente. Top contributor — segurança, CLI, dashboard, plugins Neovim/Slack e correções críticas no motor de conflitos.',
     },
   },
   experiencia: {
@@ -118,11 +118,15 @@ const ptBR: Translation = {
       {
         cargo: 'Contribuidor Open Source',
         empresa: 'Engram',
-        periodo: '2026 — Presente',
+        periodo: 'Abr 2026 — Mai 2026',
         descricao: [
           'Top Contributor — 90+ PRs mesclados, 130+ commits',
-          'Desenvolvimento de features críticas e code review',
-          'Documentação de arquitetura e melhorias contínuas',
+          'Implementei defesas de segurança MINJA e scanner de segredos/PII no motor de memória',
+          'Criei plugin Neovim e bot Slack para consultar e comitar facts diretamente dos editores',
+          'Corrigi bugs críticos no detector de conflitos — eliminava duplicatas e conflitos reabertos',
+          'Construí CLI commands (setup, verify, status, search, export, conflicts) e dashboard completo',
+          'Projetei compressão de memória, pinned facts, MCP tools (audit_trail, replay) e Health Score',
+          'Documentei arquitetura de segurança, compliance SOC 2, SSO, data residency e pricing',
         ],
       },
     ],

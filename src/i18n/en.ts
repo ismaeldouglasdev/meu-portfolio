@@ -97,7 +97,7 @@ const en: Translation = {
       PeakVault: 'JSON file analysis and processing system with GUI (CustomTkinter). Dynamic CRUD, grouping, and graphical visualization.',
       'Cronograma-Projeto': 'Full-stack gamified study schedule system with levels, progression, and streaks. Python, Flask, PostgreSQL, and Docker.',
       'mensageiros-da-esperanca': 'Web system for NGO management — course registration, enrollments, digital attendance and dashboard with Firebase. HTML, CSS, JavaScript and Firestore.',
-      Engram: 'Multi-agent memory consistency platform. Top contributor — developed critical features, code review, and continuous improvements.',
+      Engram: 'Multi-agent memory consistency platform. Top contributor — security, CLI, dashboard, Neovim/Slack plugins, and critical conflict engine fixes.',
     },
   },
   experiencia: {
@@ -118,11 +118,15 @@ const en: Translation = {
       {
         cargo: 'Open Source Contributor',
         empresa: 'Engram',
-        periodo: '2026 — Present',
+        periodo: 'Apr 2026 — May 2026',
         descricao: [
           'Top Contributor — 90+ merged PRs, 130+ commits',
-          'Critical feature development and code review',
-          'Architecture documentation and continuous improvements',
+          'Implemented MINJA security defenses and PII/secret scanner in the memory engine',
+          'Built Neovim plugin and Slack bot to query and commit facts directly from editors',
+          'Fixed critical conflict detection bugs — eliminated duplicates and resurfacing conflicts',
+          'Built CLI commands (setup, verify, status, search, export, conflicts) and full dashboard',
+          'Designed memory compression, pinned facts, MCP tools (audit_trail, replay) and Health Score',
+          'Authored security architecture, SOC 2 compliance, SSO, data residency and pricing docs',
         ],
       },
     ],
