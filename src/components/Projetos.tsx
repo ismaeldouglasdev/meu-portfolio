@@ -40,6 +40,14 @@ const curatedRepoMeta: Record<string, { lang: string; stars: number; deploy_url?
   'mensageiros-da-esperanca': { lang: 'JavaScript', stars: 0, deploy_url: 'https://mensageiros-da-esperanca.vercel.app/' },
 };
 
+const projectScreenshots: Record<string, string | { pt: string; en: string }> = {
+  Engram: '/images/engram-landing.png',
+  'Cronograma-Projeto': {
+    pt: '/images/cronograma-ptbr.png',
+    en: '/images/cronograma-en.png',
+  },
+};
+
 type ServerStatus = 'checking' | 'online' | 'offline' | 'waking';
 
 function StatusBadge({ url }: { url: string }) {
@@ -121,12 +129,18 @@ function StatusBadge({ url }: { url: string }) {
 }
 
 function ProjetoCard({ projeto }: { projeto: Projeto }) {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const desc = t.projetos.desc[projeto.name] || projeto.description || t.projetos.semDesc;
+
+  const rawScreenshot = projectScreenshots[projeto.name] || projeto.screenshot;
+  const screenshot =
+    rawScreenshot && typeof rawScreenshot === 'object'
+      ? rawScreenshot[lang === 'pt-BR' ? 'pt' : 'en']
+      : (rawScreenshot as string | undefined);
 
   return (
     <div className="projeto-card">
-      {projeto.screenshot && (
+      {screenshot && (
         <a
           href={projeto.deploy_url || projeto.html_url}
           target="_blank"
@@ -134,7 +148,7 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
           className="projeto-screenshot-link"
         >
           <img
-            src={projeto.screenshot}
+            src={screenshot}
             alt={`${projeto.name} screenshot`}
             className="projeto-screenshot"
             loading="lazy"
