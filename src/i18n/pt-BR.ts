@@ -13,14 +13,20 @@ const ptBR: Translation = {
     tag: 'Desenvolvedor Full Stack',
     title1: 'Sites, sistemas e APIs',
     title2: 'que fazem seu negócio rodar',
+    phrases: [
+      'Sites, sistemas e APIs\nque fazem seu negócio rodar',
+      'Código que resolve\nda primeira à última linha',
+      'Open Source na prática\ncontribuindo com a comunidade',
+      'Soluções sob medida\nque crescem com você',
+    ],
     subtitle:
       'Landing pages, sistemas web sob medida e e-commerce completos. Da página institucional à integração com APIs — sem enrolação, sem surpresas, sem ghosting.',
     ctaProjetos: 'Ver Projetos',
     ctaContato: 'Entrar em Contato',
-    stat1: '2+',
+    stat1: 'Top Contributor',
     stat2: '20+',
     stat3: 'Desde 2024',
-    stat1Label: 'Anos de Experiência',
+    stat1Label: 'Open Source',
     stat2Label: 'Projetos',
     stat3Label: 'Construindo Software',
   },
@@ -39,32 +45,32 @@ const ptBR: Translation = {
     items: [
       {
         title: 'Sites & Landing Pages',
-        desc: 'Criação de sites institucionais, landing pages e portfólios com design responsivo e performance otimizada.',
+        desc: 'Transforme sua presença online com sites que convertem visitantes em clientes. Design responsivo, performance otimizada e foco em resultados.',
         techs: ['React', 'TypeScript', 'CSS Moderno'],
       },
       {
         title: 'Aplicações Web',
-        desc: 'Desenvolvimento de aplicações web completas com dashboards, autenticação e integração com APIs.',
+        desc: 'Sistemas web que resolvem problemas reais do seu negócio. Dashboards, automações e integrações que eliminam gargalos e dão visibilidade real dos seus processos.',
         techs: ['React', 'Node.js', 'PostgreSQL'],
       },
       {
         title: 'APIs & Backend',
-        desc: 'Construção de APIs RESTful e serviços backend escaláveis com foco em segurança e desempenho.',
+        desc: 'Backends que não travam, APIs que não quebram. Arquitetura escalável desde o primeiro deploy — segurança e desempenho para sua aplicação crescer sem sustos.',
         techs: ['Python', 'Node.js', 'Docker'],
       },
       {
         title: 'Open Source & Consultoria',
-        desc: 'Contribuição em projetos open-source, code review e consultoria técnica para times de desenvolvimento.',
+        desc: '90+ PRs aceitos em projetos open source. Consultoria técnica para times que querem código de qualidade, code review e boas práticas que funcionam na prática.',
         techs: ['Git', 'Code Review', 'Boas Práticas'],
       },
       {
         title: 'E-commerce & Integrações',
-        desc: 'Loja virtual completa com catálogo online, carrinho de compras, pagamentos e integração com WhatsApp e marketplaces.',
+        desc: 'Loja virtual que realmente vende. Catálogo online, carrinho, pagamentos, WhatsApp e marketplaces integrados — tudo sincronizado com seu PDV.',
         techs: ['React', 'OSPOS', 'Mercado Livre'],
       },
       {
         title: 'Sistemas Sob Medida',
-        desc: 'Automação de processos, dashboards gerenciais, sistemas de gestão personalizados para seu negócio.',
+        desc: 'Automação que corta horas do seu dia. Dashboards, sistemas de gestão e processos personalizados que eliminam planilhas e retrabalho.',
         techs: ['Python', 'FastAPI', 'PostgreSQL'],
       },
     ],
@@ -94,9 +100,9 @@ const ptBR: Translation = {
       Engram: 'Engram',
     },
     desc: {
-      PeakVault: 'Sistema de análise e processamento de arquivos JSON com interface gráfica (CustomTkinter). CRUD dinâmico, agrupamento e visualização gráfica.',
-      'Cronograma-Projeto': 'Sistema full-stack de cronograma de estudos gamificado com níveis, progressão e streaks. Python, Flask, PostgreSQL e Docker.',
-      'mensageiros-da-esperanca': 'Sistema web para gestão de ONG — cadastro de cursos, inscrições, presença digital e dashboard com Firebase. HTML, CSS, JavaScript e Firestore.',
+      PeakVault: 'Sistema de análise e processamento de JSON com interface gráfica (CustomTkinter). Importação de 10k+ registros, CRUD dinâmico, agrupamento inteligente e visualização gráfica.',
+      'Cronograma-Projeto': 'Sistema full-stack de cronograma de estudos gamificado com 12+ módulos, níveis de progressão, streaks e ranking. Python, Flask, PostgreSQL e Docker.',
+      'mensageiros-da-esperanca': 'Sistema web para gestão de ONG — cadastro de cursos, 100+ voluntários, presença digital e dashboard com Firebase. HTML, CSS, JavaScript e Firestore.',
       Engram: 'Plataforma de consistência de memória multi-agente. Top contributor — segurança, CLI, dashboard, plugins Neovim/Slack e correções críticas no motor de conflitos.',
     },
   },
@@ -173,6 +179,35 @@ const ptBR: Translation = {
       },
     ],
   },
+  estudosCaso: {
+    label: 'Estudos de Caso',
+    title: 'Problemas que resolvi na prática',
+    items: [
+      {
+        projeto: 'Mensageiros da Esperança',
+        problema: 'A ONG enfrentava dificuldades para gerenciar cadastros de cursos e listas de presença manualmente. O processo era feito em papel e planilhas, sem centralização — gerava retrabalho, perda de dados e dificuldade de gerar relatórios.',
+        solucao: 'Desenvolvemos um sistema web completo com Firebase para gerenciamento de cursos, inscrições online e registro de presença digital. Dashboard em tempo real com visibilidade total das operações.',
+        resultado: [
+          'Cadastro de cursos e inscrições 100% digitalizados',
+          'Listas de presença emitidas automaticamente',
+          'Dashboard com dados em tempo real para tomada de decisão',
+          'Redução drástica de retrabalho e perda de dados',
+        ],
+      },
+      {
+        projeto: 'Engram — Multi-Agent Memory',
+        problema: 'O projeto precisava acelerar entregas críticas: segurança do motor de memória, CLI, dashboard e plugins para ferramentas da comunidade. Havia bugs abertos no detector de conflitos que causavam duplicatas e conflitos reabertos.',
+        solucao: 'Atuei como Top Contributor com 90+ PRs mesclados, implementando defesas de segurança, CLI completa, dashboard, plugins Neovim e Slack, e corrigindo bugs críticos no motor de conflitos.',
+        resultado: [
+          '90+ PRs mesclados, 130+ commits em 2 meses',
+          'Segurança reforçada com scanner de segredos e PII',
+          'Ferramentas para desenvolvedores (CLI, Neovim, Slack)',
+          'Conflitos de memória eliminados — zero duplicatas',
+          'Documentação de arquitetura e compliance SOC 2',
+        ],
+      },
+    ],
+  },
   precos: {
     label: 'Investimento',
     title: 'Planos & Preços',
@@ -182,6 +217,7 @@ const ptBR: Translation = {
         name: 'Landing Page / Site',
         price: 'R$ 2.500',
         period: 'a partir de',
+        parcelado: 'ou 12x R$ 249',
         features: [
           'Design responsivo (celular + desktop)',
           'Performance otimizada',
@@ -193,7 +229,7 @@ const ptBR: Translation = {
       },
       {
         name: 'Sistema Sob Medida',
-        price: 'Sob consulta',
+        price: 'a partir de R$ 5.000',
         period: '',
         features: [
           'Autenticação e níveis de acesso',
@@ -219,6 +255,12 @@ const ptBR: Translation = {
       },
     ],
     popular: 'Mais Popular',
+    selos: [
+      { icon: '🚀', text: 'Entrega Rápida' },
+      { icon: '🤝', text: 'Suporte Dedicado' },
+      { icon: '🔓', text: 'Contrato Flexível' },
+      { icon: '📄', text: 'Código Aberto' },
+    ],
     cta: 'Solicitar Proposta',
   },
   beneficios: {

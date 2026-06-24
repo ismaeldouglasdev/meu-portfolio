@@ -22,6 +22,9 @@ function Precos() {
               <span className="preco-period">{plano.period}</span>
               <span className="preco-value">{plano.price}</span>
             </div>
+            {plano.parcelado && (
+              <span className="preco-parcelado">{plano.parcelado}</span>
+            )}
             <ul className="preco-features">
               {plano.features.map((feat, j) => (
                 <li key={j}>
@@ -33,6 +36,15 @@ function Precos() {
               {t.precos.cta}
             </a>
           </div>
+        ))}
+      </div>
+
+      <div className="precos-selos">
+        {t.precos.selos.map((selo, i) => (
+          <span key={i} className="preco-selo">
+            <span className="preco-selo-icon">{selo.icon}</span>
+            {selo.text}
+          </span>
         ))}
       </div>
     </section>

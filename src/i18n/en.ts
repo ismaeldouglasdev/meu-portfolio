@@ -13,14 +13,20 @@ const en: Translation = {
     tag: 'Full Stack Developer',
     title1: 'Websites, systems & APIs',
     title2: 'that make your business run',
+    phrases: [
+      'Websites, systems & APIs\nthat make your business run',
+      'Code that delivers\nfrom line one to ship',
+      'Open Source in practice\ncontributing to the community',
+      'Tailor-made solutions\nthat scale with you',
+    ],
     subtitle:
       'Landing pages, custom web systems and complete e-commerce. From business sites to API integrations — no bullshit, no surprises, no ghosting.',
     ctaProjetos: 'View Projects',
     ctaContato: 'Get in Touch',
-    stat1: '2+',
+    stat1: 'Top Contributor',
     stat2: '20+',
     stat3: 'Since 2024',
-    stat1Label: 'Years of Experience',
+    stat1Label: 'Open Source',
     stat2Label: 'Projects',
     stat3Label: 'Building Software',
   },
@@ -39,32 +45,32 @@ const en: Translation = {
     items: [
       {
         title: 'Websites & Landing Pages',
-        desc: 'Creating business websites, landing pages and portfolios with responsive design and optimized performance.',
+        desc: 'Transform your online presence with sites that convert visitors into customers. Responsive design, optimized performance, and results-driven from day one.',
         techs: ['React', 'TypeScript', 'Modern CSS'],
       },
       {
         title: 'Web Applications',
-        desc: 'Building complete web applications with dashboards, authentication, and API integrations.',
+        desc: 'Web systems that solve real business problems. Dashboards, automations, and integrations that eliminate bottlenecks and give you real visibility into your processes.',
         techs: ['React', 'Node.js', 'PostgreSQL'],
       },
       {
         title: 'APIs & Backend',
-        desc: 'Developing RESTful APIs and scalable backend services with focus on security and performance.',
+        desc: 'Backends that don\'t stall, APIs that don\'t break. Scalable architecture from day one — security and performance so your application grows without surprises.',
         techs: ['Python', 'Node.js', 'Docker'],
       },
       {
         title: 'Open Source & Consulting',
-        desc: 'Contributing to open-source projects, code review, and technical consulting for development teams.',
+        desc: '90+ accepted PRs in open source projects. Technical consulting for teams that want quality code, code review, and best practices that actually work.',
         techs: ['Git', 'Code Review', 'Best Practices'],
       },
       {
         title: 'E-commerce & Integrations',
-        desc: 'Complete online store with product catalog, shopping cart, payments, and WhatsApp & marketplace integration.',
+        desc: 'An online store that actually sells. Product catalog, cart, payments, WhatsApp and marketplace integrations — all synced with your POS.',
         techs: ['React', 'OSPOS', 'Mercado Livre'],
       },
       {
         title: 'Custom Systems',
-        desc: 'Process automation, management dashboards, and tailor-made business management systems.',
+        desc: 'Automation that cuts hours off your day. Dashboards, management systems, and custom processes that eliminate spreadsheets and rework.',
         techs: ['Python', 'FastAPI', 'PostgreSQL'],
       },
     ],
@@ -94,9 +100,9 @@ const en: Translation = {
       Engram: 'Engram',
     },
     desc: {
-      PeakVault: 'JSON file analysis and processing system with GUI (CustomTkinter). Dynamic CRUD, grouping, and graphical visualization.',
-      'Cronograma-Projeto': 'Full-stack gamified study schedule system with levels, progression, and streaks. Python, Flask, PostgreSQL, and Docker.',
-      'mensageiros-da-esperanca': 'Web system for NGO management — course registration, enrollments, digital attendance and dashboard with Firebase. HTML, CSS, JavaScript and Firestore.',
+      PeakVault: 'JSON file analysis and processing system with GUI (CustomTkinter). Handles 10k+ record imports, dynamic CRUD, smart grouping, and graphical visualization.',
+      'Cronograma-Projeto': 'Full-stack gamified study schedule system with 12+ modules, progression levels, streaks, and rankings. Python, Flask, PostgreSQL, and Docker.',
+      'mensageiros-da-esperanca': 'Web system for NGO management — course registration, 100+ volunteers, digital attendance and dashboard with Firebase. HTML, CSS, JavaScript and Firestore.',
       Engram: 'Multi-agent memory consistency platform. Top contributor — security, CLI, dashboard, Neovim/Slack plugins, and critical conflict engine fixes.',
     },
   },
@@ -173,6 +179,35 @@ const en: Translation = {
       },
     ],
   },
+  estudosCaso: {
+    label: 'Case Studies',
+    title: 'Real problems I\'ve solved',
+    items: [
+      {
+        projeto: 'Messengers of Hope',
+        problema: 'The NGO struggled to manage course registrations and attendance lists manually. The process relied on paper and spreadsheets with no centralization — causing rework, data loss, and difficulty generating reports.',
+        solucao: 'We built a complete web system with Firebase for course management, online enrollment, and digital attendance tracking. Real-time dashboard with full operational visibility.',
+        resultado: [
+          'Course registration and enrollment 100% digitized',
+          'Attendance lists generated automatically',
+          'Real-time dashboard for informed decision-making',
+          'Drastic reduction in rework and data loss',
+        ],
+      },
+      {
+        projeto: 'Engram — Multi-Agent Memory',
+        problema: 'Engram needed a contributor to accelerate critical deliveries: memory engine security, CLI, dashboard, and plugins for community tools. There were open bugs in the conflict detector causing duplicates and resurfacing conflicts.',
+        solucao: 'Acted as Top Contributor with 90+ merged PRs, implementing security defenses, full CLI, dashboard, Neovim and Slack plugins, and fixing critical conflict engine bugs.',
+        resultado: [
+          '90+ merged PRs, 130+ commits in 2 months',
+          'Hardened security with secret and PII scanner',
+          'Developer tools (CLI, Neovim, Slack)',
+          'Memory conflicts eliminated — zero duplicates',
+          'Architecture documentation and SOC 2 compliance',
+        ],
+      },
+    ],
+  },
   precos: {
     label: 'Investment',
     title: 'Plans & Pricing',
@@ -193,7 +228,7 @@ const en: Translation = {
       },
       {
         name: 'Custom System',
-        price: 'Get a quote',
+        price: 'from $1,000',
         period: '',
         features: [
           'Authentication & access levels',
@@ -219,6 +254,12 @@ const en: Translation = {
       },
     ],
     popular: 'Most Popular',
+    selos: [
+      { icon: '🚀', text: 'Fast Delivery' },
+      { icon: '🤝', text: 'Dedicated Support' },
+      { icon: '🔓', text: 'No Lock-in' },
+      { icon: '📄', text: 'Open Source' },
+    ],
     cta: 'Get a Proposal',
   },
   beneficios: {

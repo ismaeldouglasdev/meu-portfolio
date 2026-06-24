@@ -11,6 +11,7 @@ export interface Translation {
     tag: string;
     title1: string;
     title2: string;
+    phrases: string[];
     subtitle: string;
     ctaProjetos: string;
     ctaContato: string;
@@ -58,6 +59,17 @@ export interface Translation {
       role: string;
     }>;
   };
+  estudosCaso: {
+    label: string;
+    title: string;
+    items: Array<{
+      projeto: string;
+      problema: string;
+      solucao: string;
+      resultado: string[];
+      link?: string;
+    }>;
+  };
   precos: {
     label: string;
     title: string;
@@ -67,8 +79,13 @@ export interface Translation {
       name: string;
       price: string;
       period: string;
+      parcelado?: string;
       features: string[];
       highlighted: boolean;
+    }>;
+    selos: Array<{
+      icon: string;
+      text: string;
     }>;
     cta: string;
   };

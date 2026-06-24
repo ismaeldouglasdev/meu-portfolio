@@ -1,5 +1,6 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
+import Typewriter from './Typewriter';
 
 function Hero() {
   const { t } = useTranslation();
@@ -14,10 +15,8 @@ function Hero() {
 
         <span className="hero-tag">{t.hero.tag}</span>
 
-        <h1 className="hero-title">
-          {t.hero.title1}
-          <br />
-          {t.hero.title2}
+        <h1 className="hero-title typewriter-line">
+          <Typewriter phrases={t.hero.phrases} speed={65} deleteSpeed={35} pauseAfter={2500} />
         </h1>
 
         <p className="hero-subtitle">{t.hero.subtitle}</p>
