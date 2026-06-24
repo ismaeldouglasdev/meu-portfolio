@@ -50,6 +50,7 @@ const projectScreenshots: Record<string, string | { pt: string; en: string }> = 
     pt: '/images/mensageiros-ptbr.png',
     en: '/images/mensageiros-en.png',
   },
+  PeakVault: '/images/peakvault.png',
 };
 
 type ServerStatus = 'checking' | 'online' | 'offline' | 'waking';
