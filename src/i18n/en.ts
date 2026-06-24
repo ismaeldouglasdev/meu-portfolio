@@ -111,8 +111,10 @@ const en: Translation = {
         descricao: [
           'Leading the sales team with a focus on results',
           'Strategies to increase revenue and customer loyalty',
-          'Process optimization through technological solutions',
-          'Researched and implemented PDV, ERP, and e-commerce systems in store operations, focusing on omnichannel integration and event sourcing',
+          'Migrated ~10k product database between systems',
+          'Implemented and customized OSPOS (open source POS) — multiple core improvements',
+          'Linux infrastructure (Lubuntu) — local server, database and network administration',
+          'E-commerce integrations with open source POS (omnichannel)',
         ],
       },
       {

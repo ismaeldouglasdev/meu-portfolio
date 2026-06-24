@@ -111,8 +111,10 @@ const ptBR: Translation = {
         descricao: [
           'Liderança da equipe comercial com foco em resultados',
           'Estratégias para aumento de vendas e fidelização de clientes',
-          'Otimização de processos via soluções tecnológicas',
-          'Pesquisa e implementação de sistemas PDV, ERP e e-commerce na operação da loja, com foco em integração omnichannel e event sourcing',
+          'Migrei banco de dados com ~10k produtos entre sistemas',
+          'Implementei e customizei o OSPOS (sistema open source de PDV) — diversas melhorias no core',
+          'Infraestrutura Linux (Lubuntu) — administração de servidor local, banco e redes',
+          'Integrações de e-commerce com PDV open source (omnichannel)',
         ],
       },
       {
