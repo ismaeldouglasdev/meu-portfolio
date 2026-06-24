@@ -10,6 +10,7 @@ interface Projeto {
   deploy_url?: string;
   language: string | null;
   stars: number;
+  screenshot?: string;
 }
 
 const curatedRepos = [
@@ -27,6 +28,7 @@ const manualEntries: Projeto[] = [
     deploy_url: 'https://www.engram-memory.com/',
     language: 'Python',
     stars: 82,
+    screenshot: '/images/engram-landing.png',
   },
 ];
 
@@ -124,6 +126,21 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
 
   return (
     <div className="projeto-card">
+      {projeto.screenshot && (
+        <a
+          href={projeto.deploy_url || projeto.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="projeto-screenshot-link"
+        >
+          <img
+            src={projeto.screenshot}
+            alt={`${projeto.name} screenshot`}
+            className="projeto-screenshot"
+            loading="lazy"
+          />
+        </a>
+      )}
       <div className="projeto-body">
         <div className="projeto-header">
           <FaFolder className="projeto-folder-icon" />
