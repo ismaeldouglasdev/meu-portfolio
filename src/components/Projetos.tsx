@@ -46,6 +46,10 @@ const projectScreenshots: Record<string, string | { pt: string; en: string }> = 
     pt: '/images/cronograma-ptbr.png',
     en: '/images/cronograma-en.png',
   },
+  'mensageiros-da-esperanca': {
+    pt: '/images/mensageiros-ptbr.png',
+    en: '/images/mensageiros-en.png',
+  },
 };
 
 type ServerStatus = 'checking' | 'online' | 'offline' | 'waking';
