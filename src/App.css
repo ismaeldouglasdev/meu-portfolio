@@ -748,6 +748,11 @@
   position: relative;
   padding-left: 2rem;
   margin-bottom: 2.5rem;
+  transition: transform 0.25s ease;
+}
+
+.exp-entry:hover {
+  transform: translateX(4px);
 }
 
 .exp-entry:last-child {
@@ -1013,6 +1018,12 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.preco-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .preco-highlight {
