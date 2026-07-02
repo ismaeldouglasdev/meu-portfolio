@@ -8,6 +8,11 @@ interface Props {
   className?: string;
 }
 
+function prefersReducedMotion(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 function Typewriter({
   phrases,
   speed = 65,
@@ -19,6 +24,15 @@ function Typewriter({
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    setReducedMotion(prefersReducedMotion());
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   const currentPhrase = phrases[phraseIdx] ?? '';
 
@@ -26,8 +40,16 @@ function Typewriter({
     setPhraseIdx((prev) => (prev + 1) % phrases.length);
   }, [phrases.length]);
 
+  // Reduced motion: show last phrase immediately, no animation
   useEffect(() => {
-    if (!currentPhrase) return;
+    if (reducedMotion) {
+      setDisplayed(phrases[phrases.length - 1] ?? '');
+      return;
+    }
+  }, [reducedMotion, phrases]);
+
+  useEffect(() => {
+    if (reducedMotion || !currentPhrase) return;
 
     if (isPaused) {
       const pauseTimer = setTimeout(() => {
@@ -49,7 +71,6 @@ function Typewriter({
       return () => clearTimeout(timer);
     }
 
-    // Typing
     if (displayed === currentPhrase) {
       setIsPaused(true);
       return;
@@ -59,12 +80,12 @@ function Typewriter({
       setDisplayed(currentPhrase.slice(0, displayed.length + 1));
     }, speed);
     return () => clearTimeout(timer);
-  }, [displayed, isDeleting, isPaused, currentPhrase, speed, deleteSpeed, pauseAfter, nextPhrase]);
+  }, [displayed, isDeleting, isPaused, currentPhrase, speed, deleteSpeed, pauseAfter, nextPhrase, reducedMotion]);
 
   return (
     <span className={className}>
       {displayed}
-      <span className="typewriter-cursor">|</span>
+      {!reducedMotion && <span className="typewriter-cursor" aria-hidden="true">|</span>}
     </span>
   );
 }

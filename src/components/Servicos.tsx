@@ -1,7 +1,7 @@
 import { FaGlobe, FaMobileAlt, FaCogs, FaGitAlt, FaShoppingCart, FaChartLine } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 
-const icons = [<FaGlobe />, <FaMobileAlt />, <FaCogs />, <FaGitAlt />, <FaShoppingCart />, <FaChartLine />];
+const icons = [<FaGlobe aria-hidden="true" />, <FaMobileAlt aria-hidden="true" />, <FaCogs aria-hidden="true" />, <FaGitAlt aria-hidden="true" />, <FaShoppingCart aria-hidden="true" />, <FaChartLine aria-hidden="true" />];
 
 function Servicos() {
   const { t } = useTranslation();

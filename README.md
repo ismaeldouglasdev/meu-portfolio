@@ -1,23 +1,29 @@
+<p align="center">
+  <strong>🇧🇷 Português</strong> &nbsp;|&nbsp; <a href="README.en.md">🇺🇸 English</a>
+</p>
+
+<h1 align="center">👨‍💻 Meu Portfólio</h1>
 
 <p align="center">
-  <h1 align="center">👨‍💻 Meu Portfólio</h1>
-  <p align="center">Portfólio pessoal de Ismael Douglas — Desenvolvedor Full Stack</p>
+  Portfólio pessoal de <strong>Ismael Douglas</strong> — Desenvolvedor Full Stack
+  <br>
+  React · TypeScript · Vite
 </p>
 
 <p align="center">
   <a href="https://meu-portfolio-ebon-omega.vercel.app" target="_blank">
     <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel">
   </a>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
 </p>
 
 ---
 
 ## 📋 Sobre
 
-Portfólio profissional desenvolvido para apresentar projetos, habilidades e experiência. Conta com design responsivo, alternância de tema claro/escuro e seções organizadas para facilitar a navegação.
+Portfólio profissional desenvolvido em **React + TypeScript + Vite**, com design responsivo, suporte a i18n e seções organizadas para apresentar projetos, habilidades e experiência.
 
 ### 🎯 Seções
 
@@ -30,8 +36,9 @@ Portfólio profissional desenvolvido para apresentar projetos, habilidades e exp
 ### ✨ Features
 
 - 🌓 **Tema escuro/claro** com persistência via `localStorage`
+- 🌐 **Internacionalização (i18n)** — Português e Inglês
 - 📱 **Design responsivo** para todos os dispositivos
-- ⚡ **Hospedado na Vercel** com SPA rewrites
+- ⚡ **Hospedado na Vercel** com deploy contínuo
 
 ---
 
@@ -44,11 +51,18 @@ O projeto está hospedado na Vercel:
 ### Rodar localmente
 
 ```bash
-# Clone o repositório
+# Clone
 git clone https://github.com/ismaeldouglasdev/meu-portfolio.git
+cd meu-portfolio
 
-# Abra o index.html no navegador
-open public/index.html
+# Instalar dependências
+pnpm install
+
+# Iniciar dev server
+pnpm dev
+
+# Build para produção
+pnpm build
 ```
 
 ---
@@ -57,12 +71,19 @@ open public/index.html
 
 ```
 meu-portfolio/
-├── public/
-│   ├── index.html   # Página principal
-│   ├── style.css    # Estilos com suporte a temas
-│   └── script.js    # Interatividade (temas, projetos dinâmicos)
-├── vercel.json      # Configuração de deploy Vercel
-└── LICENSE
+├── src/
+│   ├── assets/        # Imagens e recursos estáticos
+│   ├── components/    # Componentes React
+│   ├── i18n/          # Traduções (pt-BR / en)
+│   ├── services/      # Serviços (API, utils)
+│   ├── App.tsx        # Componente principal
+│   ├── App.css        # Estilos globais
+│   └── main.tsx       # Entry point
+├── public/            # Favicon, assets estáticos
+├── index.html         # HTML template
+├── vite.config.js     # Configuração Vite
+├── vercel.json        # Configuração de deploy
+└── package.json
 ```
 
 ---

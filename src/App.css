@@ -68,8 +68,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text-secondary);
@@ -91,8 +91,8 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  min-width: 44px;
+  min-height: 44px;
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text);
@@ -115,16 +115,27 @@
     border-bottom: 1px solid var(--border);
     padding: 0.5rem;
     gap: 0;
+    z-index: 1001;
   }
   .navbar-links a {
     width: 100%;
-    padding: 0.6rem 0.75rem;
+    padding: 0.75rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
   .mobile-menu-btn {
     display: flex;
   }
   .navbar {
     padding: 0 1rem;
+  }
+  .navbar-backdrop {
+    position: fixed;
+    inset: 0;
+    top: 56px;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -434,6 +445,7 @@
   justify-content: center;
   gap: 0.5rem;
   margin-top: 1rem;
+  list-style: none;
 }
 
 .skill-item {
@@ -660,10 +672,6 @@
 .projeto-link:hover {
   color: var(--text);
   border-color: var(--accent);
-  background: var(--accent-bg);
-}
-
-.projeto-link:hover {
   background: var(--accent-bg);
 }
 
@@ -1121,10 +1129,16 @@
   margin-bottom: 1rem;
 }
 
+.preco-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
 .preco-cta {
   width: 100%;
   justify-content: center;
-  margin-top: auto;
 }
 
 .precos-selos {
@@ -1231,6 +1245,55 @@ section:not(#hero).visible {
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  section:not(#hero) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .projeto-card:hover,
+  .servico-card:hover,
+  .processo-card:hover,
+  .beneficio-card:hover,
+  .preco-card:hover,
+  .depoimento-card:hover,
+  .caso-card:hover,
+  .skill-item:hover,
+  .sobre-highlight:hover,
+  .contato-link:hover,
+  .preco-selo:hover,
+  .servico-techs span:hover,
+  .projeto-langs span:hover,
+  .status-badge:hover,
+  .exp-entry:hover {
+    transform: none !important;
+  }
+
+  .theme-btn:hover {
+    transform: none !important;
+  }
+
+  .projeto-card:hover .projeto-screenshot {
+    transform: none !important;
+  }
+
+  section.visible .servico-card,
+  section.visible .processo-card,
+  section.visible .projeto-card,
+  section.visible .beneficio-card,
+  section.visible .preco-card,
+  section.visible .depoimento-card,
+  section.visible .exp-entry,
+  section.visible .skill-item,
+  section.visible .sobre-highlight,
+  section.visible .contato-link {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 /* Delay cards dentro de seções animadas */
 section.visible .servico-card,
 section.visible .processo-card,
@@ -1314,13 +1377,16 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   animation: typewriterPulse 0.7s ease-in-out infinite;
 }
 
-.typewriter-cursor--blink {
-  animation: typewriterPulse 0.7s ease-in-out infinite;
-}
-
 @keyframes typewriterPulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .hero-title.typewriter-line {
@@ -1415,4 +1481,110 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
 .cta-strip .btn-lg {
   font-size: 1.1rem;
   padding: 0.85rem 2.5rem;
+}
+
+/* ----- Checkout Modal ----- */
+.checkout-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.checkout-modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.checkout-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.checkout-modal h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.checkout-modal-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.checkout-field {
+  margin-bottom: 1rem;
+}
+
+.checkout-field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+
+.checkout-field select,
+.checkout-field input {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  appearance: auto;
+}
+
+.checkout-field select:focus,
+.checkout-field input:focus {
+  outline: none;
+  border-color: var(--text);
+}
+
+.checkout-error {
+  font-size: 0.82rem;
+  color: #e53e3e;
+  margin-bottom: 0.75rem;
+}
+
+.checkout-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.checkout-modal-success {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.checkout-modal-success h3 {
+  margin-bottom: 0.75rem;
+}
+
+.checkout-modal-success p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }

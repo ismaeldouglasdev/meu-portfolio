@@ -11,17 +11,26 @@ function Navbar() {
   const [tema, setTema] = useState('light');
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [langMessage, setLangMessage] = useState('');
 
   useEffect(() => {
-    const saved = localStorage.getItem('portfolio-theme') || 'light';
-    setTema(saved);
-    document.documentElement.setAttribute('data-theme', saved);
+    try {
+      const saved = localStorage.getItem('portfolio-theme') || 'light';
+      setTema(saved);
+      document.documentElement.setAttribute('data-theme', saved);
+    } catch {
+      // localStorage indisponível
+    }
   }, []);
 
   const toggleTheme = () => {
     const next = tema === 'light' ? 'dark' : 'light';
     setTema(next);
-    localStorage.setItem('portfolio-theme', next);
+    try {
+      localStorage.setItem('portfolio-theme', next);
+    } catch {
+      // localStorage indisponível
+    }
     document.documentElement.setAttribute('data-theme', next);
   };
 
@@ -43,7 +52,7 @@ function Navbar() {
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
   };
 
@@ -66,24 +75,33 @@ function Navbar() {
         {'<'}<span className="navbar-logo-name">Ismael</span>{'/>'}
       </a>
 
-      <ul className={`navbar-links${menuOpen ? ' open' : ''}`}>
-        {sectionKeys.map((key) => (
-          <li key={key}>
-            <a
-              href={`#${key}`}
-              className={activeSection === key ? 'active' : ''}
-              onClick={(e) => { e.preventDefault(); scrollTo(key); }}
-            >
-              {navLabels[key]}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {menuOpen && (
+        <div className="navbar-backdrop" onClick={() => setMenuOpen(false)} />
+      )}
 
-      <div className="navbar-right">
+      <div
+        className={`navbar-links${menuOpen ? ' open' : ''}`}
+      >
+        {sectionKeys.map((key) => (
+          <a
+            key={key}
+            href={`#${key}`}
+            className={activeSection === key ? 'active' : ''}
+            onClick={(e) => { e.preventDefault(); scrollTo(key); }}
+          >
+            {navLabels[key]}
+          </a>
+        ))}
+      </div>
+
+      <div className="navbar-right" role="toolbar" aria-label="Ferramentas">
         <button
           className="theme-btn"
-          onClick={() => setLang(lang === 'pt-BR' ? 'en' : 'pt-BR')}
+          onClick={() => {
+            const nextLang = lang === 'pt-BR' ? 'en' : 'pt-BR';
+            setLang(nextLang);
+            setLangMessage(nextLang === 'en' ? 'Language: English' : 'Idioma: Português');
+          }}
           aria-label="Switch language"
           title={lang === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'}
           style={{ fontSize: '0.7rem', fontWeight: 600 }}
@@ -103,10 +121,18 @@ function Navbar() {
         <button
           className="mobile-menu-btn"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
+          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
+      </div>
+
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {langMessage}
       </div>
     </nav>
   );

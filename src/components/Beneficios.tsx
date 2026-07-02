@@ -1,7 +1,7 @@
 import { FaRocket, FaDollarSign, FaGlobeAmericas, FaHeadset } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 
-const icons = [<FaRocket />, <FaDollarSign />, <FaGlobeAmericas />, <FaHeadset />];
+const icons = [<FaRocket aria-hidden="true" />, <FaDollarSign aria-hidden="true" />, <FaGlobeAmericas aria-hidden="true" />, <FaHeadset aria-hidden="true" />];
 
 function Beneficios() {
   const { t } = useTranslation();

@@ -2,10 +2,10 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 
 const contatos = [
-  { icon: <FaGithub />, label: 'GitHub', href: 'https://github.com/ismaeldouglasdev' },
-  { icon: <FaLinkedin />, label: 'LinkedIn', href: 'https://linkedin.com/in/ismaeldouglasdev' },
-  { icon: <FaEnvelope />, label: 'Email', href: 'mailto:y2kgif@gmail.com' },
-  { icon: <FaWhatsapp />, label: 'WhatsApp', href: 'https://wa.me/5511959873202' },
+  { icon: <FaGithub aria-hidden="true" />, label: 'GitHub', href: 'https://github.com/ismaeldouglasdev' },
+  { icon: <FaLinkedin aria-hidden="true" />, label: 'LinkedIn', href: 'https://linkedin.com/in/ismaeldouglasdev' },
+  { icon: <FaEnvelope aria-hidden="true" />, label: 'Email', href: 'mailto:y2kgif@gmail.com' },
+  { icon: <FaWhatsapp aria-hidden="true" />, label: 'WhatsApp', href: 'https://wa.me/5511959873202' },
 ];
 
 function Contato() {
@@ -26,6 +26,7 @@ function Contato() {
             target="_blank"
             rel="noopener noreferrer"
             className="contato-link"
+            aria-label={`${c.label} (abre em nova aba)`}
           >
             {c.icon}
             {c.label}

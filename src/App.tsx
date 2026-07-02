@@ -1,24 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Sobre from './components/Sobre';
-import Processo from './components/Processo';
-import Servicos from './components/Servicos';
-import CtaStrip from './components/CtaStrip';
-import Skills from './components/Skills';
-import Projetos from './components/Projetos';
-import Depoimentos from './components/Depoimentos';
-import Experiencia from './components/Experiencia';
-import Precos from './components/Precos';
-import Beneficios from './components/Beneficios';
-import Contato from './components/Contato';
-import Footer from './components/Footer';
+
+const Sobre = lazy(() => import('./components/Sobre'));
+const Processo = lazy(() => import('./components/Processo'));
+const Servicos = lazy(() => import('./components/Servicos'));
+const CtaStrip = lazy(() => import('./components/CtaStrip'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projetos = lazy(() => import('./components/Projetos'));
+const Depoimentos = lazy(() => import('./components/Depoimentos'));
+const Experiencia = lazy(() => import('./components/Experiencia'));
+const Precos = lazy(() => import('./components/Precos'));
+const Beneficios = lazy(() => import('./components/Beneficios'));
+const Contato = lazy(() => import('./components/Contato'));
+const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
   useEffect(() => {
-    const saved = localStorage.getItem('portfolio-theme') || 'light';
-    document.documentElement.setAttribute('data-theme', saved);
+    try {
+      const saved = localStorage.getItem('portfolio-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+    } catch {
+      // localStorage indisponível
+    }
   }, []);
 
   useEffect(() => {
@@ -39,22 +44,24 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <main className="App" id="main-content">
       <Navbar />
       <Hero />
-      <Sobre />
-      <Processo />
-      <Servicos />
-      <CtaStrip />
-      <Skills />
-      <Projetos />
-      <Depoimentos />
-      <Experiencia />
-      <Precos />
-      <Beneficios />
-      <Contato />
-      <Footer />
-    </div>
+      <Suspense fallback={null}>
+        <Sobre />
+        <Processo />
+        <Servicos />
+        <CtaStrip />
+        <Skills />
+        <Projetos />
+        <Depoimentos />
+        <Experiencia />
+        <Precos />
+        <Beneficios />
+        <Contato />
+        <Footer />
+      </Suspense>
+    </main>
   );
 }
 

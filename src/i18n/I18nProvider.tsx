@@ -22,15 +22,30 @@ function detectBrowserLang(): Lang {
 
 const translations: Record<Lang, Translation> = { 'pt-BR': ptBR, en };
 
-export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => {
+function getSavedLang(): Lang {
+  try {
     const saved = localStorage.getItem('portfolio-lang') as Lang | null;
     if (saved && (saved === 'pt-BR' || saved === 'en')) return saved;
-    return detectBrowserLang();
-  });
+  } catch {
+    // localStorage indisponível (privacy mode, etc.)
+  }
+  return detectBrowserLang();
+}
+
+function saveLang(lang: Lang) {
+  try {
+    localStorage.setItem('portfolio-lang', lang);
+  } catch {
+    // localStorage indisponível — silencia
+  }
+}
+
+export function I18nProvider({ children }: { children: ReactNode }) {
+  const [lang, setLang] = useState<Lang>(getSavedLang);
 
   useEffect(() => {
-    localStorage.setItem('portfolio-lang', lang);
+    saveLang(lang);
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
   }, [lang]);
 
   const value: I18nContextValue = { lang, t: translations[lang], setLang };

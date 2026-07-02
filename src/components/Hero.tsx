@@ -9,7 +9,7 @@ function Hero() {
     <section id="hero" className="hero">
       <div className="hero-content">
         <span className="hero-badge">
-          <FaCheckCircle />
+          <FaCheckCircle aria-hidden="true" />
           {t.hero.disponivel}
         </span>
 

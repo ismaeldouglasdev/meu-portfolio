@@ -126,8 +126,9 @@ function StatusBadge({ url }: { url: string }) {
           : undefined
       }
       disabled={status === 'waking' || status === 'checking'}
+      aria-live="polite"
     >
-      <FaCircle style={{ color, fontSize: '0.5rem' }} />
+      <FaCircle style={{ color, fontSize: '0.5rem' }} aria-hidden="true" />
       <span>{statusLabel}</span>
     </button>
   );
@@ -162,7 +163,7 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
       )}
       <div className="projeto-body">
         <div className="projeto-header">
-          <FaFolder className="projeto-folder-icon" />
+          <FaFolder className="projeto-folder-icon" aria-hidden="true" />
           <h3>{t.projetos.names[projeto.name] || projeto.name}</h3>
         </div>
         <p>{desc}</p>
@@ -174,13 +175,14 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
           </div>
           <div className="projeto-actions">
             {projeto.deploy_url && (
-              <a
-                href={projeto.deploy_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="projeto-link deploy-link"
-              >
-                <FaExternalLinkAlt /> {t.projetos.visitSite}
+          <a
+            href={projeto.deploy_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="projeto-link deploy-link"
+            aria-label={`${t.projetos.visitSite} (abre em nova aba)`}
+          >
+            <FaExternalLinkAlt aria-hidden="true" /> {t.projetos.visitSite}
               </a>
             )}
             <a
@@ -188,8 +190,9 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
               target="_blank"
               rel="noopener noreferrer"
               className="projeto-link"
+              aria-label={`${t.projetos.verGitHub} (abre em nova aba)`}
             >
-              <FaGithub /> {t.projetos.verGitHub}
+              <FaGithub aria-hidden="true" /> {t.projetos.verGitHub}
             </a>
           </div>
         </div>

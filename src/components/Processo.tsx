@@ -1,7 +1,7 @@
 import { FaLightbulb, FaCode, FaRocket } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 
-const phaseIcons = [<FaLightbulb />, <FaCode />, <FaRocket />];
+const phaseIcons = [<FaLightbulb aria-hidden="true" />, <FaCode aria-hidden="true" />, <FaRocket aria-hidden="true" />];
 
 function Processo() {
   const { t } = useTranslation();

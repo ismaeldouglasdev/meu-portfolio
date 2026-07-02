@@ -5,9 +5,9 @@ function Sobre() {
   const { t } = useTranslation();
 
   const highlights = [
-    { icon: <FaCode />, text: t.sobre.highlight1 },
-    { icon: <FaUsers />, text: t.sobre.highlight2 },
-    { icon: <FaRocket />, text: t.sobre.highlight3 },
+    { icon: <FaCode aria-hidden="true" />, text: t.sobre.highlight1 },
+    { icon: <FaUsers aria-hidden="true" />, text: t.sobre.highlight2 },
+    { icon: <FaRocket aria-hidden="true" />, text: t.sobre.highlight3 },
   ];
 
   return (

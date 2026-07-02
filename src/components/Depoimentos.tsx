@@ -13,15 +13,15 @@ function Depoimentos() {
         <div className="depoimentos-list">
           {t.depoimentos.items.map((item, i) => (
             <div key={i} className="depoimento-card">
-              <div className="depoimento-stars">
+              <div className="depoimento-stars" aria-label="5 de 5 estrelas" role="img">
                 {[1, 2, 3, 4, 5].map((s) => (
-                  <FaStar key={s} />
+                  <FaStar key={s} aria-hidden="true" />
                 ))}
               </div>
-              <FaQuoteLeft className="depoimento-quote" />
+              <FaQuoteLeft className="depoimento-quote" aria-hidden="true" />
               <p className="depoimento-text">"{item.text}"</p>
               <div className="depoimento-author">
-                <div className="depoimento-avatar">
+                <div className="depoimento-avatar" aria-hidden="true">
                   {item.name.charAt(0).toUpperCase()}
                 </div>
                 <div>
