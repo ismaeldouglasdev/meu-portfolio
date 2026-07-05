@@ -313,6 +313,7 @@ const en: Translation = {
     label: 'Get in touch',
     title: 'Contact',
     subtitle: 'Let\'s work together? Reach me through one of the channels below.',
+    whatsappMsg: 'Hi! I saw your portfolio and would like to learn more about your services.',
   },
   footer: {
     direitos: 'All rights reserved.',

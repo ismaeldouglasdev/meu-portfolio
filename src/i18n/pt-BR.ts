@@ -314,6 +314,7 @@ const ptBR: Translation = {
     label: 'Entre em contato',
     title: 'Contato',
     subtitle: 'Vamos trabalhar juntos? Me chama em um dos canais abaixo.',
+    whatsappMsg: 'Olá! Vi seu portfólio e gostaria de saber mais sobre seus serviços.',
   },
   footer: {
     direitos: 'Todos os direitos reservados.',

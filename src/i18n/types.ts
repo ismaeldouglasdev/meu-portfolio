@@ -161,6 +161,7 @@ export interface Translation {
     label: string;
     title: string;
     subtitle: string;
+    whatsappMsg: string;
   };
   footer: {
     direitos: string;
