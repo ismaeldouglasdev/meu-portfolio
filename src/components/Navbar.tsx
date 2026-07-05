@@ -32,6 +32,17 @@ function Navbar() {
       // localStorage indisponível
     }
     document.documentElement.setAttribute('data-theme', next);
+    updateThemeColor(next);
+  };
+
+  // Initialize theme-color on mount
+  useEffect(() => {
+    updateThemeColor(tema);
+  }, [tema]);
+
+  const updateThemeColor = (theme: 'light' | 'dark') => {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#0a0a0a');
   };
 
   useEffect(() => {

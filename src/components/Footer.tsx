@@ -12,7 +12,7 @@ function Footer() {
         <a href="https://github.com/ismaeldouglasdev" target="_blank" rel="noopener noreferrer" aria-label="GitHub (abre em nova aba)">
           <FaGithub aria-hidden="true" />
         </a>
-        <a href="https://linkedin.com/in/ismaeldouglasdev" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova aba)">
+        <a href="https://linkedin.com/in/ismael-douglas-dev" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova aba)">
           <FaLinkedin aria-hidden="true" />
         </a>
       </div>

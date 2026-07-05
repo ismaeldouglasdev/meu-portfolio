@@ -17,4 +17,15 @@ export default defineConfig({
       ],
     },
   },
+  build: {
+    manualChunks: (id) =>
+      id.includes('node_modules') &&
+      id !== 'node_modules/react-dom/client' &&
+      (id.includes('react') ||
+        id.includes('react-dom') ||
+        id.includes('@chakra-ui/react') ||
+        id.includes('@emotion/react') ||
+        id.includes('@emotion/styled') ||
+        id.includes('@mui/material')),
+  },
 })
