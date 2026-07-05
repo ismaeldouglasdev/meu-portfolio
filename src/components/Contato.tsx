@@ -3,7 +3,7 @@ import { useTranslation } from '../i18n';
 
 const contatos = [
   { icon: <FaGithub aria-hidden="true" />, label: 'GitHub', href: 'https://github.com/ismaeldouglasdev' },
-  { icon: <FaLinkedin aria-hidden="true" />, label: 'LinkedIn', href: 'https://linkedin.com/in/ismaeldouglasdev' },
+  { icon: <FaLinkedin aria-hidden="true" />, label: 'LinkedIn', href: 'https://linkedin.com/in/ismael-douglas-dev' },
   { icon: <FaEnvelope aria-hidden="true" />, label: 'Email', href: 'mailto:contact@ismaeltech.com' },
   { icon: <FaWhatsapp aria-hidden="true" />, label: 'WhatsApp', href: 'https://wa.me/5511959873202' },
 ];
