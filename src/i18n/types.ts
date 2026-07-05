@@ -11,6 +11,7 @@ export interface Translation {
     tag: string;
     title1: string;
     title2: string;
+    disponivel: string;
     phrases: string[];
     subtitle: string;
     ctaProjetos: string;

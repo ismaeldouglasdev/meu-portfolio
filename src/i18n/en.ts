@@ -13,6 +13,7 @@ const en: Translation = {
     tag: 'Full Stack Developer',
     title1: 'Websites, systems & APIs',
     title2: 'that make your business run',
+    disponivel: 'Available for new projects',
     phrases: [
       'Websites, systems & APIs\nthat make your business run',
       'Code that delivers\nfrom line one to ship',

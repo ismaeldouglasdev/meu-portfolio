@@ -13,6 +13,7 @@ const ptBR: Translation = {
     tag: 'Desenvolvedor Full Stack',
     title1: 'Sites, sistemas e APIs',
     title2: 'que fazem seu negócio rodar',
+    disponivel: 'Disponível para novos projetos',
     phrases: [
       'Sites, sistemas e APIs\nque fazem seu negócio rodar',
       'Código que resolve\nda primeira à última linha',
