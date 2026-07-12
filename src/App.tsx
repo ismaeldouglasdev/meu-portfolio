@@ -28,13 +28,16 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
+    const hash = window.location.hash.slice(1);
     const savedSection = sessionStorage.getItem('returnSection');
-    if (savedSection) {
+    const target = hash || savedSection;
+    
+    if (target) {
       sessionStorage.removeItem('returnSection');
       setTimeout(() => {
-        const el = document.getElementById(savedSection);
+        const el = document.getElementById(target);
         if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
-      }, 100);
+      }, 150);
     }
   }, []);
 
