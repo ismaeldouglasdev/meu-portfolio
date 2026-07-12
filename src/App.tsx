@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useParams } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
@@ -19,8 +19,6 @@ import CaseStudyPage from './components/CaseStudyPage';
 
 function HomePage() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const returnSection = useRef('');
 
   useEffect(() => {
     try {
@@ -30,33 +28,15 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    const sections = document.querySelectorAll('section:not(#hero)');
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const state = location.state as { scrollTo?: string } | null;
-    const target = state?.scrollTo || sessionStorage.getItem('returnSection');
-    if (target) {
+    const savedSection = sessionStorage.getItem('returnSection');
+    if (savedSection) {
       sessionStorage.removeItem('returnSection');
-      requestAnimationFrame(() => {
-        const el = document.getElementById(target);
+      setTimeout(() => {
+        const el = document.getElementById(savedSection);
         if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
-      });
+      }, 100);
     }
-  }, [location]);
+  }, []);
 
   const openCaseStudy = (slug: string) => {
     const ids = ['depoimentos', 'experiencia', 'precos', 'beneficios', 'contato'];
