@@ -70,8 +70,7 @@ useEffect(() => {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     } else {
-      sessionStorage.setItem('returnSection', id);
-      navigate('/');
+      navigate('/', { state: { scrollTo: id } });
     }
     setMenuOpen(false);
   };
