@@ -1235,15 +1235,24 @@
 }
 
 /* ----- Scroll Animations ----- */
-section:not(#hero) {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* Sections are visible by default; animation triggers on intersect */
+@media (prefers-reduced-motion: no-preference) {
+  section:not(#hero) {
+    transform: translateY(24px);
+    transition: transform 0.6s ease;
+  }
+
+  section:not(#hero).visible {
+    transform: translateY(0);
+  }
 }
 
-section:not(#hero).visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Reduced motion: no transform offset, content always visible */
+@media (prefers-reduced-motion: reduce) {
+  section:not(#hero) {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -92,6 +92,7 @@ export interface Translation {
     ctaBuy: string;
   };
   checkout: {
+    close: string;
     modalTitle: string;
     modalSubtitle: string;
     q1Label: string;
@@ -166,31 +167,5 @@ export interface Translation {
   };
   footer: {
     direitos: string;
-  };
-  checkout: {
-    close: string;
-    modalTitle: string;
-    modalSubtitle: string;
-    q1Label: string;
-    q1Placeholder: string;
-    q1Opt1: string;
-    q1Opt2: string;
-    q1Opt3: string;
-    q1Opt4: string;
-    q2Label: string;
-    q2Placeholder: string;
-    q2Opt1: string;
-    q2Opt2: string;
-    q2Opt3: string;
-    q3Label: string;
-    q3Placeholder: string;
-    emailLabel: string;
-    emailPlaceholder: string;
-    submit: string;
-    loading: string;
-    modalError: string;
-    successTitle: string;
-    successMessage: string;
-    successClose: string;
   };
 }

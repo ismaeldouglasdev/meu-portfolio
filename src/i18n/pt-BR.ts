@@ -266,6 +266,7 @@ const ptBR: Translation = {
     ctaBuy: 'Comprar Agora',
   },
   checkout: {
+    close: 'Fechar',
     modalTitle: 'Vamos construir seu sistema sob medida',
     modalSubtitle: 'Responda 3 perguntas rápidas para começarmos:',
     q1Label: 'Que tipo de sistema você precisa?',
@@ -315,6 +316,7 @@ const ptBR: Translation = {
     title: 'Contato',
     subtitle: 'Vamos trabalhar juntos? Me chama em um dos canais abaixo.',
     whatsappMsg: 'Olá! Vi seu portfólio e gostaria de saber mais sobre seus serviços.',
+    skipLink: 'Pular para o formulário de contato',
   },
   footer: {
     direitos: 'Todos os direitos reservados.',

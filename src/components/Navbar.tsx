@@ -8,16 +8,17 @@ type SectionKey = typeof sectionKeys[number];
 
 function Navbar() {
   const { t, lang, setLang } = useTranslation();
-  const [tema, setTema] = useState('light');
+  const [tema, setTema] = useState<'light' | 'dark'>('light');
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [langMessage, setLangMessage] = useState('');
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('portfolio-theme') || 'light';
-      setTema(saved);
-      document.documentElement.setAttribute('data-theme', saved);
+      const saved = localStorage.getItem('portfolio-theme');
+      const theme = (saved === 'dark' ? 'dark' : 'light') as 'light' | 'dark';
+      setTema(theme);
+      document.documentElement.setAttribute('data-theme', theme);
     } catch {
       // localStorage indisponível
     }

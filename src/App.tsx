@@ -26,6 +26,11 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const sections = document.querySelectorAll('section:not(#hero)');
+    
+    // Fallback: make sections visible immediately to prevent blank page
+    sections.forEach((s) => s.classList.add('visible'));
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -37,7 +42,6 @@ function App() {
       { threshold: 0.08 }
     );
 
-    const sections = document.querySelectorAll('section:not(#hero)');
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, []);
