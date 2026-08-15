@@ -17,9 +17,9 @@ const ptBR: Translation = {
     disponivel: 'Disponível para novos projetos',
     phrases: [
       'Sites, sistemas e APIs\nque fazem o seu negócio rodar',
-      'Código que resolve bem\nda primeira até a última linha',
+      'Código que resolve bem\ne entrega resultado com valor',
       'Da ideia ao lançamento\ncom o combinado, sem mistério',
-      'Soluções à sua medida\nfeitas para crescer com você',
+      'Soluções na sua medida\nfeitas para o seu crescimento',
     ],
     subtitle:
       'Landing pages, sistemas web sob medida e e-commerce completos. Da página institucional à integração com APIs — sem enrolação, sem surpresas, sem ghosting.',

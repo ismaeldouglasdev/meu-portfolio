@@ -21,6 +21,8 @@ dist-ssr
 test-results/
 playwright-fresh.png
 test-local.cjs
+validate-phrases.cjs
+measure-lines.cjs
 .omo/
 
 # Editor directories and files

@@ -35,7 +35,10 @@ function Typewriter({
   }, []);
 
   const currentPhrase = phrases[phraseIdx] ?? '';
-  const longestPhrase = phrases.reduce((a, b) => (b.length > a.length ? b : a), '');
+
+  // Spacers invisíveis: todas as frases ocupam a mesma célula do grid (grid-area 1/1).
+  // Com o mesmo nº de caracteres por linha, quebram igual em qualquer viewport —
+  // a altura da célula é a da frase mais alta (idêntica à do texto) → zero espaço vazio.
 
   const nextPhrase = useCallback(() => {
     setPhraseIdx((prev) => (prev + 1) % phrases.length);
@@ -85,17 +88,15 @@ function Typewriter({
 
   return (
     <span className={className}>
-      {reducedMotion ? (
-        displayed
-      ) : (
-        <>
-          <span className="typewriter-spacer" aria-hidden="true">{longestPhrase}</span>
-          <span className="typewriter-text">
-            {displayed}
-            <span className="typewriter-cursor" aria-hidden="true">|</span>
-          </span>
-        </>
-      )}
+      {phrases.map((phrase) => (
+        <span className="typewriter-spacer" aria-hidden="true" key={phrase}>
+          {phrase}
+        </span>
+      ))}
+      <span className="typewriter-text">
+        {displayed}
+        {!reducedMotion && <span className="typewriter-cursor" aria-hidden="true">|</span>}
+      </span>
     </span>
   );
 }
