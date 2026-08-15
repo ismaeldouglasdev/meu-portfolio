@@ -11,7 +11,7 @@ function Navbar() {
   const { t, lang, setLang } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  const [tema, setTema] = useState('light');
+  const [tema, setTema] = useState<'light' | 'dark'>('light');
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [langMessage, setLangMessage] = useState('');

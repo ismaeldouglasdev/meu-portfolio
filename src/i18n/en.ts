@@ -18,7 +18,7 @@ const en: Translation = {
     phrases: [
       'Websites, systems & APIs\nthat make your business run',
       'Code that delivers well\nfrom the very first line on',
-      'Open Source in practice\ngiving back to the community',
+      'From idea to full launch\nwith the plan agreed upfront',
       'Tailor-made web solutions\nthat grow and scale with you',
     ],
     subtitle:

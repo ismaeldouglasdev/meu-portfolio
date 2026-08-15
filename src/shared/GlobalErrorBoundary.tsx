@@ -4,8 +4,8 @@ export const GlobalErrorBoundary = () => {
   const [hasError, setHasError] = useState(false);
   
   useEffect(() => {
-    const handleError = (event: ErrorEvent) => {
-      const error = event.error || new Error(event.message);
+    const handleError = (event: ErrorEvent | PromiseRejectionEvent) => {
+      const error = 'reason' in event ? event.reason : event.error || new Error(event.message);
       if (!hasError) {
         console.error('[GLOBAL ERROR]', error);
         setHasError(true);

@@ -18,7 +18,7 @@ const ptBR: Translation = {
     phrases: [
       'Sites, sistemas e APIs\nque fazem o seu negócio rodar',
       'Código que resolve bem\nda primeira até a última linha',
-      'Open Source na prática\ncontribuindo com a comunidade',
+      'Da ideia ao lançamento\ncom o combinado, sem mistério',
       'Soluções à sua medida\nfeitas para crescer com você',
     ],
     subtitle:
@@ -278,6 +278,7 @@ const ptBR: Translation = {
   },
   cta: 'Vamos conversar',
   checkout: {
+    close: 'Fechar',
     modalTitle: 'Vamos construir seu sistema sob medida',
     modalSubtitle: 'Responda 3 perguntas rápidas para começarmos:',
     q1Label: 'Que tipo de sistema você precisa?',
@@ -327,6 +328,7 @@ const ptBR: Translation = {
     title: 'Contato',
     subtitle: 'Vamos trabalhar juntos? Me chama em um dos canais abaixo.',
     whatsappMsg: 'Olá! Vi seu portfólio e gostaria de saber mais sobre seus serviços.',
+    skipLink: 'Pular para o conteúdo principal',
   },
   footer: {
     direitos: 'Todos os direitos reservados.',
