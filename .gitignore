@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+# Env files (nunca commitar credenciais)
+.env
+.env.*
+!.env.example
+
+# Artefatos de teste / dev
+test-results/
+playwright-fresh.png
+test-local.cjs
+.omo/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

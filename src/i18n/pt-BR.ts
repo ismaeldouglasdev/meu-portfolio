@@ -7,6 +7,7 @@ const ptBR: Translation = {
     skills: 'Habilidades',
     projetos: 'Projetos',
     experiencia: 'Experiência',
+    precos: 'Preços',
     contato: 'Contato',
   },
   hero: {
@@ -167,24 +168,33 @@ const ptBR: Translation = {
   depoimentos: {
     label: 'Depoimentos',
     title: 'Quem confiou no meu trabalho',
+    viewCaseStudy: 'Ver estudo de caso',
     items: [
       {
         text: 'Quero em nome da ONG Mensageiros da Esperança agradecer pelo apoio na construção de uma solução para nossos cadastros e listas de presença. Esse é o nosso processo mais importante. É bom saber que um trabalho acadêmico pode impactar vidas. Gratidão por ser um solucionador da Esperança e nos presentear com essas soluções!',
         name: 'Verônica',
         role: 'ONG Mensageiros da Esperança',
+        caseStudySlug: 'mensageiros-da-esperanca',
       },
       {
         text: 'Suas contribuições falam por si: 90+ PRs mesclados, 130+ commits, documentação de arquitetura, correções de conflitos SQLite/Postgres, integrações Slack e Neovim — você tem sido uma força incrível neste projeto. Obrigado por tudo que você investiu no Engram.',
         name: 'Joshua',
         role: 'Fundador / Engram',
+        caseStudySlug: 'engram',
       },
     ],
   },
   estudosCaso: {
     label: 'Estudos de Caso',
     title: 'Problemas que resolvi na prática',
+    back: 'Voltar',
+    notFound: 'Estudo de caso não encontrado',
+    headingProblem: 'Problema',
+    headingSolution: 'Solução',
+    headingResult: 'Resultado',
     items: [
       {
+        slug: 'mensageiros-da-esperanca',
         projeto: 'Mensageiros da Esperança',
         problema: 'A ONG enfrentava dificuldades para gerenciar cadastros de cursos e listas de presença manualmente. O processo era feito em papel e planilhas, sem centralização — gerava retrabalho, perda de dados e dificuldade de gerar relatórios.',
         solucao: 'Desenvolvemos um sistema web completo com Firebase para gerenciamento de cursos, inscrições online e registro de presença digital. Dashboard em tempo real com visibilidade total das operações.',
@@ -196,6 +206,7 @@ const ptBR: Translation = {
         ],
       },
       {
+        slug: 'engram',
         projeto: 'Engram — Multi-Agent Memory',
         problema: 'O projeto precisava acelerar entregas críticas: segurança do motor de memória, CLI, dashboard e plugins para ferramentas da comunidade. Havia bugs abertos no detector de conflitos que causavam duplicatas e conflitos reabertos.',
         solucao: 'Atuei como Top Contributor com 90+ PRs mesclados, implementando defesas de segurança, CLI completa, dashboard, plugins Neovim e Slack, e corrigindo bugs críticos no motor de conflitos.',
@@ -230,7 +241,7 @@ const ptBR: Translation = {
       },
       {
         name: 'Sistema Sob Medida',
-        price: 'a partir de R$ 5.000',
+        price: 'Sob Consulta',
         period: '',
         features: [
           'Autenticação e níveis de acesso',
@@ -265,6 +276,7 @@ const ptBR: Translation = {
     cta: 'Solicitar Proposta',
     ctaBuy: 'Comprar Agora',
   },
+  cta: 'Vamos conversar',
   checkout: {
     modalTitle: 'Vamos construir seu sistema sob medida',
     modalSubtitle: 'Responda 3 perguntas rápidas para começarmos:',

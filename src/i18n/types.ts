@@ -5,6 +5,7 @@ export interface Translation {
     skills: string;
     projetos: string;
     experiencia: string;
+    precos: string;
     contato: string;
   };
   hero: {
@@ -54,16 +55,24 @@ export interface Translation {
   depoimentos: {
     label: string;
     title: string;
+    viewCaseStudy: string;
     items: Array<{
       text: string;
       name: string;
       role: string;
+      caseStudySlug?: string;
     }>;
   };
   estudosCaso: {
     label: string;
     title: string;
+    back: string;
+    notFound: string;
+    headingProblem: string;
+    headingSolution: string;
+    headingResult: string;
     items: Array<{
+      slug: string;
       projeto: string;
       problema: string;
       solucao: string;
@@ -92,82 +101,6 @@ export interface Translation {
     ctaBuy: string;
   };
   checkout: {
-    modalTitle: string;
-    modalSubtitle: string;
-    q1Label: string;
-    q1Placeholder: string;
-    q1Opt1: string;
-    q1Opt2: string;
-    q1Opt3: string;
-    q1Opt4: string;
-    q2Label: string;
-    q2Placeholder: string;
-    q2Opt1: string;
-    q2Opt2: string;
-    q2Opt3: string;
-    q3Label: string;
-    q3Placeholder: string;
-    emailLabel: string;
-    emailPlaceholder: string;
-    submit: string;
-    loading: string;
-    modalError: string;
-    successTitle: string;
-    successMessage: string;
-    successClose: string;
-  };
-  beneficios: {
-    label: string;
-    title: string;
-    subtitle: string;
-    items: Array<{
-      title: string;
-      desc: string;
-    }>;
-    cta: string;
-  };
-  skills: {
-    label: string;
-    title: string;
-  };
-  projetos: {
-    label: string;
-    title: string;
-    loading: string;
-    verGitHub: string;
-    visitSite: string;
-    wakingServer: string;
-    serverOnline: string;
-    serverOffline: string;
-    semDesc: string;
-    destaque: string;
-    desktopApp: string;
-    serverSleeping: string;
-    serverStarting: string;
-    desc: Record<string, string>;
-    names: Record<string, string>;
-  };
-  experiencia: {
-    label: string;
-    title: string;
-    items: Array<{
-      cargo: string;
-      empresa: string;
-      periodo: string;
-      descricao: string[];
-    }>;
-  };
-  contato: {
-    label: string;
-    title: string;
-    subtitle: string;
-    whatsappMsg: string;
-    skipLink: string;
-  };
-  footer: {
-    direitos: string;
-  };
-  checkout: {
     close: string;
     modalTitle: string;
     modalSubtitle: string;
@@ -192,5 +125,57 @@ export interface Translation {
     successTitle: string;
     successMessage: string;
     successClose: string;
+  };
+  cta: string;
+  beneficios: {
+    label: string;
+    title: string;
+    subtitle: string;
+    items: Array<{
+      title: string;
+      desc: string;
+    }>;
+    cta: string;
+  };
+  skills: {
+    label: string;
+    title: string;
+  };
+  projetos: {
+    label: string;
+    title: string;
+    loading: string;
+    verGitHub: string;
+    visitSite: string;
+    wakingServer: string;
+    serverOnline: string;
+    serverOffline: string;
+    desktopApp: string;
+    serverSleeping: string;
+    serverStarting: string;
+    semDesc: string;
+    destaque: string;
+    desc: Record<string, string>;
+    names: Record<string, string>;
+  };
+  experiencia: {
+    label: string;
+    title: string;
+    items: Array<{
+      cargo: string;
+      empresa: string;
+      periodo: string;
+      descricao: string[];
+    }>;
+  };
+  contato: {
+    label: string;
+    title: string;
+    subtitle: string;
+    whatsappMsg: string;
+    skipLink: string;
+  };
+  footer: {
+    direitos: string;
   };
 }

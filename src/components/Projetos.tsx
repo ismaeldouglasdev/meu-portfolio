@@ -270,7 +270,7 @@ function Projetos() {
     };
     fetchProjects();
     return () => { cancelled = true; };
-  }, [t]);
+  }, []);
 
   return (
     <section id="projetos">
