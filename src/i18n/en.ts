@@ -17,9 +17,9 @@ const en: Translation = {
     disponivel: 'Available for new projects',
     phrases: [
       'Websites, systems & APIs\nthat make your business run',
-      'Code that delivers\nfrom line one to ship',
-      'Open Source in practice\ncontributing to the community',
-      'Tailor-made solutions\nthat scale with you',
+      'Code that delivers well\nfrom the very first line on',
+      'Open Source in practice\ngiving back to the community',
+      'Tailor-made web solutions\nthat grow and scale with you',
     ],
     subtitle:
       'Landing pages, custom web systems and complete e-commerce. From business sites to API integrations — no bullshit, no surprises, no ghosting.',

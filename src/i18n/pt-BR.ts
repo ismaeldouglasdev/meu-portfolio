@@ -16,10 +16,10 @@ const ptBR: Translation = {
     title2: 'que fazem seu negócio rodar',
     disponivel: 'Disponível para novos projetos',
     phrases: [
-      'Sites, sistemas e APIs\nque fazem seu negócio rodar',
-      'Código que resolve\nda primeira à última linha',
+      'Sites, sistemas e APIs\nque fazem o seu negócio rodar',
+      'Código que resolve bem\nda primeira até a última linha',
       'Open Source na prática\ncontribuindo com a comunidade',
-      'Soluções sob medida\nque crescem com você',
+      'Soluções à sua medida\nfeitas para crescer com você',
     ],
     subtitle:
       'Landing pages, sistemas web sob medida e e-commerce completos. Da página institucional à integração com APIs — sem enrolação, sem surpresas, sem ghosting.',

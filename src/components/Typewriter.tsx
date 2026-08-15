@@ -35,6 +35,7 @@ function Typewriter({
   }, []);
 
   const currentPhrase = phrases[phraseIdx] ?? '';
+  const longestPhrase = phrases.reduce((a, b) => (b.length > a.length ? b : a), '');
 
   const nextPhrase = useCallback(() => {
     setPhraseIdx((prev) => (prev + 1) % phrases.length);
@@ -84,8 +85,17 @@ function Typewriter({
 
   return (
     <span className={className}>
-      {displayed}
-      {!reducedMotion && <span className="typewriter-cursor" aria-hidden="true">|</span>}
+      {reducedMotion ? (
+        displayed
+      ) : (
+        <>
+          <span className="typewriter-spacer" aria-hidden="true">{longestPhrase}</span>
+          <span className="typewriter-text">
+            {displayed}
+            <span className="typewriter-cursor" aria-hidden="true">|</span>
+          </span>
+        </>
+      )}
     </span>
   );
 }

@@ -1393,9 +1393,18 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   }
 }
 
-.hero-title.typewriter-line {
+.hero-title.typewriter-line > span {
+  display: grid;
+}
+
+.typewriter-spacer,
+.typewriter-text {
+  grid-area: 1 / 1;
   white-space: pre-line;
-  height: 4.5em;
+}
+
+.typewriter-spacer {
+  visibility: hidden;
 }
 
 @media (max-width: 640px) {
@@ -1403,10 +1412,6 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
     height: 100dvh;
     min-height: unset;
     overflow: clip;
-  }
-  .hero-title.typewriter-line {
-    height: 6em;
-    overflow: hidden;
   }
   .hero-title {
     margin-bottom: 0.5rem;
