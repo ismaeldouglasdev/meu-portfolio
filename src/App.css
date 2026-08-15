@@ -75,11 +75,7 @@
   color: var(--text-secondary);
   cursor: pointer;
   font-size: 0.875rem;
-  transition: color 0.2s ease, border-color 0.2s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.theme-btn:hover {
-  transform: rotate(15deg);
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .theme-btn:hover {
@@ -1268,10 +1264,6 @@ section:not(#hero).visible {
   .projeto-langs span:hover,
   .status-badge:hover,
   .exp-entry:hover {
-    transform: none !important;
-  }
-
-  .theme-btn:hover {
     transform: none !important;
   }
 
