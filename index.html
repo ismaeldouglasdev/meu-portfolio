@@ -12,14 +12,24 @@
   <meta name="author" content="Ismael Douglas" />
   <meta name="theme-color" content="#ffffff" />
 
+  <script>
+    // Aplica o tema salvo antes do React carregar (evita flash claro-escuro)
+    try {
+      var savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } catch (e) {}
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:title" content="Ismael Douglas — Desenvolvedor Full Stack" />
   <meta property="og:description"
     content="Portfólio mostrando projetos, habilidades e serviços de desenvolvimento web." />
-  <meta property="og:image" content="https://ismaeltech.com/android-chrome-512x512.png" />
-  <meta property="og:image:width" content="512" />
-  <meta property="og:image:height" content="512" />
+  <meta property="og:image" content="https://ismaeltech.com/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ismaeltech.com/" />
+  <meta property="og:site_name" content="Ismael Douglas" />
   <meta property="og:locale" content="pt_BR" />
 
   <!-- Twitter Card -->
@@ -27,7 +37,7 @@
   <meta name="twitter:title" content="Ismael Douglas — Desenvolvedor Full Stack" />
   <meta name="twitter:description"
     content="Portfólio mostrando projetos, habilidades e serviços de desenvolvimento web." />
-  <meta name="twitter:image" content="https://ismaeltech.com/android-chrome-512x512.png" />
+  <meta name="twitter:image" content="https://ismaeltech.com/images/og-image.png" />
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="pt-BR" href="https://ismaeltech.com/" />
@@ -38,6 +48,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Audiowide&display=swap"
     rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://ismaeltech.com/#website",
+        "url": "https://ismaeltech.com/",
+        "name": "Ismael Douglas — Portfólio",
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://ismaeltech.com/#person",
+        "name": "Ismael Douglas",
+        "jobTitle": "Desenvolvedor Full Stack",
+        "url": "https://ismaeltech.com/",
+        "sameAs": [
+          "https://github.com/ismaeldouglasdev",
+          "https://linkedin.com/in/ismael-douglas-dev"
+        ],
+        "worksFor": { "@type": "Organization", "name": "Freelancer" }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://ismaeltech.com/#service",
+        "name": "Desenvolvimento Web Full Stack",
+        "url": "https://ismaeltech.com/",
+        "areaServed": "BR",
+        "priceRange": "R$ 2.500+",
+        "founder": { "@id": "https://ismaeltech.com/#person" }
+      }
+    ]
+  }
+  </script>
 
   <title>Ismael Douglas — Portfólio</title>
 </head>

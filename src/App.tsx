@@ -78,7 +78,6 @@ function HomePage() {
 
   return (
     <main className="App" id="main-content">
-      <Navbar />
       <Hero />
       <Sobre />
       <Processo />

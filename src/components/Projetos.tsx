@@ -126,6 +126,7 @@ function StatusBadge({ url }: { url: string }) {
           : undefined
       }
       disabled={status === 'waking' || status === 'checking'}
+      aria-busy={status === 'waking' || status === 'checking'}
       aria-live="polite"
     >
       <FaCircle style={{ color, fontSize: '0.5rem' }} aria-hidden="true" />

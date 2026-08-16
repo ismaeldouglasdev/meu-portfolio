@@ -133,6 +133,7 @@ useEffect(() => {
           className="theme-btn"
           onClick={toggleTheme}
           aria-label="Alternar tema"
+          aria-pressed={tema === 'dark'}
           title={tema === 'light' ? 'Modo escuro' : 'Modo claro'}
         >
           {tema === 'light' ? <FiSun /> : <FiMoon />}

@@ -8,33 +8,15 @@ interface CaseStudyPageProps {
 
 function CaseStudyPage({ slug, onBack }: CaseStudyPageProps) {
   const { t } = useTranslation();
-  
-  console.log('[CaseStudyPage] slug:', slug);
-  console.log('[CaseStudyPage] t keys:', Object.keys(t));
-  console.log('[CaseStudyPage] t.estudosCaso:', t.estudosCaso);
-  console.log('[CaseStudyPage] t.estudosCaso?.items:', t.estudosCaso?.items);
-  console.log('[CaseStudyPage] t.estudosCaso?.items?.[0]:', t.estudosCaso?.items?.[0]);
-  console.log('[CaseStudyPage] t keys:', Object.keys(t));
-  
+
   const caso = t.estudosCaso?.items?.find((c) => c.slug === slug);
-  
-  console.log('[CaseStudyPage] caso found:', caso);
-  
+
   if (!caso) {
     return (
       <div className="caso-page" style={{ padding: '2rem', textAlign: 'center' }}>
-        <h1 className="caso-page-title">Debug: Estudo de caso não encontrado</h1>
-        <pre style={{ textAlign: 'left', maxWidth: '800px', margin: '1rem auto', background: '#f5f5f5', padding: '1rem', color: '#333', fontSize: '0.85rem' }}>
-          {JSON.stringify({ 
-            slug, 
-            availableSlugs: t.estudosCaso?.items?.map(c => c.slug),
-            tKeys: Object.keys(t),
-            tHasEstudosCaso: !!t.estudosCaso,
-            itemsLength: t.estudosCaso?.items?.length
-          }, null, 2)}
-        </pre>
+        <h1 className="caso-page-title">{t.estudosCaso.notFound}</h1>
         <button className="btn btn-outline" onClick={onBack}>
-          ← Voltar
+          ← {t.estudosCaso.back}
         </button>
       </div>
     );
