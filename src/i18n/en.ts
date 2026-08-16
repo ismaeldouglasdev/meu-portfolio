@@ -16,10 +16,10 @@ const en: Translation = {
     title2: 'that make your business run',
     disponivel: 'Available for new projects',
     phrases: [
-      'Websites, systems & APIs\nthat make your business work',
-      'Clean code that delivers\nall the way to the last line',
-      'From idea to full launch\nwith the plan agreed upfront',
-      'Web solutions that scale\nmoving your business forward',
+      'Your business\ndeserves a site\nthat sells,\nnot just exists',
+      'While you\nrun the business\nI make your\nsite sell',
+      'Deadlines met\npromises kept\nno nonsense\nno surprises',
+      'Got a project\nin mind?\nLet\'s talk.\nMessage me.',
     ],
     subtitle:
       'Landing pages, custom web systems and complete e-commerce. From business sites to API integrations — no bullshit, no surprises, no ghosting.',
