@@ -10,14 +10,9 @@ function Hero() {
     <section id="hero" className="hero">
       <ThreeBackground />
       <div className="hero-content">
-        <span className="hero-badge">
-          <FaCheckCircle aria-hidden="true" />
-          {t.hero.disponivel}
-        </span>
-
         <span className="hero-tag">{t.hero.tag}</span>
 
-        <h1 className="hero-title typewriter-line">
+        <h1 className="hero-title">
           <Typewriter phrases={t.hero.phrases} speed={65} deleteSpeed={35} pauseAfter={2500} />
         </h1>
 
@@ -32,18 +27,24 @@ function Hero() {
           </a>
         </div>
 
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <div className="hero-stat-number">{t.hero.stat1}</div>
-            <div className="hero-stat-label">{t.hero.stat1Label}</div>
-          </div>
-          <div className="hero-stat">
-            <div className="hero-stat-number">{t.hero.stat2}</div>
-            <div className="hero-stat-label">{t.hero.stat2Label}</div>
-          </div>
-          <div className="hero-stat">
-            <div className="hero-stat-number">{t.hero.stat3}</div>
-            <div className="hero-stat-label">{t.hero.stat3Label}</div>
+        <div className="hero-footer">
+          <span className="hero-status">
+            <FaCheckCircle aria-hidden="true" />
+            {t.hero.disponivel}
+          </span>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <div className="hero-stat-number">{t.hero.stat1}</div>
+              <div className="hero-stat-label">{t.hero.stat1Label}</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-number">{t.hero.stat2}</div>
+              <div className="hero-stat-label">{t.hero.stat2Label}</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-number">{t.hero.stat3}</div>
+              <div className="hero-stat-label">{t.hero.stat3Label}</div>
+            </div>
           </div>
         </div>
       </div>

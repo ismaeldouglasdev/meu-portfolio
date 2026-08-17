@@ -1610,7 +1610,7 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
 }
 
 /* ============================================
-   3D Tech Theme — Three.js + anime.js
+   Elegant Dark Theme — Minimal + Refined
    ============================================ */
 
 /* Three.js Background Container */
@@ -1628,40 +1628,144 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   display: block;
 }
 
-/* Hero Overlay for Content */
+/* Hero */
 .hero {
   position: relative;
-  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.8) 100%);
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  background: rgba(10, 10, 15, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 212, 255, 0.1);
-  border-radius: 16px;
-  padding: 3rem 2rem;
 }
 
-/* Tech Theme Dark Mode */
+/* Elegant Dark Mode */
 [data-theme="dark"],
 :root {
   --bg: #0a0a0f;
-  --bg-secondary: #12121a;
-  --text: #e4e4e7;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --accent: #00d4ff;
+  --bg-secondary: #111118;
+  --text: #e8e8ed;
+  --text-secondary: #8a8a95;
+  --text-muted: #5a5a65;
+  --accent: #6366f1;
   --accent-secondary: #8b5cf6;
-  --border: rgba(255, 255, 255, 0.08);
-  --accent-bg: rgba(0, 212, 255, 0.1);
-  --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
-  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.3);
+  --border: rgba(255, 255, 255, 0.06);
+  --accent-bg: rgba(99, 102, 241, 0.08);
 }
 
-/* Glassmorphism Cards */
+/* Hero Title — Large & Elegant */
+.hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+/* Hero Footer — Status + Stats */
+.hero-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.hero-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-status svg {
+  color: #22c55e;
+  font-size: 0.7rem;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-number {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hero-stat-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.2rem;
+}
+
+/* Buttons — Clean & Minimal */
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: transparent;
+  padding: 0.75rem 1.75rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+/* Section Labels */
+.section-label {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* Cards — Subtle Borders, No Glassmorphism */
 .processo-card,
 .servico-card,
 .projeto-card,
@@ -1669,10 +1773,8 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
 .depoimento-card,
 .beneficio-card,
 .caso-card {
-  background: rgba(18, 18, 26, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
 }
 
 .processo-card:hover,
@@ -1682,67 +1784,106 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
 .depoimento-card:hover,
 .beneficio-card:hover,
 .caso-card:hover {
-  border-color: rgba(0, 212, 255, 0.2);
-  box-shadow: var(--glow-cyan);
-}
-
-/* Glow Effects on Buttons */
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-  border: none;
-  color: #fff;
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-primary:hover {
+  border-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
-  box-shadow: var(--glow-cyan);
-}
-
-.btn-outline {
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  background: transparent;
-  transition: all 0.2s ease;
-}
-
-.btn-outline:hover {
-  background: rgba(0, 212, 255, 0.1);
-  box-shadow: var(--glow-cyan);
-}
-
-/* Hero Title Glow */
-.hero-title {
-  text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-}
-
-/* Stats Glow */
-.hero-stat-number {
-  color: var(--accent);
-  text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-}
-
-/* Section Labels */
-.section-label {
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.75rem;
-  font-weight: 600;
 }
 
 /* Skill Items */
 .skill-item {
-  border-color: rgba(139, 92, 246, 0.2);
+  border-color: var(--border);
+  transition: all 0.3s ease;
 }
 
 .skill-item:hover {
-  border-color: var(--accent-secondary);
-  box-shadow: var(--glow-purple);
+  border-color: var(--text-muted);
+  transform: translateY(-1px);
 }
 
-/* Accent Gradient Text */
+/* Contact Links */
+.contato-link {
+  border-color: var(--border);
+}
+
+.contato-link:hover {
+  border-color: var(--text-muted);
+}
+
+/* Navbar */
+.navbar {
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Scrollbar — Thin & Subtle */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.25);
+  color: #fff;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--border);
+}
+
+/* Preloader */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-content {
+  text-align: center;
+}
+
+.preloader-number {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.preloader-line {
+  width: 120px;
+  height: 1px;
+  background: var(--border);
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.preloader-line-fill {
+  height: 100%;
+  background: var(--text);
+  transition: width 0.1s ease;
+}
+
+/* Accent Gradient Text — Only for Highlight Cards */
 .preco-highlight .preco-value {
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
   -webkit-background-clip: text;
@@ -1750,46 +1891,27 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   background-clip: text;
 }
 
-/* Contact Links */
-.contato-link {
-  border-color: rgba(0, 212, 255, 0.2);
-}
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2.25rem, 7vw, 3.5rem);
+  }
 
-.contato-link:hover {
-  border-color: var(--accent);
-  box-shadow: var(--glow-cyan);
-}
+  .hero-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 
-/* Navbar Tech Theme */
-.navbar {
-  background: rgba(10, 10, 15, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-}
+  .hero-stats {
+    gap: 1.5rem;
+  }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
+  .hero-actions {
+    flex-direction: column;
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-secondary) 100%);
-  border-radius: 4px;
-}
-
-/* Selection */
-::selection {
-  background: rgba(0, 212, 255, 0.3);
-  color: #fff;
-}
-
-/* Footer Tech */
-.footer {
-  border-top: 1px solid rgba(0, 212, 255, 0.1);
-  background: rgba(10, 10, 15, 0.8);
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
