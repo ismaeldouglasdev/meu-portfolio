@@ -13,6 +13,7 @@ import Depoimentos from './components/Depoimentos';
 import Experiencia from './components/Experiencia';
 import Precos from './components/Precos';
 import Beneficios from './components/Beneficios';
+import Blog from './components/Blog';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
 import CaseStudyPage from './components/CaseStudyPage';
@@ -89,6 +90,7 @@ function HomePage() {
       <Experiencia />
       <Precos />
       <Beneficios />
+      <Blog />
       <Contato />
       <Footer />
     </main>

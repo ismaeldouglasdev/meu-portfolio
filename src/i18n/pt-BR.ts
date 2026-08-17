@@ -306,6 +306,11 @@ const ptBR: Translation = {
   footer: {
     direitos: 'Todos os direitos reservados.',
   },
+  blog: {
+    label: 'Blog',
+    title: 'Artigos',
+    subtitle: 'Conteúdo sobre desenvolvimento, design e tecnologia.',
+  },
 };
 
 export default ptBR;

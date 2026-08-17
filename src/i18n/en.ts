@@ -305,6 +305,11 @@ const en: Translation = {
   footer: {
     direitos: 'All rights reserved.',
   },
+  blog: {
+    label: 'Blog',
+    title: 'Articles',
+    subtitle: 'Content about development, design and technology.',
+  },
 };
 
 export default en;

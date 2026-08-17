@@ -151,4 +151,9 @@ export interface Translation {
   footer: {
     direitos: string;
   };
+  blog: {
+    label: string;
+    title: string;
+    subtitle: string;
+  };
 }
