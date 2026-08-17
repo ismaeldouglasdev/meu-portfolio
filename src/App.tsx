@@ -19,6 +19,8 @@ import Contato from './components/Contato';
 import Footer from './components/Footer';
 import CaseStudyPage from './components/CaseStudyPage';
 
+const isBlogDomain = window.location.hostname === 'blog.ismaeltech.com';
+
 function HomePage() {
   const navigate = useNavigate();
 
@@ -122,17 +124,30 @@ function CaseStudyRoute() {
   }
 }
 
+function BlogRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<BlogPage />} />
+      <Route path="/:slug" element={<BlogPostPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
+function PortfolioRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/projetos/:slug" element={<CaseStudyRoute />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/projetos/:slug" element={<CaseStudyRoute />} />
-        <Route path="/" element={<BlogPage />} />
-        <Route path="/:slug" element={<BlogPostPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      {isBlogDomain ? <BlogRoutes /> : <><Navbar /><PortfolioRoutes /></>}
     </BrowserRouter>
   );
 }
