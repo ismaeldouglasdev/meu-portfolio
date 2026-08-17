@@ -88,6 +88,11 @@ section {
   padding: 4rem 1.5rem;
   max-width: 800px;
   margin: 0 auto;
+  border-top: 1px solid var(--border);
+}
+
+section:first-of-type {
+  border-top: none;
 }
 
 .section-label {

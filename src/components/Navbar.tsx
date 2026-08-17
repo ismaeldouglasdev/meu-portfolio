@@ -2,23 +2,26 @@ import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 import { FiSun, FiMoon } from 'react-icons/fi';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const sectionKeys = ['sobre', 'servicos', 'skills', 'projetos', 'experiencia', 'contato'] as const;
+const sectionKeys = ['sobre', 'servicos', 'skills', 'projetos', 'experiencia', 'precos', 'contato'] as const;
 type SectionKey = typeof sectionKeys[number];
 
 function Navbar() {
   const { t, lang, setLang } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [tema, setTema] = useState<'light' | 'dark'>('light');
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [langMessage, setLangMessage] = useState('');
+  const isHome = location.pathname === '/';
 
-  useEffect(() => {
+useEffect(() => {
     try {
-      const saved = localStorage.getItem('portfolio-theme');
-      const theme = (saved === 'dark' ? 'dark' : 'light') as 'light' | 'dark';
-      setTema(theme);
-      document.documentElement.setAttribute('data-theme', theme);
+      const saved = localStorage.getItem('portfolio-theme') || 'light';
+      setTema(saved as 'light' | 'dark');
+      document.documentElement.setAttribute('data-theme', saved);
     } catch {
       // localStorage indisponível
     }
@@ -63,8 +66,12 @@ function Navbar() {
   }, []);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (isHome) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/#' + id);
+    }
     setMenuOpen(false);
   };
 
@@ -74,6 +81,7 @@ function Navbar() {
     skills: t.nav.skills,
     projetos: t.nav.projetos,
     experiencia: t.nav.experiencia,
+    precos: t.nav.precos,
     contato: t.nav.contato,
   };
 
@@ -125,6 +133,7 @@ function Navbar() {
           className="theme-btn"
           onClick={toggleTheme}
           aria-label="Alternar tema"
+          aria-pressed={tema === 'dark'}
           title={tema === 'light' ? 'Modo escuro' : 'Modo claro'}
         >
           {tema === 'light' ? <FiSun /> : <FiMoon />}

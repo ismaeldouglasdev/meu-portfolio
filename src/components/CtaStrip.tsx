@@ -6,7 +6,7 @@ function CtaStrip() {
   return (
     <section className="cta-strip">
       <a href="#contato" className="btn btn-primary btn-lg">
-        {t.beneficios.cta} →
+        {t.cta} →
       </a>
     </section>
   );

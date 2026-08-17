@@ -7,6 +7,7 @@ const en: Translation = {
     skills: 'Skills',
     projetos: 'Projects',
     experiencia: 'Experience',
+    precos: 'Pricing',
     contato: 'Contact',
   },
   hero: {
@@ -15,10 +16,10 @@ const en: Translation = {
     title2: 'that make your business run',
     disponivel: 'Available for new projects',
     phrases: [
-      'Websites, systems & APIs\nthat make your business run',
-      'Code that delivers\nfrom line one to ship',
-      'Open Source in practice\ncontributing to the community',
-      'Tailor-made solutions\nthat scale with you',
+      'Your business\ndeserves a site\nthat sells,\nnot just exists',
+      'While you\nrun the business\nI make your\nsite sell',
+      'Deadlines met\npromises kept\nno nonsense\nno surprises',
+      'Got a project\nin mind?\nLet\'s talk.\nMessage me.',
     ],
     subtitle:
       'Landing pages, custom web systems and complete e-commerce. From business sites to API integrations — no bullshit, no surprises, no ghosting.',
@@ -167,24 +168,33 @@ const en: Translation = {
   depoimentos: {
     label: 'Testimonials',
     title: 'Who trusted my work',
+    viewCaseStudy: 'View case study',
     items: [
       {
         text: 'On behalf of NGO Messengers of Hope, I want to thank you for building a solution for our registration and attendance records. This is our most important process. It\'s heartwarming to see academic work making a real impact. Thank you for being a problem-solver and gifting us these solutions!',
         name: 'Verônica',
         role: 'NGO Messengers of Hope',
+        caseStudySlug: 'mensageiros-da-esperanca',
       },
       {
         text: 'Your contributions speak for themselves: 90+ merged PRs, 130+ commits, architecture documentation, SQLite/Postgres conflict fixes, Slack and Neovim integrations — you\'ve been an incredible force on this project. Thank you for everything you\'ve poured into Engram.',
         name: 'Joshua',
         role: 'Founder / Engram',
+        caseStudySlug: 'engram',
       },
     ],
   },
   estudosCaso: {
     label: 'Case Studies',
     title: 'Real problems I\'ve solved',
+    back: 'Back',
+    notFound: 'Case study not found',
+    headingProblem: 'Problem',
+    headingSolution: 'Solution',
+    headingResult: 'Results',
     items: [
       {
+        slug: 'mensageiros-da-esperanca',
         projeto: 'Messengers of Hope',
         problema: 'The NGO struggled to manage course registrations and attendance lists manually. The process relied on paper and spreadsheets with no centralization — causing rework, data loss, and difficulty generating reports.',
         solucao: 'We built a complete web system with Firebase for course management, online enrollment, and digital attendance tracking. Real-time dashboard with full operational visibility.',
@@ -196,6 +206,7 @@ const en: Translation = {
         ],
       },
       {
+        slug: 'engram',
         projeto: 'Engram — Multi-Agent Memory',
         problema: 'Engram needed a contributor to accelerate critical deliveries: memory engine security, CLI, dashboard, and plugins for community tools. There were open bugs in the conflict detector causing duplicates and resurfacing conflicts.',
         solucao: 'Acted as Top Contributor with 90+ merged PRs, implementing security defenses, full CLI, dashboard, Neovim and Slack plugins, and fixing critical conflict engine bugs.',
@@ -229,7 +240,7 @@ const en: Translation = {
       },
       {
         name: 'Custom System',
-        price: 'from $1,000',
+        price: 'Upon Request',
         period: '',
         features: [
           'Authentication & access levels',
@@ -262,34 +273,8 @@ const en: Translation = {
       { icon: '📄', text: 'Open Source' },
     ],
     cta: 'Get a Proposal',
-    ctaBuy: 'Buy Now',
   },
-  checkout: {
-    close: 'Close',
-    modalTitle: "Let's build your custom system",
-    modalSubtitle: 'Answer 3 quick questions to get started:',
-    q1Label: 'What type of system do you need?',
-    q1Placeholder: 'Select type',
-    q1Opt1: 'Dashboard / Admin Panel',
-    q1Opt2: 'API / Backend',
-    q1Opt3: 'E-commerce',
-    q1Opt4: 'Other',
-    q2Label: "What's the estimated timeline?",
-    q2Placeholder: 'Select timeline',
-    q2Opt1: 'Less than 1 month',
-    q2Opt2: '1 to 3 months',
-    q2Opt3: 'Flexible / TBD',
-    q3Label: "What's your budget range?",
-    q3Placeholder: 'Select budget',
-    emailLabel: 'Your best email:',
-    emailPlaceholder: 'you@email.com',
-    submit: 'Submit & Go to Payment',
-    loading: 'Processing...',
-    modalError: 'Please fill all fields',
-    successTitle: 'We received your info!',
-    successMessage: "We'll get back to you within 24 hours to discuss your project details.",
-    successClose: 'Close',
-  },
+  cta: "Let's talk",
   beneficios: {
     label: 'Why me',
     title: 'Direct with you, from start to finish',
@@ -315,7 +300,7 @@ const en: Translation = {
     title: 'Contact',
     subtitle: 'Let\'s work together? Reach me through one of the channels below.',
     whatsappMsg: 'Hi! I saw your portfolio and would like to learn more about your services.',
-    skipLink: 'Skip to contact form',
+    skipLink: 'Skip to main content',
   },
   footer: {
     direitos: 'All rights reserved.',

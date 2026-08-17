@@ -7,6 +7,7 @@ const ptBR: Translation = {
     skills: 'Habilidades',
     projetos: 'Projetos',
     experiencia: 'Experiência',
+    precos: 'Preços',
     contato: 'Contato',
   },
   hero: {
@@ -15,10 +16,10 @@ const ptBR: Translation = {
     title2: 'que fazem seu negócio rodar',
     disponivel: 'Disponível para novos projetos',
     phrases: [
-      'Sites, sistemas e APIs\nque fazem seu negócio rodar',
-      'Código que resolve\nda primeira à última linha',
-      'Open Source na prática\ncontribuindo com a comunidade',
-      'Soluções sob medida\nque crescem com você',
+      'Sites e sistemas\nque vendem\npor você\n24h por dia',
+      'Enquanto você\ncuida do negócio\neu entrego\nresultado real',
+      'Prazo combinado\né prazo fechado\nsem enrolação\nsem surpresa',
+      'Tem um projeto\nem mente?\nVamos conversar.\nMe chama.',
     ],
     subtitle:
       'Landing pages, sistemas web sob medida e e-commerce completos. Da página institucional à integração com APIs — sem enrolação, sem surpresas, sem ghosting.',
@@ -167,24 +168,33 @@ const ptBR: Translation = {
   depoimentos: {
     label: 'Depoimentos',
     title: 'Quem confiou no meu trabalho',
+    viewCaseStudy: 'Ver estudo de caso',
     items: [
       {
         text: 'Quero em nome da ONG Mensageiros da Esperança agradecer pelo apoio na construção de uma solução para nossos cadastros e listas de presença. Esse é o nosso processo mais importante. É bom saber que um trabalho acadêmico pode impactar vidas. Gratidão por ser um solucionador da Esperança e nos presentear com essas soluções!',
         name: 'Verônica',
         role: 'ONG Mensageiros da Esperança',
+        caseStudySlug: 'mensageiros-da-esperanca',
       },
       {
         text: 'Suas contribuições falam por si: 90+ PRs mesclados, 130+ commits, documentação de arquitetura, correções de conflitos SQLite/Postgres, integrações Slack e Neovim — você tem sido uma força incrível neste projeto. Obrigado por tudo que você investiu no Engram.',
         name: 'Joshua',
         role: 'Fundador / Engram',
+        caseStudySlug: 'engram',
       },
     ],
   },
   estudosCaso: {
     label: 'Estudos de Caso',
     title: 'Problemas que resolvi na prática',
+    back: 'Voltar',
+    notFound: 'Estudo de caso não encontrado',
+    headingProblem: 'Problema',
+    headingSolution: 'Solução',
+    headingResult: 'Resultado',
     items: [
       {
+        slug: 'mensageiros-da-esperanca',
         projeto: 'Mensageiros da Esperança',
         problema: 'A ONG enfrentava dificuldades para gerenciar cadastros de cursos e listas de presença manualmente. O processo era feito em papel e planilhas, sem centralização — gerava retrabalho, perda de dados e dificuldade de gerar relatórios.',
         solucao: 'Desenvolvemos um sistema web completo com Firebase para gerenciamento de cursos, inscrições online e registro de presença digital. Dashboard em tempo real com visibilidade total das operações.',
@@ -196,6 +206,7 @@ const ptBR: Translation = {
         ],
       },
       {
+        slug: 'engram',
         projeto: 'Engram — Multi-Agent Memory',
         problema: 'O projeto precisava acelerar entregas críticas: segurança do motor de memória, CLI, dashboard e plugins para ferramentas da comunidade. Havia bugs abertos no detector de conflitos que causavam duplicatas e conflitos reabertos.',
         solucao: 'Atuei como Top Contributor com 90+ PRs mesclados, implementando defesas de segurança, CLI completa, dashboard, plugins Neovim e Slack, e corrigindo bugs críticos no motor de conflitos.',
@@ -230,7 +241,7 @@ const ptBR: Translation = {
       },
       {
         name: 'Sistema Sob Medida',
-        price: 'a partir de R$ 5.000',
+        price: 'Sob Consulta',
         period: '',
         features: [
           'Autenticação e níveis de acesso',
@@ -263,34 +274,8 @@ const ptBR: Translation = {
       { icon: '📄', text: 'Código Aberto' },
     ],
     cta: 'Solicitar Proposta',
-    ctaBuy: 'Comprar Agora',
   },
-  checkout: {
-    close: 'Fechar',
-    modalTitle: 'Vamos construir seu sistema sob medida',
-    modalSubtitle: 'Responda 3 perguntas rápidas para começarmos:',
-    q1Label: 'Que tipo de sistema você precisa?',
-    q1Placeholder: 'Selecione o tipo',
-    q1Opt1: 'Dashboard / Painel Administrativo',
-    q1Opt2: 'API / Backend',
-    q1Opt3: 'E-commerce',
-    q1Opt4: 'Outro',
-    q2Label: 'Qual o prazo estimado?',
-    q2Placeholder: 'Selecione o prazo',
-    q2Opt1: 'Menos de 1 mês',
-    q2Opt2: '1 a 3 meses',
-    q2Opt3: 'Flexível / A definir',
-    q3Label: 'Qual a faixa de orçamento?',
-    q3Placeholder: 'Selecione o orçamento',
-    emailLabel: 'Seu melhor e-mail:',
-    emailPlaceholder: 'seu@email.com',
-    submit: 'Enviar e Ir para Pagamento',
-    loading: 'Processando...',
-    modalError: 'Preencha todos os campos',
-    successTitle: 'Recebemos suas informações!',
-    successMessage: 'Entraremos em contato em até 24 horas para discutir os detalhes do seu projeto.',
-    successClose: 'Fechar',
-  },
+  cta: 'Vamos conversar',
   beneficios: {
     label: 'Por que me escolher',
     title: 'Direto com você, do começo ao fim',
@@ -316,7 +301,7 @@ const ptBR: Translation = {
     title: 'Contato',
     subtitle: 'Vamos trabalhar juntos? Me chama em um dos canais abaixo.',
     whatsappMsg: 'Olá! Vi seu portfólio e gostaria de saber mais sobre seus serviços.',
-    skipLink: 'Pular para o formulário de contato',
+    skipLink: 'Pular para o conteúdo principal',
   },
   footer: {
     direitos: 'Todos os direitos reservados.',
