@@ -93,7 +93,6 @@ function BlogPage() {
         <a href="/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
           <a href="/" className="blogpage-nav-link">Portfólio</a>
-          <span className="blogpage-nav-active">Blog</span>
         </nav>
       </header>
 

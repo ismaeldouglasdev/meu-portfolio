@@ -93,7 +93,7 @@ function BlogPostPage() {
         <header className="blogpage-header">
           <a href="/" className="blogpage-logo">Ismael Douglas</a>
           <nav className="blogpage-nav">
-            <a href="/blog" className="blogpage-nav-link">← Blog</a>
+            <a href="/" className="blogpage-nav-link">← Início</a>
           </nav>
         </header>
         <div className="blogpage-loading">
@@ -110,13 +110,13 @@ function BlogPostPage() {
         <header className="blogpage-header">
           <a href="/" className="blogpage-logo">Ismael Douglas</a>
           <nav className="blogpage-nav">
-            <a href="/blog" className="blogpage-nav-link">← Blog</a>
+            <a href="/" className="blogpage-nav-link">← Início</a>
           </nav>
         </header>
         <div className="blogpage-empty">
           <h1>Artigo não encontrado</h1>
           <p>O artigo que você procura não existe ou foi removido.</p>
-          <a href="/blog" className="blogpage-back">← Voltar ao blog</a>
+          <a href="/" className="blogpage-back">← Voltar ao início</a>
         </div>
       </div>
     );
@@ -127,7 +127,7 @@ function BlogPostPage() {
       <header className="blogpage-header">
         <a href="/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
-          <a href="/blog" className="blogpage-nav-link">← Blog</a>
+          <a href="/" className="blogpage-nav-link">← Início</a>
         </nav>
       </header>
 
@@ -146,7 +146,7 @@ function BlogPostPage() {
         </div>
 
         <footer className="blogpost-footer">
-          <a href="/blog" className="blogpage-back">← Voltar a todos os artigos</a>
+          <a href="/" className="blogpage-back">← Voltar a todos os artigos</a>
         </footer>
       </article>
     </div>
