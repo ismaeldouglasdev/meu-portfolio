@@ -110,7 +110,7 @@ function BlogPage() {
             <article
               key={post.slug}
               className={`blogpage-card ${index === 0 ? 'blogpage-card-featured' : ''}`}
-              onClick={() => navigate(`/blog/${post.slug}`)}
+              onClick={() => navigate(`/${post.slug}`)}
             >
               <div className="blogpage-card-category">
                 {getCategoryLabel(post.category)}
