@@ -91,9 +91,9 @@ function BlogPostPage() {
     return (
       <div className="blogpage blogpost">
         <header className="blogpage-header">
-          <a href="/" className="blogpage-logo">Ismael Douglas</a>
+          <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
           <nav className="blogpage-nav">
-            <a href="/" className="blogpage-nav-link">← Início</a>
+            <a href="/" className="blogpage-nav-link">← Blog</a>
           </nav>
         </header>
         <div className="blogpage-loading">
@@ -108,15 +108,15 @@ function BlogPostPage() {
     return (
       <div className="blogpage blogpost">
         <header className="blogpage-header">
-          <a href="/" className="blogpage-logo">Ismael Douglas</a>
+          <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
           <nav className="blogpage-nav">
-            <a href="/" className="blogpage-nav-link">← Início</a>
+            <a href="/" className="blogpage-nav-link">← Blog</a>
           </nav>
         </header>
         <div className="blogpage-empty">
           <h1>Artigo não encontrado</h1>
           <p>O artigo que você procura não existe ou foi removido.</p>
-          <a href="/" className="blogpage-back">← Voltar ao início</a>
+          <a href="/" className="blogpage-back">← Voltar ao blog</a>
         </div>
       </div>
     );
@@ -125,9 +125,9 @@ function BlogPostPage() {
   return (
     <div className="blogpage blogpost">
       <header className="blogpage-header">
-        <a href="/" className="blogpage-logo">Ismael Douglas</a>
+        <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
-          <a href="/" className="blogpage-nav-link">← Início</a>
+          <a href="/" className="blogpage-nav-link">← Blog</a>
         </nav>
       </header>
 

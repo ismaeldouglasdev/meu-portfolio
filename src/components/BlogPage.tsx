@@ -75,13 +75,13 @@ function BlogPage() {
     return (
       <div className="blogpage">
         <header className="blogpage-header">
-          <a href="/" className="blogpage-logo">Ismael Douglas</a>
+          <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         </header>
         <div className="blogpage-empty">
           <div className="blogpage-empty-icon">📝</div>
           <h1>Blog em breve</h1>
           <p>Estamos preparando conteúdos incríveis para você.</p>
-          <a href="/" className="blogpage-back">← Voltar ao portfólio</a>
+          <a href="https://ismaeltech.com/" className="blogpage-back">← Voltar ao portfólio</a>
         </div>
       </div>
     );
@@ -90,9 +90,9 @@ function BlogPage() {
   return (
     <div className="blogpage">
       <header className="blogpage-header">
-        <a href="/" className="blogpage-logo">Ismael Douglas</a>
+        <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
-          <a href="/" className="blogpage-nav-link">Portfólio</a>
+          <a href="https://ismaeltech.com/" className="blogpage-nav-link">Portfólio</a>
         </nav>
       </header>
 
@@ -127,7 +127,7 @@ function BlogPage() {
       </main>
 
       <footer className="blogpage-footer">
-        <a href="/" className="blogpage-back">← Voltar ao portfólio</a>
+        <a href="https://ismaeltech.com/" className="blogpage-back">← Voltar ao portfólio</a>
       </footer>
     </div>
   );
