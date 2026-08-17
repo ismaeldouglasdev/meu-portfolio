@@ -16,13 +16,24 @@ import Beneficios from './components/Beneficios';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
 import CaseStudyPage from './components/CaseStudyPage';
+import { useScrollAnimation } from './hooks/useAnimeAnimation';
 
 function HomePage() {
   const navigate = useNavigate();
+  const sobreRef = useScrollAnimation<HTMLDivElement>();
+  const processoRef = useScrollAnimation<HTMLDivElement>();
+  const servicosRef = useScrollAnimation<HTMLDivElement>();
+  const skillsRef = useScrollAnimation<HTMLDivElement>();
+  const projetosRef = useScrollAnimation<HTMLDivElement>();
+  const depoimentosRef = useScrollAnimation<HTMLDivElement>();
+  const experienciaRef = useScrollAnimation<HTMLDivElement>();
+  const precosRef = useScrollAnimation<HTMLDivElement>();
+  const beneficiosRef = useScrollAnimation<HTMLDivElement>();
+  const contatoRef = useScrollAnimation<HTMLDivElement>();
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('portfolio-theme') || 'light';
+      const saved = localStorage.getItem('portfolio-theme') || 'dark';
       document.documentElement.setAttribute('data-theme', saved);
     } catch {}
   }, []);
@@ -79,17 +90,17 @@ function HomePage() {
   return (
     <main className="App" id="main-content">
       <Hero />
-      <Sobre />
-      <Processo />
-      <Servicos />
+      <div ref={sobreRef}><Sobre /></div>
+      <div ref={processoRef}><Processo /></div>
+      <div ref={servicosRef}><Servicos /></div>
       <CtaStrip />
-      <Skills />
-      <Projetos />
-      <Depoimentos onViewCaseStudy={openCaseStudy} />
-      <Experiencia />
-      <Precos />
-      <Beneficios />
-      <Contato />
+      <div ref={skillsRef}><Skills /></div>
+      <div ref={projetosRef}><Projetos /></div>
+      <div ref={depoimentosRef}><Depoimentos onViewCaseStudy={openCaseStudy} /></div>
+      <div ref={experienciaRef}><Experiencia /></div>
+      <div ref={precosRef}><Precos /></div>
+      <div ref={beneficiosRef}><Beneficios /></div>
+      <div ref={contatoRef}><Contato /></div>
       <Footer />
     </main>
   );

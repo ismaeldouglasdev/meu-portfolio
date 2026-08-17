@@ -1608,3 +1608,188 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   font-size: 0.7rem;
   flex-shrink: 0;
 }
+
+/* ============================================
+   3D Tech Theme — Three.js + anime.js
+   ============================================ */
+
+/* Three.js Background Container */
+.three-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.three-bg canvas {
+  display: block;
+}
+
+/* Hero Overlay for Content */
+.hero {
+  position: relative;
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.8) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(10, 10, 15, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+}
+
+/* Tech Theme Dark Mode */
+[data-theme="dark"],
+:root {
+  --bg: #0a0a0f;
+  --bg-secondary: #12121a;
+  --text: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --accent: #00d4ff;
+  --accent-secondary: #8b5cf6;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent-bg: rgba(0, 212, 255, 0.1);
+  --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+/* Glassmorphism Cards */
+.processo-card,
+.servico-card,
+.projeto-card,
+.preco-card,
+.depoimento-card,
+.beneficio-card,
+.caso-card {
+  background: rgba(18, 18, 26, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.processo-card:hover,
+.servico-card:hover,
+.projeto-card:hover,
+.preco-card:hover,
+.depoimento-card:hover,
+.beneficio-card:hover,
+.caso-card:hover {
+  border-color: rgba(0, 212, 255, 0.2);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Glow Effects on Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-cyan);
+}
+
+.btn-outline {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(0, 212, 255, 0.1);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Hero Title Glow */
+.hero-title {
+  text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+/* Stats Glow */
+.hero-stat-number {
+  color: var(--accent);
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Section Labels */
+.section-label {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Skill Items */
+.skill-item {
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.skill-item:hover {
+  border-color: var(--accent-secondary);
+  box-shadow: var(--glow-purple);
+}
+
+/* Accent Gradient Text */
+.preco-highlight .preco-value {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Contact Links */
+.contato-link {
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+.contato-link:hover {
+  border-color: var(--accent);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Navbar Tech Theme */
+.navbar {
+  background: rgba(10, 10, 15, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  border-radius: 4px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: #fff;
+}
+
+/* Footer Tech */
+.footer {
+  border-top: 1px solid rgba(0, 212, 255, 0.1);
+  background: rgba(10, 10, 15, 0.8);
+}

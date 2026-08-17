@@ -1,12 +1,14 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 import Typewriter from './Typewriter';
+import ThreeBackground from './ThreeBackground';
 
 function Hero() {
   const { t } = useTranslation();
 
   return (
     <section id="hero" className="hero">
+      <ThreeBackground />
       <div className="hero-content">
         <span className="hero-badge">
           <FaCheckCircle aria-hidden="true" />
