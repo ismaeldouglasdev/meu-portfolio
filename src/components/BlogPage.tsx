@@ -34,7 +34,10 @@ function BlogPage() {
       const res = await fetch(`${GITHUB_API}/_meta.json`, { headers });
       if (!res.ok) throw new Error('Failed to fetch posts');
       const data = await res.json();
-      const content = JSON.parse(atob(data.content));
+      const binary = atob(data.content);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
       setPosts(content.posts || []);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');

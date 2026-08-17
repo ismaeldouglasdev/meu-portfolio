@@ -42,7 +42,10 @@ function BlogPostPage() {
       const mdRes = await fetch(`${GITHUB_API}/${slug}.md`, { headers });
       if (!mdRes.ok) throw new Error('Failed to fetch post');
       const mdData = await mdRes.json();
-      const markdown = atob(mdData.content);
+      const binary = atob(mdData.content);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      const markdown = new TextDecoder('utf-8').decode(bytes);
       const content = markdown.split('---\n').slice(2).join('---\n').trim() || markdown;
 
       setPost({ ...postMeta, content });
