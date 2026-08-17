@@ -13,7 +13,8 @@ import Depoimentos from './components/Depoimentos';
 import Experiencia from './components/Experiencia';
 import Precos from './components/Precos';
 import Beneficios from './components/Beneficios';
-import Blog from './components/Blog';
+import BlogPage from './components/BlogPage';
+import BlogPostPage from './components/BlogPostPage';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
 import CaseStudyPage from './components/CaseStudyPage';
@@ -90,7 +91,6 @@ function HomePage() {
       <Experiencia />
       <Precos />
       <Beneficios />
-      <Blog />
       <Contato />
       <Footer />
     </main>
@@ -129,6 +129,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/projetos/:slug" element={<CaseStudyRoute />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
