@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 
 interface BlogPost {
   slug: string;
@@ -13,6 +16,13 @@ interface BlogPost {
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+
+function decodeBase64Utf8(base64: string): string {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder('utf-8').decode(bytes);
+}
 
 function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -35,17 +45,14 @@ function BlogPostPage() {
       const metaRes = await fetch(`${GITHUB_API}/_meta.json`, { headers });
       if (!metaRes.ok) throw new Error('Failed to fetch meta');
       const metaData = await metaRes.json();
-      const metaContent = JSON.parse(atob(metaData.content));
+      const metaContent = JSON.parse(decodeBase64Utf8(metaData.content));
       const postMeta = metaContent.posts?.find((p: BlogPost) => p.slug === slug);
       if (!postMeta) throw new Error('Post not found');
 
       const mdRes = await fetch(`${GITHUB_API}/${slug}.md`, { headers });
       if (!mdRes.ok) throw new Error('Failed to fetch post');
       const mdData = await mdRes.json();
-      const binary = atob(mdData.content);
-      const bytes = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-      const markdown = new TextDecoder('utf-8').decode(bytes);
+      const markdown = decodeBase64Utf8(mdData.content);
       const content = markdown.split('---\n').slice(2).join('---\n').trim() || markdown;
 
       setPost({ ...postMeta, content });
@@ -58,7 +65,7 @@ function BlogPostPage() {
   };
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('pt-BR', {
+    return new Date(dateStr + 'T00:00:00').toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: 'long',
       year: 'numeric',
@@ -77,17 +84,6 @@ function BlogPostPage() {
       'article': 'Artigo',
     };
     return labels[category] || category;
-  };
-
-  const renderMarkdown = (content: string) => {
-    return content.split('\n').map((line, i) => {
-      if (line.startsWith('# ')) return <h1 key={i}>{line.slice(2)}</h1>;
-      if (line.startsWith('## ')) return <h2 key={i}>{line.slice(3)}</h2>;
-      if (line.startsWith('### ')) return <h3 key={i}>{line.slice(4)}</h3>;
-      if (line.startsWith('```')) return null;
-      if (line.trim() === '') return <br key={i} />;
-      return <p key={i}>{line}</p>;
-    });
   };
 
   if (loading) {
@@ -145,7 +141,12 @@ function BlogPostPage() {
         </header>
 
         <div className="blogpost-content">
-          {post.content && renderMarkdown(post.content)}
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight]}
+          >
+            {post.content || ''}
+          </ReactMarkdown>
         </div>
 
         <footer className="blogpost-footer">
