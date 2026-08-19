@@ -1652,6 +1652,20 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   color: var(--text);
 }
 
+.blogpage-theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.blogpage-theme-toggle:hover {
+  border-color: var(--accent);
+}
+
 .blogpage-nav-active {
   font-size: 0.85rem;
   font-weight: 500;

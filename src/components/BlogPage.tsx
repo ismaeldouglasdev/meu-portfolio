@@ -20,6 +20,16 @@ function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('blog-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('blog-theme', theme);
+  }, [theme]);
 
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const activeTag = searchParams.get('tag') || '';
@@ -136,6 +146,13 @@ function BlogPage() {
         <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
           <a href="https://ismaeltech.com/" className="blogpage-nav-link">Portfólio</a>
+          <button
+            className="blogpage-theme-toggle"
+            onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+            aria-label="Alternar tema"
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
         </nav>
       </header>
 
