@@ -72,6 +72,16 @@ function BlogPage() {
     return Array.from(tagSet).sort();
   }, [posts]);
 
+  const allCategories = useMemo(() => {
+    const catMap = new Map<string, number>();
+    posts.forEach(p => catMap.set(p.category, (catMap.get(p.category) || 0) + 1));
+    return Array.from(catMap.entries()).sort((a, b) => b[1] - a[1]);
+  }, [posts]);
+
+  const recentPosts = useMemo(() => {
+    return [...posts].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
+  }, [posts]);
+
   const filteredPosts = useMemo(() => {
     let result = posts;
     if (activeTag) {
@@ -205,78 +215,106 @@ function BlogPage() {
         </form>
       </section>
 
-      <main className="blogpage-content">
-        {allTags.length > 0 && (
-          <div className="blogpage-tags">
-            {allTags.map(tag => (
-              <button
-                key={tag}
-                className={`blogpage-tag ${activeTag === tag ? 'blogpage-tag-active' : ''}`}
-                onClick={() => handleTagClick(tag)}
+      <main className="blogpage-main">
+        <div className="blogpage-content">
+          {allTags.length > 0 && (
+            <div className="blogpage-tags">
+              {allTags.map(tag => (
+                <button
+                  key={tag}
+                  className={`blogpage-tag ${activeTag === tag ? 'blogpage-tag-active' : ''}`}
+                  onClick={() => handleTagClick(tag)}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <div className="blogpage-grid">
+            {paginatedPosts.map((post, index) => (
+              <article
+                key={post.slug}
+                className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag ? 'blogpage-card-featured' : ''}`}
+                onClick={() => navigate(`/${post.slug}`)}
               >
-                {tag}
-              </button>
+                {post.cover && (
+                  <div className="blogpage-card-cover">
+                    <img src={post.cover} alt={post.title} loading="lazy" />
+                  </div>
+                )}
+                <div className="blogpage-card-category">
+                  {getCategoryLabel(post.category)}
+                </div>
+                <h2 className="blogpage-card-title">{post.title}</h2>
+                <div className="blogpage-card-excerpt">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {post.excerpt}
+                  </ReactMarkdown>
+                </div>
+                {post.tags && post.tags.length > 0 && (
+                  <div className="blogpage-card-tags">
+                    {post.tags.map(tag => (
+                      <span key={tag} className="blogpage-card-tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+                <div className="blogpage-card-footer">
+                  <time className="blogpage-card-date">{formatDate(post.date)}</time>
+                  <span className="blogpage-card-read">Ler artigo →</span>
+                </div>
+              </article>
             ))}
           </div>
-        )}
 
-        <div className="blogpage-grid">
-          {paginatedPosts.map((post, index) => (
-            <article
-              key={post.slug}
-              className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag ? 'blogpage-card-featured' : ''}`}
-              onClick={() => navigate(`/${post.slug}`)}
-            >
-              {post.cover && (
-                <div className="blogpage-card-cover">
-                  <img src={post.cover} alt={post.title} loading="lazy" />
-                </div>
-              )}
-              <div className="blogpage-card-category">
-                {getCategoryLabel(post.category)}
-              </div>
-              <h2 className="blogpage-card-title">{post.title}</h2>
-              <div className="blogpage-card-excerpt">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {post.excerpt}
-                </ReactMarkdown>
-              </div>
-              {post.tags && post.tags.length > 0 && (
-                <div className="blogpage-card-tags">
-                  {post.tags.map(tag => (
-                    <span key={tag} className="blogpage-card-tag">{tag}</span>
-                  ))}
-                </div>
-              )}
-              <div className="blogpage-card-footer">
-                <time className="blogpage-card-date">{formatDate(post.date)}</time>
-                <span className="blogpage-card-read">Ler artigo →</span>
-              </div>
-            </article>
-          ))}
+          {totalPages > 1 && (
+            <div className="blogpage-pagination">
+              <button
+                className="blogpage-pagination-btn"
+                disabled={currentPage === 1}
+                onClick={() => handlePageChange(currentPage - 1)}
+              >
+                ← Anterior
+              </button>
+              <span className="blogpage-pagination-info">
+                {currentPage} / {totalPages}
+              </span>
+              <button
+                className="blogpage-pagination-btn"
+                disabled={currentPage === totalPages}
+                onClick={() => handlePageChange(currentPage + 1)}
+              >
+                Próximo →
+              </button>
+            </div>
+          )}
         </div>
 
-        {totalPages > 1 && (
-          <div className="blogpage-pagination">
-            <button
-              className="blogpage-pagination-btn"
-              disabled={currentPage === 1}
-              onClick={() => handlePageChange(currentPage - 1)}
-            >
-              ← Anterior
-            </button>
-            <span className="blogpage-pagination-info">
-              {currentPage} / {totalPages}
-            </span>
-            <button
-              className="blogpage-pagination-btn"
-              disabled={currentPage === totalPages}
-              onClick={() => handlePageChange(currentPage + 1)}
-            >
-              Próximo →
-            </button>
+        <aside className="blogpage-sidebar">
+          <div className="blogpage-sidebar-section">
+            <h3 className="blogpage-sidebar-title">Categorias</h3>
+            <ul className="blogpage-sidebar-list">
+              {allCategories.map(([cat, count]) => (
+                <li key={cat} className="blogpage-sidebar-item">
+                  <span>{getCategoryLabel(cat)}</span>
+                  <span className="blogpage-sidebar-count">{count}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
+
+          <div className="blogpage-sidebar-section">
+            <h3 className="blogpage-sidebar-title">Recentes</h3>
+            <ul className="blogpage-sidebar-list">
+              {recentPosts.map(post => (
+                <li key={post.slug} className="blogpage-sidebar-item blogpage-sidebar-post" onClick={() => navigate(`/${post.slug}`)}>
+                  <span className="blogpage-sidebar-post-title">{post.title}</span>
+                  <time className="blogpage-sidebar-post-date">{formatDate(post.date)}</time>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
       </main>
 
       <footer className="blogpage-footer">
