@@ -107,7 +107,7 @@ function Blog() {
             </p>
           </div>
           <div className="blog-empty">
-            <div className="blog-empty-icon">📝</div>
+            <div className="blog-empty-icon">BLOG</div>
             <h3>Blog em breve</h3>
             <p>Estamos preparando conteúdos incríveis para você.</p>
           </div>

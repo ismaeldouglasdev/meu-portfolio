@@ -47,7 +47,7 @@ function BlogPage() {
   };
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('pt-BR', {
+    return new Date(dateStr + 'T00:00:00').toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: 'long',
       year: 'numeric',
@@ -81,7 +81,7 @@ function BlogPage() {
           <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         </header>
         <div className="blogpage-empty">
-          <div className="blogpage-empty-icon">📝</div>
+          <div className="blogpage-empty-icon">BLOG</div>
           <h1>Blog em breve</h1>
           <p>Estamos preparando conteúdos incríveis para você.</p>
           <a href="https://ismaeltech.com/" className="blogpage-back">← Voltar ao portfólio</a>
