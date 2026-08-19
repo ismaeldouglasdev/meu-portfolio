@@ -57,6 +57,41 @@ function BlogPostPage() {
 
       setPost({ ...postMeta, content });
       document.title = `${postMeta.title} — Blog Ismael Douglas`;
+
+      const url = `https://blog.ismaeltech.com/${postMeta.slug}`;
+
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (!ogTitle) { ogTitle = document.createElement('meta'); ogTitle.setAttribute('property', 'og:title'); document.head.appendChild(ogTitle); }
+      ogTitle.setAttribute('content', postMeta.title);
+
+      let ogDesc = document.querySelector('meta[property="og:description"]');
+      if (!ogDesc) { ogDesc = document.createElement('meta'); ogDesc.setAttribute('property', 'og:description'); document.head.appendChild(ogDesc); }
+      ogDesc.setAttribute('content', postMeta.excerpt);
+
+      let ogUrl = document.querySelector('meta[property="og:url"]');
+      if (!ogUrl) { ogUrl = document.createElement('meta'); ogUrl.setAttribute('property', 'og:url'); document.head.appendChild(ogUrl); }
+      ogUrl.setAttribute('content', url);
+
+      let ogType = document.querySelector('meta[property="og:type"]');
+      if (!ogType) { ogType = document.createElement('meta'); ogType.setAttribute('property', 'og:type'); document.head.appendChild(ogType); }
+      ogType.setAttribute('content', 'article');
+
+      const ldScript = document.getElementById('blog-jsonld');
+      if (ldScript) ldScript.remove();
+      const script = document.createElement('script');
+      script.id = 'blog-jsonld';
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": postMeta.title,
+        "datePublished": postMeta.date + "T00:00:00-03:00",
+        "url": url,
+        "author": { "@type": "Person", "name": "Ismael Douglas" },
+        "publisher": { "@type": "Person", "name": "Ismael Douglas" },
+        "description": postMeta.excerpt,
+      });
+      document.head.appendChild(script);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

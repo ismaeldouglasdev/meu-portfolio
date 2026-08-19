@@ -15,6 +15,8 @@ import Precos from './components/Precos';
 import Beneficios from './components/Beneficios';
 import BlogPage from './components/BlogPage';
 import BlogPostPage from './components/BlogPostPage';
+import Sitemap from './components/Sitemap';
+import Feed from './components/Feed';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
 import CaseStudyPage from './components/CaseStudyPage';
@@ -128,6 +130,8 @@ function BlogRoutes() {
   return (
     <Routes>
       <Route path="/" element={<BlogPage />} />
+      <Route path="/sitemap.xml" element={<Sitemap />} />
+      <Route path="/feed.xml" element={<Feed />} />
       <Route path="/:slug" element={<BlogPostPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
