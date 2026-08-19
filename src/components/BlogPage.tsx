@@ -1,5 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface BlogPost {
   slug: string;
@@ -8,6 +10,7 @@ interface BlogPost {
   category: string;
   excerpt: string;
   tags?: string[];
+  cover?: string;
 }
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
@@ -224,11 +227,20 @@ function BlogPage() {
               className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag ? 'blogpage-card-featured' : ''}`}
               onClick={() => navigate(`/${post.slug}`)}
             >
+              {post.cover && (
+                <div className="blogpage-card-cover">
+                  <img src={post.cover} alt={post.title} loading="lazy" />
+                </div>
+              )}
               <div className="blogpage-card-category">
                 {getCategoryLabel(post.category)}
               </div>
               <h2 className="blogpage-card-title">{post.title}</h2>
-              <p className="blogpage-card-excerpt">{post.excerpt}</p>
+              <div className="blogpage-card-excerpt">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {post.excerpt}
+                </ReactMarkdown>
+              </div>
               {post.tags && post.tags.length > 0 && (
                 <div className="blogpage-card-tags">
                   {post.tags.map(tag => (

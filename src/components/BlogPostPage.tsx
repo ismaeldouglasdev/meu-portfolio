@@ -12,6 +12,7 @@ interface BlogPost {
   excerpt: string;
   tags?: string[];
   content?: string;
+  cover?: string;
 }
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
@@ -189,6 +190,11 @@ function BlogPostPage() {
       </header>
 
       <article className="blogpost-article">
+        {post.cover && (
+          <div className="blogpost-cover">
+            <img src={post.cover} alt={post.title} />
+          </div>
+        )}
         <header className="blogpost-header">
           <span className="blogpost-category">{getCategoryLabel(post.category)}</span>
           <h1 className="blogpost-title">{post.title}</h1>
