@@ -58,6 +58,20 @@
   background: var(--accent-bg);
 }
 
+.navbar-blog-link {
+  margin-left: 0.25rem;
+  padding: 0.35rem 0.7rem !important;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-weight: 600 !important;
+  transition: border-color 0.2s, color 0.2s !important;
+}
+
+.navbar-blog-link:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
 .navbar-right {
   display: flex;
   align-items: center;

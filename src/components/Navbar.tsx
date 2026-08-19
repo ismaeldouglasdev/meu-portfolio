@@ -112,6 +112,14 @@ useEffect(() => {
             {navLabels[key]}
           </a>
         ))}
+        <a
+          href="https://blog.ismaeltech.com/"
+          className="navbar-blog-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t.blog.label}
+        </a>
       </div>
 
       <div className="navbar-right" role="toolbar" aria-label="Ferramentas">

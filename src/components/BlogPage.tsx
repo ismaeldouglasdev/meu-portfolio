@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useTranslation } from '../i18n';
 
 interface BlogPost {
   slug: string;
@@ -20,6 +21,7 @@ const POSTS_PER_PAGE = 9;
 
 function BlogPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -159,7 +161,8 @@ function BlogPage() {
   };
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr + 'T00:00:00').toLocaleDateString('pt-BR', {
+    const locale = t.blog.label === 'Blog' ? 'pt-BR' : 'en-US';
+    return new Date(dateStr + 'T00:00:00').toLocaleDateString(locale, {
       day: '2-digit',
       month: 'long',
       year: 'numeric',
@@ -191,7 +194,7 @@ function BlogPage() {
       <div className="blogpage">
         <div className="blogpage-loading">
           <div className="blogpage-spinner" />
-          <span>Carregando artigos...</span>
+          <span>{t.blog.loading}</span>
         </div>
       </div>
     );
@@ -205,9 +208,9 @@ function BlogPage() {
         </header>
         <div className="blogpage-empty">
           <div className="blogpage-empty-icon">BLOG</div>
-          <h1>Blog em breve</h1>
-          <p>Estamos preparando conteúdos incríveis para você.</p>
-          <a href="https://ismaeltech.com/" className="blogpage-back">← Voltar ao portfólio</a>
+          <h1>{t.blog.emptyTitle}</h1>
+          <p>{t.blog.emptyDesc}</p>
+          <a href="https://ismaeltech.com/" className="blogpage-back">{t.blog.backToPortfolio}</a>
         </div>
       </div>
     );
@@ -234,20 +237,19 @@ function BlogPage() {
       </header>
 
       <section className="blogpage-hero">
-        <h1 className="blogpage-hero-title">Artigos & Tutoriais</h1>
+        <h1 className="blogpage-hero-title">{t.blog.title}</h1>
         <p className="blogpage-hero-desc">
-          Conteúdo sobre desenvolvimento web, design e tecnologia.
-          Aprenda com tutoriais práticos e insights do mercado.
+          {t.blog.subtitle}
         </p>
         <form className="blogpage-search" onSubmit={handleSearch}>
           <input
             type="text"
             className="blogpage-search-input"
-            placeholder="Buscar artigos..."
+            placeholder={t.blog.searchPlaceholder}
             value={searchInput}
             onChange={e => setSearchInput(e.target.value)}
           />
-          <button type="submit" className="blogpage-search-btn">Buscar</button>
+          <button type="submit" className="blogpage-search-btn">{t.blog.searchBtn}</button>
         </form>
       </section>
 
@@ -300,7 +302,7 @@ function BlogPage() {
                 )}
                 <div className="blogpage-card-footer">
                   <time className="blogpage-card-date">{formatDate(post.date)}</time>
-                  <span className="blogpage-card-read">Ler artigo →</span>
+                  <span className="blogpage-card-read">{t.blog.readArticle}</span>
                 </div>
               </article>
             ))}
@@ -313,7 +315,7 @@ function BlogPage() {
                 disabled={currentPage === 1}
                 onClick={() => handlePageChange(currentPage - 1)}
               >
-                ← Anterior
+                {t.blog.paginationPrev}
               </button>
               <span className="blogpage-pagination-info">
                 {currentPage} / {totalPages}
@@ -323,7 +325,7 @@ function BlogPage() {
                 disabled={currentPage === totalPages}
                 onClick={() => handlePageChange(currentPage + 1)}
               >
-                Próximo →
+                {t.blog.paginationNext}
               </button>
             </div>
           )}
@@ -331,7 +333,7 @@ function BlogPage() {
 
         <aside className="blogpage-sidebar">
           <div className="blogpage-sidebar-section">
-            <h3 className="blogpage-sidebar-title">Idioma</h3>
+            <h3 className="blogpage-sidebar-title">{t.blog.langLabel}</h3>
             <div className="blogpage-lang-toggle">
               {allLangs.map(([lang, count]) => (
                 <button
@@ -347,7 +349,7 @@ function BlogPage() {
           </div>
 
           <div className="blogpage-sidebar-section">
-            <h3 className="blogpage-sidebar-title">Categorias</h3>
+            <h3 className="blogpage-sidebar-title">{t.blog.categoriesLabel}</h3>
             <ul className="blogpage-sidebar-list">
               {allCategories.map(([cat, count]) => (
                 <li key={cat} className="blogpage-sidebar-item">
@@ -359,7 +361,7 @@ function BlogPage() {
           </div>
 
           <div className="blogpage-sidebar-section">
-            <h3 className="blogpage-sidebar-title">Recentes</h3>
+            <h3 className="blogpage-sidebar-title">{t.blog.recentLabel}</h3>
             <ul className="blogpage-sidebar-list">
               {recentPosts.map(post => (
                 <li key={post.slug} className="blogpage-sidebar-item blogpage-sidebar-post" onClick={() => navigate(`/${post.slug}`)}>
@@ -373,7 +375,7 @@ function BlogPage() {
       </main>
 
       <footer className="blogpage-footer">
-        <a href="https://ismaeltech.com/" className="blogpage-back">← Voltar ao portfólio</a>
+        <a href="https://ismaeltech.com/" className="blogpage-back">{t.blog.backToPortfolio}</a>
       </footer>
     </div>
   );

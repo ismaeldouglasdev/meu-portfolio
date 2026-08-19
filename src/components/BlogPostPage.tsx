@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReactMarkdown, { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
+import { useTranslation } from '../i18n';
 
 interface BlogPost {
   slug: string;
@@ -28,6 +29,7 @@ function decodeBase64Utf8(base64: string): string {
 
 function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useTranslation();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -204,9 +206,8 @@ function BlogPostPage() {
           </nav>
         </header>
         <div className="blogpage-empty">
-          <h1>Artigo não encontrado</h1>
-          <p>O artigo que você procura não existe ou foi removido.</p>
-          <a href="/" className="blogpage-back">← Voltar ao blog</a>
+          <h1>{t.blog.notFound}</h1>
+          <a href="/" className="blogpage-back">{t.blog.backToBlog}</a>
         </div>
       </div>
     );
@@ -247,7 +248,7 @@ function BlogPostPage() {
         </div>
 
         <div className="blogpost-share">
-          <span className="blogpost-share-label">Compartilhar:</span>
+          <span className="blogpost-share-label">{t.blog.shareLabel}:</span>
           <a
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://blog.ismaeltech.com/${post.slug}`)}`}
             target="_blank"
@@ -275,7 +276,7 @@ function BlogPostPage() {
         </div>
 
         <footer className="blogpost-footer">
-          <a href="/" className="blogpage-back">← Voltar a todos os artigos</a>
+          <a href="/" className="blogpage-back">{t.blog.backToBlog}</a>
         </footer>
       </article>
     </div>

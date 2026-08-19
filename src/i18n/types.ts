@@ -155,5 +155,21 @@ export interface Translation {
     label: string;
     title: string;
     subtitle: string;
+    searchPlaceholder: string;
+    searchBtn: string;
+    langLabel: string;
+    categoriesLabel: string;
+    recentLabel: string;
+    backToPortfolio: string;
+    loading: string;
+    emptyTitle: string;
+    emptyDesc: string;
+    readArticle: string;
+    paginationPrev: string;
+    paginationNext: string;
+    shareLabel: string;
+    tocLabel: string;
+    backToBlog: string;
+    notFound: string;
   };
 }
