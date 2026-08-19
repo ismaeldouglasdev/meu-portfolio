@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useMemo } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface BlogPost {
   slug: string;
@@ -12,12 +12,17 @@ interface BlogPost {
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+const POSTS_PER_PAGE = 9;
 
 function BlogPage() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const activeTag = searchParams.get('tag') || '';
 
   useEffect(() => {
     document.title = 'Blog — Ismael Douglas';
@@ -44,6 +49,41 @@ function BlogPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const allTags = useMemo(() => {
+    const tagSet = new Set<string>();
+    posts.forEach(p => p.tags?.forEach(t => tagSet.add(t)));
+    return Array.from(tagSet).sort();
+  }, [posts]);
+
+  const filteredPosts = useMemo(() => {
+    if (!activeTag) return posts;
+    return posts.filter(p => p.tags?.includes(activeTag));
+  }, [posts, activeTag]);
+
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const paginatedPosts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  const handleTagClick = (tag: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (tag === activeTag) {
+      params.delete('tag');
+    } else {
+      params.set('tag', tag);
+    }
+    params.delete('page');
+    setSearchParams(params);
+  };
+
+  const handlePageChange = (page: number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('page', String(page));
+    setSearchParams(params);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const formatDate = (dateStr: string) => {
@@ -108,11 +148,25 @@ function BlogPage() {
       </section>
 
       <main className="blogpage-content">
+        {allTags.length > 0 && (
+          <div className="blogpage-tags">
+            {allTags.map(tag => (
+              <button
+                key={tag}
+                className={`blogpage-tag ${activeTag === tag ? 'blogpage-tag-active' : ''}`}
+                onClick={() => handleTagClick(tag)}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        )}
+
         <div className="blogpage-grid">
-          {posts.map((post, index) => (
+          {paginatedPosts.map((post, index) => (
             <article
               key={post.slug}
-              className={`blogpage-card ${index === 0 ? 'blogpage-card-featured' : ''}`}
+              className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag ? 'blogpage-card-featured' : ''}`}
               onClick={() => navigate(`/${post.slug}`)}
             >
               <div className="blogpage-card-category">
@@ -120,6 +174,13 @@ function BlogPage() {
               </div>
               <h2 className="blogpage-card-title">{post.title}</h2>
               <p className="blogpage-card-excerpt">{post.excerpt}</p>
+              {post.tags && post.tags.length > 0 && (
+                <div className="blogpage-card-tags">
+                  {post.tags.map(tag => (
+                    <span key={tag} className="blogpage-card-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
               <div className="blogpage-card-footer">
                 <time className="blogpage-card-date">{formatDate(post.date)}</time>
                 <span className="blogpage-card-read">Ler artigo →</span>
@@ -127,6 +188,28 @@ function BlogPage() {
             </article>
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <div className="blogpage-pagination">
+            <button
+              className="blogpage-pagination-btn"
+              disabled={currentPage === 1}
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              ← Anterior
+            </button>
+            <span className="blogpage-pagination-info">
+              {currentPage} / {totalPages}
+            </span>
+            <button
+              className="blogpage-pagination-btn"
+              disabled={currentPage === totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Próximo →
+            </button>
+          </div>
+        )}
       </main>
 
       <footer className="blogpage-footer">
