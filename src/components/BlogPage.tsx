@@ -11,6 +11,7 @@ interface BlogPost {
   excerpt: string;
   tags?: string[];
   cover?: string;
+  lang?: string;
 }
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
@@ -36,6 +37,7 @@ function BlogPage() {
 
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const activeTag = searchParams.get('tag') || '';
+  const activeLang = searchParams.get('lang') || '';
   const searchQuery = searchParams.get('q') || '';
   const [searchInput, setSearchInput] = useState(searchQuery);
 
@@ -78,6 +80,15 @@ function BlogPage() {
     return Array.from(catMap.entries()).sort((a, b) => b[1] - a[1]);
   }, [posts]);
 
+  const allLangs = useMemo(() => {
+    const langMap = new Map<string, number>();
+    posts.forEach(p => {
+      const lang = p.lang || 'pt';
+      langMap.set(lang, (langMap.get(lang) || 0) + 1);
+    });
+    return Array.from(langMap.entries()).sort((a, b) => b[1] - a[1]);
+  }, [posts]);
+
   const recentPosts = useMemo(() => {
     return [...posts].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
   }, [posts]);
@@ -87,6 +98,9 @@ function BlogPage() {
     if (activeTag) {
       result = result.filter(p => p.tags?.includes(activeTag));
     }
+    if (activeLang) {
+      result = result.filter(p => (p.lang || 'pt') === activeLang);
+    }
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       result = result.filter(p =>
@@ -95,7 +109,7 @@ function BlogPage() {
       );
     }
     return result;
-  }, [posts, activeTag, searchQuery]);
+  }, [posts, activeTag, activeLang, searchQuery]);
 
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
   const paginatedPosts = filteredPosts.slice(
@@ -109,6 +123,17 @@ function BlogPage() {
       params.delete('tag');
     } else {
       params.set('tag', tag);
+    }
+    params.delete('page');
+    setSearchParams(params);
+  };
+
+  const handleLangClick = (lang: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (lang === activeLang) {
+      params.delete('lang');
+    } else {
+      params.set('lang', lang);
     }
     params.delete('page');
     setSearchParams(params);
@@ -146,8 +171,19 @@ function BlogPage() {
       'tutorial': 'Tutorial',
       'case-study': 'Case Study',
       'article': 'Artigo',
+      'curiosidade': 'Curiosidade',
+      'tendencia': 'Tendência',
+      'noticia': 'Notícia',
     };
     return labels[category] || category;
+  };
+
+  const getLangLabel = (lang: string) => {
+    const labels: Record<string, string> = {
+      'pt': 'PT',
+      'en': 'EN',
+    };
+    return labels[lang] || lang.toUpperCase();
   };
 
   if (loading) {
@@ -238,6 +274,9 @@ function BlogPage() {
                 className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag ? 'blogpage-card-featured' : ''}`}
                 onClick={() => navigate(`/${post.slug}`)}
               >
+                {post.lang && post.lang !== 'pt' && (
+                  <span className="blogpage-card-lang">{getLangLabel(post.lang)}</span>
+                )}
                 {post.cover && (
                   <div className="blogpage-card-cover">
                     <img src={post.cover} alt={post.title} loading="lazy" />
@@ -291,6 +330,22 @@ function BlogPage() {
         </div>
 
         <aside className="blogpage-sidebar">
+          <div className="blogpage-sidebar-section">
+            <h3 className="blogpage-sidebar-title">Idioma</h3>
+            <div className="blogpage-lang-toggle">
+              {allLangs.map(([lang, count]) => (
+                <button
+                  key={lang}
+                  className={`blogpage-lang-btn ${activeLang === lang ? 'blogpage-lang-btn-active' : ''}`}
+                  onClick={() => handleLangClick(lang)}
+                >
+                  {getLangLabel(lang)}
+                  <span className="blogpage-lang-count">{count}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="blogpage-sidebar-section">
             <h3 className="blogpage-sidebar-title">Categorias</h3>
             <ul className="blogpage-sidebar-list">

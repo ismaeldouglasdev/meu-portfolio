@@ -1826,6 +1826,7 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
 }
 
 .blogpage-card {
+  position: relative;
   padding: 2rem 0;
   border-bottom: 1px solid var(--border);
   cursor: pointer;
@@ -2348,6 +2349,62 @@ pre:hover .blogpost-copy-btn {
 
 .blogpage-search {
   margin-top: 2rem;
+}
+
+/* ── Language toggle ─────────────────────────────────────────────────── */
+.blogpage-lang-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.blogpage-lang-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.blogpage-lang-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.blogpage-lang-btn-active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.blogpage-lang-count {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+/* ── Lang badge on cards ────────────────────────────────────────────── */
+.blogpage-card-lang {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--bg);
+  z-index: 1;
 }
 
 @media (max-width: 768px) {

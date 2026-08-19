@@ -13,6 +13,7 @@ interface BlogPost {
   tags?: string[];
   content?: string;
   cover?: string;
+  lang?: string;
 }
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
@@ -79,7 +80,16 @@ function BlogPostPage() {
       const markdown = decodeBase64Utf8(mdData.content);
       const content = markdown.split('---\n').slice(2).join('---\n').trim() || markdown;
 
-      setPost({ ...postMeta, content });
+      let lang = postMeta.lang;
+      if (!lang) {
+        const frontmatterBlock = markdown.split('---\n')[1];
+        if (frontmatterBlock) {
+          const langMatch = frontmatterBlock.match(/^lang:\s*"?(\w+)"?\s*$/m);
+          if (langMatch) lang = langMatch[1];
+        }
+      }
+
+      setPost({ ...postMeta, lang, content });
       document.title = `${postMeta.title} — Blog Ismael Douglas`;
 
       const url = `https://blog.ismaeltech.com/${postMeta.slug}`;
