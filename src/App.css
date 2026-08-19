@@ -2131,6 +2131,34 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   margin-bottom: 0;
 }
 
+.blogpost-callout {
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.blogpost-callout p {
+  margin-bottom: 0;
+}
+
+.blogpost-callout-tip {
+  border-left: 4px solid #22c55e;
+  background: rgba(34, 197, 94, 0.08);
+  color: var(--text);
+}
+
+.blogpost-callout-warning {
+  border-left: 4px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+  color: var(--text);
+}
+
+.blogpost-callout-note {
+  border-left: 4px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--text);
+}
+
 /* Tables */
 .blogpost-content table {
   width: 100%;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown, { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 
@@ -123,6 +123,28 @@ function BlogPostPage() {
     }
   };
 
+  const calloutComponents: Components = {
+    blockquote: ({ children, ...props }) => {
+      const text = typeof children === 'string' ? children : '';
+      const firstChild = Array.isArray(children) ? children[0] : null;
+      const childText = firstChild && typeof firstChild === 'object' && 'props' in firstChild
+        ? String(firstChild.props.children) : '';
+
+      const fullText = text || childText;
+
+      if (fullText.startsWith('**Dica:**') || fullText.startsWith('**Tip:**')) {
+        return <blockquote className="blogpost-callout blogpost-callout-tip" {...props}>{children}</blockquote>;
+      }
+      if (fullText.startsWith('**Atenção:**') || fullText.startsWith('**Cuidado:**') || fullText.startsWith('**Aviso:**')) {
+        return <blockquote className="blogpost-callout blogpost-callout-warning" {...props}>{children}</blockquote>;
+      }
+      if (fullText.startsWith('**Nota:**') || fullText.startsWith('**Note:**')) {
+        return <blockquote className="blogpost-callout blogpost-callout-note" {...props}>{children}</blockquote>;
+      }
+      return <blockquote {...props}>{children}</blockquote>;
+    },
+  };
+
   const formatDate = (dateStr: string) => {
     return new Date(dateStr + 'T00:00:00').toLocaleDateString('pt-BR', {
       day: '2-digit',
@@ -208,6 +230,7 @@ function BlogPostPage() {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeHighlight]}
+            components={calloutComponents}
           >
             {post.content || ''}
           </ReactMarkdown>
