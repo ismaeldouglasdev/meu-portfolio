@@ -1692,6 +1692,44 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   line-height: 1.7;
 }
 
+.blogpage-search {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  max-width: 400px;
+}
+
+.blogpage-search-input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.blogpage-search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.blogpage-search-btn {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.blogpage-search-btn:hover {
+  opacity: 0.9;
+}
+
 .blogpage-content {
   max-width: 700px;
   margin: 0 auto;

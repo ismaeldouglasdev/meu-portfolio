@@ -33,6 +33,8 @@ function BlogPage() {
 
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const activeTag = searchParams.get('tag') || '';
+  const searchQuery = searchParams.get('q') || '';
+  const [searchInput, setSearchInput] = useState(searchQuery);
 
   useEffect(() => {
     document.title = 'Blog — Ismael Douglas';
@@ -68,9 +70,19 @@ function BlogPage() {
   }, [posts]);
 
   const filteredPosts = useMemo(() => {
-    if (!activeTag) return posts;
-    return posts.filter(p => p.tags?.includes(activeTag));
-  }, [posts, activeTag]);
+    let result = posts;
+    if (activeTag) {
+      result = result.filter(p => p.tags?.includes(activeTag));
+    }
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q)
+      );
+    }
+    return result;
+  }, [posts, activeTag, searchQuery]);
 
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
   const paginatedPosts = filteredPosts.slice(
@@ -84,6 +96,18 @@ function BlogPage() {
       params.delete('tag');
     } else {
       params.set('tag', tag);
+    }
+    params.delete('page');
+    setSearchParams(params);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const params = new URLSearchParams(searchParams);
+    if (searchInput.trim()) {
+      params.set('q', searchInput.trim());
+    } else {
+      params.delete('q');
     }
     params.delete('page');
     setSearchParams(params);
@@ -162,6 +186,16 @@ function BlogPage() {
           Conteúdo sobre desenvolvimento web, design e tecnologia.
           Aprenda com tutoriais práticos e insights do mercado.
         </p>
+        <form className="blogpage-search" onSubmit={handleSearch}>
+          <input
+            type="text"
+            className="blogpage-search-input"
+            placeholder="Buscar artigos..."
+            value={searchInput}
+            onChange={e => setSearchInput(e.target.value)}
+          />
+          <button type="submit" className="blogpage-search-btn">Buscar</button>
+        </form>
       </section>
 
       <main className="blogpage-content">
