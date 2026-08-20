@@ -161,6 +161,7 @@ export interface Translation {
     categoriesLabel: string;
     recentLabel: string;
     backToPortfolio: string;
+    portfolioLink: string;
     loading: string;
     emptyTitle: string;
     emptyDesc: string;
@@ -171,10 +172,12 @@ export interface Translation {
     tocLabel: string;
     backToBlog: string;
     notFound: string;
-  readingTime: string;
-  copyBtn: string;
-  copiedBtn: string;
-  sourcesTitle: string;
+    readingTime: string;
+    copyBtn: string;
+    copiedBtn: string;
+    sourcesTitle: string;
+    toggleTheme: string;
+    documentTitle: string;
     categoriesTutorial: string;
     categoriesArticle: string;
     categoriesCuriosity: string;

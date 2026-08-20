@@ -4,21 +4,7 @@ import ReactMarkdown, { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import { useTranslation } from '../i18n';
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  title_en?: string;
-  date: string;
-  category: string;
-  excerpt: string;
-  excerpt_en?: string;
-  tags?: string[];
-  content?: string;
-  cover?: string;
-  lang?: string;
-  translation_slug?: string;
-}
+import type { BlogPost } from '../types/blog';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
@@ -92,7 +78,7 @@ function BlogPostPage() {
       const displayExcerpt = isEn && postMeta.excerpt_en ? postMeta.excerpt_en : postMeta.excerpt;
 
       setPost({ ...postMeta, lang: postMeta.lang || 'pt', content, title: displayTitle, excerpt: displayExcerpt });
-      document.title = `${displayTitle} — Blog Ismael Douglas`;
+      document.title = `${displayTitle} ${t.blog.documentTitle}`;
 
       const url = `https://blog.ismaeltech.com/${postMeta.slug}`;
 
@@ -111,6 +97,12 @@ function BlogPostPage() {
       let ogType = document.querySelector('meta[property="og:type"]');
       if (!ogType) { ogType = document.createElement('meta'); ogType.setAttribute('property', 'og:type'); document.head.appendChild(ogType); }
       ogType.setAttribute('content', 'article');
+
+      if (postMeta.cover) {
+        let ogImage = document.querySelector('meta[property="og:image"]');
+        if (!ogImage) { ogImage = document.createElement('meta'); ogImage.setAttribute('property', 'og:image'); document.head.appendChild(ogImage); }
+        ogImage.setAttribute('content', postMeta.cover);
+      }
 
       const ldScript = document.getElementById('blog-jsonld');
       if (ldScript) ldScript.remove();
@@ -201,7 +193,7 @@ function BlogPostPage() {
         <header className="blogpage-header">
           <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
           <nav className="blogpage-nav">
-            <a href="/" className="blogpage-nav-link">← Blog</a>
+            <a href="/" className="blogpage-nav-link">{t.blog.backToBlog}</a>
           </nav>
         </header>
         <div className="blogpage-loading">
@@ -218,7 +210,7 @@ function BlogPostPage() {
         <header className="blogpage-header">
           <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
           <nav className="blogpage-nav">
-            <a href="/" className="blogpage-nav-link">← Blog</a>
+            <a href="/" className="blogpage-nav-link">{t.blog.backToBlog}</a>
           </nav>
         </header>
         <div className="blogpage-empty">
@@ -234,7 +226,7 @@ function BlogPostPage() {
       <header className="blogpage-header">
         <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
-          <a href="/" className="blogpage-nav-link">← Blog</a>
+          <a href="/" className="blogpage-nav-link">{t.blog.backToBlog}</a>
           <div className="blogpage-lang-switch">
             <button
               className={`blogpage-lang-option ${lang === 'pt-BR' ? 'blogpage-lang-option-active' : ''}`}

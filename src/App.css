@@ -1424,10 +1424,12 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
 
 @media (max-width: 640px) {
   .hero {
-    height: 100dvh;
-    min-height: unset;
-    overflow: clip;
+    min-height: 100dvh;
+    min-height: 100svh;
+    height: auto;
+    overflow: visible;
     padding-top: 7rem;
+    padding-bottom: 4rem;
   }
   .hero-title {
     margin-bottom: 0.5rem;

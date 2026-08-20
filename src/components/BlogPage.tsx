@@ -3,21 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useTranslation } from '../i18n';
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  title_en?: string;
-  date: string;
-  category: string;
-  excerpt: string;
-  excerpt_en?: string;
-  tags?: string[];
-  cover?: string;
-  lang?: string;
-  translation_slug?: string;
-  translation_of?: string;
-}
+import type { BlogPost } from '../types/blog';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
@@ -203,7 +189,7 @@ function BlogPage() {
       <header className="blogpage-header">
         <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
-          <a href="https://ismaeltech.com/" className="blogpage-nav-link">Portfólio</a>
+          <a href="https://ismaeltech.com/" className="blogpage-nav-link">{t.blog.portfolioLink}</a>
           <div className="blogpage-lang-switch">
             <button
               className={`blogpage-lang-option ${lang === 'pt-BR' ? 'blogpage-lang-option-active' : ''}`}
@@ -217,7 +203,7 @@ function BlogPage() {
           <button
             className="blogpage-theme-toggle"
             onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
-            aria-label="Alternar tema"
+            aria-label={t.blog.toggleTheme}
           >
             {theme === 'light' ? (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
