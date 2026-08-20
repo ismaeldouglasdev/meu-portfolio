@@ -2471,142 +2471,68 @@ pre:hover .blogpost-copy-btn {
    ============================================ */
 
 @media (max-width: 768px) {
-  /* Fix small text - ensure minimum 0.75rem (12px) */
-  .processo-phase {
-    font-size: 0.75rem;
-  }
-  
-  .processo-duration {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.75rem;
-  }
-  
-  .processo-card p {
-    font-size: 0.85rem;
-  }
-  
   .navbar-links a {
     font-size: 0.875rem;
     padding: 0.875rem;
     min-height: 44px;
   }
-  
-  .hero-badge {
-    font-size: 0.85rem;
-  }
-  
-  .hero-tag {
-    font-size: 0.8rem;
-  }
-  
-  .hero-stat-label {
-    font-size: 0.8rem;
-  }
-  
-  .sobre-highlight {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
-    min-height: 44px;
-  }
-  
-  .contato-link {
-    font-size: 0.9rem;
-    padding: 0.875rem 1.25rem;
-    min-height: 44px;
-  }
-  
-  .footer p {
-    font-size: 0.8rem;
-  }
-  
-  .depoimento-stars {
-    font-size: 0.85rem;
-  }
-  
-  .depoimento-author span {
-    font-size: 0.8rem;
-  }
-  
-  .blogpage-lang-option {
-    font-size: 0.8rem;
-    padding: 0.5rem 0.75rem;
-    min-height: 44px;
-  }
-  
-  .blogpage-card-lang {
-    font-size: 0.75rem;
-  }
-  
-  .blogpost-share-btn {
-    width: 44px;
-    height: 44px;
-  }
-  
-  .blogpost-copy-btn {
-    min-width: 44px;
-    min-height: 44px;
-  }
-  
-  /* Fix touch targets for buttons and links */
-  .btn {
-    min-height: 44px;
-    padding: 0.75rem 1.5rem;
-  }
-  
-  .theme-btn {
-    width: 44px;
-    height: 44px;
-  }
-  
-  .mobile-menu-btn {
-    width: 44px;
-    height: 44px;
-  }
-  
-  .navbar-logo {
-    padding: 0.5rem 0;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Fix small elements in process section */
-  .processo-icon {
-    width: 44px;
-    height: 44px;
-  }
-  
-  /* Fix pricing section */
-  .precos-price {
-    font-size: 1.5rem;
-  }
-  
-  .precos-period {
-    font-size: 0.8rem;
-  }
-  
-  /* Fix skills section */
-  .skill-tag {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-    min-height: 32px;
-  }
-  
-  /* Fix project cards */
-  .projeto-tags span {
-    font-size: 0.75rem;
-  }
-  
-  /* Fix experience timeline */
-  .exp-role {
-    font-size: 0.9rem;
-  }
-  
-  .exp-company {
-    font-size: 0.85rem;
-  }
-  
-  .exp-period {
-    font-size: 0.8rem;
-  }
+
+  .hero-badge { font-size: 0.85rem; }
+  .hero-tag { font-size: 0.8rem; }
+  .hero-stat-label { font-size: 0.8rem; }
+
+  .processo-phase { font-size: 0.75rem; }
+  .processo-duration { font-size: 0.75rem; padding: 0.35rem 0.75rem; }
+  .processo-card p { font-size: 0.85rem; }
+  .processo-icon { width: 44px; height: 44px; }
+
+  .sobre-highlight { font-size: 0.85rem; padding: 0.5rem 1rem; min-height: 44px; }
+
+  .faq-arrow { font-size: 0.75rem; }
+
+  .servico-techs span { font-size: 0.75rem; }
+  .projeto-langs span { font-size: 0.75rem; }
+  .tag-desktop { font-size: 0.75rem; }
+  .status-badge { font-size: 0.75rem; padding: 0.3rem 0.7rem; min-height: 32px; }
+
+  .contato-link { font-size: 0.9rem; padding: 0.875rem 1.25rem; min-height: 44px; }
+
+  .footer p { font-size: 0.8rem; }
+
+  .depoimento-stars { font-size: 0.85rem; }
+  .depoimento-author span { font-size: 0.8rem; }
+
+  .precos-price { font-size: 1.5rem; }
+  .precos-period { font-size: 0.75rem; }
+  .preco-badge { font-size: 0.75rem; padding: 0.25rem 0.85rem; }
+  .preco-features li { font-size: 0.85rem; }
+  .preco-features svg { font-size: 0.75rem; }
+
+  .caso-heading { font-size: 0.75rem; }
+  .caso-resultados svg { font-size: 0.75rem; }
+  .caso-link-btn svg { font-size: 0.75rem; }
+  .caso-page-resultados svg { font-size: 0.75rem; }
+  .caso-section p { font-size: 0.85rem; }
+
+  .blogpage-lang-option { font-size: 0.8rem; padding: 0.5rem 0.75rem; min-height: 44px; }
+  .blogpage-card-lang { font-size: 0.75rem; }
+  .blogpage-sidebar-post-date { font-size: 0.75rem; }
+  .blogpage-card-category { font-size: 0.75rem; }
+  .blogpage-card-tag { font-size: 0.75rem; }
+
+  .blogpost-category { font-size: 0.75rem; }
+  .blogpost-copy-btn { font-size: 0.75rem; min-width: 44px; min-height: 44px; }
+  .blogpost-share-btn { width: 44px; height: 44px; }
+
+  .btn { min-height: 44px; padding: 0.75rem 1.5rem; }
+  .theme-btn { width: 44px; height: 44px; }
+  .mobile-menu-btn { width: 44px; height: 44px; }
+  .navbar-logo { padding: 0.5rem 0; min-height: 44px; display: flex; align-items: center; }
+
+  .projeto-link { min-height: 44px; padding: 0.5rem 0.9rem; font-size: 0.8rem; }
+  .skip-link { min-height: 44px; }
+
+  .exp-role { font-size: 0.9rem; }
+  .exp-company { font-size: 0.85rem; }
+  .exp-period { font-size: 0.8rem; }
 }
