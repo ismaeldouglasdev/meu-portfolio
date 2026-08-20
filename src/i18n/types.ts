@@ -171,5 +171,14 @@ export interface Translation {
     tocLabel: string;
     backToBlog: string;
     notFound: string;
+    readingTime: string;
+    copyBtn: string;
+    copiedBtn: string;
+    categoriesTutorial: string;
+    categoriesArticle: string;
+    categoriesCuriosity: string;
+    categoriesTrend: string;
+    categoriesNews: string;
+    categoriesCaseStudy: string;
   };
 }

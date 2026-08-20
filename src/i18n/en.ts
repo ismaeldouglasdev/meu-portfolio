@@ -325,6 +325,15 @@ const en: Translation = {
     tocLabel: 'On this page',
     backToBlog: '← Back to blog',
     notFound: 'Post not found',
+    readingTime: '{0} min read',
+    copyBtn: 'Copy',
+    copiedBtn: 'Copied!',
+    categoriesTutorial: 'Tutorial',
+    categoriesArticle: 'Article',
+    categoriesCuriosity: 'Curiosity',
+    categoriesTrend: 'Trending',
+    categoriesNews: 'News',
+    categoriesCaseStudy: 'Case Study',
   },
 };
 

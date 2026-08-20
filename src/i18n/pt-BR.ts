@@ -326,6 +326,15 @@ const ptBR: Translation = {
     tocLabel: 'Nesta página',
     backToBlog: '← Voltar ao blog',
     notFound: 'Post não encontrado',
+    readingTime: '{0} min de leitura',
+    copyBtn: 'Copiar',
+    copiedBtn: 'Copiado!',
+    categoriesTutorial: 'Tutorial',
+    categoriesArticle: 'Artigo',
+    categoriesCuriosity: 'Curiosidade',
+    categoriesTrend: 'Tendência',
+    categoriesNews: 'Notícia',
+    categoriesCaseStudy: 'Case Study',
   },
 };
 

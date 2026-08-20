@@ -7,12 +7,15 @@ import { useTranslation } from '../i18n';
 interface BlogPost {
   slug: string;
   title: string;
+  title_en?: string;
   date: string;
   category: string;
   excerpt: string;
+  excerpt_en?: string;
   tags?: string[];
   cover?: string;
   lang?: string;
+  translation_slug?: string;
 }
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
@@ -21,7 +24,7 @@ const POSTS_PER_PAGE = 9;
 
 function BlogPage() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, lang, setLang } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +42,6 @@ function BlogPage() {
 
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const activeTag = searchParams.get('tag') || '';
-  const activeLang = searchParams.get('lang') || '';
   const searchQuery = searchParams.get('q') || '';
   const [searchInput, setSearchInput] = useState(searchQuery);
 
@@ -82,15 +84,6 @@ function BlogPage() {
     return Array.from(catMap.entries()).sort((a, b) => b[1] - a[1]);
   }, [posts]);
 
-  const allLangs = useMemo(() => {
-    const langMap = new Map<string, number>();
-    posts.forEach(p => {
-      const lang = p.lang || 'pt';
-      langMap.set(lang, (langMap.get(lang) || 0) + 1);
-    });
-    return Array.from(langMap.entries()).sort((a, b) => b[1] - a[1]);
-  }, [posts]);
-
   const recentPosts = useMemo(() => {
     return [...posts].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
   }, [posts]);
@@ -100,9 +93,6 @@ function BlogPage() {
     if (activeTag) {
       result = result.filter(p => p.tags?.includes(activeTag));
     }
-    if (activeLang) {
-      result = result.filter(p => (p.lang || 'pt') === activeLang);
-    }
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       result = result.filter(p =>
@@ -111,7 +101,7 @@ function BlogPage() {
       );
     }
     return result;
-  }, [posts, activeTag, activeLang, searchQuery]);
+  }, [posts, activeTag, searchQuery]);
 
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
   const paginatedPosts = filteredPosts.slice(
@@ -125,17 +115,6 @@ function BlogPage() {
       params.delete('tag');
     } else {
       params.set('tag', tag);
-    }
-    params.delete('page');
-    setSearchParams(params);
-  };
-
-  const handleLangClick = (lang: string) => {
-    const params = new URLSearchParams(searchParams);
-    if (lang === activeLang) {
-      params.delete('lang');
-    } else {
-      params.set('lang', lang);
     }
     params.delete('page');
     setSearchParams(params);
@@ -161,7 +140,7 @@ function BlogPage() {
   };
 
   const formatDate = (dateStr: string) => {
-    const locale = t.blog.label === 'Blog' ? 'pt-BR' : 'en-US';
+    const locale = lang === 'en' ? 'en-US' : 'pt-BR';
     return new Date(dateStr + 'T00:00:00').toLocaleDateString(locale, {
       day: '2-digit',
       month: 'long',
@@ -171,22 +150,24 @@ function BlogPage() {
 
   const getCategoryLabel = (category: string) => {
     const labels: Record<string, string> = {
-      'tutorial': 'Tutorial',
-      'case-study': 'Case Study',
-      'article': 'Artigo',
-      'curiosidade': 'Curiosidade',
-      'tendencia': 'Tendência',
-      'noticia': 'Notícia',
+      'tutorial': t.blog.categoriesTutorial,
+      'case-study': t.blog.categoriesCaseStudy,
+      'article': t.blog.categoriesArticle,
+      'curiosidade': t.blog.categoriesCuriosity,
+      'tendencia': t.blog.categoriesTrend,
+      'noticia': t.blog.categoriesNews,
     };
     return labels[category] || category;
   };
 
-  const getLangLabel = (lang: string) => {
-    const labels: Record<string, string> = {
-      'pt': 'PT',
-      'en': 'EN',
-    };
-    return labels[lang] || lang.toUpperCase();
+  const getDisplayTitle = (post: BlogPost) => {
+    if (lang === 'en' && post.title_en) return post.title_en;
+    return post.title;
+  };
+
+  const getDisplayExcerpt = (post: BlogPost) => {
+    if (lang === 'en' && post.excerpt_en) return post.excerpt_en;
+    return post.excerpt;
   };
 
   if (loading) {
@@ -222,6 +203,16 @@ function BlogPage() {
         <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
           <a href="https://ismaeltech.com/" className="blogpage-nav-link">Portfólio</a>
+          <div className="blogpage-lang-switch">
+            <button
+              className={`blogpage-lang-option ${lang === 'pt-BR' ? 'blogpage-lang-option-active' : ''}`}
+              onClick={() => setLang('pt-BR')}
+            >PT</button>
+            <button
+              className={`blogpage-lang-option ${lang === 'en' ? 'blogpage-lang-option-active' : ''}`}
+              onClick={() => setLang('en')}
+            >EN</button>
+          </div>
           <button
             className="blogpage-theme-toggle"
             onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
@@ -276,9 +267,6 @@ function BlogPage() {
                 className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag ? 'blogpage-card-featured' : ''}`}
                 onClick={() => navigate(`/${post.slug}`)}
               >
-                {post.lang && post.lang !== 'pt' && (
-                  <span className="blogpage-card-lang">{getLangLabel(post.lang)}</span>
-                )}
                 {post.cover && (
                   <div className="blogpage-card-cover">
                     <img src={post.cover} alt={post.title} loading="lazy" />
@@ -287,10 +275,10 @@ function BlogPage() {
                 <div className="blogpage-card-category">
                   {getCategoryLabel(post.category)}
                 </div>
-                <h2 className="blogpage-card-title">{post.title}</h2>
+                <h2 className="blogpage-card-title">{getDisplayTitle(post)}</h2>
                 <div className="blogpage-card-excerpt">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {post.excerpt}
+                    {getDisplayExcerpt(post)}
                   </ReactMarkdown>
                 </div>
                 {post.tags && post.tags.length > 0 && (
@@ -332,22 +320,6 @@ function BlogPage() {
         </div>
 
         <aside className="blogpage-sidebar">
-          <div className="blogpage-sidebar-section">
-            <h3 className="blogpage-sidebar-title">{t.blog.langLabel}</h3>
-            <div className="blogpage-lang-toggle">
-              {allLangs.map(([lang, count]) => (
-                <button
-                  key={lang}
-                  className={`blogpage-lang-btn ${activeLang === lang ? 'blogpage-lang-btn-active' : ''}`}
-                  onClick={() => handleLangClick(lang)}
-                >
-                  {getLangLabel(lang)}
-                  <span className="blogpage-lang-count">{count}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
           <div className="blogpage-sidebar-section">
             <h3 className="blogpage-sidebar-title">{t.blog.categoriesLabel}</h3>
             <ul className="blogpage-sidebar-list">

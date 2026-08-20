@@ -8,13 +8,16 @@ import { useTranslation } from '../i18n';
 interface BlogPost {
   slug: string;
   title: string;
+  title_en?: string;
   date: string;
   category: string;
   excerpt: string;
+  excerpt_en?: string;
   tags?: string[];
   content?: string;
   cover?: string;
   lang?: string;
+  translation_slug?: string;
 }
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
@@ -29,29 +32,29 @@ function decodeBase64Utf8(base64: string): string {
 
 function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const { t } = useTranslation();
+  const { t, lang, setLang } = useTranslation();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchPost();
-  }, [slug]);
+  }, [slug, lang]);
 
   useEffect(() => {
     if (!post) return;
     const timer = setTimeout(() => {
-      document.querySelectorAll('.blogpost-content pre').forEach(pre => {
+      document.querySelectorAll<HTMLElement>('.blogpost-content pre').forEach(pre => {
         if (pre.querySelector('.blogpost-copy-btn')) return;
         const btn = document.createElement('button');
         btn.className = 'blogpost-copy-btn';
-        btn.textContent = 'Copiar';
+        btn.textContent = t.blog.copyBtn;
         btn.onclick = () => {
           const code = pre.querySelector('code');
           if (code) {
             navigator.clipboard.writeText(code.textContent || '');
-            btn.textContent = 'Copiado!';
-            setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
+            btn.textContent = t.blog.copiedBtn;
+            setTimeout(() => { btn.textContent = t.blog.copyBtn; }, 2000);
           }
         };
         pre.style.position = 'relative';
@@ -76,33 +79,29 @@ function BlogPostPage() {
       const postMeta = metaContent.posts?.find((p: BlogPost) => p.slug === slug);
       if (!postMeta) throw new Error('Post not found');
 
-      const mdRes = await fetch(`${GITHUB_API}/${slug}.md`, { headers });
+      const isEn = lang === 'en' && postMeta.translation_slug;
+      const fetchSlug = isEn ? postMeta.translation_slug : slug;
+
+      const mdRes = await fetch(`${GITHUB_API}/${fetchSlug}.md`, { headers });
       if (!mdRes.ok) throw new Error('Failed to fetch post');
       const mdData = await mdRes.json();
       const markdown = decodeBase64Utf8(mdData.content);
       const content = markdown.split('---\n').slice(2).join('---\n').trim() || markdown;
 
-      let lang = postMeta.lang;
-      if (!lang) {
-        const frontmatterBlock = markdown.split('---\n')[1];
-        if (frontmatterBlock) {
-          const langMatch = frontmatterBlock.match(/^lang:\s*"?(\w+)"?\s*$/m);
-          if (langMatch) lang = langMatch[1];
-        }
-      }
+      const displayTitle = isEn && postMeta.title_en ? postMeta.title_en : postMeta.title;
 
-      setPost({ ...postMeta, lang, content });
-      document.title = `${postMeta.title} — Blog Ismael Douglas`;
+      setPost({ ...postMeta, lang: postMeta.lang || 'pt', content });
+      document.title = `${displayTitle} — Blog Ismael Douglas`;
 
       const url = `https://blog.ismaeltech.com/${postMeta.slug}`;
 
       let ogTitle = document.querySelector('meta[property="og:title"]');
       if (!ogTitle) { ogTitle = document.createElement('meta'); ogTitle.setAttribute('property', 'og:title'); document.head.appendChild(ogTitle); }
-      ogTitle.setAttribute('content', postMeta.title);
+      ogTitle.setAttribute('content', displayTitle);
 
       let ogDesc = document.querySelector('meta[property="og:description"]');
       if (!ogDesc) { ogDesc = document.createElement('meta'); ogDesc.setAttribute('property', 'og:description'); document.head.appendChild(ogDesc); }
-      ogDesc.setAttribute('content', postMeta.excerpt);
+      ogDesc.setAttribute('content', postMeta.excerpt_en || postMeta.excerpt);
 
       let ogUrl = document.querySelector('meta[property="og:url"]');
       if (!ogUrl) { ogUrl = document.createElement('meta'); ogUrl.setAttribute('property', 'og:url'); document.head.appendChild(ogUrl); }
@@ -120,12 +119,12 @@ function BlogPostPage() {
       script.textContent = JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": postMeta.title,
+        "headline": displayTitle,
         "datePublished": postMeta.date + "T00:00:00-03:00",
         "url": url,
         "author": { "@type": "Person", "name": "Ismael Douglas" },
         "publisher": { "@type": "Person", "name": "Ismael Douglas" },
-        "description": postMeta.excerpt,
+        "description": postMeta.excerpt_en || postMeta.excerpt,
       });
       document.head.appendChild(script);
     } catch (err) {
@@ -158,7 +157,8 @@ function BlogPostPage() {
   };
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr + 'T00:00:00').toLocaleDateString('pt-BR', {
+    const locale = lang === 'en' ? 'en-US' : 'pt-BR';
+    return new Date(dateStr + 'T00:00:00').toLocaleDateString(locale, {
       day: '2-digit',
       month: 'long',
       year: 'numeric',
@@ -167,14 +167,18 @@ function BlogPostPage() {
 
   const getReadingTime = (content: string) => {
     const words = content.split(/\s+/).length;
-    return Math.ceil(words / 200);
+    const minutes = Math.ceil(words / 200);
+    return t.blog.readingTime.replace('{0}', String(minutes));
   };
 
   const getCategoryLabel = (category: string) => {
     const labels: Record<string, string> = {
-      'tutorial': 'Tutorial',
-      'case-study': 'Case Study',
-      'article': 'Artigo',
+      'tutorial': t.blog.categoriesTutorial,
+      'case-study': t.blog.categoriesCaseStudy,
+      'article': t.blog.categoriesArticle,
+      'curiosidade': t.blog.categoriesCuriosity,
+      'tendencia': t.blog.categoriesTrend,
+      'noticia': t.blog.categoriesNews,
     };
     return labels[category] || category;
   };
@@ -190,7 +194,7 @@ function BlogPostPage() {
         </header>
         <div className="blogpage-loading">
           <div className="blogpage-spinner" />
-          <span>Carregando artigo...</span>
+          <span>{t.blog.loading}</span>
         </div>
       </div>
     );
@@ -219,6 +223,16 @@ function BlogPostPage() {
         <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
           <a href="/" className="blogpage-nav-link">← Blog</a>
+          <div className="blogpage-lang-switch">
+            <button
+              className={`blogpage-lang-option ${lang === 'pt-BR' ? 'blogpage-lang-option-active' : ''}`}
+              onClick={() => setLang('pt-BR')}
+            >PT</button>
+            <button
+              className={`blogpage-lang-option ${lang === 'en' ? 'blogpage-lang-option-active' : ''}`}
+              onClick={() => setLang('en')}
+            >EN</button>
+          </div>
         </nav>
       </header>
 
@@ -233,7 +247,7 @@ function BlogPostPage() {
           <h1 className="blogpost-title">{post.title}</h1>
           <div className="blogpost-meta">
             <time>{formatDate(post.date)}</time>
-            {post.content && <span>{getReadingTime(post.content)} min de leitura</span>}
+            {post.content && <span>{getReadingTime(post.content)}</span>}
           </div>
         </header>
 
