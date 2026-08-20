@@ -171,9 +171,10 @@ export interface Translation {
     tocLabel: string;
     backToBlog: string;
     notFound: string;
-    readingTime: string;
-    copyBtn: string;
-    copiedBtn: string;
+  readingTime: string;
+  copyBtn: string;
+  copiedBtn: string;
+  sourcesTitle: string;
     categoriesTutorial: string;
     categoriesArticle: string;
     categoriesCuriosity: string;

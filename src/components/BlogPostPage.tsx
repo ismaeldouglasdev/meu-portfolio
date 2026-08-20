@@ -172,6 +172,17 @@ function BlogPostPage() {
     return t.blog.readingTime.replace('{0}', String(minutes));
   };
 
+  const splitSources = (md: string): { article: string; sources: string } => {
+    const sourcesRegex = /^##\s+(?:Fontes|Sources|Refer[êe]ncias|References)\s*\n([\s\S]*?)(?=^##\s|\Z)/m;
+    const match = md.match(sourcesRegex);
+    if (match) {
+      const article = md.slice(0, match.index).trim();
+      const sources = match[1].trim();
+      return { article, sources };
+    }
+    return { article: md, sources: '' };
+  };
+
   const getCategoryLabel = (category: string) => {
     const labels: Record<string, string> = {
       'tutorial': t.blog.categoriesTutorial,
@@ -253,13 +264,28 @@ function BlogPostPage() {
         </header>
 
         <div className="blogpost-content">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeHighlight]}
-            components={calloutComponents}
-          >
-            {post.content || ''}
-          </ReactMarkdown>
+          {(() => {
+            const { article, sources } = splitSources(post.content || '');
+            return (
+              <>
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeHighlight]}
+                  components={calloutComponents}
+                >
+                  {article}
+                </ReactMarkdown>
+                {sources && (
+                  <aside className="blogpost-sources">
+                    <h2 className="blogpost-sources-title">{t.blog.sourcesTitle}</h2>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {sources}
+                    </ReactMarkdown>
+                  </aside>
+                )}
+              </>
+            );
+          })()}
         </div>
 
         <div className="blogpost-share">

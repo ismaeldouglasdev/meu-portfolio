@@ -2298,6 +2298,49 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   color: #89b4fa;
 }
 
+.blogpost-sources {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--accent-bg);
+}
+
+.blogpost-sources-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blogpost-sources ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.blogpost-sources li {
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.blogpost-sources li:last-child {
+  border-bottom: none;
+}
+
+.blogpost-sources a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.blogpost-sources a:hover {
+  text-decoration: underline;
+}
+
 .blogpost-footer {
   margin-top: 4rem;
   padding-top: 2rem;

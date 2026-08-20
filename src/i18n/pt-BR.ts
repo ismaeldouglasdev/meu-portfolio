@@ -329,6 +329,7 @@ const ptBR: Translation = {
     readingTime: '{0} min de leitura',
     copyBtn: 'Copiar',
     copiedBtn: 'Copiado!',
+    sourcesTitle: 'Fontes e Referências',
     categoriesTutorial: 'Tutorial',
     categoriesArticle: 'Artigo',
     categoriesCuriosity: 'Curiosidade',

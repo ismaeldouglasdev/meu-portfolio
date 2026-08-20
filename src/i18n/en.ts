@@ -328,6 +328,7 @@ const en: Translation = {
     readingTime: '{0} min read',
     copyBtn: 'Copy',
     copiedBtn: 'Copied!',
+    sourcesTitle: 'Sources & References',
     categoriesTutorial: 'Tutorial',
     categoriesArticle: 'Article',
     categoriesCuriosity: 'Curiosity',
