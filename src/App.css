@@ -2503,7 +2503,7 @@ pre:hover .blogpost-copy-btn {
   .depoimento-author span { font-size: 0.8rem; }
 
   .precos-price { font-size: 1.5rem; }
-  .precos-period { font-size: 0.75rem; }
+  .preco-period { font-size: 0.75rem; }
   .preco-badge { font-size: 0.75rem; padding: 0.25rem 0.85rem; }
   .preco-features li { font-size: 0.85rem; }
   .preco-features svg { font-size: 0.75rem; }
@@ -2524,6 +2524,8 @@ pre:hover .blogpost-copy-btn {
   .blogpost-copy-btn { font-size: 0.75rem; min-width: 44px; min-height: 44px; }
   .blogpost-share-btn { width: 44px; height: 44px; }
 
+  .section-label { font-size: 0.75rem; }
+
   .btn { min-height: 44px; padding: 0.75rem 1.5rem; }
   .theme-btn { width: 44px; height: 44px; }
   .mobile-menu-btn { width: 44px; height: 44px; }
@@ -2531,6 +2533,9 @@ pre:hover .blogpost-copy-btn {
 
   .projeto-link { min-height: 44px; padding: 0.5rem 0.9rem; font-size: 0.8rem; }
   .skip-link { min-height: 44px; }
+
+  .status-badge { min-height: 44px; padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+  .caso-link-btn { min-height: 44px; padding: 0.5rem 1rem; font-size: 0.8rem; }
 
   .exp-role { font-size: 0.9rem; }
   .exp-company { font-size: 0.85rem; }
