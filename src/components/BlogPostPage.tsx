@@ -89,8 +89,9 @@ function BlogPostPage() {
       const content = markdown.split('---\n').slice(2).join('---\n').trim() || markdown;
 
       const displayTitle = isEn && postMeta.title_en ? postMeta.title_en : postMeta.title;
+      const displayExcerpt = isEn && postMeta.excerpt_en ? postMeta.excerpt_en : postMeta.excerpt;
 
-      setPost({ ...postMeta, lang: postMeta.lang || 'pt', content });
+      setPost({ ...postMeta, lang: postMeta.lang || 'pt', content, title: displayTitle, excerpt: displayExcerpt });
       document.title = `${displayTitle} — Blog Ismael Douglas`;
 
       const url = `https://blog.ismaeltech.com/${postMeta.slug}`;
