@@ -2498,6 +2498,7 @@ pre:hover .blogpost-copy-btn {
   .contato-link { font-size: 0.9rem; padding: 0.875rem 1.25rem; min-height: 44px; }
 
   .footer p { font-size: 0.8rem; }
+  .footer-links a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
 
   .depoimento-stars { font-size: 0.85rem; }
   .depoimento-author span { font-size: 0.8rem; }
