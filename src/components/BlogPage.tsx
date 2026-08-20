@@ -16,6 +16,7 @@ interface BlogPost {
   cover?: string;
   lang?: string;
   translation_slug?: string;
+  translation_of?: string;
 }
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
@@ -89,7 +90,7 @@ function BlogPage() {
   }, [posts]);
 
   const filteredPosts = useMemo(() => {
-    let result = posts;
+    let result = posts.filter(p => !p.translation_of);
     if (activeTag) {
       result = result.filter(p => p.tags?.includes(activeTag));
     }
