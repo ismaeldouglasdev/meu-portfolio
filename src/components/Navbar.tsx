@@ -132,7 +132,7 @@ useEffect(() => {
           }}
           aria-label="Switch language"
           title={lang === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'}
-          style={{ fontSize: '0.7rem', fontWeight: 600 }}
+          style={{ fontSize: '0.8rem', fontWeight: 600 }}
         >
           {lang === 'pt-BR' ? 'PT' : 'EN'}
         </button>
