@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 function decodeBase64Utf8(base64: string): string {
   const binary = atob(base64);
@@ -16,7 +15,6 @@ function Feed() {
   useEffect(() => {
     const fetchFeed = async () => {
       const headers: HeadersInit = {};
-      if (GITHUB_TOKEN) headers['Authorization'] = `token ${GITHUB_TOKEN}`;
 
       const res = await fetch(`${GITHUB_API}/_meta.json`, { headers });
       const data = await res.json();

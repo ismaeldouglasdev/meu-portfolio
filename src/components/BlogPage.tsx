@@ -6,7 +6,6 @@ import { useTranslation } from '../i18n';
 import type { BlogPost } from '../types/blog';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 const POSTS_PER_PAGE = 9;
 
 function BlogPage() {
@@ -41,9 +40,6 @@ function BlogPage() {
     try {
       setLoading(true);
       const headers: HeadersInit = {};
-      if (GITHUB_TOKEN) {
-        headers['Authorization'] = `token ${GITHUB_TOKEN}`;
-      }
       const res = await fetch(`${GITHUB_API}/_meta.json`, { headers });
       if (!res.ok) throw new Error('Failed to fetch posts');
       const data = await res.json();

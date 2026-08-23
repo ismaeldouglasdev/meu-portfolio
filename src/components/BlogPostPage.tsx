@@ -7,7 +7,6 @@ import { useTranslation } from '../i18n';
 import type { BlogPost } from '../types/blog';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 function decodeBase64Utf8(base64: string): string {
   const binary = atob(base64);
@@ -54,9 +53,6 @@ function BlogPostPage() {
     try {
       setLoading(true);
       const headers: HeadersInit = {};
-      if (GITHUB_TOKEN) {
-        headers['Authorization'] = `token ${GITHUB_TOKEN}`;
-      }
 
       const metaRes = await fetch(`${GITHUB_API}/_meta.json`, { headers });
       if (!metaRes.ok) throw new Error('Failed to fetch meta');
