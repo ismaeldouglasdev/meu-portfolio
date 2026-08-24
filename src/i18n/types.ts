@@ -177,6 +177,9 @@ export interface Translation {
     copiedBtn: string;
     likeLabel: string;
     likedLabel: string;
+    feedbackUpLabel: string;
+    feedbackDownLabel: string;
+    feedbackThanks: string;
     sourcesTitle: string;
     toggleTheme: string;
     documentTitle: string;
