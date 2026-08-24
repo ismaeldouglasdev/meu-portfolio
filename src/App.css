@@ -2406,6 +2406,41 @@ pre:hover .blogpost-copy-btn {
   color: var(--accent);
 }
 
+.blogpost-like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 32px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.blogpost-like-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.blogpost-like-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.blogpost-like-btn-active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.blogpost-like-btn:disabled {
+  cursor: default;
+}
+
 .blogpage-search {
   margin-top: 2rem;
 }

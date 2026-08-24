@@ -175,6 +175,8 @@ export interface Translation {
     readingTime: string;
     copyBtn: string;
     copiedBtn: string;
+    likeLabel: string;
+    likedLabel: string;
     sourcesTitle: string;
     toggleTheme: string;
     documentTitle: string;

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useParams, useLocation } from 'react-router-dom';
 import './App.css';
+import { track } from './lib/analytics';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Sobre from './components/Sobre';
@@ -148,9 +149,20 @@ function PortfolioRoutes() {
   );
 }
 
+function RouteTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    track('pageview', location.pathname);
+  }, [location.pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
+      <RouteTracker />
       {isBlogDomain ? <BlogRoutes /> : <><Navbar /><PortfolioRoutes /></>}
     </BrowserRouter>
   );

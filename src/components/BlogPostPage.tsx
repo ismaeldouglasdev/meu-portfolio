@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import { useTranslation } from '../i18n';
 import type { BlogPost } from '../types/blog';
+import { track } from '../lib/analytics';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
 
@@ -21,6 +22,35 @@ function BlogPostPage() {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    if (slug) setLiked(localStorage.getItem(`blog_liked_${slug}`) === '1');
+  }, [slug]);
+
+  useEffect(() => {
+    if (!post) return;
+    const contentEl = document.querySelector<HTMLElement>('.blogpost-content');
+    if (!contentEl) return;
+    const onClickOut = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href') || '';
+      const isExternal = anchor.target === '_blank' || /^https?:\/\//.test(href);
+      if (isExternal && !href.includes('ismaeltech.com')) {
+        track('click_out', window.location.pathname, { href });
+      }
+    };
+    contentEl.addEventListener('click', onClickOut);
+    return () => contentEl.removeEventListener('click', onClickOut);
+  }, [post]);
+
+  const handleLike = () => {
+    if (liked || !slug) return;
+    setLiked(true);
+    try { localStorage.setItem(`blog_liked_${slug}`, '1'); } catch {}
+    track('like', window.location.pathname, { slug });
+  };
 
   useEffect(() => {
     fetchPost();
@@ -277,6 +307,18 @@ function BlogPostPage() {
         </div>
 
         <div className="blogpost-share">
+          <button
+            type="button"
+            className={`blogpost-like-btn ${liked ? 'blogpost-like-btn-active' : ''}`}
+            onClick={handleLike}
+            disabled={liked}
+            aria-pressed={liked}
+            aria-label={liked ? t.blog.likedLabel : t.blog.likeLabel}
+            title={liked ? t.blog.likedLabel : t.blog.likeLabel}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill={liked ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>{liked ? t.blog.likedLabel : t.blog.likeLabel}</span>
+          </button>
           <span className="blogpost-share-label">{t.blog.shareLabel}:</span>
           <a
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://blog.ismaeltech.com/${post.slug}`)}`}

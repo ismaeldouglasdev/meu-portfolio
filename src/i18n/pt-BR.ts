@@ -330,6 +330,8 @@ const ptBR: Translation = {
     readingTime: '{0} min de leitura',
     copyBtn: 'Copiar',
     copiedBtn: 'Copiado!',
+    likeLabel: 'Curtir este post',
+    likedLabel: 'Curtido!',
     sourcesTitle: 'Fontes e Referências',
     toggleTheme: 'Alternar tema',
     documentTitle: '— Blog Ismael Douglas',

@@ -329,6 +329,8 @@ const en: Translation = {
     readingTime: '{0} min read',
     copyBtn: 'Copy',
     copiedBtn: 'Copied!',
+    likeLabel: 'Like this post',
+    likedLabel: 'Liked!',
     sourcesTitle: 'Sources & References',
     toggleTheme: 'Toggle theme',
     documentTitle: '— Blog Ismael Douglas',
