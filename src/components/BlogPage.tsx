@@ -68,7 +68,7 @@ function BlogPage() {
   }, [posts]);
 
   const recentPosts = useMemo(() => {
-    return [...posts].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
+    return [...posts].filter(p => !p.translation_of).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
   }, [posts]);
 
   const filteredPosts = useMemo(() => {
