@@ -48,7 +48,11 @@ function BlogPostPage() {
   const handleLike = () => {
     if (liked || !slug) return;
     setLiked(true);
-    try { localStorage.setItem(`blog_liked_${slug}`, '1'); } catch {}
+    try {
+      localStorage.setItem(`blog_liked_${slug}`, '1');
+    } catch {
+      // storage bloqueado/cheio: o like é registrado no analytics mesmo sem persistir
+    }
     track('like', window.location.pathname, { slug });
   };
 
