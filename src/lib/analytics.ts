@@ -6,7 +6,20 @@ function getDomain(): string {
   return hostname;
 }
 
+const lastClickFire = new Map<string, number>();
+
 export function track(eventType: string, path: string, meta?: Record<string, string>): void {
+  try {
+    if (eventType.startsWith('click_')) {
+      const now = Date.now();
+      const last = lastClickFire.get(eventType) || 0;
+      if (now - last < 2000) return;
+      lastClickFire.set(eventType, now);
+    }
+  } catch {
+    // guard nunca quebra tracking
+  }
+
   try {
     const payload = {
       event_type: eventType,

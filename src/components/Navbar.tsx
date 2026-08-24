@@ -3,6 +3,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { track } from '../lib/analytics';
 
 const sectionKeys = ['sobre', 'servicos', 'skills', 'projetos', 'experiencia', 'precos', 'contato'] as const;
 type SectionKey = typeof sectionKeys[number];
@@ -113,6 +114,7 @@ useEffect(() => {
           </a>
         ))}
         <a
+          onClick={() => track('portfolio_to_blog', '/')}
           href="https://blog.ismaeltech.com/"
           className="navbar-blog-link"
           target="_blank"

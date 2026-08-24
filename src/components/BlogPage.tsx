@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useTranslation } from '../i18n';
 import type { BlogPost } from '../types/blog';
+import { track } from '../lib/analytics';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
 const POSTS_PER_PAGE = 9;
@@ -70,6 +71,10 @@ function BlogPage() {
   const recentPosts = useMemo(() => {
     return [...posts].filter(p => !p.translation_of).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
   }, [posts]);
+
+  const handlePortfolioExit = () => {
+    track('click_blog_to_portfolio', window.location.pathname);
+  };
 
   const filteredPosts = useMemo(() => {
     let result = posts.filter(p => !p.translation_of);
@@ -168,13 +173,13 @@ function BlogPage() {
     return (
       <div className="blogpage">
         <header className="blogpage-header">
-          <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
+          <a onClick={handlePortfolioExit} href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         </header>
         <div className="blogpage-empty">
           <div className="blogpage-empty-icon">BLOG</div>
           <h1>{t.blog.emptyTitle}</h1>
           <p>{t.blog.emptyDesc}</p>
-          <a href="https://ismaeltech.com/" className="blogpage-back">{t.blog.backToPortfolio}</a>
+          <a onClick={handlePortfolioExit} href="https://ismaeltech.com/" className="blogpage-back">{t.blog.backToPortfolio}</a>
         </div>
       </div>
     );
@@ -183,9 +188,9 @@ function BlogPage() {
   return (
     <div className="blogpage">
       <header className="blogpage-header">
-        <a href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
+        <a onClick={handlePortfolioExit} href="https://ismaeltech.com/" className="blogpage-logo">Ismael Douglas</a>
         <nav className="blogpage-nav">
-          <a href="https://ismaeltech.com/" className="blogpage-nav-link">{t.blog.portfolioLink}</a>
+          <a onClick={handlePortfolioExit} href="https://ismaeltech.com/" className="blogpage-nav-link">{t.blog.portfolioLink}</a>
           <div className="blogpage-lang-switch">
             <button
               className={`blogpage-lang-option ${lang === 'pt-BR' ? 'blogpage-lang-option-active' : ''}`}
@@ -330,7 +335,7 @@ function BlogPage() {
       </main>
 
       <footer className="blogpage-footer">
-        <a href="https://ismaeltech.com/" className="blogpage-back">{t.blog.backToPortfolio}</a>
+        <a onClick={handlePortfolioExit} href="https://ismaeltech.com/" className="blogpage-back">{t.blog.backToPortfolio}</a>
       </footer>
     </div>
   );
