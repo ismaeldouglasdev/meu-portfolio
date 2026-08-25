@@ -362,6 +362,7 @@ function BlogPostPage() {
           </a>
         </div>
 
+        {slug && post && <GiscusComments key={lang} lang={lang} />}
         <footer className="blogpost-footer">
           <div className="blogpost-feedback" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
             <span style={{ fontSize: '0.85rem', opacity: 0.8 }}>
@@ -383,6 +384,31 @@ function BlogPostPage() {
       </article>
     </div>
   );
+}
+
+function GiscusComments({ lang }: { lang: string }) {
+  useEffect(() => {
+    const el = document.getElementById('giscus-container');
+    if (!el) return;
+    el.innerHTML = '';
+    const script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.setAttribute('data-repo', 'ismaeldouglasdev/blog-content');
+    script.setAttribute('data-repo-id', 'R_kgDOT7Uwvg');
+    script.setAttribute('data-category', 'General');
+    script.setAttribute('data-category-id', 'DIC_kwDOT7Uwvs4DEHeX');
+    script.setAttribute('data-mapping', 'pathname');
+    script.setAttribute('data-strict', '1');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', 'dark');
+    script.setAttribute('data-lang', lang === 'pt-BR' ? 'pt' : 'en');
+    el.appendChild(script);
+  }, [lang]);
+  return <div id="giscus-container" style={{ marginTop: '32px' }} />;
 }
 
 export default BlogPostPage;
