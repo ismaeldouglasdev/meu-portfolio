@@ -166,9 +166,9 @@ function QuizLead() {
     <div className="quiz-summary">
       <h3>{t.contato.quiz.summary.title}</h3>
       <p><strong>{t.contato.quiz.summary.service}</strong> {answers.projeto}</p>
-      <p>{answers.orcamento} – {answers.prazo}</p>
+      <p>{answers.orcamento} - {answers.prazo}</p>
       {answers.mensagem.trim() && <p className="quiz-summary-message">"{answers.mensagem.trim()}"</p>}
-      <p>{answers.name} – {answers.contact}</p>
+      <p>{answers.name} - {answers.contact}</p>
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary quiz-whatsapp-btn">
         {t.contato.quiz.btnWhatsApp}
       </a>

@@ -33,7 +33,7 @@ function Feed() {
       setXml(`<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog — Ismael Douglas</title>
+    <title>Blog - Ismael Douglas</title>
     <link>https://blog.ismaeltech.com/</link>
     <description>Artigos sobre desenvolvimento web, design e tecnologia.</description>
     <language>pt-BR</language>

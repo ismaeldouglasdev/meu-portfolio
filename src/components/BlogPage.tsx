@@ -33,7 +33,7 @@ function BlogPage() {
   const [searchInput, setSearchInput] = useState(searchQuery);
 
   useEffect(() => {
-    document.title = 'Blog — Ismael Douglas';
+    document.title = 'Blog - Ismael Douglas';
     fetchPosts();
   }, []);
 

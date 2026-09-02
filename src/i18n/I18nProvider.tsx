@@ -48,15 +48,15 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
     document.title =
       lang === 'en'
-        ? 'Ismael Douglas — Full Stack Developer'
-        : 'Ismael Douglas — Desenvolvedor Full Stack';
+        ? 'Ismael Douglas - Full Stack Developer'
+        : 'Ismael Douglas - Desenvolvedor Full Stack';
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
       meta.setAttribute(
         'content',
         lang === 'en'
-          ? 'Portfolio of Ismael Douglas — Full Stack Developer'
-          : 'Portfólio de Ismael Douglas — Desenvolvedor Full Stack'
+          ? 'Portfolio of Ismael Douglas - Full Stack Developer'
+          : 'Portfólio de Ismael Douglas - Desenvolvedor Full Stack'
       );
     }
   }, [lang]);

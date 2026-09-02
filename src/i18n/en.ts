@@ -22,7 +22,7 @@ const en: Translation = {
       'Got a project\nin mind?\nLet\'s talk.\nMessage me.',
     ],
     subtitle:
-      'Landing pages, custom web systems and complete e-commerce. From business sites to API integrations — no bullshit, no surprises, no ghosting.',
+      'Landing pages, custom web systems and complete e-commerce. From business sites to API integrations. No bullshit, no surprises, no ghosting.',
     ctaProjetos: 'View Projects',
     ctaContato: 'Get in Touch',
     stat1: 'Top Contributor',
@@ -57,7 +57,7 @@ const en: Translation = {
       },
       {
         title: 'APIs & Backend',
-        desc: 'Backends that don\'t stall, APIs that don\'t break. Scalable architecture from day one — security and performance so your application grows without surprises.',
+        desc: 'Backends that don\'t stall, APIs that don\'t break. Scalable architecture from day one. Security and performance so your application grows without surprises.',
         techs: ['Python', 'Node.js', 'Docker'],
       },
       {
@@ -67,7 +67,7 @@ const en: Translation = {
       },
       {
         title: 'E-commerce & Integrations',
-        desc: 'An online store that actually sells. Product catalog, cart, payments, WhatsApp and marketplace integrations — all synced with your POS.',
+        desc: 'An online store that actually sells. Product catalog, cart, payments, WhatsApp and marketplace integrations, all synced with your POS.',
         techs: ['React', 'OSPOS', 'Mercado Livre'],
       },
       {
@@ -104,8 +104,8 @@ const en: Translation = {
     desc: {
       PeakVault: 'JSON file analysis and processing system with GUI (CustomTkinter). Handles 10k+ record imports, dynamic CRUD, smart grouping, and graphical visualization.',
       'Cronograma-Projeto': 'Full-stack gamified study schedule system with 12+ modules, progression levels, streaks, and rankings. Python, Flask, PostgreSQL, and Docker.',
-      'mensageiros-da-esperanca': 'Web system for NGO management — course registration, 100+ volunteers, digital attendance and dashboard with Firebase. HTML, CSS, JavaScript and Firestore.',
-      Engram: 'Multi-agent memory consistency platform. Top contributor — security, CLI, dashboard, Neovim/Slack plugins, and critical conflict engine fixes.',
+      'mensageiros-da-esperanca': 'Web system for NGO management: course registration, 100+ volunteers, digital attendance and dashboard with Firebase. HTML, CSS, JavaScript and Firestore.',
+      Engram: 'Multi-agent memory consistency platform. Top contributor: security, CLI, dashboard, Neovim/Slack plugins, and critical conflict engine fixes.',
     },
   },
   experiencia: {
@@ -115,25 +115,25 @@ const en: Translation = {
       {
         cargo: 'Commercial Manager',
         empresa: 'Loja Quase Tudo',
-        periodo: '2020 — Present',
+        periodo: '2020 - Present',
         descricao: [
           'Leading the sales team with a focus on results',
           'Strategies to increase revenue and customer loyalty',
           'Migrated ~10k product database between systems',
-          'Implemented and customized OSPOS (open source POS) — multiple core improvements',
-          'Linux infrastructure (Lubuntu) — local server, database and network administration',
+          'Implemented and customized OSPOS (open source POS), with multiple core improvements',
+          'Linux infrastructure (Lubuntu): local server, database and network administration',
           'E-commerce integrations with open source POS (omnichannel)',
         ],
       },
       {
         cargo: 'Open Source Contributor',
         empresa: 'Engram',
-        periodo: 'Apr 2026 — May 2026',
+        periodo: 'Apr 2026 - May 2026',
         descricao: [
-          'Top Contributor — 90+ merged PRs, 130+ commits',
+          'Top Contributor: 90+ merged PRs, 130+ commits',
           'Implemented MINJA security defenses and PII/secret scanner in the memory engine',
           'Built Neovim plugin and Slack bot to query and commit facts directly from editors',
-          'Fixed critical conflict detection bugs — eliminated duplicates and resurfacing conflicts',
+          'Fixed critical conflict detection bugs, eliminating duplicates and resurfacing conflicts',
           'Built CLI commands (setup, verify, status, search, export, conflicts) and full dashboard',
           'Designed memory compression, pinned facts, MCP tools (audit_trail, replay) and Health Score',
           'Authored security architecture, SOC 2 compliance, SSO, data residency and pricing docs',
@@ -154,7 +154,7 @@ const en: Translation = {
       {
         phase: '02',
         title: 'Build',
-        desc: 'I develop in sprints with frequent deliverables. You watch the progress in real time — no surprises, no ghosting.',
+        desc: 'I develop in sprints with frequent deliverables. You watch the progress in real time. No surprises, no ghosting.',
         duration: '1-4 weeks',
       },
       {
@@ -196,7 +196,7 @@ const en: Translation = {
       {
         slug: 'mensageiros-da-esperanca',
         projeto: 'Messengers of Hope',
-        problema: 'The NGO struggled to manage course registrations and attendance lists manually. The process relied on paper and spreadsheets with no centralization — causing rework, data loss, and difficulty generating reports.',
+        problema: 'The NGO struggled to manage course registrations and attendance lists manually. The process relied on paper and spreadsheets with no centralization, causing rework, data loss, and difficulty generating reports.',
         solucao: 'We built a complete web system with Firebase for course management, online enrollment, and digital attendance tracking. Real-time dashboard with full operational visibility.',
         resultado: [
           'Course registration and enrollment 100% digitized',
@@ -207,14 +207,14 @@ const en: Translation = {
       },
       {
         slug: 'engram',
-        projeto: 'Engram — Multi-Agent Memory',
+        projeto: 'Engram: Multi-Agent Memory',
         problema: 'Engram needed a contributor to accelerate critical deliveries: memory engine security, CLI, dashboard, and plugins for community tools. There were open bugs in the conflict detector causing duplicates and resurfacing conflicts.',
         solucao: 'Acted as Top Contributor with 90+ merged PRs, implementing security defenses, full CLI, dashboard, Neovim and Slack plugins, and fixing critical conflict engine bugs.',
         resultado: [
           '90+ merged PRs, 130+ commits in 2 months',
           'Hardened security with secret and PII scanner',
           'Developer tools (CLI, Neovim, Slack)',
-          'Memory conflicts eliminated — zero duplicates',
+          'Memory conflicts eliminated, zero duplicates',
           'Architecture documentation and SOC 2 compliance',
         ],
       },
@@ -282,11 +282,11 @@ const en: Translation = {
     items: [
       {
         title: 'Fast & fairly priced',
-        desc: 'Landing page live in 3 to 5 days from $500. Larger systems quoted per project — you know the cost before we start.',
+        desc: 'Landing page live in 3 to 5 days from $500. Larger systems quoted per project. You know the cost before we start.',
       },
       {
-        title: 'I work with clients worldwide',
-        desc: '100% remote. I\'ve worked with clients across Brazil and internationally.',
+        title: 'I work 100% remote',
+        desc: 'Clients in Brazil and abroad.',
       },
       {
         title: 'Real support after delivery',
@@ -404,7 +404,7 @@ const en: Translation = {
     feedbackThanks: 'Thanks for your feedback!',
     sourcesTitle: 'Sources & References',
     toggleTheme: 'Toggle theme',
-    documentTitle: '— Blog Ismael Douglas',
+    documentTitle: 'Blog Ismael Douglas',
     categoriesTutorial: 'Tutorial',
     categoriesArticle: 'Article',
     categoriesCuriosity: 'Curiosity',

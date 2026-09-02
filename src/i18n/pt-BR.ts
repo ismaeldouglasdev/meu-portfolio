@@ -22,7 +22,7 @@ const ptBR: Translation = {
       'Tem um projeto\nem mente?\nVamos conversar.\nMe chama.',
     ],
     subtitle:
-      'Landing pages, sistemas web sob medida e e-commerce completos. Da página institucional à integração com APIs — sem enrolação, sem surpresas, sem ghosting.',
+      'Landing pages, sistemas web sob medida e e-commerce completos. Da página institucional à integração com APIs. Sem enrolação, sem surpresas, sem ghosting.',
     ctaProjetos: 'Ver Projetos',
     ctaContato: 'Entrar em Contato',
     stat1: 'Top Contributor',
@@ -57,7 +57,7 @@ const ptBR: Translation = {
       },
       {
         title: 'APIs & Backend',
-        desc: 'Backends que não travam, APIs que não quebram. Arquitetura escalável desde o primeiro deploy — segurança e desempenho para sua aplicação crescer sem sustos.',
+        desc: 'Backends que não travam, APIs que não quebram. Arquitetura escalável desde o primeiro deploy. Segurança e desempenho para sua aplicação crescer sem sustos.',
         techs: ['Python', 'Node.js', 'Docker'],
       },
       {
@@ -67,7 +67,7 @@ const ptBR: Translation = {
       },
       {
         title: 'E-commerce & Integrações',
-        desc: 'Loja virtual que realmente vende. Catálogo online, carrinho, pagamentos, WhatsApp e marketplaces integrados — tudo sincronizado com seu PDV.',
+        desc: 'Loja virtual que realmente vende. Catálogo online, carrinho, pagamentos, WhatsApp e marketplaces integrados, tudo sincronizado com seu PDV.',
         techs: ['React', 'OSPOS', 'Mercado Livre'],
       },
       {
@@ -104,8 +104,8 @@ const ptBR: Translation = {
     desc: {
       PeakVault: 'Sistema de análise e processamento de JSON com interface gráfica (CustomTkinter). Importação de 10k+ registros, CRUD dinâmico, agrupamento inteligente e visualização gráfica.',
       'Cronograma-Projeto': 'Sistema full-stack de cronograma de estudos gamificado com 12+ módulos, níveis de progressão, streaks e ranking. Python, Flask, PostgreSQL e Docker.',
-      'mensageiros-da-esperanca': 'Sistema web para gestão de ONG — cadastro de cursos, 100+ voluntários, presença digital e dashboard com Firebase. HTML, CSS, JavaScript e Firestore.',
-      Engram: 'Plataforma de consistência de memória multi-agente. Top contributor — segurança, CLI, dashboard, plugins Neovim/Slack e correções críticas no motor de conflitos.',
+      'mensageiros-da-esperanca': 'Sistema web para gestão de ONG: cadastro de cursos, 100+ voluntários, presença digital e dashboard com Firebase. HTML, CSS, JavaScript e Firestore.',
+      Engram: 'Plataforma de consistência de memória multi-agente. Top contributor: segurança, CLI, dashboard, plugins Neovim/Slack e correções críticas no motor de conflitos.',
     },
   },
   experiencia: {
@@ -115,25 +115,25 @@ const ptBR: Translation = {
       {
         cargo: 'Encarregado no setor Comercial',
         empresa: 'Loja Quase Tudo',
-        periodo: '2020 — Presente',
+        periodo: '2020 - Presente',
         descricao: [
           'Liderança da equipe comercial com foco em resultados',
           'Estratégias para aumento de vendas e fidelização de clientes',
           'Migrei banco de dados com ~10k produtos entre sistemas',
-          'Implementei e customizei o OSPOS (sistema open source de PDV) — diversas melhorias no core',
-          'Infraestrutura Linux (Lubuntu) — administração de servidor local, banco e redes',
+          'Implementei e customizei o OSPOS (sistema open source de PDV), com diversas melhorias no core',
+          'Infraestrutura Linux (Lubuntu): administração de servidor local, banco e redes',
           'Integrações de e-commerce com PDV open source (omnichannel)',
         ],
       },
       {
         cargo: 'Contribuidor Open Source',
         empresa: 'Engram',
-        periodo: 'Abr 2026 — Mai 2026',
+        periodo: 'Abr 2026 - Mai 2026',
         descricao: [
-          'Top Contributor — 90+ PRs mesclados, 130+ commits',
+          'Top Contributor: 90+ PRs mesclados, 130+ commits',
           'Implementei defesas de segurança MINJA e scanner de segredos/PII no motor de memória',
           'Criei plugin Neovim e bot Slack para consultar e comitar facts diretamente dos editores',
-          'Corrigi bugs críticos no detector de conflitos — eliminava duplicatas e conflitos reabertos',
+          'Corrigi bugs críticos no detector de conflitos, eliminando duplicatas e conflitos reabertos',
           'Construí CLI commands (setup, verify, status, search, export, conflicts) e dashboard completo',
           'Projetei compressão de memória, pinned facts, MCP tools (audit_trail, replay) e Health Score',
           'Documentei arquitetura de segurança, compliance SOC 2, SSO, data residency e pricing',
@@ -154,7 +154,7 @@ const ptBR: Translation = {
       {
         phase: '02',
         title: 'Construção',
-        desc: 'Desenvolvo em sprints com entregas frequentes. Você acompanha o progresso em tempo real — sem surpresas, sem ghosting.',
+        desc: 'Desenvolvo em sprints com entregas frequentes. Você acompanha o progresso em tempo real. Sem surpresas, sem ghosting.',
         duration: '1-4 semanas',
       },
       {
@@ -196,7 +196,7 @@ const ptBR: Translation = {
       {
         slug: 'mensageiros-da-esperanca',
         projeto: 'Mensageiros da Esperança',
-        problema: 'A ONG enfrentava dificuldades para gerenciar cadastros de cursos e listas de presença manualmente. O processo era feito em papel e planilhas, sem centralização — gerava retrabalho, perda de dados e dificuldade de gerar relatórios.',
+        problema: 'A ONG enfrentava dificuldades para gerenciar cadastros de cursos e listas de presença manualmente. O processo era feito em papel e planilhas, sem centralização, o que gerava retrabalho, perda de dados e dificuldade de gerar relatórios.',
         solucao: 'Desenvolvemos um sistema web completo com Firebase para gerenciamento de cursos, inscrições online e registro de presença digital. Dashboard em tempo real com visibilidade total das operações.',
         resultado: [
           'Cadastro de cursos e inscrições 100% digitalizados',
@@ -207,14 +207,14 @@ const ptBR: Translation = {
       },
       {
         slug: 'engram',
-        projeto: 'Engram — Multi-Agent Memory',
+        projeto: 'Engram: Multi-Agent Memory',
         problema: 'O projeto precisava acelerar entregas críticas: segurança do motor de memória, CLI, dashboard e plugins para ferramentas da comunidade. Havia bugs abertos no detector de conflitos que causavam duplicatas e conflitos reabertos.',
         solucao: 'Atuei como Top Contributor com 90+ PRs mesclados, implementando defesas de segurança, CLI completa, dashboard, plugins Neovim e Slack, e corrigindo bugs críticos no motor de conflitos.',
         resultado: [
           '90+ PRs mesclados, 130+ commits em 2 meses',
           'Segurança reforçada com scanner de segredos e PII',
           'Ferramentas para desenvolvedores (CLI, Neovim, Slack)',
-          'Conflitos de memória eliminados — zero duplicatas',
+          'Conflitos de memória eliminados, zero duplicatas',
           'Documentação de arquitetura e compliance SOC 2',
         ],
       },
@@ -279,15 +279,15 @@ const ptBR: Translation = {
   beneficios: {
     label: 'Por que me escolher',
     title: 'Direto com você, do começo ao fim',
-    subtitle: 'Sem chatbot, sem intermediate, sem promessa vazia.',
+    subtitle: 'Sem chatbot, sem intermediário, sem promessa vazia.',
     items: [
       {
         title: 'Rápido e preço justo',
-        desc: 'Landing page no ar em 3 a 5 dias a partir de R$ 2.500. Sistemas maiores sob consulta — você sabe o valor antes de começar.',
+        desc: 'Landing page no ar em 3 a 5 dias a partir de R$ 2.500. Sistemas maiores sob consulta. Você sabe o valor antes de começar.',
       },
       {
-        title: 'Atendo o Brasil todo (e fora dele)',
-        desc: '100% remoto. Já atendi clientes de várias regiões do Brasil e do exterior.',
+        title: 'Trabalho 100% remoto',
+        desc: 'Clientes no Brasil e no exterior.',
       },
       {
         title: 'Suporte de verdade depois da entrega',
@@ -410,7 +410,7 @@ const ptBR: Translation = {
     feedbackThanks: 'Obrigado pelo feedback!',
     sourcesTitle: 'Fontes e Referências',
     toggleTheme: 'Alternar tema',
-    documentTitle: '— Blog Ismael Douglas',
+    documentTitle: 'Blog Ismael Douglas',
     categoriesTutorial: 'Tutorial',
     categoriesArticle: 'Artigo',
     categoriesCuriosity: 'Curiosidade',
