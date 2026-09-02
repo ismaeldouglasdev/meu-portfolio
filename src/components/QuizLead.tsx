@@ -59,15 +59,13 @@ function QuizLead() {
   const reset = () => {
     setAnswers(initialAnswers);
     setStep(0);
+    window.dispatchEvent(new CustomEvent('quiz-reset'));
     track("quiz_reset", window.location.pathname);
   };
 
   useEffect(() => {
     if (step === totalSteps) {
-      try {
-        localStorage.setItem('quiz-completed', 'true');
-        window.dispatchEvent(new CustomEvent('quiz-completed'));
-      } catch {}
+      window.dispatchEvent(new CustomEvent('quiz-completed'));
     }
   }, [step]);
 

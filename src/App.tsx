@@ -39,18 +39,17 @@ const isBlogDomain = window.location.hostname === 'blog.ismaeltech.com';
 
 function HomePage() {
   const navigate = useNavigate();
-  const [quizDone, setQuizDone] = React.useState<boolean>(() => {
-    try {
-      return localStorage.getItem('quiz-completed') === 'true';
-    } catch {
-      return false;
-    }
-  });
+  const [quizDone, setQuizDone] = React.useState<boolean>(false);
 
   useEffect(() => {
     const onQuizCompleted = () => setQuizDone(true);
+    const onQuizReset = () => setQuizDone(false);
     window.addEventListener('quiz-completed', onQuizCompleted);
-    return () => window.removeEventListener('quiz-completed', onQuizCompleted);
+    window.addEventListener('quiz-reset', onQuizReset);
+    return () => {
+      window.removeEventListener('quiz-completed', onQuizCompleted);
+      window.removeEventListener('quiz-reset', onQuizReset);
+    };
   }, []);
 
   useEffect(() => {
