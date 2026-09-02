@@ -82,7 +82,7 @@ function QuizLead() {
 
   const whatsappLink = `https://wa.me/5511959873202?text=${encodeURIComponent(composeMessage())}`;
 
-  const emailSubject = `Projeto: ${answers.projeto}`;
+  const emailSubject = t.contato.quiz.emailSubject.replace("{projeto}", answers.projeto);
   const emailLink = `mailto:contact@ismaeltech.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(composeMessage())}`;
 
   const renderOptions = (field: keyof Answers, options: string[]) => (

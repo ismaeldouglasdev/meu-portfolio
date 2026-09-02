@@ -347,6 +347,7 @@ const en: Translation = {
     },
     whatsappMessage:
       "Hello! My name is {name}. I need a {projeto}, budget {orcamento}, deadline {prazo}. {mensagem} Can we talk?",
+    emailSubject: "Project: {projeto}",
   },
     label: 'Get in touch',
     title: 'Contact',

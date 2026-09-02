@@ -353,6 +353,7 @@ const ptBR: Translation = {
     },
     whatsappMessage:
       "Olá! Me chamo {name}. Preciso de {projeto}, orçamento {orcamento}, prazo {prazo}. {mensagem} Podemos conversar?",
+    emailSubject: "Projeto: {projeto}",
   },
     label: 'Entre em contato',
     title: 'Contato',

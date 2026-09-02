@@ -165,6 +165,7 @@ export interface Translation {
       };
       summary: { title: string; service: string; reset: string };
       whatsappMessage: string;
+      emailSubject: string;
     };
   };
   footer: {
