@@ -22,7 +22,7 @@ const ptBR: Translation = {
       'Tem um projeto\nem mente?\nVamos conversar.\nMe chama.',
     ],
     subtitle:
-      'Landing pages, sistemas web sob medida e e-commerce completos. Da página institucional à integração com APIs. Sem enrolação, sem surpresas, sem ghosting.',
+      'Landing pages, sistemas web e e-commerce completos. Sites, ferramentas, APIs. Sem enrolação, sem surpresas, sem ghosting.',
     ctaProjetos: 'Ver Projetos',
     ctaContato: 'Entrar em Contato',
     stat1: 'Top Contributor',
@@ -36,7 +36,7 @@ const ptBR: Translation = {
     label: 'Sobre',
     title: 'Quem sou',
     textBefore: 'Prazer! Sou ',
-    textAfter: ', desenvolvedor Full Stack com paixão por criar soluções práticas e eficientes. Atualmente focado em tecnologias como JavaScript, Python, TypeScript e React, estou sempre aprendendo e contribuindo em projetos open-source.',
+    textAfter: ', desenvolvedor Full Stack. Crio sistemas web com JavaScript, Python, TypeScript e React e contribuo em projetos open-source.',
     highlight1: 'Desenvolvedor Full Stack',
     highlight2: 'Contribuidor Open Source',
     highlight3: 'Soluções Criativas',
@@ -47,12 +47,12 @@ const ptBR: Translation = {
     items: [
       {
         title: 'Sites & Landing Pages',
-        desc: 'Transforme sua presença online com sites que convertem visitantes em clientes. Design responsivo, performance otimizada e foco em resultados.',
+        desc: 'Landing pages e sites feitos pra performar. Mobile-first, carregamento rápido e pensados pra gerar resultado.',
         techs: ['React', 'TypeScript', 'CSS Moderno'],
       },
       {
         title: 'Aplicações Web',
-        desc: 'Sistemas web que resolvem problemas reais do seu negócio. Dashboards, automações e integrações que eliminam gargalos e dão visibilidade real dos seus processos.',
+        desc: 'Dashboards, automações e ferramentas pro seu dia a dia. Feitos pra encaixar no seu fluxo de trabalho.',
         techs: ['React', 'Node.js', 'PostgreSQL'],
       },
       {
@@ -62,7 +62,7 @@ const ptBR: Translation = {
       },
       {
         title: 'Open Source & Consultoria',
-        desc: '90+ PRs aceitos em projetos open source. Consultoria técnica para times que querem código de qualidade, code review e boas práticas que funcionam na prática.',
+        desc: '90+ PRs aceitos em projetos open source. Ajudo times com code review, decisões de arquitetura e código que é fácil de manter.',
         techs: ['Git', 'Code Review', 'Boas Práticas'],
       },
       {
@@ -72,7 +72,7 @@ const ptBR: Translation = {
       },
       {
         title: 'Sistemas Sob Medida',
-        desc: 'Automação que corta horas do seu dia. Dashboards, sistemas de gestão e processos personalizados que eliminam planilhas e retrabalho.',
+        desc: 'Sistemas sob medida que substituem suas planilhas e processos manuais. Dashboards, ferramentas de gestão e automação.',
         techs: ['Python', 'FastAPI', 'PostgreSQL'],
       },
     ],
@@ -148,7 +148,7 @@ const ptBR: Translation = {
       {
         phase: '01',
         title: 'Descoberta',
-        desc: 'Entendo seu negócio, seus objetivos e o problema exato que precisa resolver. Saímos com um briefing claro e uma proposta sem compromisso.',
+        desc: 'A gente senta e mapeia o que você realmente precisa. Você sai com um briefing claro e uma proposta sem compromisso.',
         duration: '1-2 dias',
       },
       {
@@ -177,7 +177,7 @@ const ptBR: Translation = {
         caseStudySlug: 'mensageiros-da-esperanca',
       },
       {
-        text: 'Suas contribuições falam por si: 90+ PRs mesclados, 130+ commits, documentação de arquitetura, correções de conflitos SQLite/Postgres, integrações Slack e Neovim — você tem sido uma força incrível neste projeto. Obrigado por tudo que você investiu no Engram.',
+        text: 'Suas contribuições falam por si: 90+ PRs mesclados, 130+ commits, documentação de arquitetura, correções de conflitos SQLite/Postgres, integrações Slack e Neovim. Você tem sido uma força incrível neste projeto. Obrigado por tudo que você investiu no Engram.',
         name: 'Joshua',
         role: 'Fundador / Engram',
         caseStudySlug: 'engram',
@@ -201,8 +201,8 @@ const ptBR: Translation = {
         resultado: [
           'Cadastro de cursos e inscrições 100% digitalizados',
           'Listas de presença emitidas automaticamente',
-          'Dashboard com dados em tempo real para tomada de decisão',
-          'Redução drástica de retrabalho e perda de dados',
+          'Dashboard em tempo real com tudo num só lugar',
+          'Muito menos retrabalho e perda de dados',
         ],
       },
       {

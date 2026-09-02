@@ -16,13 +16,13 @@ const en: Translation = {
     title2: 'that make your business run',
     disponivel: 'Available for new projects',
     phrases: [
-      'Your business\ndeserves a site\nthat sells,\nnot just exists',
+      'A site that\nbrings you sales,\nnot just\nvisitors',
       'While you\nrun the business\nI make your\nsite sell',
       'Deadlines met\npromises kept\nno nonsense\nno surprises',
       'Got a project\nin mind?\nLet\'s talk.\nMessage me.',
     ],
     subtitle:
-      'Landing pages, custom web systems and complete e-commerce. From business sites to API integrations. No bullshit, no surprises, no ghosting.',
+      'Landing pages, web apps, e-commerce, and API integrations. No bullshit, no surprises, no ghosting.',
     ctaProjetos: 'View Projects',
     ctaContato: 'Get in Touch',
     stat1: 'Top Contributor',
@@ -36,7 +36,7 @@ const en: Translation = {
     label: 'About',
     title: 'Who I am',
     textBefore: 'Nice to meet you! I\'m ',
-    textAfter: ', a Full Stack developer passionate about creating practical and efficient solutions. Currently focused on JavaScript, Python, TypeScript and React, I\'m always learning and contributing to open-source projects.',
+    textAfter: ', a Full Stack developer. I build web systems with JavaScript, Python, TypeScript and React, and I contribute to open-source projects.',
     highlight1: 'Full Stack Developer',
     highlight2: 'Open Source Contributor',
     highlight3: 'Creative Solutions',
@@ -47,12 +47,12 @@ const en: Translation = {
     items: [
       {
         title: 'Websites & Landing Pages',
-        desc: 'Transform your online presence with sites that convert visitors into customers. Responsive design, optimized performance, and results-driven from day one.',
+        desc: 'Landing pages and websites built to perform. Mobile-first, fast loading, and designed to get you results.',
         techs: ['React', 'TypeScript', 'Modern CSS'],
       },
       {
         title: 'Web Applications',
-        desc: 'Web systems that solve real business problems. Dashboards, automations, and integrations that eliminate bottlenecks and give you real visibility into your processes.',
+        desc: 'Dashboards, automations, and tools for your daily operations. Built to fit how you work, not the other way around.',
         techs: ['React', 'Node.js', 'PostgreSQL'],
       },
       {
@@ -62,7 +62,7 @@ const en: Translation = {
       },
       {
         title: 'Open Source & Consulting',
-        desc: '90+ accepted PRs in open source projects. Technical consulting for teams that want quality code, code review, and best practices that actually work.',
+        desc: '90+ accepted PRs in open source projects. I help teams with code review, architecture decisions, and writing maintainable code.',
         techs: ['Git', 'Code Review', 'Best Practices'],
       },
       {
@@ -72,7 +72,7 @@ const en: Translation = {
       },
       {
         title: 'Custom Systems',
-        desc: 'Automation that cuts hours off your day. Dashboards, management systems, and custom processes that eliminate spreadsheets and rework.',
+        desc: 'Custom systems that replace your spreadsheets and manual work. Dashboards, management tools, and automation.',
         techs: ['Python', 'FastAPI', 'PostgreSQL'],
       },
     ],
@@ -148,7 +148,7 @@ const en: Translation = {
       {
         phase: '01',
         title: 'Discovery',
-        desc: 'I understand your business, your goals, and the exact problem you need to solve. We walk away with a clear brief and a no-obligation proposal.',
+        desc: 'We sit down and map out what you actually need. You leave with a clear brief and a proposal with no strings attached.',
         duration: '1-2 days',
       },
       {
@@ -177,7 +177,7 @@ const en: Translation = {
         caseStudySlug: 'mensageiros-da-esperanca',
       },
       {
-        text: 'Your contributions speak for themselves: 90+ merged PRs, 130+ commits, architecture documentation, SQLite/Postgres conflict fixes, Slack and Neovim integrations — you\'ve been an incredible force on this project. Thank you for everything you\'ve poured into Engram.',
+        text: 'Your contributions speak for themselves: 90+ merged PRs, 130+ commits, architecture documentation, SQLite/Postgres conflict fixes, Slack and Neovim integrations. You\'ve been an incredible force on this project. Thank you for everything you\'ve poured into Engram.',
         name: 'Joshua',
         role: 'Founder / Engram',
         caseStudySlug: 'engram',
@@ -186,7 +186,7 @@ const en: Translation = {
   },
   estudosCaso: {
     label: 'Case Studies',
-    title: 'Real problems I\'ve solved',
+    title: 'What I\'ve built',
     back: 'Back',
     notFound: 'Case study not found',
     headingProblem: 'Problem',
@@ -201,8 +201,8 @@ const en: Translation = {
         resultado: [
           'Course registration and enrollment 100% digitized',
           'Attendance lists generated automatically',
-          'Real-time dashboard for informed decision-making',
-          'Drastic reduction in rework and data loss',
+          'Real-time dashboard with everything in one place',
+          'Much less rework and fewer data losses',
         ],
       },
       {
@@ -319,10 +319,10 @@ const en: Translation = {
       orcamento: {
         title: "What is your budget range?",
         options: [
-          "R$ 1-3k",
-          "R$ 3-8k",
-          "R$ 8-15k",
-          "Above R$ 15k",
+          "$200-500",
+          "$500-1.5k",
+          "$1.5k-3k",
+          "Above $3k",
           "Let's talk",
         ],
       },
