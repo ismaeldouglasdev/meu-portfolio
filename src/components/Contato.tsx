@@ -1,6 +1,5 @@
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
-import QuizLead from './QuizLead';
 
 function Contato() {
   const { t } = useTranslation();
@@ -19,7 +18,6 @@ function Contato() {
       <p style={{ textAlign: 'center', maxWidth: 500, margin: '-1rem auto 1rem' }}>
         {t.contato.subtitle}
       </p>
-      <QuizLead />
       <div className="contato-grid">
         {contatos.map((c) => (
           <a

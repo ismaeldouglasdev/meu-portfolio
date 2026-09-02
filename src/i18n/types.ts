@@ -160,6 +160,7 @@ export interface Translation {
         projeto: { title: string; options: string[] };
         orcamento: { title: string; options: string[] };
         prazo: { title: string; options: string[] };
+        mensagem: { title: string; placeholder: string };
         captura: { title: string; namePlaceholder: string; contactPlaceholder: string };
       };
       summary: { title: string; service: string; reset: string };

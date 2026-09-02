@@ -199,6 +199,17 @@
   font-size: 1rem;
 }
 
+.quiz-textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+.quiz-summary-message {
+  font-style: italic;
+  color: var(--text-secondary, #666);
+}
+
 .quiz-navigation {
   display: flex;
   justify-content: space-between;

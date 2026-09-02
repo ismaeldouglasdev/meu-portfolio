@@ -55,20 +55,41 @@ const projectScreenshots: Record<string, string | { pt: string; en: string }> = 
 
 type ServerStatus = 'checking' | 'online' | 'offline' | 'waking';
 
+const FETCH_TIMEOUT_MS = 20000;
+const MAX_RETRIES = 3;
+const RETRY_DELAY_MS = 3000;
+
+async function fetchWithTimeout(url: string): Promise<boolean> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store', signal: controller.signal });
+    return true;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 function StatusBadge({ url }: { url: string }) {
   const { t } = useTranslation();
   const [status, setStatus] = useState<ServerStatus>('checking');
   const [wakingAttempts, setWakingAttempts] = useState(0);
 
   const checkServer = useCallback(async () => {
-    try {
-      await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' });
-      setStatus('online');
-      return true;
-    } catch {
-      setStatus('offline');
-      return false;
+    for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+      const ok = await fetchWithTimeout(url);
+      if (ok) {
+        setStatus('online');
+        return true;
+      }
+      if (attempt < MAX_RETRIES - 1) {
+        await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
+      }
     }
+    setStatus('offline');
+    return false;
   }, [url]);
 
   useEffect(() => {
@@ -81,13 +102,10 @@ function StatusBadge({ url }: { url: string }) {
     if (status === 'waking') {
       const interval = setInterval(async () => {
         setWakingAttempts(prev => prev + 1);
-        try {
-          await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' });
-          if (!cancelled) {
-            setStatus('online');
-            setWakingAttempts(0);
-          }
-        } catch {
+        const ok = await fetchWithTimeout(url);
+        if (ok && !cancelled) {
+          setStatus('online');
+          setWakingAttempts(0);
         }
       }, 4000);
       return () => { cancelled = true; clearInterval(interval); };
@@ -97,11 +115,8 @@ function StatusBadge({ url }: { url: string }) {
   const handleWake = async () => {
     setStatus('waking');
     setWakingAttempts(0);
-    try {
-      await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' });
-      setStatus('online');
-    } catch {
-    }
+    const ok = await fetchWithTimeout(url);
+    if (ok) setStatus('online');
   };
 
   const color = status === 'online' ? '#22c55e'

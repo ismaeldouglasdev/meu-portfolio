@@ -298,7 +298,7 @@ const ptBR: Translation = {
   },
   contato: {
     quiz: {
-    title: "Quiz de Leads",
+    title: "Descubra o projeto ideal",
     step: "Etapa {step} de {total}",
     btnBack: "Voltar",
     btnNext: "Próximo",
@@ -314,6 +314,7 @@ const ptBR: Translation = {
           "Site institucional",
           "Loja virtual",
           "Sistema ou app",
+          "Ainda não sei",
         ],
       },
       orcamento: {
@@ -323,6 +324,7 @@ const ptBR: Translation = {
           "R$ 3-8k",
           "R$ 8-15k",
           "Acima de R$ 15k",
+          "Prefiro conversar",
         ],
       },
       prazo: {
@@ -334,10 +336,14 @@ const ptBR: Translation = {
           "Sem pressa",
         ],
       },
+      mensagem: {
+        title: "Conte mais sobre o seu projeto",
+        placeholder: "Descreva sua ideia, objetivos ou dúvidas (opcional)",
+      },
       captura: {
-        title: "Capture seus detalhes",
-        namePlaceholder: "Digite seu nome completo",
-        contactPlaceholder: "Digite WhatsApp/email",
+        title: "Como posso te chamar?",
+        namePlaceholder: "Seu nome",
+        contactPlaceholder: "WhatsApp ou email",
       },
     },
     summary: {
@@ -346,7 +352,7 @@ const ptBR: Translation = {
       reset: "Refazer quiz",
     },
     whatsappMessage:
-      "Olá! Me chamo {name}. Preciso de {projeto}, orçamento {orcamento}, prazo {prazo}. Podemos conversar?",
+      "Olá! Me chamo {name}. Preciso de {projeto}, orçamento {orcamento}, prazo {prazo}. {mensagem} Podemos conversar?",
   },
     label: 'Entre em contato',
     title: 'Contato',

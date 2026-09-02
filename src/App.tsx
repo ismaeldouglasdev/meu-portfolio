@@ -16,6 +16,7 @@ import Precos from './components/Precos';
 import Beneficios from './components/Beneficios';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
+import QuizLead from './components/QuizLead';
 
 // Code-splitting: blog traz remark-gfm + rehype-highlight (~200KB)
 const BlogPage = lazy(() => import('./components/BlogPage'));
@@ -38,6 +39,19 @@ const isBlogDomain = window.location.hostname === 'blog.ismaeltech.com';
 
 function HomePage() {
   const navigate = useNavigate();
+  const [quizDone, setQuizDone] = React.useState<boolean>(() => {
+    try {
+      return localStorage.getItem('quiz-completed') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    const onQuizCompleted = () => setQuizDone(true);
+    window.addEventListener('quiz-completed', onQuizCompleted);
+    return () => window.removeEventListener('quiz-completed', onQuizCompleted);
+  }, []);
 
   useEffect(() => {
     try {
@@ -106,7 +120,8 @@ function HomePage() {
       <Projetos />
       <Depoimentos onViewCaseStudy={openCaseStudy} />
       <Experiencia />
-      <Precos />
+      <QuizLead />
+      {quizDone && <Precos />}
       <Beneficios />
       <Contato />
       <Footer />

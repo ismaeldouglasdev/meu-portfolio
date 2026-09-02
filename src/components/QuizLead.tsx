@@ -6,6 +6,7 @@ interface Answers {
   projeto: string;
   orcamento: string;
   prazo: string;
+  mensagem: string;
   name: string;
   contact: string;
 }
@@ -14,6 +15,7 @@ const initialAnswers: Answers = {
   projeto: "",
   orcamento: "",
   prazo: "",
+  mensagem: "",
   name: "",
   contact: "",
 };
@@ -22,7 +24,7 @@ function QuizLead() {
   const { t } = useTranslation();
   const [step, setStep] = useState<number>(0);
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   // Track quiz start once
   useEffect(() => {
@@ -55,13 +57,24 @@ function QuizLead() {
     track("quiz_reset", window.location.pathname);
   };
 
+  useEffect(() => {
+    if (step === totalSteps) {
+      try {
+        localStorage.setItem('quiz-completed', 'true');
+        window.dispatchEvent(new CustomEvent('quiz-completed'));
+      } catch {}
+    }
+  }, [step]);
+
   const composeMessage = () => {
     const tmpl = t.contato.quiz.whatsappMessage;
+    const mensagem = answers.mensagem.trim() ? `Sobre o projeto: ${answers.mensagem.trim()}` : '';
     return tmpl
       .replace("{name}", answers.name)
       .replace("{projeto}", answers.projeto)
       .replace("{orcamento}", answers.orcamento)
-      .replace("{prazo}", answers.prazo);
+      .replace("{prazo}", answers.prazo)
+      .replace("{mensagem}", mensagem);
   };
 
   const whatsappLink = `https://wa.me/5511959873202?text=${encodeURIComponent(composeMessage())}`;
@@ -108,6 +121,19 @@ function QuizLead() {
       case 3:
         return (
           <>
+            <h3>{t.contato.quiz.questions.mensagem.title}</h3>
+            <textarea
+              placeholder={t.contato.quiz.questions.mensagem.placeholder}
+              value={answers.mensagem}
+              onChange={(e) => handleSelect("mensagem", e.target.value)}
+              className="quiz-input quiz-textarea"
+              rows={4}
+            />
+          </>
+        );
+      case 4:
+        return (
+          <>
             <h3>{t.contato.quiz.questions.captura.title}</h3>
             <input
               type="text"
@@ -135,6 +161,7 @@ function QuizLead() {
       <h3>{t.contato.quiz.summary.title}</h3>
       <p><strong>{t.contato.quiz.summary.service}</strong> {answers.projeto}</p>
       <p>{answers.orcamento} – {answers.prazo}</p>
+      {answers.mensagem.trim() && <p className="quiz-summary-message">"{answers.mensagem.trim()}"</p>}
       <p>{answers.name} – {answers.contact}</p>
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary quiz-whatsapp-btn">
         {t.contato.quiz.btnWhatsApp}

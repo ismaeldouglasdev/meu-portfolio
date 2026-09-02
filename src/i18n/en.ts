@@ -297,7 +297,7 @@ const en: Translation = {
   },
   contato: {
   quiz: {
-    title: "Lead Quiz",
+    title: "Find your ideal project",
     step: "Step {step} of {total}",
     btnBack: "Back",
     btnNext: "Next",
@@ -313,6 +313,7 @@ const en: Translation = {
           "Institutional site",
           "Online store",
           "System or app",
+          "Not sure yet",
         ],
       },
       orcamento: {
@@ -322,16 +323,21 @@ const en: Translation = {
           "R$ 3-8k",
           "R$ 8-15k",
           "Above R$ 15k",
+          "Let's talk",
         ],
       },
       prazo: {
         title: "When do you need it done?",
         options: ["Urgent", "1-3 months", "3+ months", "No hurry"],
       },
+      mensagem: {
+        title: "Tell me more about your project",
+        placeholder: "Describe your idea, goals or questions (optional)",
+      },
       captura: {
-        title: "Capture your details",
-        namePlaceholder: "Enter your full name",
-        contactPlaceholder: "Enter WhatsApp/email",
+        title: "How can I reach you?",
+        namePlaceholder: "Your name",
+        contactPlaceholder: "WhatsApp or email",
       },
     },
     summary: {
@@ -340,7 +346,7 @@ const en: Translation = {
       reset: "Restart quiz",
     },
     whatsappMessage:
-      "Hello! My name is {name}. I need a {projeto}, budget {orcamento}, deadline {prazo}. Can we talk?",
+      "Hello! My name is {name}. I need a {projeto}, budget {orcamento}, deadline {prazo}. {mensagem} Can we talk?",
   },
     label: 'Get in touch',
     title: 'Contact',
