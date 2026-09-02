@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useParams, useLocation } from 'react-router-dom';
 import './App.css';
 import { track } from './lib/analytics';
@@ -14,15 +14,25 @@ import Depoimentos from './components/Depoimentos';
 import Experiencia from './components/Experiencia';
 import Precos from './components/Precos';
 import Beneficios from './components/Beneficios';
-import BlogPage from './components/BlogPage';
-import BlogPostPage from './components/BlogPostPage';
-import Sitemap from './components/Sitemap';
-import Feed from './components/Feed';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
-import CaseStudyPage from './components/CaseStudyPage';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import NotFoundPage from './components/NotFoundPage';
+
+// Code-splitting: blog traz remark-gfm + rehype-highlight (~200KB)
+const BlogPage = lazy(() => import('./components/BlogPage'));
+const BlogPostPage = lazy(() => import('./components/BlogPostPage'));
+const Sitemap = lazy(() => import('./components/Sitemap'));
+const Feed = lazy(() => import('./components/Feed'));
+const CaseStudyPage = lazy(() => import('./components/CaseStudyPage'));
+const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
+
+function RouteFallback() {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40vh' }}>
+      <span className="section-label">Carregando…</span>
+    </div>
+  );
+}
 
 const isBlogDomain = window.location.hostname === 'blog.ismaeltech.com';
 
@@ -131,24 +141,28 @@ function CaseStudyRoute() {
 
 function BlogRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<BlogPage />} />
-      <Route path="/sitemap.xml" element={<Sitemap />} />
-      <Route path="/feed.xml" element={<Feed />} />
-      <Route path="/:slug" element={<BlogPostPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <Suspense fallback={<RouteFallback />}>
+      <Routes>
+        <Route path="/" element={<BlogPage />} />
+        <Route path="/sitemap.xml" element={<Sitemap />} />
+        <Route path="/feed.xml" element={<Feed />} />
+        <Route path="/:slug" element={<BlogPostPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 
 function PortfolioRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/projetos/:slug" element={<CaseStudyRoute />} />
-      <Route path="/privacidade" element={<PrivacyPolicy />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <Suspense fallback={<RouteFallback />}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projetos/:slug" element={<CaseStudyRoute />} />
+        <Route path="/privacidade" element={<PrivacyPolicy />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
   );
 }
 
