@@ -296,6 +296,52 @@ const en: Translation = {
     cta: 'Let\'s talk',
   },
   contato: {
+  quiz: {
+    title: "Lead Quiz",
+    step: "Step {step} of {total}",
+    btnBack: "Back",
+    btnNext: "Next",
+    btnComplete: "Finish",
+    btnReset: "Restart quiz",
+    btnWhatsApp: "Chat on WhatsApp",
+    btnEmail: "Send an email",
+    questions: {
+      projeto: {
+        title: "What do you need?",
+        options: [
+          "Landing page",
+          "Institutional site",
+          "Online store",
+          "System or app",
+        ],
+      },
+      orcamento: {
+        title: "What is your budget range?",
+        options: [
+          "R$ 1-3k",
+          "R$ 3-8k",
+          "R$ 8-15k",
+          "Above R$ 15k",
+        ],
+      },
+      prazo: {
+        title: "When do you need it done?",
+        options: ["Urgent", "1-3 months", "3+ months", "No hurry"],
+      },
+      captura: {
+        title: "Capture your details",
+        namePlaceholder: "Enter your full name",
+        contactPlaceholder: "Enter WhatsApp/email",
+      },
+    },
+    summary: {
+      title: "Your answers",
+      service: "Suggested service:",
+      reset: "Restart quiz",
+    },
+    whatsappMessage:
+      "Hello! My name is {name}. I need a {projeto}, budget {orcamento}, deadline {prazo}. Can we talk?",
+  },
     label: 'Get in touch',
     title: 'Contact',
     subtitle: 'Let\'s work together? Reach me through one of the channels below.',
@@ -304,6 +350,22 @@ const en: Translation = {
   },
   footer: {
     direitos: 'All rights reserved.',
+    privacidade: 'Privacy Policy',
+  },
+  privacy: {
+    title: 'Privacy Policy',
+    intro: 'This policy describes how we collect, use, and protect your data.',
+    dataCollected: 'Data collected: theme preferences stored in localStorage; quiz answers sent voluntarily via WhatsApp or email.',
+    trackers: 'No cookies or third-party trackers are used, except for the pageview tracking in src/lib/analytics.ts, which sends only domain, path, and referrer.',
+    usage: 'Data is used only to improve your experience, respond to your contact, and generate usage statistics.',
+    contact: 'For questions or requests, email contact@ismaeltech.com.',
+    cnpj: 'CNPJ 68.665.152/0001-47',
+    lastUpdated: 'Last updated: 09/01/2026',
+    backHome: 'Back to home',
+  },
+  notFound: {
+    message: 'Page not found. The link may be wrong or the page has been moved.',
+    backHome: 'Back to home',
   },
   blog: {
     label: 'Blog',

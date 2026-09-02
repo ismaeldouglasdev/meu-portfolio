@@ -41,16 +41,16 @@ const curatedRepoMeta: Record<string, { lang: string; stars: number; deploy_url?
 };
 
 const projectScreenshots: Record<string, string | { pt: string; en: string }> = {
-  Engram: '/images/engram-landing.png',
+  Engram: '/images/engram-landing.webp',
   'Cronograma-Projeto': {
-    pt: '/images/cronograma-ptbr.png',
-    en: '/images/cronograma-en.png',
+    pt: '/images/cronograma-ptbr.webp',
+    en: '/images/cronograma-en.webp',
   },
   'mensageiros-da-esperanca': {
-    pt: '/images/mensageiros-ptbr.png',
-    en: '/images/mensageiros-en.png',
+    pt: '/images/mensageiros-ptbr.webp',
+    en: '/images/mensageiros-en.webp',
   },
-  PeakVault: '/images/peakvault.png',
+  PeakVault: '/images/peakvault.webp',
 };
 
 type ServerStatus = 'checking' | 'online' | 'offline' | 'waking';

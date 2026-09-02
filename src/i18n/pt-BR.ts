@@ -297,6 +297,57 @@ const ptBR: Translation = {
     cta: 'Vamos conversar',
   },
   contato: {
+    quiz: {
+    title: "Quiz de Leads",
+    step: "Etapa {step} de {total}",
+    btnBack: "Voltar",
+    btnNext: "Próximo",
+    btnComplete: "Finalizar",
+    btnReset: "Refazer quiz",
+    btnWhatsApp: "Conversar no WhatsApp",
+    btnEmail: "Enviar um email",
+    questions: {
+      projeto: {
+        title: "O que você precisa?",
+        options: [
+          "Landing page",
+          "Site institucional",
+          "Loja virtual",
+          "Sistema ou app",
+        ],
+      },
+      orcamento: {
+        title: "Qual a faixa de investimento?",
+        options: [
+          "R$ 1-3k",
+          "R$ 3-8k",
+          "R$ 8-15k",
+          "Acima de R$ 15k",
+        ],
+      },
+      prazo: {
+        title: "Quando precisa ficar pronto?",
+        options: [
+          "Urgente",
+          "1-3 meses",
+          "3+ meses",
+          "Sem pressa",
+        ],
+      },
+      captura: {
+        title: "Capture seus detalhes",
+        namePlaceholder: "Digite seu nome completo",
+        contactPlaceholder: "Digite WhatsApp/email",
+      },
+    },
+    summary: {
+      title: "Suas respostas",
+      service: "Serviço sugerido:",
+      reset: "Refazer quiz",
+    },
+    whatsappMessage:
+      "Olá! Me chamo {name}. Preciso de {projeto}, orçamento {orcamento}, prazo {prazo}. Podemos conversar?",
+  },
     label: 'Entre em contato',
     title: 'Contato',
     subtitle: 'Vamos trabalhar juntos? Me chama em um dos canais abaixo.',
@@ -305,6 +356,22 @@ const ptBR: Translation = {
   },
   footer: {
     direitos: 'Todos os direitos reservados.',
+    privacidade: 'Política de Privacidade',
+  },
+  privacy: {
+    title: 'Política de Privacidade',
+    intro: 'Esta política descreve como coletamos, usamos e protegemos seus dados.',
+    dataCollected: 'Dados coletados: preferências de tema armazenadas em localStorage; respostas do quiz enviadas voluntariamente via WhatsApp ou email.',
+    trackers: 'Nenhum cookie ou rastreador de terceiros é usado, exceto o registro de visualização de página em src/lib/analytics.ts, que envia apenas domínio, caminho e referenciador.',
+    usage: 'Os dados são usados apenas para melhorar a experiência, responder ao seu contato e gerar estatísticas de uso.',
+    contact: 'Para dúvidas ou solicitações, envie um e‑mail para contact@ismaeltech.com.',
+    cnpj: 'CNPJ 68.665.152/0001-47',
+    lastUpdated: 'Última atualização: 01/09/2026',
+    backHome: 'Voltar ao início',
+  },
+  notFound: {
+    message: 'Página não encontrada. O link pode estar incorreto ou a página foi movida.',
+    backHome: 'Voltar ao início',
   },
   blog: {
     label: 'Blog',

@@ -147,9 +147,43 @@ export interface Translation {
     subtitle: string;
     whatsappMsg: string;
     skipLink: string;
+    quiz: {
+      title: string;
+      step: string;
+      btnBack: string;
+      btnNext: string;
+      btnComplete: string;
+      btnReset: string;
+      btnWhatsApp: string;
+      btnEmail: string;
+      questions: {
+        projeto: { title: string; options: string[] };
+        orcamento: { title: string; options: string[] };
+        prazo: { title: string; options: string[] };
+        captura: { title: string; namePlaceholder: string; contactPlaceholder: string };
+      };
+      summary: { title: string; service: string; reset: string };
+      whatsappMessage: string;
+    };
   };
   footer: {
     direitos: string;
+    privacidade: string;
+  };
+  privacy: {
+    title: string;
+    intro: string;
+    dataCollected: string;
+    trackers: string;
+    usage: string;
+    contact: string;
+    cnpj: string;
+    lastUpdated: string;
+    backHome: string;
+  };
+  notFound: {
+    message: string;
+    backHome: string;
   };
   blog: {
     label: string;

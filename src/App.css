@@ -149,6 +149,79 @@
   }
 }
 
+/* ----- Quiz Lead Component ----- */
+.quiz-lead {
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-lead h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.quiz-lead h3 {
+  margin-bottom: 1rem;
+}
+
+.quiz-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quiz-option-button {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--bg);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.quiz-option-button:hover,
+.quiz-option-button.selected {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  color: var(--text);
+}
+
+.quiz-input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.quiz-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.quiz-navigation .btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.quiz-summary {
+  text-align: center;
+}
+
+.quiz-summary p {
+  margin: 0.5rem 0;
+}
+
+.quiz-summary .btn {
+  margin-top: 1rem;
+}
+
 /* ----- Hero ----- */
 .hero {
   min-height: 100dvh;
@@ -2468,7 +2541,8 @@ pre:hover .blogpost-copy-btn {
   color: var(--text);
 }
 
-.blogpage-lang-option-active {
+.blogpage-lang-option-active,
+.blogpage-lang-option-active:hover {
   background: var(--accent);
   color: var(--bg);
 }
@@ -2578,4 +2652,85 @@ pre:hover .blogpost-copy-btn {
   .exp-role { font-size: 0.9rem; }
   .exp-company { font-size: 0.85rem; }
   .exp-period { font-size: 0.8rem; }
+}
+
+/* ----- Privacy Policy ----- */
+.privacy-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  padding: 4rem 1.5rem;
+}
+
+.privacy-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.privacy-container h1 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+
+.privacy-intro {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+.privacy-section {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.privacy-section h2 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.privacy-section p {
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.privacy-updated {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.privacy-back-btn {
+  margin-top: 1rem;
+}
+
+/* ----- 404 Not Found ----- */
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--text);
+  padding: 2rem 1.5rem;
+}
+
+.not-found-container {
+  text-align: center;
+  max-width: 480px;
+}
+
+.not-found-title {
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.not-found-message {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.not-found-container .btn {
+  font-size: 0.9rem;
 }

@@ -21,6 +21,8 @@ import Feed from './components/Feed';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
 import CaseStudyPage from './components/CaseStudyPage';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import NotFoundPage from './components/NotFoundPage';
 
 const isBlogDomain = window.location.hostname === 'blog.ismaeltech.com';
 
@@ -144,7 +146,8 @@ function PortfolioRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/projetos/:slug" element={<CaseStudyRoute />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="/privacidade" element={<PrivacyPolicy />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
