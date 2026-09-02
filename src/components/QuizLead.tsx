@@ -84,6 +84,9 @@ function QuizLead() {
 
   const whatsappLink = `https://wa.me/5511959873202?text=${encodeURIComponent(composeMessage())}`;
 
+  const emailSubject = `Projeto: ${answers.projeto}`;
+  const emailLink = `mailto:contact@ismaeltech.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(composeMessage())}`;
+
   const renderOptions = (field: keyof Answers, options: string[]) => (
     <div className="quiz-options">
       {options.map((opt) => (
@@ -171,7 +174,10 @@ function QuizLead() {
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary quiz-whatsapp-btn">
         {t.contato.quiz.btnWhatsApp}
       </a>
-      <button type="button" className="btn btn-secondary" onClick={reset}>
+      <a href={emailLink} className="btn btn-secondary quiz-email-btn">
+        {t.contato.quiz.btnEmail}
+      </a>
+      <button type="button" className="btn btn-outline" onClick={reset}>
         {t.contato.quiz.btnReset}
       </button>
     </div>
@@ -180,9 +186,11 @@ function QuizLead() {
   return (
     <section className="quiz-lead" aria-label={t.contato.quiz.title || "Quiz"}>
       <h2>{t.contato.quiz.title || "Quiz"}</h2>
-      <p className="quiz-step-indicator">
-        {t.contato.quiz.step.replace("{step}", (step + 1).toString()).replace("{total}", totalSteps.toString())}
-      </p>
+      {step < totalSteps && (
+        <p className="quiz-step-indicator">
+          {t.contato.quiz.step.replace("{step}", (step + 1).toString()).replace("{total}", totalSteps.toString())}
+        </p>
+      )}
       {step < totalSteps ? renderStep() : renderSummary()}
       <div className="quiz-navigation">
         {step > 0 && step < totalSteps && (
