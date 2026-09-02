@@ -47,6 +47,11 @@ function QuizLead() {
     }
   };
 
+  const complete = () => {
+    setStep(totalSteps);
+    track("quiz_complete", window.location.pathname);
+  };
+
   const back = () => {
     if (step > 0) setStep(step - 1);
   };
@@ -203,7 +208,7 @@ function QuizLead() {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={next}
+            onClick={complete}
             disabled={!isCaptureValid()}
           >
             {t.contato.quiz.btnComplete}
