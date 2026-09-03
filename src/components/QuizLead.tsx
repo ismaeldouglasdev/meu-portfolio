@@ -71,7 +71,7 @@ function QuizLead() {
 
   const composeMessage = () => {
     const tmpl = t.contato.quiz.whatsappMessage;
-    const mensagem = answers.mensagem.trim() ? `Sobre o projeto: ${answers.mensagem.trim()}` : '';
+    const mensagem = answers.mensagem.trim() ? `${t.contato.quiz.mensagemLabel}${answers.mensagem.trim()}` : '';
     return tmpl
       .replace("{name}", answers.name)
       .replace("{projeto}", answers.projeto)
