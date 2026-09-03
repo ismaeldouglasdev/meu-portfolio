@@ -260,9 +260,6 @@
 .hero-content {
   position: relative;
   z-index: 1;
-}
-
-.hero-content {
   text-align: center;
   max-width: 640px;
   animation: heroFadeIn 0.8s ease forwards;
@@ -285,12 +282,12 @@
   justify-content: center;
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text);
+  color: #f8fafc;
   margin-bottom: 1rem;
 }
 
 .hero-badge svg {
-  color: var(--accent);
+  color: #10b981;
   font-size: 0.8rem;
   margin-right: 0.4rem;
 }
@@ -301,7 +298,7 @@
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 1.5rem;
 }
 
@@ -310,11 +307,12 @@
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 3rem;
+  color: #ffffff;
 }
 
 .hero-subtitle {
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85);
   max-width: 520px;
   margin: 1rem auto 2rem;
   line-height: 1.7;
@@ -326,6 +324,16 @@
   justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
+}
+
+.hero-actions .btn.btn-outline {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-actions .btn.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
 }
 
 .hero-stats {
@@ -343,12 +351,12 @@
 .hero-stat-number {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text);
+  color: #ffffff;
 }
 
 .hero-stat-label {
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.65);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: 0.2rem;
