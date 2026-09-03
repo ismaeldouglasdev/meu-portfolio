@@ -24,11 +24,13 @@ function ParticleField({ count = 700 }: { count?: number }) {
   useFrame((state) => {
     if (!points.current) return;
     const t = state.clock.elapsedTime;
-    points.current.rotation.y = t * 0.04;
-    points.current.rotation.x = Math.sin(t * 0.1) * 0.08;
+    // Even slower rotation - nearly imperceptible subtle movement
+    points.current.rotation.y = t * 0.003;
+    points.current.rotation.x = Math.sin(t * 0.02) * 0.008;
+    // Minimal mouse interaction - almost completely static
     const { x, y } = state.pointer;
-    points.current.rotation.y += x * 0.02;
-    points.current.rotation.x += y * 0.02;
+    points.current.rotation.y += x * 0.001;
+    points.current.rotation.x += y * 0.001;
   });
 
   return (
@@ -52,19 +54,17 @@ export default function ThreeBackground() {
       <ShaderGradientCanvas
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
       >
-        <ShaderGradient
-          control="props"
-          type="waterPlane"
-          color1="#7c3aed"
-          color2="#4f46e5"
-          color3="#a855f7"
-          animate="on"
-          uSpeed={0.4}
-          uDensity={1.2}
-          uStrength={0.6}
-
-
-        />
+          <ShaderGradient
+            control="props"
+            type="waterPlane"
+            color1="#1e293b"
+            color2="#334155"
+            color3="#64748b"
+            animate="on"
+            uSpeed={0.25}
+            uDensity={1.2}
+            uStrength={0.6}
+          />
       </ShaderGradientCanvas>
 
       {/* Partículas 3D por cima */}
