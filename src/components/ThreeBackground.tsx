@@ -1,18 +1,16 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
+import { ShaderGradientCanvas, ShaderGradient } from 'shadergradient';
 import * as THREE from 'three';
 
 // Campo de partículas 3D flutuantes que reage suavemente ao mouse.
-// Renderizado atrás do conteúdo do Hero (position absolute, z-index 0).
-function ParticleField({ count = 900 }: { count?: number }) {
+function ParticleField({ count = 700 }: { count?: number }) {
   const points = useRef<THREE.Points>(null);
 
-  // Posições aleatórias numa esfera/cubo
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      // distribuição esférica com raio variável
       const r = 1.6 + Math.random() * 2.2;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
@@ -26,10 +24,8 @@ function ParticleField({ count = 900 }: { count?: number }) {
   useFrame((state) => {
     if (!points.current) return;
     const t = state.clock.elapsedTime;
-    // rotação lenta contínua
     points.current.rotation.y = t * 0.04;
     points.current.rotation.x = Math.sin(t * 0.1) * 0.08;
-    // leve parallax com o mouse
     const { x, y } = state.pointer;
     points.current.rotation.y += x * 0.02;
     points.current.rotation.x += y * 0.02;
@@ -39,11 +35,11 @@ function ParticleField({ count = 900 }: { count?: number }) {
     <Points ref={points} positions={positions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#8b5cf6"
-        size={0.02}
+        color="#ffffff"
+        size={0.035}
         sizeAttenuation
         depthWrite={false}
-        opacity={0.7}
+        opacity={0.9}
       />
     </Points>
   );
@@ -52,10 +48,31 @@ function ParticleField({ count = 900 }: { count?: number }) {
 export default function ThreeBackground() {
   return (
     <div className="three-bg" aria-hidden="true">
+      {/* Gradiente animado de fundo (shadergradient) */}
+      <ShaderGradientCanvas
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+      >
+        <ShaderGradient
+          control="props"
+          type="waterPlane"
+          color1="#7c3aed"
+          color2="#4f46e5"
+          color3="#a855f7"
+          animate="on"
+          uSpeed={0.4}
+          uDensity={1.2}
+          uStrength={0.6}
+
+
+        />
+      </ShaderGradientCanvas>
+
+      {/* Partículas 3D por cima */}
       <Canvas
         camera={{ position: [0, 0, 4], fov: 60 }}
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true }}
+        style={{ position: 'absolute', inset: 0 }}
       >
         <ParticleField />
       </Canvas>
