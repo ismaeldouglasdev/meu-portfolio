@@ -24,13 +24,11 @@ function ParticleField({ count = 700 }: { count?: number }) {
   useFrame((state) => {
     if (!points.current) return;
     const t = state.clock.elapsedTime;
-    // Even slower rotation - nearly imperceptible subtle movement
-    points.current.rotation.y = t * 0.003;
-    points.current.rotation.x = Math.sin(t * 0.02) * 0.008;
-    // Minimal mouse interaction - almost completely static
+    points.current.rotation.y = t * 0.004;
+    points.current.rotation.x = Math.sin(t * 0.015) * 0.012;
     const { x, y } = state.pointer;
-    points.current.rotation.y += x * 0.001;
-    points.current.rotation.x += y * 0.001;
+    points.current.rotation.y += x * 0.003;
+    points.current.rotation.x += y * 0.003;
   });
 
   return (
