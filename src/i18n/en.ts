@@ -22,7 +22,7 @@ const en: Translation = {
       'Got a project\nin mind?\nLet\'s talk.\nMessage me.',
     ],
     subtitle:
-      'Landing pages, web apps, e-commerce, and API integrations. No bullshit, no surprises, no ghosting.',
+      'Can you see the undreamed possibilities? Landing pages, web apps, e-commerce, and API integrations.',
     ctaProjetos: 'View Projects',
     ctaContato: 'Get in Touch',
     stat1: 'Top Contributor',

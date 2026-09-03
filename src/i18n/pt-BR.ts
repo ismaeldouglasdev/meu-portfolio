@@ -22,7 +22,7 @@ const ptBR: Translation = {
       'Tem um projeto\nem mente?\nVamos conversar.\nMe chama.',
     ],
     subtitle:
-      'Landing pages, sistemas web e e-commerce completos. Sites, ferramentas, APIs. Sem enrolação, sem surpresas, sem ghosting.',
+      'Você consegue enxergar as possibilidades ilimitadas? Landing pages, sistemas web e e-commerce completos.',
     ctaProjetos: 'Ver Projetos',
     ctaContato: 'Entrar em Contato',
     stat1: 'Top Contributor',
