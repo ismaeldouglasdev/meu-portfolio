@@ -326,6 +326,17 @@
   flex-wrap: wrap;
 }
 
+.hero-actions .btn.btn-primary {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #ffffff;
+}
+
+.hero-actions .btn.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(255, 255, 255, 0.88);
+}
+
 .hero-actions .btn.btn-outline {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.4);
