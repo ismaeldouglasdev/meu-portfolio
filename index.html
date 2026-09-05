@@ -15,7 +15,12 @@
   <script>
     // Aplica o tema salvo antes do React carregar (evita flash claro-escuro)
     try {
-      var savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+      var savedTheme;
+      if (window.location.hostname === 'blog.ismaeltech.com') {
+        savedTheme = localStorage.getItem('blog-theme') || 'light';
+      } else {
+        savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+      }
       document.documentElement.setAttribute('data-theme', savedTheme);
     } catch (e) {}
   </script>
