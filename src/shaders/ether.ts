@@ -34,11 +34,11 @@ float map(vec3 p) {
   p.xz *= rotate2d(u_time * 0.06);
   p.xy *= rotate2d(u_time * 0.04);
   vec3 q = p * 2. + u_time * 0.15;
-  return length(p + vec3(sin(u_time * 0.12))) * log(length(p) + 1.) + sin(q.x + sin(q.z + sin(q.y))) * 0.5 - 1.;
+  return length(p + vec3(sin(u_time * 0.12) * 0.5)) * log(length(p) + 1.) + sin(q.x + sin(q.z + sin(q.y))) * 0.5 - 1.;
 }
 
 void main() {
-  vec2 p = gl_FragCoord.xy / u_resolution.y - vec2(0.9, 0.5);
+  vec2 p = gl_FragCoord.xy / u_resolution.y - vec2(0.65, 0.5);
   vec3 color = vec3(0);
   float depthSum = 0.;
   int samples = int(SAMPLES);
@@ -56,20 +56,24 @@ void main() {
       float f = clamp((rz - map(q + 0.1)) * 0.5, -0.1, 1.);
       vec3 rgbColor;
       if (samples > 1) {
-        float huePhase = 0.5 + p.x * 0.7 + p.y * 0.4 + sin(u_time * colorChangeSpeed * 0.4) * 0.15;
+        float huePhase = 0.2 + p.x * 0.9 + p.y * 0.4 + sin(u_time * colorChangeSpeed * 0.4) * 0.15;
         rgbColor = paletteMix(clamp(huePhase, 0.0, 1.0));
       } else {
         rgbColor = vec3(0.1, 0.3, 0.4);
       }
-      vec3 l = rgbColor * 1.4 + vec3(0.6, 0.8, 1.0) * f;
-      sampleColor = sampleColor * l + smoothstep(3.2, 0., rz) * l;
+      vec3 l = rgbColor * 0.75 + vec3(0.35, 0.5, 0.65) * f;
+      vec3 glow = smoothstep(3.2, 0., rz) * l;
+      sampleColor = sampleColor * min(l, vec3(0.85)) + glow;
+      sampleColor = min(sampleColor, vec3(1.2));
       depth += min(rz, 1.);
     }
     color += sampleColor * weight;
     depthSum += weight;
   }
   color /= depthSum;
-  // Ambiente azulado sutil: evita buraco preto no meio da tela
+  color = 1.0 - exp(-color * 1.6);
+  float g2 = dot(color, vec3(0.299, 0.587, 0.114));
+  color = mix(vec3(g2), color, 1.25);
   color += vec3(0.03, 0.06, 0.12);
   color *= brightness;
   fragColor = vec4(color, 1);

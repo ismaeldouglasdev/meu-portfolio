@@ -320,12 +320,12 @@ function Projetos() {
     <section id="projetos">
       <NeuroNoise
         className="section-bg section-bg--shader section-bg--panels"
-        colorFront="#06b6d4"
-        colorMid="#2563eb"
-        colorBack="#0a0a0a"
-        brightness={0.1}
-        contrast={0.1}
-        speed={0.3}
+        colorFront="#10b981"
+        colorMid="#06b6d4"
+        colorBack="#0f172a"
+        brightness={0.13}
+        contrast={0.09}
+        speed={0.25}
         rotation={90}
         fit="cover"
         scale={1.6}

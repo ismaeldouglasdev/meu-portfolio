@@ -14,6 +14,7 @@ import Depoimentos from './components/Depoimentos';
 import Experiencia from './components/Experiencia';
 import Beneficios from './components/Beneficios';
 import Contato from './components/Contato';
+import FloatingContacts from './components/FloatingContacts';
 import Footer from './components/Footer';
 import QuizLead from './components/QuizLead';
 
@@ -179,7 +180,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <RouteTracker />
-      {isBlogDomain ? <BlogRoutes /> : <><Navbar /><PortfolioRoutes /></>}
+      {isBlogDomain ? <BlogRoutes /> : <><Navbar /><PortfolioRoutes /><FloatingContacts /></>}
     </BrowserRouter>
   );
 }

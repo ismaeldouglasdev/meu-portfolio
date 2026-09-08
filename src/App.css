@@ -2941,3 +2941,76 @@ pre:hover .blogpost-copy-btn {
   width: 340px;
   height: 340px;
 }
+
+/* ----- FAB contatos (leque) ----- */
+.fab-contacts {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1100;
+}
+
+.fab-main {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(6, 182, 212, 0.35);
+}
+
+.fab-main-icon {
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.fab-fan-item {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.fab-fan-item--whatsapp {
+  background: #25d366;
+  border: 1px solid rgba(37, 211, 102, 0.6);
+}
+
+.fab-fan-item--email {
+  background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+  border: 1px solid rgba(6, 182, 212, 0.6);
+}
+
+.fab-fan-item:hover {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 768px) {
+  .fab-contacts {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .fab-main {
+    width: 50px;
+    height: 50px;
+  }
+
+  .fab-fan-item {
+    width: 44px;
+    height: 44px;
+  }
+}

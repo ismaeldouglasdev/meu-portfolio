@@ -15,7 +15,7 @@ export default function CosmicBackground() {
           FOCAL_DISTANCE: 4,
           FOCAL_RANGE: 6,
           colorChangeSpeed: 0.2,
-          brightness: 0.4,
+          brightness: 0.6,
         }}
         speed={0.45}
         minPixelRatio={isMobile ? 1 : 2}
