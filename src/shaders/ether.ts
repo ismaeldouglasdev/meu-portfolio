@@ -63,15 +63,15 @@ void main() {
       }
       vec3 l = rgbColor * 0.75 + vec3(0.35, 0.5, 0.65) * f;
       vec3 glow = smoothstep(3.2, 0., rz) * l;
-      sampleColor = sampleColor * min(l, vec3(0.85)) + glow;
-      sampleColor = min(sampleColor, vec3(1.2));
+      sampleColor = sampleColor * min(l, vec3(0.8)) + glow;
+      sampleColor = min(sampleColor, vec3(0.95));
       depth += min(rz, 1.);
     }
     color += sampleColor * weight;
     depthSum += weight;
   }
   color /= depthSum;
-  color = 1.0 - exp(-color * 1.6);
+  color = 1.0 - exp(-color * 1.15);
   float g2 = dot(color, vec3(0.299, 0.587, 0.114));
   color = mix(vec3(g2), color, 1.25);
   color += vec3(0.03, 0.06, 0.12);
