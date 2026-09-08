@@ -9,6 +9,7 @@ uniform float SAMPLES;
 uniform float FOCAL_DISTANCE;
 uniform float FOCAL_RANGE;
 uniform float colorChangeSpeed;
+uniform float brightness;
 
 out vec4 fragColor;
 
@@ -34,10 +35,10 @@ mat2 rotate2d(float r) {
 }
 
 float map(vec3 p) {
-  p.xz *= rotate2d(u_time * 0.4);
-  p.xy *= rotate2d(u_time * 0.3);
-  vec3 q = p * 2. + u_time;
-  return length(p + vec3(sin(u_time * 0.7))) * log(length(p) + 1.) + sin(q.x + sin(q.z + sin(q.y))) * 0.5 - 1.;
+  p.xz *= rotate2d(u_time * 0.3);
+  p.xy *= rotate2d(u_time * 0.2);
+  vec3 q = p * 2. + u_time * 0.6;
+  return length(p + vec3(sin(u_time * 0.5))) * log(length(p) + 1.) + sin(q.x + sin(q.z + sin(q.y))) * 0.5 - 1.;
 }
 
 void main() {
@@ -52,26 +53,31 @@ void main() {
     }
     float weight = 1. / (1. + abs(depth - FOCAL_DISTANCE));
     vec3 sampleColor = vec3(0);
-    const int iterations = 5;
+    const int iterations = 7;
     for (int j = 0; j < iterations; j++) {
       vec3 q = vec3(0, 0, 5) + normalize(vec3(p, -1.)) * depth;
       float rz = map(q);
       float f = clamp((rz - map(q + 0.1)) * 0.5, -0.1, 1.);
       vec3 rgbColor;
       if (samples > 1) {
-        float hue = 0.44 + 0.16 * mod(u_time * colorChangeSpeed + float(j) / float(iterations), 1.);
-        rgbColor = hsl2rgb(vec3(hue, 1, 0.5));
+        // Hue oscila suavemente (seno) entre verde e azul - sem salto brusco do mod()
+        float huePhase = 0.5 + 0.5 * sin(u_time * colorChangeSpeed * 0.5 + float(j) * 0.35);
+        float hue = 0.44 + 0.16 * huePhase;
+        rgbColor = hsl2rgb(vec3(hue, 1, 0.45));
       } else {
         rgbColor = vec3(0.1, 0.3, 0.4);
       }
-      vec3 l = rgbColor + vec3(3, 4, 5) * f;
-      sampleColor = sampleColor * l + smoothstep(2.5, 0., rz) * 0.7 * l;
+      vec3 l = rgbColor * 1.5 + vec3(3, 4, 5) * f;
+      sampleColor = sampleColor * l + smoothstep(3.2, 0., rz) * 1.0 * l;
       depth += min(rz, 1.);
     }
     color += sampleColor * weight;
     depthSum += weight;
   }
   color /= depthSum;
+  // Ambiente azulado sutil: evita buraco preto no meio da tela
+  color += vec3(0.05, 0.10, 0.20);
+  color *= brightness;
   fragColor = vec4(color, 1);
 }
 `;
