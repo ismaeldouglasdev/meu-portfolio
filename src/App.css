@@ -651,10 +651,13 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.4rem 0.75rem;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   font-size: 0.8rem;
   color: var(--text-secondary);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .skill-item:hover {
@@ -2722,6 +2725,12 @@ pre:hover .blogpost-copy-btn {
   opacity: 1;
 }
 
+.cosmic-bg canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .cosmic-vignette {
   position: absolute;
   top: 0;
@@ -2776,7 +2785,7 @@ pre:hover .blogpost-copy-btn {
   width: 100%;
   height: 100%;
   display: block;
-  opacity: 0.55;
+  opacity: 0.35;
   mix-blend-mode: screen;
   filter: saturate(1.15) brightness(1.0);
 }
@@ -2788,22 +2797,22 @@ pre:hover .blogpost-copy-btn {
   background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.14) 100%);
 }
 
-/* Mobile: shader NeuroNoise pouco visível — resolução já capada via minPixelRatio/maxPixelCount */
+/* Mobile: shader GrainGradient pouco visível — resolução já capada via minPixelRatio/maxPixelCount */
 @media (max-width: 768px) {
   .section-bg--panels canvas {
-    opacity: 0.85;
+    opacity: 0.5;
     filter: saturate(1.4) brightness(1.0);
   }
 }
 
-/* Firefox mobile: NeuroNoise WebGL é lento — substituído por fallback CSS estático */
+/* Firefox mobile: GrainGradient WebGL é lento — substituído por fallback CSS estático */
 .section-bg--panels-fallback {
   background:
-    radial-gradient(60% 50% at 20% 30%, color-mix(in srgb, #06b6d4 30%, transparent), transparent 100%),
-    radial-gradient(55% 45% at 80% 25%, color-mix(in srgb, #7c3aed 26%, transparent), transparent 100%),
-    radial-gradient(50% 40% at 15% 75%, color-mix(in srgb, #2563eb 22%, transparent), transparent 100%),
-    radial-gradient(60% 50% at 85% 80%, color-mix(in srgb, #06b6d4 26%, transparent), transparent 100%),
-    radial-gradient(45% 40% at 50% 50%, color-mix(in srgb, #7c3aed 20%, transparent), transparent 100%);
+    radial-gradient(60% 50% at 20% 30%, color-mix(in srgb, #7300ff 30%, transparent), transparent 100%),
+    radial-gradient(55% 45% at 80% 25%, color-mix(in srgb, #eba8ff 26%, transparent), transparent 100%),
+    radial-gradient(50% 40% at 15% 75%, color-mix(in srgb, #2b00ff 22%, transparent), transparent 100%),
+    radial-gradient(60% 50% at 85% 80%, color-mix(in srgb, #00bfff 26%, transparent), transparent 100%),
+    radial-gradient(45% 40% at 50% 50%, color-mix(in srgb, #7300ff 20%, transparent), transparent 100%);
   filter: saturate(1.15) brightness(1.0);
 }
 
