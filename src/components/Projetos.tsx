@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
+import { motion, Variants, useReducedMotion } from 'framer-motion';
 import { FaGithub, FaFolder, FaExternalLinkAlt, FaCircle } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
+import { NeuroNoise } from '@paper-design/shaders-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface Projeto {
   id: number;
@@ -16,7 +19,6 @@ interface Projeto {
 const curatedRepos = [
   'Cronograma-Projeto',
   'mensageiros-da-esperanca',
-  'PeakVault',
 ];
 
 const manualEntries: Projeto[] = [
@@ -35,7 +37,6 @@ const manualEntries: Projeto[] = [
 const GITHUB_OWNER = 'ismaeldouglasdev';
 
 const curatedRepoMeta: Record<string, { lang: string; stars: number; deploy_url?: string }> = {
-  PeakVault: { lang: 'Python', stars: 1 },
   'Cronograma-Projeto': { lang: 'JavaScript', stars: 1, deploy_url: 'https://cronograma-projeto.onrender.com/' },
   'mensageiros-da-esperanca': { lang: 'JavaScript', stars: 0, deploy_url: 'https://mensageiros-da-esperanca.vercel.app/' },
 };
@@ -50,7 +51,6 @@ const projectScreenshots: Record<string, string | { pt: string; en: string }> = 
     pt: '/images/mensageiros-ptbr.webp',
     en: '/images/mensageiros-en.webp',
   },
-  PeakVault: '/images/peakvault.webp',
 };
 
 type ServerStatus = 'checking' | 'online' | 'offline' | 'waking';
@@ -152,6 +152,7 @@ function StatusBadge({ url }: { url: string }) {
 
 function ProjetoCard({ projeto }: { projeto: Projeto }) {
   const { t, lang } = useTranslation();
+  const prefersReducedMotion = useReducedMotion();
   const desc = t.projetos.desc[projeto.name] || projeto.description || t.projetos.semDesc;
 
   const rawScreenshot = projectScreenshots[projeto.name] || projeto.screenshot;
@@ -160,8 +161,18 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
       ? rawScreenshot[lang === 'pt-BR' ? 'pt' : 'en']
       : (rawScreenshot as string | undefined);
 
+  const overlayVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+  };
+
+  const imageVariants: Variants = {
+    initial: { scale: 1 },
+    hover: prefersReducedMotion ? {} : { scale: 1.07 },
+  };
+
   return (
-    <div className="projeto-card">
+    <motion.div className="projeto-card" layoutId={`card-${projeto.id}`}>
       {screenshot && (
         <a
           href={projeto.deploy_url || projeto.html_url}
@@ -169,11 +180,14 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
           rel="noopener noreferrer"
           className="projeto-screenshot-link"
         >
-          <img
+          <motion.img
             src={screenshot}
             alt={`${projeto.name} screenshot`}
             className="projeto-screenshot"
             loading="lazy"
+            variants={imageVariants}
+            initial="initial"
+            whileHover="hover"
           />
         </a>
       )}
@@ -182,23 +196,30 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
           <FaFolder className="projeto-folder-icon" aria-hidden="true" />
           <h3>{t.projetos.names[projeto.name] || projeto.name}</h3>
         </div>
-        <p>{desc}</p>
+        <motion.p
+          className="projeto-description"
+          variants={overlayVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-30px' }}
+        >
+          {desc}
+        </motion.p>
         <div className="projeto-footer">
           <div className="projeto-langs">
             {projeto.language && <span>{projeto.language}</span>}
             {projeto.stars > 0 && <span>★ {projeto.stars}</span>}
-            {!projeto.deploy_url && <span className="tag-desktop">{t.projetos.desktopApp}</span>}
           </div>
           <div className="projeto-actions">
             {projeto.deploy_url && (
-          <a
-            href={projeto.deploy_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="projeto-link deploy-link"
-            aria-label={`${t.projetos.visitSite} (abre em nova aba)`}
-          >
-            <FaExternalLinkAlt aria-hidden="true" /> {t.projetos.visitSite}
+              <a
+                href={projeto.deploy_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="projeto-link deploy-link"
+                aria-label={`${t.projetos.visitSite} (abre em nova aba)`}
+              >
+                <FaExternalLinkAlt aria-hidden="true" /> {t.projetos.visitSite}
               </a>
             )}
             <a
@@ -212,18 +233,25 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
             </a>
           </div>
         </div>
-        {projeto.deploy_url && (
-          <StatusBadge key={projeto.name} url={projeto.deploy_url} />
-        )}
+        {projeto.deploy_url && <StatusBadge key={projeto.name} url={projeto.deploy_url} />}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 function Projetos() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const [projetos, setProjetos] = useState<Projeto[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    },
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -290,19 +318,54 @@ function Projetos() {
 
   return (
     <section id="projetos">
-      <span className="section-label">{t.projetos.label}</span>
-      <h2>{t.projetos.title}</h2>
+      <NeuroNoise
+        className="section-bg section-bg--shader section-bg--panels"
+        colorFront="#06b6d4"
+        colorMid="#2563eb"
+        colorBack="#0a0a0a"
+        brightness={0.1}
+        contrast={0.1}
+        speed={0.3}
+        rotation={90}
+        fit="cover"
+        scale={1.6}
+        minPixelRatio={isMobile ? 1 : 2}
+        maxPixelCount={isMobile ? 800 * 450 : 1024 * 576}
+      />
+      <motion.span
+        className="section-label"
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        {t.projetos.label}
+      </motion.span>
+      <motion.h2
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        {t.projetos.title}
+      </motion.h2>
 
       {loading ? (
         <p style={{ color: 'var(--text-secondary)', marginTop: '2rem' }}>
           {t.projetos.loading}
         </p>
       ) : (
-        <div className="projetos-grid">
+        <motion.div
+          className="projetos-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {projetos.map((projeto) => (
             <ProjetoCard key={projeto.id} projeto={projeto} />
           ))}
-        </div>
+        </motion.div>
       )}
     </section>
   );

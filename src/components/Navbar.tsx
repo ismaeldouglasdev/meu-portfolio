@@ -1,54 +1,29 @@
 import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
-import { FiSun, FiMoon } from 'react-icons/fi';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { track } from '../lib/analytics';
 
-const sectionKeys = ['sobre', 'servicos', 'skills', 'projetos', 'experiencia', 'precos', 'contato'] as const;
+const sectionKeys = ['sobre', 'servicos', 'skills', 'projetos', 'experiencia', 'contato'] as const;
 type SectionKey = typeof sectionKeys[number];
 
 function Navbar() {
   const { t, lang, setLang } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  const [tema, setTema] = useState<'light' | 'dark'>('light');
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [langMessage, setLangMessage] = useState('');
   const isHome = location.pathname === '/';
 
 useEffect(() => {
-    try {
-      const saved = localStorage.getItem('portfolio-theme') || 'light';
-      setTema(saved as 'light' | 'dark');
-      document.documentElement.setAttribute('data-theme', saved);
-    } catch {
-      // localStorage indisponível
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const next = tema === 'light' ? 'dark' : 'light';
-    setTema(next);
-    try {
-      localStorage.setItem('portfolio-theme', next);
-    } catch {
-      // localStorage indisponível
-    }
-    document.documentElement.setAttribute('data-theme', next);
-    updateThemeColor(next);
-  };
-
-  // Initialize theme-color on mount
-  useEffect(() => {
-    updateThemeColor(tema);
-  }, [tema]);
-
-  const updateThemeColor = (theme: 'light' | 'dark') => {
+    document.documentElement.setAttribute('data-theme', 'dark');
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#0a0a0a');
-  };
+    if (meta) meta.setAttribute('content', '#0a0a0a');
+    return () => {
+      document.documentElement.removeAttribute('data-theme');
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,7 +57,6 @@ useEffect(() => {
     skills: t.nav.skills,
     projetos: t.nav.projetos,
     experiencia: t.nav.experiencia,
-    precos: t.nav.precos,
     contato: t.nav.contato,
   };
 
@@ -137,16 +111,6 @@ useEffect(() => {
           style={{ fontSize: '0.8rem', fontWeight: 600 }}
         >
           {lang === 'pt-BR' ? 'PT' : 'EN'}
-        </button>
-
-        <button
-          className="theme-btn"
-          onClick={toggleTheme}
-          aria-label="Alternar tema"
-          aria-pressed={tema === 'dark'}
-          title={tema === 'light' ? 'Modo escuro' : 'Modo claro'}
-        >
-          {tema === 'light' ? <FiSun /> : <FiMoon />}
         </button>
 
         <button
