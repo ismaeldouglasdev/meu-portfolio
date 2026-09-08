@@ -2705,19 +2705,19 @@ pre:hover .blogpost-copy-btn {
   top: 0;
   left: 0;
   right: 0;
-  bottom: -40%;
+  bottom: -70%;
   z-index: 0;
   opacity: 0;
   transition: opacity 0.8s ease;
   pointer-events: none;
-  /* Fade suave nas bordas (máscara) — vaza além do hero e esmaece gradualmente para o fundo do about */
+  /* Fade tardio: mantém o gradiente visível até o fim do hero e o esmaece DENTRO do about */
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, black 12%, black 60%, transparent 88%);
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 10%, black 50%, transparent 94%);
   -webkit-mask-composite: intersect;
   mask-image:
-    linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, black 12%, black 60%, transparent 88%);
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 10%, black 50%, transparent 94%);
   mask-composite: intersect;
 }
 
@@ -2736,12 +2736,12 @@ pre:hover .blogpost-copy-btn {
   top: 0;
   left: 0;
   right: 0;
-  bottom: -40%;
+  bottom: -70%;
   z-index: 0;
   pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.3) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 60%, transparent 88%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 60%, transparent 88%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 50%, transparent 94%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 50%, transparent 94%);
 }
 
 .cosmic-grain {
@@ -2749,14 +2749,14 @@ pre:hover .blogpost-copy-btn {
   top: 0;
   left: 0;
   right: 0;
-  bottom: -40%;
+  bottom: -70%;
   z-index: 0;
   pointer-events: none;
   opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 60%, transparent 88%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 60%, transparent 88%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 50%, transparent 94%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 50%, transparent 94%);
 }
 
 /* ----- Fundo de seção (vaza além da seção e se mistura com as vizinhas via fade) ----- */
@@ -2771,14 +2771,6 @@ pre:hover .blogpost-copy-btn {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 13%, black 87%, transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 13%, black 87%, transparent 100%);
-}
-
-.section-bg--grid {
-  background:
-    radial-gradient(70% 60% at 15% 30%, color-mix(in srgb, #00bfff 9%, transparent), transparent 100%),
-    radial-gradient(80% 65% at 85% 75%, color-mix(in srgb, #7300ff 9%, transparent), transparent 100%),
-    radial-gradient(75% 60% at 70% 15%, color-mix(in srgb, #eba8ff 7%, transparent), transparent 100%);
-  filter: blur(28px);
 }
 
 .section-bg--shader canvas {
@@ -2797,8 +2789,13 @@ pre:hover .blogpost-copy-btn {
   background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.14) 100%);
 }
 
-/* Mobile: shader GrainGradient pouco visível — resolução já capada via minPixelRatio/maxPixelCount */
+/* Mobile: bleed menor (menos área pra esticar = menos pixelização) + shader pouco visível */
 @media (max-width: 768px) {
+  .cosmic-bg,
+  .cosmic-vignette,
+  .cosmic-grain {
+    bottom: -35%;
+  }
   .section-bg--panels canvas {
     opacity: 0.5;
     filter: saturate(1.4) brightness(1.0);
@@ -2808,11 +2805,11 @@ pre:hover .blogpost-copy-btn {
 /* Firefox mobile: GrainGradient WebGL é lento — substituído por fallback CSS estático */
 .section-bg--panels-fallback {
   background:
-    radial-gradient(60% 50% at 20% 30%, color-mix(in srgb, #7300ff 30%, transparent), transparent 100%),
-    radial-gradient(55% 45% at 80% 25%, color-mix(in srgb, #eba8ff 26%, transparent), transparent 100%),
-    radial-gradient(50% 40% at 15% 75%, color-mix(in srgb, #2b00ff 22%, transparent), transparent 100%),
-    radial-gradient(60% 50% at 85% 80%, color-mix(in srgb, #00bfff 26%, transparent), transparent 100%),
-    radial-gradient(45% 40% at 50% 50%, color-mix(in srgb, #7300ff 20%, transparent), transparent 100%);
+    radial-gradient(60% 50% at 20% 30%, color-mix(in srgb, #3b82f6 30%, transparent), transparent 100%),
+    radial-gradient(55% 45% at 80% 25%, color-mix(in srgb, #34d399 26%, transparent), transparent 100%),
+    radial-gradient(50% 40% at 15% 75%, color-mix(in srgb, #1d4ed8 22%, transparent), transparent 100%),
+    radial-gradient(60% 50% at 85% 80%, color-mix(in srgb, #22d3ee 26%, transparent), transparent 100%),
+    radial-gradient(45% 40% at 50% 50%, color-mix(in srgb, #38bdf8 20%, transparent), transparent 100%);
   filter: saturate(1.15) brightness(1.0);
 }
 

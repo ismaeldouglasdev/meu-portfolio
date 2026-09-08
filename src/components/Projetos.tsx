@@ -326,8 +326,8 @@ function Projetos() {
       ) : (
         <NeuroNoise
           className="section-bg section-bg--shader section-bg--panels"
-          colorFront="#00bfff"
-          colorMid="#7c3aed"
+          colorFront="#34d399"
+          colorMid="#3b82f6"
           colorBack="#0a0a0a"
           brightness={0.1}
           contrast={0.2}
@@ -336,7 +336,7 @@ function Projetos() {
           fit="cover"
           scale={1.6}
           minPixelRatio={isMobile ? 1 : 2}
-          maxPixelCount={isMobile ? 640 * 360 : 1280 * 720}
+          maxPixelCount={isMobile ? 960 * 540 : 1280 * 720}
         />
       )}
       <motion.span

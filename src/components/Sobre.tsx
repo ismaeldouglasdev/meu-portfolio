@@ -22,7 +22,6 @@ function Sobre() {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="section-bg section-bg--grid" aria-hidden="true" />
       <div className="y2k-globe" data-cosmic-layer="true" aria-hidden="true">
         <WireGlobe />
       </div>

@@ -10,16 +10,16 @@ export default function CosmicBackground() {
         <GrainGradient
           width={1280}
           height={720}
-          colors={['#7300ff', '#eba8ff', '#00bfff', '#2b00ff']}
+          colors={['#3b82f6', '#22d3ee', '#34d399']}
           colorBack="#000000"
-          softness={0.5}
-          intensity={0.5}
-          noise={0.25}
+          softness={0.6}
+          intensity={0.35}
+          noise={0.15}
           shape="corners"
           speed={1}
           fit="cover"
           minPixelRatio={isMobile ? 1 : 2}
-          maxPixelCount={isMobile ? 640 * 360 : 1280 * 720}
+          maxPixelCount={isMobile ? 960 * 540 : 1280 * 720}
         />
       </div>
       <div className="cosmic-vignette" />
