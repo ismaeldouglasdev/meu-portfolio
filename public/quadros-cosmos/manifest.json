@@ -1,0 +1,32 @@
+{
+  "origem": {
+    "arquivo": "9860820-hd_1920_1080_30fps.mp4",
+    "duracao": 11.9,
+    "resolucao": "1920x1080",
+    "fps": 30.0,
+    "codec": "h264",
+    "total_quadros_origem": 357
+  },
+  "quadros": {
+    "quantidade_alvo": 120,
+    "formato": "webp",
+    "qualidade": 80,
+    "padrao_nomes": "frame-{NNNN}.webp"
+  },
+  "altura_scroll_recomendada": "400vh",
+  "criado_em": "2026-09-05T22:43:33",
+  "desktop": {
+    "resolucao": "1920x1080",
+    "quantidade_real": 120,
+    "bytes_totais": 7519378,
+    "bytes_medios": 62661,
+    "total_mb": 7.17
+  },
+  "mobile": {
+    "resolucao": "960x540",
+    "quantidade_real": 120,
+    "bytes_totais": 1480306,
+    "bytes_medios": 12335,
+    "total_mb": 1.41
+  }
+}

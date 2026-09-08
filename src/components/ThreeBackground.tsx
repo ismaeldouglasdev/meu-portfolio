@@ -1,8 +1,8 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
-import { ShaderGradientCanvas, ShaderGradient } from 'shadergradient';
 import * as THREE from 'three';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 // Campo de partículas 3D flutuantes que reage suavemente ao mouse.
 function ParticleField({ count = 700 }: { count?: number }) {
@@ -46,33 +46,30 @@ function ParticleField({ count = 700 }: { count?: number }) {
 }
 
 export default function ThreeBackground() {
+  const [visible, setVisible] = useState(true);
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const el = document.querySelector('.three-bg');
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { rootMargin: '120px' },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="three-bg" aria-hidden="true">
-      {/* Gradiente animado de fundo (shadergradient) */}
-      <ShaderGradientCanvas
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-      >
-          <ShaderGradient
-            control="props"
-            type="waterPlane"
-            color1="#1e293b"
-            color2="#334155"
-            color3="#64748b"
-            animate="on"
-            uSpeed={0.25}
-            uDensity={1.2}
-            uStrength={0.6}
-          />
-      </ShaderGradientCanvas>
-
-      {/* Partículas 3D por cima */}
       <Canvas
         camera={{ position: [0, 0, 4], fov: 60 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: !isMobile, alpha: true }}
+        frameloop={visible ? 'always' : 'never'}
         style={{ position: 'absolute', inset: 0 }}
       >
-        <ParticleField />
+        <ParticleField count={isMobile ? 250 : 700} />
       </Canvas>
     </div>
   );

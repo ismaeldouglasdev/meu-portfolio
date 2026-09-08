@@ -3,8 +3,9 @@ import {
   FaJs, FaPython, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaDocker, FaReact,
   FaDatabase, FaTerminal, FaPhp, FaDesktop,
 } from 'react-icons/fa';
-import { SiTypescript, SiFastapi, SiPostgresql, SiFlask, SiFirebase } from 'react-icons/si';
+import { SiTypescript, SiFastapi, SiPostgresql, SiFlask, SiFirebase, SiVite, SiCloudflare } from 'react-icons/si';
 import { useTranslation } from '../i18n';
+import { WireGlobe } from './Y2KDecor';
 
 const skillsList = [
   { icon: <FaReact aria-hidden="true" />, label: 'React' },
@@ -17,12 +18,14 @@ const skillsList = [
   { icon: <SiFlask aria-hidden="true" />, label: 'Flask' },
   { icon: <FaHtml5 aria-hidden="true" />, label: 'HTML5' },
   { icon: <FaCss3Alt aria-hidden="true" />, label: 'CSS3' },
+  { icon: <SiVite aria-hidden="true" />, label: 'Vite' },
   { icon: <SiPostgresql aria-hidden="true" />, label: 'PostgreSQL' },
   { icon: <SiFirebase aria-hidden="true" />, label: 'Firebase' },
   { icon: <FaDatabase aria-hidden="true" />, label: 'SQL' },
   { icon: <FaDesktop aria-hidden="true" />, label: 'CustomTkinter' },
   { icon: <FaGitAlt aria-hidden="true" />, label: 'Git' },
   { icon: <FaDocker aria-hidden="true" />, label: 'Docker' },
+  { icon: <SiCloudflare aria-hidden="true" />, label: 'Cloudflare' },
   { icon: <FaTerminal aria-hidden="true" />, label: 'Bash/Linux' },
 ];
 
@@ -46,6 +49,9 @@ function Skills() {
 
   return (
     <section id="skills">
+      <div className="y2k-globe" data-cosmic-layer="true" aria-hidden="true">
+        <WireGlobe />
+      </div>
       <motion.span
         className="section-label"
         initial={{ opacity: 0, y: 12 }}
@@ -74,13 +80,13 @@ function Skills() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-30px' }}
-            whileHover={!prefersReducedMotion ? { scale: 1.1, y: -4, boxShadow: '0 8px 20px rgba(0,0,0,0.15)' } : {}}
-            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            whileHover={!prefersReducedMotion ? { scale: 1.05, y: -3, boxShadow: '0 8px 20px rgba(0,0,0,0.15)' } : {}}
+            transition={{ type: 'spring', stiffness: 400, damping: 24 }}
           >
             <motion.span
               className="skill-icon"
-              whileHover={!prefersReducedMotion ? { scale: 1.3, rotate: 15 } : {}}
-              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+              whileHover={!prefersReducedMotion ? { scale: 1.15, rotate: 8 } : {}}
+              transition={{ type: 'spring', stiffness: 400, damping: 24 }}
             >
               {skill.icon}
             </motion.span>

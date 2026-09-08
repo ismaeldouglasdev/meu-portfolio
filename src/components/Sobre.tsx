@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaCode, FaUsers, FaRocket } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
+import { WireGlobe } from './Y2KDecor';
 
 function Sobre() {
   const { t } = useTranslation();
@@ -21,6 +22,9 @@ function Sobre() {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5 }}
     >
+      <div className="y2k-globe" data-cosmic-layer="true" aria-hidden="true">
+        <WireGlobe />
+      </div>
       <motion.span
         className="section-label"
         initial={{ opacity: 0, y: 12 }}

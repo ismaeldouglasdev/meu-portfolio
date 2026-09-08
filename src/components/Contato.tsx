@@ -1,9 +1,12 @@
 import { motion, Variants } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
+import { Metaballs } from '@paper-design/shaders-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 function Contato() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
 
   const contatos = [
     { icon: <FaGithub aria-hidden="true" />, label: 'GitHub', href: 'https://github.com/ismaeldouglasdev' },
@@ -25,9 +28,9 @@ function Contato() {
       transition: { delay: i * 0.1, duration: 0.4, ease: 'easeOut' },
     }),
     hover: {
-      scale: 1.08,
+      scale: 1.05,
       boxShadow: '0 6px 20px rgba(0,0,0,0.12)',
-      transition: { type: 'spring', stiffness: 400, damping: 15 },
+      transition: { type: 'spring', stiffness: 400, damping: 24 },
     },
   };
 
@@ -39,6 +42,16 @@ function Contato() {
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.5 }}
     >
+      <Metaballs
+        className="section-bg section-bg--shader"
+        colors={['#06b6d4', '#2563eb', '#10b981', '#0a0a0a']}
+        colorBack="#0a0a0a"
+        count={10}
+        size={0.83}
+        speed={1}
+        minPixelRatio={2}
+        maxPixelCount={isMobile ? 2560 * 1440 : undefined}
+      />
       <motion.span
         className="section-label"
         initial={{ opacity: 0, y: 12 }}
@@ -86,8 +99,8 @@ function Contato() {
           >
             <motion.span
               className="contato-icon-wrapper"
-              whileHover={{ scale: 1.15, rotate: 5 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+              whileHover={{ scale: 1.08, rotate: 3 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 24 }}
             >
               {c.icon}
             </motion.span>

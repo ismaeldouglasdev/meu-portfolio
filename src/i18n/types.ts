@@ -5,7 +5,6 @@ export interface Translation {
     skills: string;
     projetos: string;
     experiencia: string;
-    precos: string;
     contato: string;
   };
   hero: {
@@ -80,30 +79,10 @@ export interface Translation {
       link?: string;
     }>;
   };
-  precos: {
-    label: string;
-    title: string;
-    subtitle: string;
-    popular: string;
-    items: Array<{
-      name: string;
-      price: string;
-      period: string;
-      parcelado?: string;
-      features: string[];
-      highlighted: boolean;
-    }>;
-    selos: Array<{
-      icon: string;
-      text: string;
-    }>;
-    cta: string;
-  };
   cta: string;
   beneficios: {
     label: string;
     title: string;
-    subtitle: string;
     items: Array<{
       title: string;
       desc: string;
@@ -123,7 +102,6 @@ export interface Translation {
     wakingServer: string;
     serverOnline: string;
     serverOffline: string;
-    desktopApp: string;
     serverSleeping: string;
     serverStarting: string;
     semDesc: string;
@@ -154,8 +132,13 @@ export interface Translation {
       btnNext: string;
       btnComplete: string;
       btnReset: string;
+      navHint: string;
       btnWhatsApp: string;
       btnEmail: string;
+      verifyLabel: string;
+      verifying: string;
+      verified: string;
+      verifyError: string;
       questions: {
         projeto: { title: string; options: string[] };
         orcamento: { title: string; options: string[] };
@@ -176,9 +159,13 @@ export interface Translation {
   privacy: {
     title: string;
     intro: string;
+    dataCollectedTitle: string;
     dataCollected: string;
+    trackersTitle: string;
     trackers: string;
+    usageTitle: string;
     usage: string;
+    contactTitle: string;
     contact: string;
     cnpj: string;
     lastUpdated: string;

@@ -5,11 +5,10 @@ import { useTranslation } from '../i18n';
 const icons = [<FaRocket aria-hidden="true" />, <FaDollarSign aria-hidden="true" />, <FaGlobeAmericas aria-hidden="true" />, <FaHeadset aria-hidden="true" />];
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 32, clipPath: 'inset(0 0 100% 0)' },
+  hidden: { opacity: 0, y: 32 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    clipPath: 'inset(0 0 0% 0)',
     transition: { delay: i * 0.13, duration: 0.55, ease: 'easeOut' },
   }),
 };
@@ -37,15 +36,6 @@ function Beneficios() {
       >
         {t.beneficios.title}
       </motion.h2>
-      <motion.p
-        className="section-subtitle"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.15 }}
-      >
-        {t.beneficios.subtitle}
-      </motion.p>
 
       <div className="beneficios-grid">
         {t.beneficios.items.map((item, i) => (

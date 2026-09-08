@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useReducedMotion, Variants } from 'framer-motion';
+import { motion, useReducedMotion, Variants } from 'framer-motion';
 import { FaLightbulb, FaCode, FaRocket } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 import { useRef } from 'react';
@@ -9,9 +9,6 @@ function Processo() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
-  const { scrollY } = useScroll();
-  
-  const lineScaleY = useTransform(scrollY, [0, 2000], [0, 1]);
 
   const cardVariants = (index: number): Variants => ({
     hidden: {
@@ -33,12 +30,12 @@ function Processo() {
 
   const counterVariants: Variants = {
     hidden: { opacity: 0, scale: 0.5 },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.5,
-        ease: 'backOut',
+        duration: 0.4,
+        ease: 'easeOut',
       },
     },
   };
@@ -70,13 +67,6 @@ function Processo() {
         {t.processo.title}
       </motion.h2>
 
-      {!prefersReducedMotion && (
-        <motion.div
-          className="processo-progress-line"
-          style={{ scaleY: lineScaleY }}
-        />
-      )}
-
       <div className="processo-grid">
         {t.processo.steps.map((step, i) => (
           <motion.div
@@ -98,11 +88,10 @@ function Processo() {
               {i + 1}
             </motion.div>
 
-            <div className="processo-phase">{step.phase}</div>
             <motion.div
               className="processo-icon"
-              whileHover={!prefersReducedMotion ? { scale: 1.2, rotate: 10 } : {}}
-              transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+              whileHover={!prefersReducedMotion ? { scale: 1.1, rotate: 6 } : {}}
+              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
             >
               {phaseIcons[i]}
             </motion.div>

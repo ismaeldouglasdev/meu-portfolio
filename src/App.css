@@ -150,6 +150,19 @@
 }
 
 /* ----- Quiz Lead Component ----- */
+.quiz-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  margin: 1rem 0 0.5rem;
+  overflow: hidden;
+}
+.quiz-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.35s ease;
+}
 .quiz-lead {
   padding: 2rem;
   background: var(--card-bg);
@@ -178,6 +191,7 @@
   border: 1px solid var(--border);
   border-radius: 5px;
   background: var(--bg);
+  color: var(--text);
   transition: all 0.3s;
   cursor: pointer;
 }
@@ -197,6 +211,8 @@
   border-radius: 5px;
   margin-bottom: 1rem;
   font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
 }
 
 .quiz-textarea {
@@ -212,13 +228,20 @@
 
 .quiz-navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 0.75rem;
   margin-top: 2rem;
 }
 
 .quiz-navigation .btn {
   padding: 0.5rem 1rem;
   font-size: 1rem;
+}
+.quiz-nav-hint {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
 }
 
 .quiz-summary {
@@ -242,14 +265,19 @@
   padding: 6rem 1.5rem 4rem;
   max-width: 100%;
   position: relative;
-  overflow: hidden;
 }
 
 .three-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -20%;
   z-index: 0;
   pointer-events: none;
+  /* Fade tardio na base para as partículas ficarem visíveis no hero e sumirem antes do fim do vazamento */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 75%, transparent 96%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 75%, transparent 96%);
 }
 
 .three-bg canvas {
@@ -416,15 +444,29 @@
   gap: 0.5rem;
   font-size: 0.85rem;
   color: var(--text);
-  padding: 0.4rem 0.75rem;
-  border: 1px solid var(--border);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  position: relative;
+  isolation: isolate;
+  background: color-mix(in srgb, var(--bg) 62%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(180%) brightness(1.1);
+  backdrop-filter: blur(14px) saturate(180%) brightness(1.1);
+  border: 1px solid color-mix(in srgb, var(--text) 16%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--text) 8%, transparent) inset,
+    0 8px 24px rgba(0, 0, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .sobre-highlight:hover {
   transform: translateY(-2px);
-  border-color: var(--text);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border-color: color-mix(in srgb, var(--text) 34%, transparent);
+  background: color-mix(in srgb, var(--bg) 66%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--text) 12%, transparent) inset,
+    0 10px 30px rgba(0, 0, 0, 0.28),
+    0 3px 8px rgba(0, 0, 0, 0.16);
 }
 
 .sobre-highlight svg {
@@ -446,10 +488,14 @@
 
 .processo-card {
   padding: 1.5rem;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
   text-align: center;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   position: relative;
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
 }
 
 .processo-card:hover {
@@ -461,29 +507,18 @@
   position: absolute;
   top: -12px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 32px;
-  height: 32px;
+  translate: -50% 0;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--text);
   color: var(--bg);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   border-radius: 50%;
   z-index: 2;
-}
-
-.processo-progress-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent) 50%, transparent 100%);
-  transform-origin: top;
-  opacity: 0.3;
 }
 
 .processo-phase {
@@ -739,10 +774,14 @@
 }
 
 .projeto-card {
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
   display: flex;
   flex-direction: column;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
 }
 
 .projeto-card:hover {
@@ -811,15 +850,6 @@
   color: var(--text);
 }
 
-.tag-desktop {
-  font-size: 0.7rem;
-  padding: 0.15rem 0.5rem;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
-  font-weight: 600;
-}
-
 .projeto-link {
   display: inline-flex;
   align-items: center;
@@ -829,13 +859,19 @@
   color: var(--text-secondary);
   border: 1px solid var(--border);
   padding: 0.3rem 0.7rem;
+  text-decoration: none;
+  text-decoration-line: none;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.projeto-link:hover {
+.projeto-link:hover,
+.projeto-link:focus-visible,
+.projeto-link:visited {
   color: var(--text);
   border-color: var(--accent);
   background: var(--accent-bg);
+  text-decoration: none;
+  text-decoration-line: none;
 }
 
 .deploy-link {
@@ -885,7 +921,9 @@
 }
 
 .status-badge.status-online {
-  border-color: #22c55e;
+  border: none;
+  background: transparent;
+  padding: 0;
   color: #22c55e;
 }
 
@@ -906,8 +944,6 @@
 #experiencia {
   text-align: center;
   padding: 4rem 1.5rem;
-  max-width: 640px;
-  margin: 0 auto;
 }
 
 .exp-title {
@@ -1007,6 +1043,10 @@
   text-align: center;
 }
 
+#contato .section-label {
+  color: #ffffff;
+}
+
 .contato-grid {
   display: flex;
   justify-content: center;
@@ -1020,11 +1060,15 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
   color: var(--text-secondary);
   font-size: 0.8rem;
   text-decoration: none;
   transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  background: color-mix(in srgb, var(--bg) 40%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
 .contato-link:hover {
@@ -1053,7 +1097,6 @@
 .footer {
   text-align: center;
   padding: 2rem;
-  border-top: 1px solid var(--border);
   margin-top: 2rem;
 }
 
@@ -1176,163 +1219,6 @@
   color: var(--text-muted);
 }
 
-/* ----- Precos ----- */
-#precos {
-  text-align: center;
-  max-width: 900px;
-}
-
-.section-subtitle {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  max-width: 500px;
-  margin: -1rem auto 2rem;
-  line-height: 1.6;
-}
-
-.precos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-  align-items: stretch;
-}
-
-.preco-card {
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.preco-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.preco-highlight {
-  border-color: var(--text);
-  border-width: 2px;
-  transform: scale(1.03);
-}
-
-.preco-badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--text);
-  color: var(--bg);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 0.2rem 0.75rem;
-  white-space: nowrap;
-}
-
-.preco-card h3 {
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-  min-height: 2.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.preco-price {
-  margin-bottom: 1rem;
-}
-
-.preco-period {
-  display: block;
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 0.2rem;
-}
-
-.preco-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.preco-features {
-  list-style: none;
-  text-align: left;
-  flex: 1;
-  margin-bottom: 1.5rem;
-}
-
-.preco-features li {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  padding: 0.35rem 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.preco-features svg {
-  font-size: 0.6rem;
-  color: var(--text);
-  flex-shrink: 0;
-}
-
-.preco-parcelado {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
-}
-
-.preco-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: auto;
-}
-
-.preco-cta {
-  width: 100%;
-  justify-content: center;
-}
-
-.precos-selos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 2rem;
-}
-
-.preco-selo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  padding: 0.35rem 0.75rem;
-  border: 1px solid var(--border);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.preco-selo:hover {
-  transform: translateY(-2px);
-  border-color: var(--text);
-}
-
-.preco-selo-icon {
-  font-size: 1rem;
-  line-height: 1;
-}
-
 /* ----- Beneficios ----- */
 #beneficios {
   text-align: center;
@@ -1385,12 +1271,6 @@
 }
 
 @media (max-width: 640px) {
-  .precos-grid {
-    grid-template-columns: 1fr;
-  }
-  .preco-highlight {
-    transform: none;
-  }
   .beneficios-grid {
     grid-template-columns: 1fr;
   }
@@ -1428,13 +1308,11 @@
   .servico-card:hover,
   .processo-card:hover,
   .beneficio-card:hover,
-  .preco-card:hover,
   .depoimento-card:hover,
   .caso-card:hover,
   .skill-item:hover,
   .sobre-highlight:hover,
   .contato-link:hover,
-  .preco-selo:hover,
   .servico-techs span:hover,
   .projeto-langs span:hover,
   .status-badge:hover,
@@ -1450,7 +1328,6 @@
   section.visible .processo-card,
   section.visible .projeto-card,
   section.visible .beneficio-card,
-  section.visible .preco-card,
   section.visible .depoimento-card,
   section.visible .exp-entry,
   section.visible .skill-item,
@@ -1467,7 +1344,6 @@ section.visible .servico-card,
 section.visible .processo-card,
 section.visible .projeto-card,
 section.visible .beneficio-card,
-section.visible .preco-card,
 section.visible .depoimento-card,
 section.visible .caso-card,
 section.visible .exp-entry,
@@ -1483,7 +1359,6 @@ section.visible .servico-card:nth-child(1),
 section.visible .processo-card:nth-child(1),
 section.visible .projeto-card:nth-child(1),
 section.visible .beneficio-card:nth-child(1),
-section.visible .preco-card:nth-child(1),
 section.visible .depoimento-card:nth-child(1),
 section.visible .journey-entry:nth-child(1),
 section.visible .skill-item:nth-child(1),
@@ -1494,7 +1369,6 @@ section.visible .servico-card:nth-child(2),
 section.visible .processo-card:nth-child(2),
 section.visible .projeto-card:nth-child(2),
 section.visible .beneficio-card:nth-child(2),
-section.visible .preco-card:nth-child(2),
 section.visible .depoimento-card:nth-child(2),
 section.visible .journey-entry:nth-child(2),
 section.visible .skill-item:nth-child(2),
@@ -1505,19 +1379,16 @@ section.visible .servico-card:nth-child(3),
 section.visible .processo-card:nth-child(3),
 section.visible .projeto-card:nth-child(3),
 section.visible .beneficio-card:nth-child(3),
-section.visible .preco-card:nth-child(3),
 section.visible .depoimento-card:nth-child(3),
 section.visible .journey-entry:nth-child(3),
 section.visible .skill-item:nth-child(3),
 section.visible .sobre-highlight:nth-child(3) { animation-delay: 0.15s; }
 section.visible .servico-card:nth-child(4),
 section.visible .projeto-card:nth-child(4),
-section.visible .preco-card:nth-child(4),
 section.visible .depoimento-card:nth-child(4),
 section.visible .skill-item:nth-child(4) { animation-delay: 0.2s; }
 section.visible .servico-card:nth-child(5),
 section.visible .projeto-card:nth-child(5),
-section.visible .preco-card:nth-child(5),
 section.visible .skill-item:nth-child(5) { animation-delay: 0.25s; }
 section.visible .servico-card:nth-child(6),
 section.visible .projeto-card:nth-child(6),
@@ -1694,8 +1565,7 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
   transition: opacity 0.2s;
 }
 .caso-link-btn:hover {
@@ -1707,10 +1577,21 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
 
 /* ----- Case Study Page ----- */
 .caso-page {
+  position: relative;
+  z-index: 1;
   min-height: 100dvh;
   padding: 4rem 1.5rem;
   max-width: 720px;
   margin: 0 auto;
+}
+.caso-page-container {
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  padding: 2rem;
 }
 
 .caso-page-back {
@@ -2682,7 +2563,6 @@ pre:hover .blogpost-copy-btn {
 
   .servico-techs span { font-size: 0.75rem; }
   .projeto-langs span { font-size: 0.75rem; }
-  .tag-desktop { font-size: 0.75rem; }
   .status-badge { font-size: 0.75rem; padding: 0.3rem 0.7rem; min-height: 32px; }
 
   .contato-link { font-size: 0.9rem; padding: 0.875rem 1.25rem; min-height: 44px; }
@@ -2692,12 +2572,6 @@ pre:hover .blogpost-copy-btn {
 
   .depoimento-stars { font-size: 0.85rem; }
   .depoimento-author span { font-size: 0.8rem; }
-
-  .precos-price { font-size: 1.5rem; }
-  .preco-period { font-size: 0.75rem; }
-  .preco-badge { font-size: 0.75rem; padding: 0.25rem 0.85rem; }
-  .preco-features li { font-size: 0.85rem; }
-  .preco-features svg { font-size: 0.75rem; }
 
   .caso-heading { font-size: 0.75rem; }
   .caso-resultados svg { font-size: 0.75rem; }
@@ -2735,8 +2609,9 @@ pre:hover .blogpost-copy-btn {
 
 /* ----- Privacy Policy ----- */
 .privacy-page {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
-  background: var(--bg);
   color: var(--text);
   padding: 4rem 1.5rem;
 }
@@ -2744,6 +2619,13 @@ pre:hover .blogpost-copy-btn {
 .privacy-container {
   max-width: 800px;
   margin: 0 auto;
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  padding: 2rem;
 }
 
 .privacy-container h1 {
@@ -2812,4 +2694,199 @@ pre:hover .blogpost-copy-btn {
 
 .not-found-container .btn {
   font-size: 0.9rem;
+}
+
+/* ----- Cosmos (hero) + aurora lisa animada (seções) ----- */
+.cosmic-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -20%;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+  /* Fade suave nas bordas (máscara) para o vídeo não parecer um retângulo cortado */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 10%, black 45%, transparent 90%);
+  -webkit-mask-composite: intersect;
+  mask-image:
+    linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 10%, black 45%, transparent 90%);
+  mask-composite: intersect;
+}
+
+.cosmic-bg.is-ready {
+  opacity: 1;
+}
+
+.cosmic-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.3) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 45%, transparent 90%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 45%, transparent 90%);
+}
+
+.cosmic-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -20%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 45%, transparent 90%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 45%, transparent 90%);
+}
+
+/* ----- Fundo de seção (vaza além da seção e se mistura com as vizinhas via fade) ----- */
+.section-bg {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 13%, black 87%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 13%, black 87%, transparent 100%);
+}
+
+.section-bg--grid {
+  background:
+    radial-gradient(70% 60% at 15% 30%, color-mix(in srgb, #06b6d4 9%, transparent), transparent 100%),
+    radial-gradient(80% 65% at 85% 75%, color-mix(in srgb, #7c3aed 9%, transparent), transparent 100%),
+    radial-gradient(75% 60% at 70% 15%, color-mix(in srgb, #2563eb 7%, transparent), transparent 100%);
+  filter: blur(28px);
+}
+
+.section-bg--shader canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  filter: saturate(1.15) brightness(1.0);
+}
+
+.section-bg--shader::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.14) 100%);
+}
+
+/* Mobile: shader NeuroNoise pouco visível — resolução já capada via minPixelRatio/maxPixelCount */
+@media (max-width: 768px) {
+  .section-bg--panels canvas {
+    opacity: 0.85;
+    filter: saturate(1.4) brightness(1.0);
+  }
+}
+
+/* Firefox mobile: NeuroNoise WebGL é lento — substituído por fallback CSS estático */
+.section-bg--panels-fallback {
+  background:
+    radial-gradient(60% 50% at 20% 30%, color-mix(in srgb, #06b6d4 30%, transparent), transparent 100%),
+    radial-gradient(55% 45% at 80% 25%, color-mix(in srgb, #7c3aed 26%, transparent), transparent 100%),
+    radial-gradient(50% 40% at 15% 75%, color-mix(in srgb, #2563eb 22%, transparent), transparent 100%),
+    radial-gradient(60% 50% at 85% 80%, color-mix(in srgb, #06b6d4 26%, transparent), transparent 100%),
+    radial-gradient(45% 40% at 50% 50%, color-mix(in srgb, #7c3aed 20%, transparent), transparent 100%);
+  filter: saturate(1.15) brightness(1.0);
+}
+
+/* Projetos: rotação 90° + fit=cover nativos via props do shader (rotation={90} fit="cover" scale={1.6}).
+   O antigo scale(1.05) via CSS deixava gaps laterais e o top:-55% vazava sobre a seção Skills. */
+
+.App > section,
+.App > footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ----- Conteúdo de seção full-width ----- */
+.App > section > *:not([data-cosmic-layer]):not(.section-bg):not(.three-bg):not(.hero-content):not(.hero):not(.sobre-bg) {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+/* ----- Fundo global orgânico (grid + cores desregulares) ----- */
+.app-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Dot-grid alinhado e contínuo — sem linhas divisórias */
+.app-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, color-mix(in srgb, var(--text) 10%, transparent) 1.2px, transparent 1.4px);
+  background-size: 38px 38px;
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 92%, transparent 100%);
+}
+
+/* Cores orgânicas desregulares — sem roxo, fundo escuro aparece entre elas */
+.app-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  filter: blur(56px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 4%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 4%, black 92%, transparent 100%);
+  background:
+    radial-gradient(34% 30% at 12% 8%, rgba(59, 130, 246, 0.20), transparent 70%),
+    radial-gradient(28% 26% at 88% 14%, rgba(34, 211, 238, 0.16), transparent 70%),
+    radial-gradient(30% 28% at 76% 40%, rgba(52, 211, 153, 0.14), transparent 70%),
+    radial-gradient(24% 22% at 6% 56%, rgba(29, 78, 216, 0.18), transparent 70%),
+    radial-gradient(32% 26% at 92% 70%, rgba(56, 189, 248, 0.15), transparent 70%),
+    radial-gradient(26% 24% at 28% 86%, rgba(34, 197, 94, 0.13), transparent 70%),
+    radial-gradient(30% 26% at 18% 93%, rgba(34, 197, 94, 0.05), transparent 70%),
+    radial-gradient(28% 24% at 84% 94%, rgba(59, 130, 246, 0.06), transparent 70%);
+}
+
+/* ----- Y2K globo wireframe de fundo ----- */
+.y2k-globe {
+  position: absolute;
+  z-index: -1;
+  opacity: 0.06;
+  mix-blend-mode: screen;
+  color: var(--y2k-globe);
+  pointer-events: none;
+}
+
+.y2k-globe svg {
+  width: 100%;
+  height: 100%;
+}
+
+#sobre .y2k-globe {
+  top: 18%;
+  right: 0;
+  width: 380px;
+  height: 380px;
+}
+
+#skills .y2k-globe {
+  bottom: 6%;
+  left: 0;
+  width: 340px;
+  height: 340px;
 }

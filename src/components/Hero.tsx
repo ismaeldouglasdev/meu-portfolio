@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from '../i18n';
 import Typewriter from './Typewriter';
 import ThreeBackground from './ThreeBackground';
+import CosmicBackground from './CosmicBackground';
 
 const FI = (delay: number) => ({
   initial: { opacity: 0, y: 24 },
@@ -15,6 +16,7 @@ function Hero() {
 
   return (
     <section id="hero" className="hero">
+      <CosmicBackground />
       <ThreeBackground />
       <div className="hero-content">
         <motion.span className="hero-badge" {...FI(0.1)}>

@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, Variants, useReducedMotion } from 'framer-motion';
 import { FaGithub, FaFolder, FaExternalLinkAlt, FaCircle } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
+import { NeuroNoise } from '@paper-design/shaders-react';
+import { useIsMobile } from '../hooks/useIsMobile';
+import { useIsFirefox } from '../hooks/useIsFirefox';
 
 interface Projeto {
   id: number;
@@ -17,7 +20,6 @@ interface Projeto {
 const curatedRepos = [
   'Cronograma-Projeto',
   'mensageiros-da-esperanca',
-  'PeakVault',
 ];
 
 const manualEntries: Projeto[] = [
@@ -36,7 +38,6 @@ const manualEntries: Projeto[] = [
 const GITHUB_OWNER = 'ismaeldouglasdev';
 
 const curatedRepoMeta: Record<string, { lang: string; stars: number; deploy_url?: string }> = {
-  PeakVault: { lang: 'Python', stars: 1 },
   'Cronograma-Projeto': { lang: 'JavaScript', stars: 1, deploy_url: 'https://cronograma-projeto.onrender.com/' },
   'mensageiros-da-esperanca': { lang: 'JavaScript', stars: 0, deploy_url: 'https://mensageiros-da-esperanca.vercel.app/' },
 };
@@ -51,7 +52,6 @@ const projectScreenshots: Record<string, string | { pt: string; en: string }> = 
     pt: '/images/mensageiros-ptbr.webp',
     en: '/images/mensageiros-en.webp',
   },
-  PeakVault: '/images/peakvault.webp',
 };
 
 type ServerStatus = 'checking' | 'online' | 'offline' | 'waking';
@@ -210,7 +210,6 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
           <div className="projeto-langs">
             {projeto.language && <span>{projeto.language}</span>}
             {projeto.stars > 0 && <span>★ {projeto.stars}</span>}
-            {!projeto.deploy_url && <span className="tag-desktop">{t.projetos.desktopApp}</span>}
           </div>
           <div className="projeto-actions">
             {projeto.deploy_url && (
@@ -243,6 +242,9 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
 
 function Projetos() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
+  const isFirefox = useIsFirefox();
+  const skipShader = isMobile && isFirefox;
   const [projetos, setProjetos] = useState<Projeto[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -319,6 +321,24 @@ function Projetos() {
 
   return (
     <section id="projetos">
+      {skipShader ? (
+        <div className="section-bg section-bg--shader section-bg--panels section-bg--panels-fallback" aria-hidden="true" />
+      ) : (
+        <NeuroNoise
+          className="section-bg section-bg--shader section-bg--panels"
+          colorFront="#06b6d4"
+          colorMid="#7c3aed"
+          colorBack="#0a0a0a"
+          brightness={0.12}
+          contrast={0.3}
+          speed={1}
+          rotation={90}
+          fit="cover"
+          scale={1.6}
+          minPixelRatio={2}
+          maxPixelCount={isMobile ? 1280 * 720 : undefined}
+        />
+      )}
       <motion.span
         className="section-label"
         initial={{ opacity: 0, y: 12 }}

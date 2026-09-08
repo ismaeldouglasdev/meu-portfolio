@@ -64,7 +64,7 @@ function ServicoCardInner({ servico, index }: { servico: any; index: number }) {
           <motion.span
             key={j}
             whileHover={!prefersReducedMotion ? { y: -2, scale: 1.05 } : {}}
-            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 24 }}
           >
             {tech}
           </motion.span>

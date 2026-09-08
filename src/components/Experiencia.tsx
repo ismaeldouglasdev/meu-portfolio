@@ -22,7 +22,7 @@ function Experiencia() {
     hidden: { scale: 0 },
     visible: {
       scale: 1,
-      transition: { type: 'spring', stiffness: 400, damping: 17 },
+      transition: { type: 'spring', stiffness: 400, damping: 24 },
     },
   };
 

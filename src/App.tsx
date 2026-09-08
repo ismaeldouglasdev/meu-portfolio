@@ -12,7 +12,6 @@ import Skills from './components/Skills';
 import Projetos from './components/Projetos';
 import Depoimentos from './components/Depoimentos';
 import Experiencia from './components/Experiencia';
-import Precos from './components/Precos';
 import Beneficios from './components/Beneficios';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
@@ -26,6 +25,7 @@ const Feed = lazy(() => import('./components/Feed'));
 const CaseStudyPage = lazy(() => import('./components/CaseStudyPage'));
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
+import PageShell from './components/PageShell';
 
 function RouteFallback() {
   return (
@@ -39,25 +39,6 @@ const isBlogDomain = window.location.hostname === 'blog.ismaeltech.com';
 
 function HomePage() {
   const navigate = useNavigate();
-  const [quizDone, setQuizDone] = React.useState<boolean>(false);
-
-  useEffect(() => {
-    const onQuizCompleted = () => setQuizDone(true);
-    const onQuizReset = () => setQuizDone(false);
-    window.addEventListener('quiz-completed', onQuizCompleted);
-    window.addEventListener('quiz-reset', onQuizReset);
-    return () => {
-      window.removeEventListener('quiz-completed', onQuizCompleted);
-      window.removeEventListener('quiz-reset', onQuizReset);
-    };
-  }, []);
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('portfolio-theme') || 'light';
-      document.documentElement.setAttribute('data-theme', saved);
-    } catch {}
-  }, []);
 
   useEffect(() => {
     const hash = window.location.hash.slice(1);
@@ -74,7 +55,7 @@ function HomePage() {
   }, []);
 
   const openCaseStudy = (slug: string) => {
-    const ids = ['depoimentos', 'experiencia', 'precos', 'beneficios', 'contato'];
+    const ids = ['depoimentos', 'experiencia', 'beneficios', 'contato'];
     let best = 'depoimentos';
     let maxVis = 0;
     ids.forEach((id) => {
@@ -110,6 +91,7 @@ function HomePage() {
 
   return (
     <main className="App" id="main-content">
+      <div className="app-bg" aria-hidden="true" />
       <Hero />
       <Sobre />
       <Processo />
@@ -120,7 +102,6 @@ function HomePage() {
       <Depoimentos onViewCaseStudy={openCaseStudy} />
       <Experiencia />
       <QuizLead />
-      {quizDone && <Precos />}
       <Beneficios />
       <Contato />
       <Footer />
@@ -146,7 +127,11 @@ function CaseStudyRoute() {
   }
 
   try {
-    return <CaseStudyPage slug={slug!} onBack={() => navigate('/')} />;
+    return (
+      <PageShell>
+        <CaseStudyPage slug={slug!} onBack={() => navigate('/')} />
+      </PageShell>
+    );
   } catch (e) {
     setError(e instanceof Error ? e : new Error(String(e)));
     return null;

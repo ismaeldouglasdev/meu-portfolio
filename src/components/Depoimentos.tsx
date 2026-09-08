@@ -25,13 +25,13 @@ const starVariants: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     scale: 1,
-    transition: { delay: i * 0.08, type: 'spring', stiffness: 200 },
+    transition: { delay: i * 0.08, type: 'spring', stiffness: 260, damping: 22 },
   }),
 };
 
 const quoteVariants: Variants = {
-  hidden: { opacity: 0, scale: 0 },
-  visible: { opacity: 1, scale: 1, transition: { delay: 0.3, type: 'spring', stiffness: 150 } },
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { delay: 0.3, duration: 0.4, ease: 'easeOut' } },
 };
 
 function Depoimentos({ onViewCaseStudy }: DepoimentosProps) {
