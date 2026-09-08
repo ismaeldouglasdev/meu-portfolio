@@ -4,7 +4,6 @@ import { FaGithub, FaFolder, FaExternalLinkAlt, FaCircle } from 'react-icons/fa'
 import { useTranslation } from '../i18n';
 import { NeuroNoise } from '@paper-design/shaders-react';
 import { useIsMobile } from '../hooks/useIsMobile';
-import { useIsFirefox } from '../hooks/useIsFirefox';
 
 interface Projeto {
   id: number;
@@ -243,8 +242,6 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
 function Projetos() {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
-  const isFirefox = useIsFirefox();
-  const skipShader = isMobile && isFirefox;
   const [projetos, setProjetos] = useState<Projeto[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -321,24 +318,20 @@ function Projetos() {
 
   return (
     <section id="projetos">
-      {skipShader ? (
-        <div className="section-bg section-bg--shader section-bg--panels section-bg--panels-fallback" aria-hidden="true" />
-      ) : (
-        <NeuroNoise
-          className="section-bg section-bg--shader section-bg--panels"
-          colorFront="#34d399"
-          colorMid="#3b82f6"
-          colorBack="#0a0a0a"
-          brightness={0.1}
-          contrast={0.2}
-          speed={1}
-          rotation={90}
-          fit="cover"
-          scale={1.6}
-          minPixelRatio={isMobile ? 1 : 2}
-          maxPixelCount={isMobile ? 960 * 540 : 1280 * 720}
-        />
-      )}
+      <NeuroNoise
+        className="section-bg section-bg--shader section-bg--panels"
+        colorFront="#34d399"
+        colorMid="#3b82f6"
+        colorBack="#0a0a0a"
+        brightness={0.3}
+        contrast={0.2}
+        speed={1}
+        rotation={90}
+        fit="cover"
+        scale={1.6}
+        minPixelRatio={isMobile ? 1 : 2}
+        maxPixelCount={isMobile ? 960 * 540 : 1280 * 720}
+      />
       <motion.span
         className="section-label"
         initial={{ opacity: 0, y: 12 }}

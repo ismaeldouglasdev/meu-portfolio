@@ -2778,7 +2778,6 @@ pre:hover .blogpost-copy-btn {
   height: 100%;
   display: block;
   opacity: 0.3;
-  mix-blend-mode: screen;
   filter: saturate(1.15) brightness(1.0);
 }
 
@@ -2789,12 +2788,58 @@ pre:hover .blogpost-copy-btn {
   background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.14) 100%);
 }
 
-/* Mobile: bleed menor (menos área pra esticar = menos pixelização) + shader pouco visível */
+/* Bleed hero→about: faixa fina determinística na borda (independe da geometria do shader).
+   Desktop: oculto (o hero usa o canvas; bleed já é contínuo). Mobile: faixa fina sutil. */
+.cosmic-bleed {
+  display: none;
+}
+
+/* Mobile: gradiente sutil + faixa fina contínua na borda hero→about.
+   O canvas (cosmic-bg) cobre o hero com intensidade baixa; o .cosmic-bleed
+   atravessa a borda (top: 78% do hero) e vaza DENTRO do about (height: 44vh),
+   garantindo continuidade independente do shape do shader. */
 @media (max-width: 768px) {
   .cosmic-bg,
   .cosmic-vignette,
   .cosmic-grain {
-    bottom: -35%;
+    bottom: -30%;
+  }
+  .cosmic-bg {
+    opacity: 0.35;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 12%, black 82%, transparent 100%);
+    -webkit-mask-composite: intersect;
+    mask-image:
+      linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 12%, black 82%, transparent 100%);
+    mask-composite: intersect;
+  }
+  .cosmic-bg.is-ready {
+    opacity: 0.35;
+  }
+  .cosmic-vignette,
+  .cosmic-grain {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 82%, transparent 100%);
+  }
+  .cosmic-bleed {
+    display: block;
+    position: absolute;
+    top: 78%;
+    left: 0;
+    right: 0;
+    height: 44vh;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+      transparent,
+      rgba(59, 130, 246, 0.13) 35%,
+      rgba(34, 211, 238, 0.10) 50%,
+      rgba(52, 211, 153, 0.05) 65%,
+      transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   }
   .section-bg--panels canvas {
     opacity: 0.5;
