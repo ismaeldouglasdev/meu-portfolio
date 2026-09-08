@@ -1,6 +1,9 @@
 import { GrainGradient } from '@paper-design/shaders-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function CosmicBackground() {
+  const isMobile = useIsMobile();
+
   return (
     <div aria-hidden="true" data-cosmic-layer="true">
       <div className="cosmic-bg is-ready">
@@ -15,7 +18,8 @@ export default function CosmicBackground() {
           shape="corners"
           speed={1}
           fit="cover"
-          minPixelRatio={2}
+          minPixelRatio={isMobile ? 1 : 2}
+          maxPixelCount={isMobile ? 640 * 360 : 1280 * 720}
         />
       </div>
       <div className="cosmic-vignette" />

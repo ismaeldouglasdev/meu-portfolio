@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, Variants, useReducedMotion } from 'framer-motion';
 import { FaGithub, FaFolder, FaExternalLinkAlt, FaCircle } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
-import { GrainGradient } from '@paper-design/shaders-react';
+import { NeuroNoise } from '@paper-design/shaders-react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { useIsFirefox } from '../hooks/useIsFirefox';
 
@@ -324,22 +324,19 @@ function Projetos() {
       {skipShader ? (
         <div className="section-bg section-bg--shader section-bg--panels section-bg--panels-fallback" aria-hidden="true" />
       ) : (
-        <GrainGradient
+        <NeuroNoise
           className="section-bg section-bg--shader section-bg--panels"
-          width={1280}
-          height={720}
-          colors={['#7300ff', '#eba8ff', '#00bfff', '#2b00ff']}
-          colorBack="#000000"
-          softness={0.5}
-          intensity={0.5}
-          noise={0.25}
-          shape="corners"
+          colorFront="#00bfff"
+          colorMid="#7c3aed"
+          colorBack="#0a0a0a"
+          brightness={0.1}
+          contrast={0.2}
           speed={1}
           rotation={90}
           fit="cover"
           scale={1.6}
-          minPixelRatio={2}
-          maxPixelCount={isMobile ? 1280 * 720 : undefined}
+          minPixelRatio={isMobile ? 1 : 2}
+          maxPixelCount={isMobile ? 640 * 360 : 1280 * 720}
         />
       )}
       <motion.span
