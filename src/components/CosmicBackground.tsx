@@ -11,15 +11,15 @@ export default function CosmicBackground() {
         className="cosmic-bg is-ready"
         fragmentShader={etherFragmentShader}
         uniforms={{
-          SAMPLES: isMobile ? 5 : 8,
+          SAMPLES: isMobile ? 4 : 6,
           FOCAL_DISTANCE: 4,
           FOCAL_RANGE: 6,
-          colorChangeSpeed: 1,
-          brightness: 1.1,
+          colorChangeSpeed: 0.2,
+          brightness: 0.4,
         }}
-        speed={1}
+        speed={0.45}
         minPixelRatio={isMobile ? 1 : 2}
-        maxPixelCount={isMobile ? 960 * 540 : 1280 * 720}
+        maxPixelCount={isMobile ? 800 * 450 : 1024 * 576}
       />
       <div className="cosmic-bleed" />
       <div className="cosmic-vignette" />

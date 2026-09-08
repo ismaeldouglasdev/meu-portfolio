@@ -46,11 +46,11 @@ function Contato() {
         className="section-bg section-bg--shader"
         colors={['#06b6d4', '#2563eb', '#10b981', '#0a0a0a']}
         colorBack="#0a0a0a"
-        count={10}
+        count={8}
         size={0.83}
-        speed={1}
+        speed={0.6}
         minPixelRatio={2}
-        maxPixelCount={isMobile ? 2560 * 1440 : undefined}
+        maxPixelCount={isMobile ? 1280 * 720 : undefined}
       />
       <motion.span
         className="section-label"

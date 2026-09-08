@@ -320,17 +320,17 @@ function Projetos() {
     <section id="projetos">
       <NeuroNoise
         className="section-bg section-bg--shader section-bg--panels"
-        colorFront="#34d399"
-        colorMid="#3b82f6"
+        colorFront="#06b6d4"
+        colorMid="#2563eb"
         colorBack="#0a0a0a"
-        brightness={0.3}
-        contrast={0.2}
-        speed={1}
+        brightness={0.1}
+        contrast={0.1}
+        speed={0.3}
         rotation={90}
         fit="cover"
         scale={1.6}
         minPixelRatio={isMobile ? 1 : 2}
-        maxPixelCount={isMobile ? 960 * 540 : 1280 * 720}
+        maxPixelCount={isMobile ? 800 * 450 : 1024 * 576}
       />
       <motion.span
         className="section-label"

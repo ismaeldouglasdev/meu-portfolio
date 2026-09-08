@@ -5,13 +5,13 @@ import * as THREE from 'three';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 // Campo de partículas 3D flutuantes que reage suavemente ao mouse.
-function ParticleField({ count = 700 }: { count?: number }) {
+function ParticleField({ count = 500 }: { count?: number }) {
   const points = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 1.6 + Math.random() * 2.2;
+      const r = 2.2 + Math.random() * 1.2;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       arr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
@@ -35,11 +35,12 @@ function ParticleField({ count = 700 }: { count?: number }) {
     <Points ref={points} positions={positions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#ffffff"
-        size={0.035}
+        color="#b8d8ff"
+        size={0.02}
         sizeAttenuation
         depthWrite={false}
-        opacity={0.9}
+        opacity={0.85}
+        blending={THREE.AdditiveBlending}
       />
     </Points>
   );
@@ -64,12 +65,12 @@ export default function ThreeBackground() {
     <div className="three-bg" aria-hidden="true">
       <Canvas
         camera={{ position: [0, 0, 4], fov: 60 }}
-        dpr={[1, 1.5]}
+        dpr={[1, 1.25]}
         gl={{ antialias: !isMobile, alpha: true }}
         frameloop={visible ? 'always' : 'never'}
         style={{ position: 'absolute', inset: 0 }}
       >
-        <ParticleField count={isMobile ? 250 : 700} />
+        <ParticleField count={isMobile ? 180 : 500} />
       </Canvas>
     </div>
   );
