@@ -1,5 +1,6 @@
-import { GrainGradient } from '@paper-design/shaders-react';
+import { ShaderMount } from '@paper-design/shaders-react';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { etherFragmentShader } from '../shaders/ether';
 
 export default function CosmicBackground() {
   const isMobile = useIsMobile();
@@ -7,17 +8,15 @@ export default function CosmicBackground() {
   return (
     <div aria-hidden="true" data-cosmic-layer="true">
       <div className="cosmic-bg is-ready">
-        <GrainGradient
-          width={1280}
-          height={720}
-          colors={['#3b82f6', '#22d3ee', '#34d399']}
-          colorBack="#000000"
-          softness={isMobile ? 0.8 : 0.6}
-          intensity={isMobile ? 0.25 : 0.35}
-          noise={0.15}
-          shape="corners"
+        <ShaderMount
+          fragmentShader={etherFragmentShader}
+          uniforms={{
+            SAMPLES: isMobile ? 6 : 10,
+            FOCAL_DISTANCE: 4,
+            FOCAL_RANGE: 6,
+            colorChangeSpeed: 1,
+          }}
           speed={1}
-          fit="cover"
           minPixelRatio={isMobile ? 1 : 2}
           maxPixelCount={isMobile ? 960 * 540 : 1280 * 720}
         />
