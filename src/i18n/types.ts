@@ -206,6 +206,10 @@ export interface Translation {
     feedbackUpLabel: string;
     feedbackDownLabel: string;
     feedbackThanks: string;
+    writtenBy: string;
+    aboutAuthorTitle: string;
+    aboutAuthorBio: string;
+    aboutAuthorCta: string;
     sourcesTitle: string;
     toggleTheme: string;
     documentTitle: string;

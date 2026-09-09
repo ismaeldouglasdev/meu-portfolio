@@ -347,6 +347,10 @@ function BlogPostPage() {
               </span>
             )}
           </div>
+          <div className="blogpost-byline">
+            <img src="/images/avatar-mini.png" alt="Ismael Douglas" className="blogpost-byline-avatar" width="32" height="32" loading="lazy" />
+            <span>{blogT.writtenBy} <strong>Ismael Douglas</strong></span>
+          </div>
         </header>
 
         {toc.length > 0 && (
@@ -418,6 +422,15 @@ function BlogPostPage() {
         </div>
 
         {slug && post && <GiscusComments key={isEn ? 'en' : 'pt-BR'} lang={isEn ? 'en' : 'pt-BR'} />}
+        <section className="blogpost-author" aria-label={blogT.aboutAuthorTitle}>
+          <img src="/images/avatar-round.png" alt="Ismael Douglas" className="blogpost-author-avatar" width="96" height="96" loading="lazy" />
+          <div className="blogpost-author-body">
+            <h2 className="blogpost-author-title">{blogT.aboutAuthorTitle}</h2>
+            <p className="blogpost-author-name">Ismael Douglas</p>
+            <p className="blogpost-author-bio">{blogT.aboutAuthorBio}</p>
+            <a href="https://ismaeltech.com/" className="blogpost-author-link">{blogT.aboutAuthorCta}</a>
+          </div>
+        </section>
         <footer className="blogpost-footer">
           <div className="blogpost-feedback" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
             <span style={{ fontSize: '0.85rem', opacity: 0.8 }}>

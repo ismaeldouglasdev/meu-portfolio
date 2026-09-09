@@ -20,6 +20,7 @@ import {
   renderTocHtml,
   renderGlossaryHtml,
   renderFaqHtml,
+  escapeHtml,
 } from '../src/lib/blog-md.mjs';
 
 const distDir = resolve(process.cwd(), 'dist');
@@ -38,12 +39,20 @@ const LABELS = {
     glossary: 'Glossário do post',
     faq: 'Perguntas frequentes',
     sources: 'Fontes e Referências',
+    writtenBy: 'Escrito por',
+    aboutAuthorTitle: 'Sobre o autor',
+    aboutAuthorBio: 'Desenvolvedor Full Stack apaixonado por construir produtos web rápidos e bem projetados. Escrevo sobre o que aprendo no caminho — código, infra e boas práticas.',
+    aboutAuthorCta: 'Veja meus projetos no portfólio →',
   },
   en: {
     toc: 'On this page',
     glossary: 'Post glossary',
     faq: 'Frequently Asked Questions',
     sources: 'Sources & References',
+    writtenBy: 'Written by',
+    aboutAuthorTitle: 'About the author',
+    aboutAuthorBio: 'Full Stack developer passionate about building fast, well-crafted web products. I write about what I learn along the way — code, infra and best practices.',
+    aboutAuthorCta: 'Check out my portfolio →',
   },
 };
 
@@ -260,7 +269,20 @@ function writeStaticHtml(slug, lang, title, excerpt, pubDate, ogImage, articlePa
   const ldTag = `<script type="application/ld+json" id="blog-jsonld">${JSON.stringify(jsonLd, null, 2)}<\/script>`;
   html = html.replace(new RegExp(`<script[^>]*id=["']blog-jsonld["'][^>]*>[\s\S]*?<\/script>`, 'i'), ldTag);
 
-  html = html.replace('<div id="root"></div>', `<div id="root"><div class="blogpost-article">${articleParts.tocHtml}${articleParts.contentHtml}</div></div>`);
+  const labels = LABELS[lang] || LABELS['pt-BR'];
+  const bylineHtml =
+    `<div class="blogpost-byline"><img src="/images/avatar-mini.png" alt="Ismael Douglas" class="blogpost-byline-avatar" width="32" height="32" loading="lazy"/><span>${escapeHtml(labels.writtenBy)} <strong>Ismael Douglas</strong></span></div>`;
+  const authorHtml =
+    `<section class="blogpost-author" aria-label="${escapeHtml(labels.aboutAuthorTitle)}">` +
+    `<img src="/images/avatar-round.png" alt="Ismael Douglas" class="blogpost-author-avatar" width="96" height="96" loading="lazy"/>` +
+    `<div class="blogpost-author-body">` +
+    `<h2 class="blogpost-author-title">${escapeHtml(labels.aboutAuthorTitle)}</h2>` +
+    `<p class="blogpost-author-name">Ismael Douglas</p>` +
+    `<p class="blogpost-author-bio">${escapeHtml(labels.aboutAuthorBio)}</p>` +
+    `<a href="https://ismaeltech.com/" class="blogpost-author-link">${escapeHtml(labels.aboutAuthorCta)}</a>` +
+    `</div></section>`;
+
+  html = html.replace('<div id="root"></div>', `<div id="root"><div class="blogpost-article">${bylineHtml}${articleParts.tocHtml}${articleParts.contentHtml}${authorHtml}</div></div>`);
   writeFileSync(join(outDir, 'index.html'), html, 'utf-8');
 }
 
