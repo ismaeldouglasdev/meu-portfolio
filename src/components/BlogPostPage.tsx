@@ -5,6 +5,8 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import { useTranslation } from '../i18n';
+import ptBRLang from '../i18n/pt-BR';
+import enLang from '../i18n/en';
 import type { BlogPost } from '../types/blog';
 import { track } from '../lib/analytics';
 import glossary from '../data/glossary.json';
@@ -96,6 +98,8 @@ function BlogPostPage() {
 
   const navigate = useNavigate();
   const isEn = slug?.endsWith('-en') ?? false;
+  // Labels das seções seguem o idioma do POST (slug), não o idioma global do browser
+  const blogT = isEn ? enLang.blog : ptBRLang.blog;
 
   const handleLangSwitch = (target: 'pt-BR' | 'en') => {
     setLang(target);
@@ -302,9 +306,9 @@ function BlogPostPage() {
   const { article, sources } = splitSources(post.content || '');
   const toc = extractToc(article);
   const glossaryIndex = buildGlossaryIndex(article, glossary, isEn ? 'en' : 'pt');
-  const tocHtml = renderTocHtml(toc, t.blog.tocLabel);
-  const glossaryHtml = renderGlossaryHtml(glossaryIndex, t.blog.glossaryLabel);
-  const faqHtml = renderFaqHtml(post.faqs || [], t.blog.faqLabel);
+  const tocHtml = renderTocHtml(toc, blogT.tocLabel);
+  const glossaryHtml = renderGlossaryHtml(glossaryIndex, blogT.glossaryLabel);
+  const faqHtml = renderFaqHtml(post.faqs || [], blogT.faqLabel);
 
   return (
     <div className="blogpage blogpost">
@@ -362,7 +366,7 @@ function BlogPostPage() {
           )}
           {sources && (
             <aside className="blogpost-sources">
-              <h2 className="blogpost-sources-title">{t.blog.sourcesTitle}</h2>
+              <h2 className="blogpost-sources-title">{blogT.sourcesTitle}</h2>
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {sources}
               </ReactMarkdown>
