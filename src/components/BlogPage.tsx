@@ -97,7 +97,7 @@ function BlogPage() {
       );
     }
     return result;
-  }, [posts, activeTag, searchQuery]);
+  }, [posts, activeTag, activeCategory, searchQuery]);
 
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
   const paginatedPosts = filteredPosts.slice(
