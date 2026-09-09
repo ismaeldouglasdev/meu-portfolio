@@ -124,11 +124,11 @@ async function renderMarkdown(markdown) {
     );
     const sourcesWrapper = React.createElement('aside', { className: 'blogpost-sources' },
       React.createElement('h2', { className: 'blogpost-sources-title' }, 'Fontes'),
-      React.createElement('div', null, sourcesHtml)
+      React.createElement('div', { dangerouslySetInnerHTML: { __html: sourcesHtml } })
     );
     fullHtml = renderToStaticMarkup(
       React.createElement('div', null,
-        React.createElement('div', null, articleHtml),
+        React.createElement('div', { dangerouslySetInnerHTML: { __html: articleHtml } }),
         React.createElement('div', null, sourcesWrapper)
       )
     );
