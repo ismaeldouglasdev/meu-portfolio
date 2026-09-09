@@ -2010,7 +2010,8 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   color: var(--accent);
 }
 
-.blogpage-tag-active {
+.blogpage-tag-active,
+.blogpage-tag-active:hover {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
