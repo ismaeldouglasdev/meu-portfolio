@@ -141,12 +141,18 @@ export function buildGlossaryIndex(articleText, glossary, lang = 'pt') {
   return entries.map(({ index, ...rest }) => rest); // index só para ordenar
 }
 
+const LINK_SKIP_TAGS = new Set([
+  'code', 'pre', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'script', 'style',
+]);
+
 /**
  * Plugin rehype: envolve a PRIMEIRA ocorrência de cada termo do glossário em
  * <a class="blog-glossary-term" href="#glossario-<slug>" data-def="...">.
  *
- * Não linka dentro de code/pre/a/headings (evita link aninhado e sujeira no
- * id dos headings). Preserva o texto original (case intacto).
+ * Não linka se QUALQUER ancestral for code/pre/a/heading/script/style — o
+ * rehype-highlight quebra o texto do <pre> em <span>s, então checar só o pai
+ * direto deixaria termos dentro de código. Ordem de leitura (esquerda→direita)
+ * garante que "primeira ocorrência" é a primeira que o leitor vê.
  */
 export function glossaryTermPlugin(index) {
   const linked = new Set();
@@ -155,15 +161,29 @@ export function glossaryTermPlugin(index) {
     .map((e) => ({ ...e, re: new RegExp(`\\b(${escapeRegExp(e.term)})\\b`, 'gi') }));
 
   return (tree) => {
-    walkChildren(tree, (node, parent, childIndex) => {
-      if (node.type !== 'text') return;
-      if (!parent || shouldSkipLinking(parent)) return;
-      const nodes = linkText(node.value, parent, childIndex);
-      if (nodes && nodes.length) parent.children.splice(childIndex, 1, ...nodes);
-    });
+    visit(tree, false);
   };
 
-  function linkText(value, parent, childIndex) {
+  function visit(node, skip) {
+    if (!node || typeof node !== 'object' || !Array.isArray(node.children)) return;
+    for (let i = 0; i < node.children.length; i++) {
+      const child = node.children[i];
+      if (child.type === 'text') {
+        if (skip) continue;
+        const nodes = linkText(child.value);
+        if (nodes && nodes.length) {
+          node.children.splice(i, 1, ...nodes);
+          i += nodes.length - 1;
+        }
+      } else if (child.type === 'element') {
+        visit(child, skip || LINK_SKIP_TAGS.has(child.tagName));
+      } else {
+        visit(child, skip);
+      }
+    }
+  }
+
+  function linkText(value) {
     if (!value || !terms.length) return null;
     const out = [];
     let rest = value;
@@ -202,23 +222,6 @@ export function glossaryTermPlugin(index) {
       children: [{ type: 'text', value: matchedText }],
     };
   }
-}
-
-function shouldSkipLinking(parent) {
-  const tag = parent.tagName;
-  return (
-    tag === 'code' ||
-    tag === 'pre' ||
-    tag === 'a' ||
-    tag === 'h1' ||
-    tag === 'h2' ||
-    tag === 'h3' ||
-    tag === 'h4' ||
-    tag === 'h5' ||
-    tag === 'h6' ||
-    tag === 'script' ||
-    tag === 'style'
-  );
 }
 
 // ---------------------------------------------------------------------------

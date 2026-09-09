@@ -44,6 +44,23 @@ function Sobre() {
       </motion.h2>
 
       <motion.div className="sobre-content" style={{ y }}>
+        <motion.div
+          className="sobre-profile"
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <img
+            src="/images/avatar-round.png"
+            alt="Ismael Douglas"
+            className="sobre-avatar"
+            width="140"
+            height="140"
+          />
+          <p className="sobre-avatar-name">Ismael Douglas</p>
+        </motion.div>
+
         <motion.p
           className="sobre-text"
           initial={{ opacity: 0, y: 20 }}
