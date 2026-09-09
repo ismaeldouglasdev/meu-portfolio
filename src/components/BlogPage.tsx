@@ -29,6 +29,7 @@ function BlogPage() {
 
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const activeTag = searchParams.get('tag') || '';
+  const activeCategory = searchParams.get('cat') || '';
   const searchQuery = searchParams.get('q') || '';
   const [searchInput, setSearchInput] = useState(searchQuery);
 
@@ -57,16 +58,20 @@ function BlogPage() {
   };
 
   const allTags = useMemo(() => {
-    const tagSet = new Set<string>();
-    posts.forEach(p => p.tags?.forEach(t => tagSet.add(t)));
-    return Array.from(tagSet).sort();
+    const tagCounts = new Map<string, number>();
+    posts.filter(p => !p.translation_of).forEach(p => p.tags?.forEach(t => {
+      tagCounts.set(t, (tagCounts.get(t) || 0) + 1);
+    }));
+    return Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);
   }, [posts]);
 
   const allCategories = useMemo(() => {
     const catMap = new Map<string, number>();
-    posts.forEach(p => catMap.set(p.category, (catMap.get(p.category) || 0) + 1));
+    posts.filter(p => !p.translation_of).forEach(p => catMap.set(p.category, (catMap.get(p.category) || 0) + 1));
     return Array.from(catMap.entries()).sort((a, b) => b[1] - a[1]);
   }, [posts]);
+
+  const visibleTags = useMemo(() => allTags.slice(0, 8), [allTags]);
 
   const recentPosts = useMemo(() => {
     return [...posts].filter(p => !p.translation_of).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
@@ -78,6 +83,9 @@ function BlogPage() {
 
   const filteredPosts = useMemo(() => {
     let result = posts.filter(p => !p.translation_of);
+    if (activeCategory) {
+      result = result.filter(p => p.category === activeCategory);
+    }
     if (activeTag) {
       result = result.filter(p => p.tags?.includes(activeTag));
     }
@@ -103,6 +111,17 @@ function BlogPage() {
       params.delete('tag');
     } else {
       params.set('tag', tag);
+    }
+    params.delete('page');
+    setSearchParams(params);
+  };
+
+  const handleCategoryClick = (cat: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (cat === activeCategory) {
+      params.delete('cat');
+    } else {
+      params.set('cat', cat);
     }
     params.delete('page');
     setSearchParams(params);
@@ -234,15 +253,31 @@ function BlogPage() {
 
       <main className="blogpage-main">
         <div className="blogpage-content">
-          {allTags.length > 0 && (
-            <div className="blogpage-tags">
-              {allTags.map(tag => (
+          {allCategories.length > 0 && (
+            <div className="blogpage-tags blogpage-chips">
+              {allCategories.map(([cat, count]) => (
+                <button
+                  key={cat}
+                  className={`blogpage-tag blogpage-chip-category ${activeCategory === cat ? 'blogpage-tag-active' : ''}`}
+                  onClick={() => handleCategoryClick(cat)}
+                >
+                  {getCategoryLabel(cat)}
+                  <span className="blogpage-chip-count">{count}</span>
+                </button>
+              ))}
+            </div>
+          )}
+
+          {visibleTags.length > 0 && (
+            <div className="blogpage-tags blogpage-chips-sub">
+              {visibleTags.map(([tag, count]) => (
                 <button
                   key={tag}
                   className={`blogpage-tag ${activeTag === tag ? 'blogpage-tag-active' : ''}`}
                   onClick={() => handleTagClick(tag)}
                 >
                   {tag}
+                  <span className="blogpage-chip-count">{count}</span>
                 </button>
               ))}
             </div>
@@ -252,7 +287,7 @@ function BlogPage() {
             {paginatedPosts.map((post, index) => (
               <article
                 key={post.slug}
-                className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag ? 'blogpage-card-featured' : ''}`}
+                className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag && !activeCategory ? 'blogpage-card-featured' : ''}`}
                 onClick={() => navigate(`/${post.slug}`)}
               >
                 {post.cover && (
@@ -271,7 +306,7 @@ function BlogPage() {
                 </div>
                 {post.tags && post.tags.length > 0 && (
                   <div className="blogpage-card-tags">
-                    {post.tags.map(tag => (
+                    {post.tags.slice(0, 3).map(tag => (
                       <span key={tag} className="blogpage-card-tag">{tag}</span>
                     ))}
                   </div>

@@ -24,6 +24,21 @@ function BlogPostPage() {
   const [error, setError] = useState<string | null>(null);
   const [liked, setLiked] = useState(false);
   const [fb, setFb] = useState<'up' | 'down' | null>(null);
+  const [views, setViews] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!slug) return;
+    let cancelled = false;
+    fetch(`https://blog-analytics.y2kgif.workers.dev/api/views?path=/${encodeURIComponent(slug)}`)
+      .then(res => (res.ok ? res.json() : null))
+      .then(data => {
+        if (!cancelled && data && typeof data.views === 'number') setViews(data.views);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [slug]);
 
   useEffect(() => {
     if (slug) {
@@ -294,6 +309,11 @@ function BlogPostPage() {
           <div className="blogpost-meta">
             <time>{formatDate(post.date)}</time>
             {post.content && <span>{getReadingTime(post.content)}</span>}
+            {views !== null && (
+              <span className="blogpost-views" aria-label="visualizações">
+                {views} {views === 1 ? 'view' : 'views'}
+              </span>
+            )}
           </div>
         </header>
 

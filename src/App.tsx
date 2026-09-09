@@ -36,7 +36,9 @@ function RouteFallback() {
   );
 }
 
-const isBlogDomain = window.location.hostname === 'blog.ismaeltech.com';
+const isBlogDomain =
+  window.location.hostname === 'blog.ismaeltech.com' ||
+  (window.location.hostname === 'localhost' && window.location.port === '4177');
 
 function HomePage() {
   const navigate = useNavigate();
