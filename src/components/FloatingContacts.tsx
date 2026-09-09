@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaWhatsapp, FaEnvelope, FaPlus } from 'react-icons/fa';
+import { FaWhatsapp, FaEnvelope, FaCommentDots, FaTimes } from 'react-icons/fa';
 
 const FAN_ITEMS = [
   {
@@ -82,13 +82,18 @@ function FloatingContacts() {
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.92 }}
       >
-        <motion.span
-          className="fab-main-icon"
-          animate={{ rotate: open ? 135 : 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        >
-          <FaPlus aria-hidden="true" />
-        </motion.span>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={open ? 'close' : 'chat'}
+            className="fab-main-icon"
+            initial={{ rotate: open ? 90 : -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: open ? -90 : 90, opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            {open ? <FaTimes aria-hidden="true" /> : <FaCommentDots aria-hidden="true" />}
+          </motion.span>
+        </AnimatePresence>
       </motion.button>
     </div>
   );
