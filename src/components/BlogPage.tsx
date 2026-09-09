@@ -288,7 +288,7 @@ function BlogPage() {
               <article
                 key={post.slug}
                 className={`blogpage-card ${index === 0 && currentPage === 1 && !activeTag && !activeCategory ? 'blogpage-card-featured' : ''}`}
-                onClick={() => navigate(`/${post.slug}`)}
+onClick={() => navigate(`/${lang === 'en' && post.translation_slug ? post.translation_slug : post.slug}`)}
               >
                 {post.cover && (
                   <div className="blogpage-card-cover">
@@ -359,7 +359,7 @@ function BlogPage() {
             <h3 className="blogpage-sidebar-title">{t.blog.recentLabel}</h3>
             <ul className="blogpage-sidebar-list">
               {recentPosts.map(post => (
-                <li key={post.slug} className="blogpage-sidebar-item blogpage-sidebar-post" onClick={() => navigate(`/${post.slug}`)}>
+                <li key={post.slug} className="blogpage-sidebar-item blogpage-sidebar-post" onClick={() => navigate(`/${lang === 'en' && post.translation_slug ? post.translation_slug : post.slug}`)}>
                   <span className="blogpage-sidebar-post-title">{post.title}</span>
                   <time className="blogpage-sidebar-post-date">{formatDate(post.date)}</time>
                 </li>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown, { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -19,7 +19,7 @@ function decodeBase64Utf8(base64: string): string {
 
 function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const { t, lang, setLang } = useTranslation();
+  const { t, setLang } = useTranslation();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -84,9 +84,19 @@ function BlogPostPage() {
     track(v === 'up' ? 'feedback_up' : 'feedback_down', window.location.pathname, { slug });
   };
 
+  const navigate = useNavigate();
+  const isEn = slug?.endsWith('-en') ?? false;
+
+  const handleLangSwitch = (target: 'pt-BR' | 'en') => {
+    setLang(target);
+    const targetIsEn = target === 'en';
+    if (isEn === targetIsEn || !post?.translation_slug) return;
+    navigate(`/${post.translation_slug}`);
+  };
+
   useEffect(() => {
     fetchPost();
-  }, [slug, lang]);
+  }, [slug]);
 
   useEffect(() => {
     if (!post) return;
@@ -123,8 +133,8 @@ function BlogPostPage() {
       const postMeta = metaContent.posts?.find((p: BlogPost) => p.slug === slug);
       if (!postMeta) throw new Error('Post not found');
 
-      const isEn = lang === 'en' && postMeta.translation_slug;
-      const fetchSlug = isEn ? postMeta.translation_slug : slug;
+      // A URL é a fonte de verdade do idioma: /slug = PT, /slug-en = EN
+      const fetchSlug = slug!;
 
       const mdRes = await fetch(`${GITHUB_API}/${fetchSlug}.md`, { headers });
       if (!mdRes.ok) throw new Error('Failed to fetch post');
@@ -132,13 +142,13 @@ function BlogPostPage() {
       const markdown = decodeBase64Utf8(mdData.content);
       const content = markdown.split('---\n').slice(2).join('---\n').trim() || markdown;
 
-      const displayTitle = isEn && postMeta.title_en ? postMeta.title_en : postMeta.title;
-      const displayExcerpt = isEn && postMeta.excerpt_en ? postMeta.excerpt_en : postMeta.excerpt;
+      const displayTitle = postMeta.title;
+      const displayExcerpt = postMeta.excerpt;
 
       setPost({ ...postMeta, lang: postMeta.lang || 'pt', content, title: displayTitle, excerpt: displayExcerpt });
       document.title = `${displayTitle} ${t.blog.documentTitle}`;
 
-      const url = `https://blog.ismaeltech.com/${postMeta.slug}`;
+      const url = `https://blog.ismaeltech.com/${slug}`;
 
       let ogTitle = document.querySelector('meta[property="og:title"]');
       if (!ogTitle) { ogTitle = document.createElement('meta'); ogTitle.setAttribute('property', 'og:title'); document.head.appendChild(ogTitle); }
@@ -146,7 +156,7 @@ function BlogPostPage() {
 
       let ogDesc = document.querySelector('meta[property="og:description"]');
       if (!ogDesc) { ogDesc = document.createElement('meta'); ogDesc.setAttribute('property', 'og:description'); document.head.appendChild(ogDesc); }
-      ogDesc.setAttribute('content', postMeta.excerpt_en || postMeta.excerpt);
+      ogDesc.setAttribute('content', postMeta.excerpt);
 
       let ogUrl = document.querySelector('meta[property="og:url"]');
       if (!ogUrl) { ogUrl = document.createElement('meta'); ogUrl.setAttribute('property', 'og:url'); document.head.appendChild(ogUrl); }
@@ -175,7 +185,7 @@ function BlogPostPage() {
         "url": url,
         "author": { "@type": "Person", "name": "Ismael Douglas" },
         "publisher": { "@type": "Person", "name": "Ismael Douglas" },
-        "description": postMeta.excerpt_en || postMeta.excerpt,
+        "description": postMeta.excerpt,
       });
       document.head.appendChild(script);
     } catch (err) {
@@ -208,7 +218,7 @@ function BlogPostPage() {
   };
 
   const formatDate = (dateStr: string) => {
-    const locale = lang === 'en' ? 'en-US' : 'pt-BR';
+    const locale = isEn ? 'en-US' : 'pt-BR';
     return new Date(dateStr + 'T00:00:00').toLocaleDateString(locale, {
       day: '2-digit',
       month: 'long',
@@ -287,12 +297,12 @@ function BlogPostPage() {
           <a href="/" className="blogpage-nav-link">{t.blog.backToBlog}</a>
           <div className="blogpage-lang-switch">
             <button
-              className={`blogpage-lang-option ${lang === 'pt-BR' ? 'blogpage-lang-option-active' : ''}`}
-              onClick={() => setLang('pt-BR')}
+              className={`blogpage-lang-option ${!isEn ? 'blogpage-lang-option-active' : ''}`}
+              onClick={() => handleLangSwitch('pt-BR')}
             >PT</button>
             <button
-              className={`blogpage-lang-option ${lang === 'en' ? 'blogpage-lang-option-active' : ''}`}
-              onClick={() => setLang('en')}
+              className={`blogpage-lang-option ${isEn ? 'blogpage-lang-option-active' : ''}`}
+              onClick={() => handleLangSwitch('en')}
             >EN</button>
           </div>
         </nav>
@@ -383,7 +393,7 @@ function BlogPostPage() {
           </a>
         </div>
 
-        {slug && post && <GiscusComments key={lang} lang={lang} />}
+        {slug && post && <GiscusComments key={isEn ? 'en' : 'pt-BR'} lang={isEn ? 'en' : 'pt-BR'} />}
         <footer className="blogpost-footer">
           <div className="blogpost-feedback" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
             <span style={{ fontSize: '0.85rem', opacity: 0.8 }}>
