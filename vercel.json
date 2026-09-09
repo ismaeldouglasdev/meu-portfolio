@@ -15,7 +15,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://giscus.app https://api.github.com https://challenges.cloudflare.com https://static.cloudflareinsights.com; connect-src 'self' https://api.github.com https://challenges.cloudflare.com https://blog-analytics.y2kgif.workers.dev https://www.engram-memory.com https://cronograma-projeto.onrender.com https://mensageiros-da-esperanca.vercel.app; img-src 'self' https://*.githubusercontent.com data:; style-src 'self' 'unsafe-inline' https://giscus.app; frame-src https://giscus.app https://challenges.cloudflare.com"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://giscus.app https://api.github.com https://challenges.cloudflare.com https://static.cloudflareinsights.com; connect-src 'self' https://api.github.com https://challenges.cloudflare.com https://blog-analytics.y2kgif.workers.dev https://www.engram-memory.com https://cronograma-projeto.onrender.com https://mensageiros-da-esperanca.vercel.app; img-src 'self' https://*.githubusercontent.com https://upload.wikimedia.org data:; media-src 'self' https://upload.wikimedia.org; style-src 'self' 'unsafe-inline' https://giscus.app; frame-src https://giscus.app https://challenges.cloudflare.com https://upload.wikimedia.org"
         },
         {
           "key": "X-Frame-Options",

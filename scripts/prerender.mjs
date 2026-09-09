@@ -77,11 +77,13 @@ async function renderMarkdown(markdown) {
   const ReactMarkdown = await import('react-markdown');
   const remarkGfm = await import('remark-gfm');
   const rehypeHighlight = await import('rehype-highlight');
+  const rehypeRaw = await import('rehype-raw');
 
   const { renderToStaticMarkup } = ReactDOM;
   const { default: ReactMarkdownComponent } = ReactMarkdown;
   const { default: remarkGfmPlugin } = remarkGfm;
   const { default: rehypeHighlightPlugin } = rehypeHighlight;
+  const { default: rehypeRawPlugin } = rehypeRaw;
 
   const calloutComponents = {
     blockquote: ({ children, ...props }) => {
@@ -107,7 +109,7 @@ async function renderMarkdown(markdown) {
     React.createElement('div', { className: 'blogpost-content' },
       React.createElement(ReactMarkdownComponent, {
         remarkPlugins: [remarkGfmPlugin],
-        rehypePlugins: [rehypeHighlightPlugin],
+        rehypePlugins: [rehypeRawPlugin, rehypeHighlightPlugin],
         components: calloutComponents,
       }, markdown)
     )
@@ -315,6 +317,8 @@ async function main() {
 
     const mdText = stripFrontmatter(mdResponse);
     const articleHtml = await renderMarkdown(mdText);
+
+    const ogImage = post.cover || DEFAULT_OG_IMAGE;
 
     const translationSlug = post.translation_slug || slug;
     const hreflangPt = slug.endsWith('-en') ? translationSlug : slug;

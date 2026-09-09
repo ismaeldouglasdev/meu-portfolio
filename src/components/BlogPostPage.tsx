@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReactMarkdown, { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
 import { useTranslation } from '../i18n';
 import type { BlogPost } from '../types/blog';
 import { track } from '../lib/analytics';
@@ -324,7 +325,7 @@ function BlogPostPage() {
               <>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeHighlight]}
+                  rehypePlugins={[rehypeRaw, rehypeHighlight]}
                   components={calloutComponents}
                 >
                   {article}
