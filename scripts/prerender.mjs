@@ -105,7 +105,11 @@ async function renderMarkdown(markdown) {
 
   const articleHtml = renderToStaticMarkup(
     React.createElement('div', { className: 'blogpost-content' },
-      ReactMarkdownComponent({ remarkPlugins: [remarkGfmPlugin], rehypePlugins: [rehypeHighlightPlugin], components: calloutComponents }, markdown)
+      React.createElement(ReactMarkdownComponent, {
+        remarkPlugins: [remarkGfmPlugin],
+        rehypePlugins: [rehypeHighlightPlugin],
+        components: calloutComponents,
+      }, markdown)
     )
   );
 
@@ -114,7 +118,7 @@ async function renderMarkdown(markdown) {
 
   if (sources) {
     const sourcesHtml = renderToStaticMarkup(
-      ReactMarkdownComponent({ remarkPlugins: [remarkGfmPlugin] }, sources)
+      React.createElement(ReactMarkdownComponent, { remarkPlugins: [remarkGfmPlugin] }, sources)
     );
     const sourcesWrapper = React.createElement('aside', { className: 'blogpost-sources' },
       React.createElement('h2', { className: 'blogpost-sources-title' }, 'Fontes'),
@@ -142,12 +146,12 @@ function writeStaticHtml(slug, lang, title, excerpt, pubDate, ogImage, articleHt
   html = html.replace(/<meta[^>]*name=["']description["'][^>]*>/, `<meta name="description" content="${excerpt}">`);
 
   const ogReplacements = [
-    ['og:title', `<meta property="og:title" content="${title}">`],
-    ['og:description', `<meta property="og:description" content="${excerpt}">`],
-    ['og:url', `<meta property="og:url" content="${BLOG_URL}/${slug}">`],
-    ['og:type', `<meta property="og:type" content="article">`],
-    ['og:image', `<meta property="og:image" content="${ogImage}">`],
-    ['og:locale', `<meta property="og:locale" content="${lang === 'pt-BR' ? 'pt_BR' : 'en_US'}">`],
+    ['og:title', title],
+    ['og:description', excerpt],
+    ['og:url', `${BLOG_URL}/${slug}`],
+    ['og:type', 'article'],
+    ['og:image', ogImage],
+    ['og:locale', lang === 'pt-BR' ? 'pt_BR' : 'en_US'],
   ];
 
   for (const [attr, content] of ogReplacements) {
@@ -158,10 +162,10 @@ function writeStaticHtml(slug, lang, title, excerpt, pubDate, ogImage, articleHt
   }
 
   const twitterReplacements = [
-    ['twitter:card', `<meta name="twitter:card" content="summary_large_image">`],
-    ['twitter:title', `<meta name="twitter:title" content="${title}">`],
-    ['twitter:description', `<meta name="twitter:description" content="${excerpt}">`],
-    ['twitter:image', `<meta name="twitter:image" content="${ogImage}">`],
+    ['twitter:card', 'summary_large_image'],
+    ['twitter:title', title],
+    ['twitter:description', excerpt],
+    ['twitter:image', ogImage],
   ];
 
   for (const [attr, content] of twitterReplacements) {
@@ -201,7 +205,7 @@ function writeStaticHtml(slug, lang, title, excerpt, pubDate, ogImage, articleHt
   const ldTag = `<script type="application/ld+json" id="blog-jsonld">${JSON.stringify(jsonLd, null, 2)}<\/script>`;
   html = html.replace(new RegExp(`<script[^>]*id=["']blog-jsonld["'][^>]*>[\s\S]*?<\/script>`, 'i'), ldTag);
 
-  html = html.replace('<div id="root"></div>', `<div class="blogpost-article">${articleHtml}</div>`);
+  html = html.replace('<div id="root"></div>', `<div id="root"><div class="blogpost-article">${articleHtml}</div></div>`);
   writeFileSync(join(outDir, 'index.html'), html, 'utf-8');
 }
 
