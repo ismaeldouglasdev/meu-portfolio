@@ -334,6 +334,8 @@ const en: Translation = {
     paginationNext: 'Next →',
     shareLabel: 'Share',
     tocLabel: 'On this page',
+    glossaryLabel: 'Post glossary',
+    faqLabel: 'Frequently Asked Questions',
     backToBlog: '← Back to blog',
     notFound: 'Post not found',
     readingTime: '{0} min read',

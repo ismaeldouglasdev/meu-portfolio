@@ -340,6 +340,8 @@ const ptBR: Translation = {
     paginationNext: 'Próximo →',
     shareLabel: 'Compartilhar',
     tocLabel: 'Nesta página',
+    glossaryLabel: 'Glossário do post',
+    faqLabel: 'Perguntas frequentes',
     backToBlog: '← Voltar ao blog',
     notFound: 'Post não encontrado',
     readingTime: '{0} min de leitura',

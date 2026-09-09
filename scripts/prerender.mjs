@@ -12,11 +12,40 @@
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join, resolve } from 'path';
+import {
+  extractToc,
+  buildGlossaryIndex,
+  headingIdPlugin,
+  glossaryTermPlugin,
+  renderTocHtml,
+  renderGlossaryHtml,
+  renderFaqHtml,
+} from '../src/lib/blog-md.mjs';
 
 const distDir = resolve(process.cwd(), 'dist');
 const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/ismaeldouglasdev/blog-content';
 const BLOG_URL = 'https://blog.ismaeltech.com';
 const DEFAULT_OG_IMAGE = 'https://ismaeltech.com/images/og-image.png';
+
+const GLOSSARY = JSON.parse(
+  readFileSync(resolve(process.cwd(), 'src/data/glossary.json'), 'utf-8')
+);
+
+// Labels espelhados em src/i18n/pt-BR.ts e en.ts
+const LABELS = {
+  'pt-BR': {
+    toc: 'Nesta página',
+    glossary: 'Glossário do post',
+    faq: 'Perguntas frequentes',
+    sources: 'Fontes e Referências',
+  },
+  en: {
+    toc: 'On this page',
+    glossary: 'Post glossary',
+    faq: 'Frequently Asked Questions',
+    sources: 'Sources & References',
+  },
+};
 
 const BRANCHES = ['main', 'master'];
 
@@ -71,7 +100,7 @@ function splitSources(md) {
   return { article: md, sources: '' };
 }
 
-async function renderMarkdown(markdown) {
+async function renderMarkdown(markdown, { lang = 'pt-BR', glossary = {}, faqs = [], labels = LABELS['pt-BR'] } = {}) {
   const React = await import('react');
   const ReactDOM = await import('react-dom/server');
   const ReactMarkdown = await import('react-markdown');
@@ -105,39 +134,63 @@ async function renderMarkdown(markdown) {
     },
   };
 
+  const { article, sources } = splitSources(markdown);
+  const glossaryIndex = buildGlossaryIndex(article, glossary, lang === 'en' ? 'en' : 'pt');
+  const tocHtml = renderTocHtml(extractToc(article), labels.toc);
+  const glossaryHtml = renderGlossaryHtml(glossaryIndex, labels.glossary);
+  const faqHtml = renderFaqHtml(faqs, labels.faq);
+
   const articleHtml = renderToStaticMarkup(
-    React.createElement('div', { className: 'blogpost-content' },
-      React.createElement(ReactMarkdownComponent, {
-        remarkPlugins: [remarkGfmPlugin],
-        rehypePlugins: [rehypeRawPlugin, rehypeHighlightPlugin],
-        components: calloutComponents,
-      }, markdown)
-    )
+    React.createElement(ReactMarkdownComponent, {
+      remarkPlugins: [remarkGfmPlugin],
+      rehypePlugins: [rehypeRawPlugin, rehypeHighlightPlugin, headingIdPlugin, [glossaryTermPlugin, glossaryIndex]],
+      components: calloutComponents,
+    }, article)
   );
 
-  const { article, sources } = splitSources(markdown);
-  let fullHtml = articleHtml;
+  // Monta .blogpost-content estático espelhando o SPA: article → glossário → sources → FAQ
+  const contentChildren = [
+    React.createElement('div', { dangerouslySetInnerHTML: { __html: articleHtml } }),
+  ];
+
+  if (glossaryHtml) {
+    contentChildren.push(
+      React.createElement('div', { className: 'blogpost-glossary-wrap', dangerouslySetInnerHTML: { __html: glossaryHtml } })
+    );
+  }
 
   if (sources) {
     const sourcesHtml = renderToStaticMarkup(
       React.createElement(ReactMarkdownComponent, { remarkPlugins: [remarkGfmPlugin] }, sources)
     );
-    const sourcesWrapper = React.createElement('aside', { className: 'blogpost-sources' },
-      React.createElement('h2', { className: 'blogpost-sources-title' }, 'Fontes'),
-      React.createElement('div', { dangerouslySetInnerHTML: { __html: sourcesHtml } })
-    );
-    fullHtml = renderToStaticMarkup(
-      React.createElement('div', null,
-        React.createElement('div', { dangerouslySetInnerHTML: { __html: articleHtml } }),
-        React.createElement('div', null, sourcesWrapper)
+    contentChildren.push(
+      React.createElement('aside', { className: 'blogpost-sources' },
+        React.createElement('h2', { className: 'blogpost-sources-title' }, labels.sources),
+        React.createElement('div', { dangerouslySetInnerHTML: { __html: sourcesHtml } })
       )
     );
   }
 
-  return fullHtml;
+  if (faqHtml) {
+    contentChildren.push(
+      React.createElement('div', { className: 'blogpost-faq-wrap', dangerouslySetInnerHTML: { __html: faqHtml } })
+    );
+  }
+
+  const contentHtml = renderToStaticMarkup(
+    React.createElement('div', { className: 'blogpost-content' }, ...contentChildren)
+  );
+
+  const tocWrapHtml = tocHtml
+    ? renderToStaticMarkup(
+        React.createElement('div', { className: 'blogpost-toc-wrap', dangerouslySetInnerHTML: { __html: tocHtml } })
+      )
+    : '';
+
+  return { tocHtml: tocWrapHtml, contentHtml };
 }
 
-function writeStaticHtml(slug, lang, title, excerpt, pubDate, ogImage, articleHtml) {
+function writeStaticHtml(slug, lang, title, excerpt, pubDate, ogImage, articleParts) {
   const outDir = resolve(distDir, slug);
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
@@ -207,7 +260,7 @@ function writeStaticHtml(slug, lang, title, excerpt, pubDate, ogImage, articleHt
   const ldTag = `<script type="application/ld+json" id="blog-jsonld">${JSON.stringify(jsonLd, null, 2)}<\/script>`;
   html = html.replace(new RegExp(`<script[^>]*id=["']blog-jsonld["'][^>]*>[\s\S]*?<\/script>`, 'i'), ldTag);
 
-  html = html.replace('<div id="root"></div>', `<div id="root"><div class="blogpost-article">${articleHtml}</div></div>`);
+  html = html.replace('<div id="root"></div>', `<div id="root"><div class="blogpost-article">${articleParts.tocHtml}${articleParts.contentHtml}</div></div>`);
   writeFileSync(join(outDir, 'index.html'), html, 'utf-8');
 }
 
@@ -316,7 +369,13 @@ async function main() {
     }
 
     const mdText = stripFrontmatter(mdResponse);
-    const articleHtml = await renderMarkdown(mdText);
+    const lang = isEn ? 'en' : 'pt-BR';
+    const articleParts = await renderMarkdown(mdText, {
+      lang,
+      glossary: GLOSSARY,
+      faqs: post.faqs || [],
+      labels: LABELS[lang],
+    });
 
     const ogImage = post.cover || DEFAULT_OG_IMAGE;
 
@@ -324,7 +383,7 @@ async function main() {
     const hreflangPt = slug.endsWith('-en') ? translationSlug : slug;
     const hreflangEn = slug.endsWith('-en') ? slug : translationSlug;
 
-    writeStaticHtml(slug, isEn ? 'en' : 'pt-BR', displayTitle, displayExcerpt, post.date, ogImage, articleHtml);
+    writeStaticHtml(slug, lang, displayTitle, displayExcerpt, post.date, ogImage, articleParts);
     successCount++;
   }
 

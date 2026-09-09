@@ -12,4 +12,5 @@ export interface BlogPost {
   lang?: string;
   translation_slug?: string;
   translation_of?: string;
+  faqs?: Array<{ q: string; a: string }>;
 }

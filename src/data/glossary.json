@@ -1,0 +1,178 @@
+{
+  "api": {
+    "pt": "Application Programming Interface: conjunto de regras que permite a um programa conversar com outro, expondo dados e funcionalidades de forma padronizada.",
+    "en": "Application Programming Interface: a set of rules that lets one program talk to another, exposing data and features in a standardized way."
+  },
+  "typescript": {
+    "pt": "Superset tipado do JavaScript criado pela Microsoft que adiciona tipos estáticos, ajudando a pegar erros antes de rodar o código.",
+    "en": "Microsoft's statically typed superset of JavaScript that adds compile-time types, catching errors before the code runs."
+  },
+  "node": {
+    "pt": "Node.js: runtime JavaScript fora do navegador, baseado no motor V8, usado principalmente para construir servidores e ferramentas de linha de comando.",
+    "en": "Node.js: a JavaScript runtime outside the browser, built on the V8 engine, used mainly for servers and command-line tools."
+  },
+  "react": {
+    "pt": "Biblioteca JavaScript para construir interfaces de usuário a partir de componentes reutilizáveis, mantida pela Meta.",
+    "en": "A JavaScript library for building user interfaces from reusable components, maintained by Meta."
+  },
+  "javascript": {
+    "pt": "Linguagem de programação que roda no navegador (e em servidores via Node.js), responsável pela interatividade das páginas web.",
+    "en": "The programming language that runs in browsers (and on servers via Node.js), responsible for web page interactivity."
+  },
+  "html": {
+    "pt": "HyperText Markup Language: a linguagem de marcação que define a estrutura e o conteúdo de uma página web.",
+    "en": "HyperText Markup Language: the markup language that defines the structure and content of a web page."
+  },
+  "css": {
+    "pt": "Cascading Style Sheets: a linguagem usada para estilizar páginas web, controlando cores, fontes, layout e responsividade.",
+    "en": "Cascading Style Sheets: the language used to style web pages, controlling colors, fonts, layout and responsiveness."
+  },
+  "dom": {
+    "pt": "Document Object Model: representação em árvore da página que o navegador expõe, permitindo que JavaScript leia e modifique o conteúdo.",
+    "en": "Document Object Model: the browser's tree representation of a page, letting JavaScript read and modify its content."
+  },
+  "json": {
+    "pt": "JavaScript Object Notation: formato leve de troca de dados baseado em pares chave/valor, legível para humanos e máquinas.",
+    "en": "JavaScript Object Notation: a lightweight key/value data-exchange format that is readable by humans and machines."
+  },
+  "sql": {
+    "pt": "Structured Query Language: linguagem padrão para consultar e manipular dados em bancos relacionais.",
+    "en": "Structured Query Language: the standard language for querying and manipulating data in relational databases."
+  },
+  "nosql": {
+    "pt": "Categoria de bancos de dados não relacionais (documentos, chave/valor, grafos) criada para flexibilidade e escala horizontal.",
+    "en": "A category of non-relational databases (documents, key/value, graphs) designed for flexibility and horizontal scaling."
+  },
+  "postgresql": {
+    "pt": "Banco de dados relacional open source avançado, conhecido por extensibilidade, JSON nativo e conformidade com ACID.",
+    "en": "Advanced open source relational database known for extensibility, native JSON support and ACID compliance."
+  },
+  "mongodb": {
+    "pt": "Banco NoSQL orientado a documentos, que armazena dados em BSON e é popular em aplicações com esquemas flexíveis.",
+    "en": "A document-oriented NoSQL database that stores data in BSON, popular in apps with flexible schemas."
+  },
+  "redis": {
+    "pt": "Armazenamento de dados em memória usado como cache, fila e broker de mensagens, com latência extremamente baixa.",
+    "en": "An in-memory data store used as a cache, queue and message broker, with extremely low latency."
+  },
+  "sqlite": {
+    "pt": "Banco de dados embutido em arquivo único, sem servidor, ideal para aplicações locais e protótipos.",
+    "en": "A serverless, single-file embedded database, ideal for local apps and prototypes."
+  },
+  "acid": {
+    "pt": "Atomicidade, Consistência, Isolamento e Durabilidade: as quatro garantias que definem transações confiáveis em bancos relacionais.",
+    "en": "Atomicity, Consistency, Isolation and Durability: the four guarantees that define reliable transactions in relational databases."
+  },
+  "cache": {
+    "pt": "Armazenamento temporário de dados já calculados ou buscados para acelerar acessos futuros e reduzir carga no servidor.",
+    "en": "Temporary storage of already-computed or fetched data to speed up future access and reduce server load."
+  },
+  "http": {
+    "pt": "Hypertext Transfer Protocol: o protocolo de comunicação usado entre navegadores e servidores web.",
+    "en": "Hypertext Transfer Protocol: the communication protocol used between browsers and web servers."
+  },
+  "websocket": {
+    "pt": "Protocolo que mantém uma conexão bidirecional contínua entre cliente e servidor, permitindo comunicação em tempo real.",
+    "en": "A protocol that keeps a continuous two-way connection between client and server, enabling real-time communication."
+  },
+  "webhook": {
+    "pt": "Chamada HTTP automática que um sistema faz a outro quando um evento acontece, eliminando a necessidade de polling.",
+    "en": "An automatic HTTP call one system makes to another when an event happens, removing the need for polling."
+  },
+  "github": {
+    "pt": "Plataforma de hospedagem de código fonte com controle de versão Git, usada para colaboração e deploy de projetos.",
+    "en": "Source code hosting platform with Git version control, used for collaboration and project deployment."
+  },
+  "python": {
+    "pt": "Linguagem de programação de alto nível e sintaxe legível, popular em scripts, automação, dados e IA.",
+    "en": "A high-level programming language with readable syntax, popular for scripts, automation, data and AI."
+  },
+  "ci": {
+    "pt": "Continuous Integration: prática de integrar e testar mudanças de código automaticamente e com frequência.",
+    "en": "Continuous Integration: the practice of automatically and frequently integrating and testing code changes."
+  },
+  "npm": {
+    "pt": "Gerenciador de pacotes padrão do ecossistema Node.js, usado para instalar e publicar bibliotecas JavaScript.",
+    "en": "Node.js's default package manager, used to install and publish JavaScript libraries."
+  },
+  "serverless": {
+    "pt": "Modelo em que o provedor de nuvem gerencia os servidores e cobra por execução, escalando funções sob demanda.",
+    "en": "A model where the cloud provider manages servers and charges per execution, scaling functions on demand."
+  },
+  "middleware": {
+    "pt": "Função que intercepta requisições em um servidor para executar lógica antes ou depois do handler, como autenticação e logs.",
+    "en": "A function that intercepts requests on a server to run logic before or after the handler, such as auth and logging."
+  },
+  "orm": {
+    "pt": "Object-Relational Mapping: camada que traduz tabelas do banco para objetos da linguagem, abstraindo o SQL.",
+    "en": "Object-Relational Mapping: a layer that maps database tables to language objects, abstracting SQL."
+  },
+  "index": {
+    "pt": "Estrutura que acelera buscas no banco de dados, permitindo localizar registros sem varrer a tabela inteira.",
+    "en": "A structure that speeds up database lookups by finding records without scanning the whole table."
+  },
+  "replica": {
+    "pt": "Cópia de um banco ou serviço mantida em outro nó para aumentar disponibilidade e distribuir leituras.",
+    "en": "A copy of a database or service kept on another node to increase availability and spread reads."
+  },
+  "event": {
+    "pt": "Ocorrência relevante no sistema (clique, pedido, mensagem) que dispara ações assíncronas, base de arquiteturas event-driven.",
+    "en": "A relevant system occurrence (click, order, message) that triggers asynchronous actions, the basis of event-driven architectures."
+  },
+  "service": {
+    "pt": "Unidade de software com responsabilidade bem definida, exposta por uma interface e reutilizável por outras partes do sistema.",
+    "en": "A software unit with a well-defined responsibility, exposed through an interface and reusable by other system parts."
+  },
+  "ui": {
+    "pt": "User Interface: a camada visual com a qual o usuário interage diretamente em um aplicativo ou site.",
+    "en": "User Interface: the visual layer a user directly interacts with in an app or website."
+  },
+  "url": {
+    "pt": "Uniform Resource Locator: o endereço único que localiza um recurso na web.",
+    "en": "Uniform Resource Locator: the unique address that locates a resource on the web."
+  },
+  "go": {
+    "pt": "Linguagem compilada da Google, conhecida por concorrência simples (goroutines) e performance, muito usada em serviços backend.",
+    "en": "Google's compiled language known for simple concurrency (goroutines) and performance, widely used in backend services."
+  },
+  "flexbox": {
+    "pt": "Modelo de layout CSS para distribuir elementos em uma dimensão (linha ou coluna) com alinhamento flexível.",
+    "en": "A CSS layout model for distributing elements in one dimension (row or column) with flexible alignment."
+  },
+  "grid": {
+    "pt": "Modelo de layout CSS bidimensional que organiza elementos em linhas e colunas simultaneamente.",
+    "en": "A two-dimensional CSS layout model that arranges elements in rows and columns at once."
+  },
+  "closure": {
+    "pt": "Função que captura e mantém acesso às variáveis do escopo onde foi criada, mesmo após esse escopo terminar.",
+    "en": "A function that captures and keeps access to variables from the scope where it was created, even after that scope ends."
+  },
+  "eslint": {
+    "pt": "Ferramenta de linting que analisa código JavaScript/TypeScript procurando erros e padrões problemáticos.",
+    "en": "A linting tool that analyzes JavaScript/TypeScript code for errors and problematic patterns."
+  },
+  "edge": {
+    "pt": "Camada de computação distribuída próxima ao usuário final, reduzindo latência ao executar código em data centers regionais.",
+    "en": "A distributed computing layer close to the end user, reducing latency by running code in regional data centers."
+  },
+  "cpu": {
+    "pt": "Central Processing Unit: o processador que executa instruções do programa, o 'cérebro' do computador.",
+    "en": "Central Processing Unit: the processor that executes program instructions, the computer's 'brain'."
+  },
+  "ram": {
+    "pt": "Random Access Memory: memória volátil de acesso rápido usada para dados em uso durante a execução de programas.",
+    "en": "Random Access Memory: fast volatile memory used for data in use while programs run."
+  },
+  "pdv": {
+    "pt": "Ponto de Venda: sistema utilizado para registrar e processar vendas diretamente no balcão de um comércio.",
+    "en": "Point of Sale: the system used to record and process sales at a store counter."
+  },
+  "iam": {
+    "pt": "Identity and Access Management: conjunto de políticas e ferramentas que controla quem pode acessar o quê na nuvem.",
+    "en": "Identity and Access Management: the set of policies and tools that controls who can access what in the cloud."
+  },
+  "cdn": {
+    "pt": "Content Delivery Network: rede de servidores distribuídos que entrega conteúdo estático a partir da localidade mais próxima do usuário.",
+    "en": "Content Delivery Network: a distributed server network that delivers static content from the location nearest to the user."
+  }
+}

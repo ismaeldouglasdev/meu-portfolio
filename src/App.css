@@ -2461,6 +2461,208 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   text-decoration: underline;
 }
 
+/* ===== TOC (Nesta página) ===== */
+.blogpost-toc-wrap {
+  margin-bottom: 3rem;
+}
+
+.blogpost-toc {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--accent-bg);
+}
+
+.blogpost-toc-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blogpost-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.blogpost-toc-item {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.blogpost-toc-level-3 {
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.blogpost-toc a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.blogpost-toc a:hover {
+  color: var(--accent);
+}
+
+.blogpost-content h2,
+.blogpost-content h3 {
+  scroll-margin-top: 2rem;
+}
+
+/* ===== Termo do glossário inline (link com tooltip via data-def, CSS-only) ===== */
+.blogpost-content a.blog-glossary-term {
+  position: relative;
+  color: var(--accent);
+  text-decoration: underline dotted;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
+.blogpost-content a.blog-glossary-term::after {
+  content: attr(data-def);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 280px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s, visibility 0.15s;
+  z-index: 10;
+}
+
+.blogpost-content a.blog-glossary-term:hover::after,
+.blogpost-content a.blog-glossary-term:focus::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== Seção Glossário do post ===== */
+.blogpost-glossary {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--accent-bg);
+}
+
+.blogpost-content .blogpost-glossary-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blogpost-glossary-list {
+  margin: 0;
+  padding: 0;
+}
+
+.blogpost-glossary-entry {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 2rem;
+}
+
+.blogpost-glossary-entry:last-child {
+  border-bottom: none;
+}
+
+.blogpost-glossary-term {
+  flex: 0 0 170px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.blogpost-glossary-def {
+  flex: 1;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ===== Seção FAQ do post ===== */
+.blogpost-faq {
+  margin-top: 3rem;
+}
+
+.blogpost-content .blogpost-faq-title {
+  color: var(--text);
+}
+
+.blogpost-faq-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  background: var(--bg-secondary);
+  scroll-margin-top: 2rem;
+}
+
+.blogpost-faq-q {
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.blogpost-faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.blogpost-faq-q::after {
+  content: '+';
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--accent);
+  transition: transform 0.2s;
+}
+
+.blogpost-faq-item[open] .blogpost-faq-q::after {
+  transform: rotate(45deg);
+}
+
+.blogpost-faq-a {
+  padding: 0 1.25rem 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
 .blogpost-footer {
   margin-top: 4rem;
   padding-top: 2rem;

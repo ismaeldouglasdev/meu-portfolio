@@ -194,6 +194,8 @@ export interface Translation {
     paginationNext: string;
     shareLabel: string;
     tocLabel: string;
+    glossaryLabel: string;
+    faqLabel: string;
     backToBlog: string;
     notFound: string;
     readingTime: string;

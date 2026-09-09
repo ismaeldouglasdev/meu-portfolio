@@ -7,6 +7,16 @@ import rehypeRaw from 'rehype-raw';
 import { useTranslation } from '../i18n';
 import type { BlogPost } from '../types/blog';
 import { track } from '../lib/analytics';
+import glossary from '../data/glossary.json';
+import {
+  extractToc,
+  buildGlossaryIndex,
+  headingIdPlugin,
+  glossaryTermPlugin,
+  renderTocHtml,
+  renderGlossaryHtml,
+  renderFaqHtml,
+} from '../lib/blog-md.mjs';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
 
@@ -289,6 +299,13 @@ function BlogPostPage() {
     );
   }
 
+  const { article, sources } = splitSources(post.content || '');
+  const toc = extractToc(article);
+  const glossaryIndex = buildGlossaryIndex(article, glossary, isEn ? 'en' : 'pt');
+  const tocHtml = renderTocHtml(toc, t.blog.tocLabel);
+  const glossaryHtml = renderGlossaryHtml(glossaryIndex, t.blog.glossaryLabel);
+  const faqHtml = renderFaqHtml(post.faqs || [], t.blog.faqLabel);
+
   return (
     <div className="blogpage blogpost">
       <header className="blogpage-header">
@@ -328,29 +345,32 @@ function BlogPostPage() {
           </div>
         </header>
 
+        {toc.length > 0 && (
+          <div className="blogpost-toc-wrap" dangerouslySetInnerHTML={{ __html: tocHtml }} />
+        )}
+
         <div className="blogpost-content">
-          {(() => {
-            const { article, sources } = splitSources(post.content || '');
-            return (
-              <>
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeRaw, rehypeHighlight]}
-                  components={calloutComponents}
-                >
-                  {article}
-                </ReactMarkdown>
-                {sources && (
-                  <aside className="blogpost-sources">
-                    <h2 className="blogpost-sources-title">{t.blog.sourcesTitle}</h2>
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {sources}
-                    </ReactMarkdown>
-                  </aside>
-                )}
-              </>
-            );
-          })()}
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw, rehypeHighlight, headingIdPlugin, [glossaryTermPlugin, glossaryIndex]]}
+            components={calloutComponents}
+          >
+            {article}
+          </ReactMarkdown>
+          {glossaryHtml && (
+            <div className="blogpost-glossary-wrap" dangerouslySetInnerHTML={{ __html: glossaryHtml }} />
+          )}
+          {sources && (
+            <aside className="blogpost-sources">
+              <h2 className="blogpost-sources-title">{t.blog.sourcesTitle}</h2>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {sources}
+              </ReactMarkdown>
+            </aside>
+          )}
+          {faqHtml && (
+            <div className="blogpost-faq-wrap" dangerouslySetInnerHTML={{ __html: faqHtml }} />
+          )}
         </div>
 
         <div className="blogpost-share">
