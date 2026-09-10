@@ -219,5 +219,17 @@ export interface Translation {
     categoriesTrend: string;
     categoriesNews: string;
     categoriesCaseStudy: string;
+    commentsTitle: string;
+    commentsPlaceholder: string;
+    commentsAuthorPlaceholder: string;
+    commentsEmailPlaceholder: string;
+    commentsSubmit: string;
+    commentsSubmitting: string;
+    commentsSuccess: string;
+    commentsError: string;
+    commentsEmpty: string;
+    commentsCharCount: string;
+    commentsAuthorCharCount: string;
+    likeCount: string;
   };
 }

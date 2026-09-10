@@ -19,6 +19,7 @@ import {
   renderGlossaryHtml,
   renderFaqHtml,
 } from '../lib/blog-md.mjs';
+import Comments from './Comments';
 
 const GITHUB_API = 'https://api.github.com/repos/ismaeldouglasdev/blog-content/contents/posts';
 
@@ -421,7 +422,7 @@ function BlogPostPage() {
           </a>
         </div>
 
-        {slug && post && <GiscusComments key={isEn ? 'en' : 'pt-BR'} lang={isEn ? 'en' : 'pt-BR'} />}
+        {slug && post && <Comments path={`/${slug}`} lang={isEn ? 'en' : 'pt-BR'} />}
         <section className="blogpost-author" aria-label={blogT.aboutAuthorTitle}>
           <img src="/images/avatar-round.png" alt="Ismael Douglas" className="blogpost-author-avatar" width="96" height="96" loading="lazy" />
           <div className="blogpost-author-body">
@@ -452,31 +453,6 @@ function BlogPostPage() {
       </article>
     </div>
   );
-}
-
-function GiscusComments({ lang }: { lang: string }) {
-  useEffect(() => {
-    const el = document.getElementById('giscus-container');
-    if (!el) return;
-    el.innerHTML = '';
-    const script = document.createElement('script');
-    script.src = 'https://giscus.app/client.js';
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-    script.setAttribute('data-repo', 'ismaeldouglasdev/blog-content');
-    script.setAttribute('data-repo-id', 'R_kgDOT7Uwvg');
-    script.setAttribute('data-category', 'General');
-    script.setAttribute('data-category-id', 'DIC_kwDOT7Uwvs4DEHeX');
-    script.setAttribute('data-mapping', 'pathname');
-    script.setAttribute('data-strict', '1');
-    script.setAttribute('data-reactions-enabled', '1');
-    script.setAttribute('data-emit-metadata', '0');
-    script.setAttribute('data-input-position', 'top');
-    script.setAttribute('data-theme', 'dark');
-    script.setAttribute('data-lang', lang === 'pt-BR' ? 'pt' : 'en');
-    el.appendChild(script);
-  }, [lang]);
-  return <div id="giscus-container" style={{ marginTop: '32px' }} />;
 }
 
 export default BlogPostPage;

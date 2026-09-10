@@ -365,6 +365,18 @@ const ptBR: Translation = {
     categoriesTrend: 'Tendência',
     categoriesNews: 'Notícia',
     categoriesCaseStudy: 'Case Study',
+    commentsTitle: 'Comentários',
+    commentsPlaceholder: 'Escreva seu comentário...',
+    commentsAuthorPlaceholder: 'Seu nome',
+    commentsEmailPlaceholder: 'Email (opcional)',
+    commentsSubmit: 'Enviar',
+    commentsSubmitting: 'Enviando...',
+    commentsSuccess: 'Comentário enviado com sucesso!',
+    commentsError: 'Erro ao enviar. Tente novamente.',
+    commentsEmpty: 'Nenhum comentário ainda. Seja o primeiro!',
+    commentsCharCount: '{0}/500',
+    commentsAuthorCharCount: '{0}/60',
+    likeCount: '{0} curtidas',
   },
 };
 

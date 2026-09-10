@@ -359,6 +359,18 @@ const en: Translation = {
     categoriesTrend: 'Trending',
     categoriesNews: 'News',
     categoriesCaseStudy: 'Case Study',
+    commentsTitle: 'Comments',
+    commentsPlaceholder: 'Write your comment...',
+    commentsAuthorPlaceholder: 'Your name',
+    commentsEmailPlaceholder: 'Email (optional)',
+    commentsSubmit: 'Submit',
+    commentsSubmitting: 'Submitting...',
+    commentsSuccess: 'Comment submitted successfully!',
+    commentsError: 'Error submitting. Please try again.',
+    commentsEmpty: 'No comments yet. Be the first!',
+    commentsCharCount: '{0}/500',
+    commentsAuthorCharCount: '{0}/60',
+    likeCount: '{0} likes',
   },
 };
 
