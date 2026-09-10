@@ -77,6 +77,14 @@ function BlogPage() {
     return [...posts].filter(p => !p.translation_of).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
   }, [posts]);
 
+  const mirrorPosts = useMemo(() => {
+    const map = new Map<string, BlogPost>();
+    posts.forEach(p => {
+      if (p.translation_of) map.set(p.translation_of, p);
+    });
+    return map;
+  }, [posts]);
+
   const handlePortfolioExit = () => {
     track('click_blog_to_portfolio', window.location.pathname);
   };
@@ -168,12 +176,18 @@ function BlogPage() {
   };
 
   const getDisplayTitle = (post: BlogPost) => {
-    if (lang === 'en' && post.title_en) return post.title_en;
+    if (lang !== 'en') return post.title;
+    if (post.title_en) return post.title_en;
+    const mirror = mirrorPosts.get(post.slug);
+    if (mirror?.title) return mirror.title;
     return post.title;
   };
 
   const getDisplayExcerpt = (post: BlogPost) => {
-    if (lang === 'en' && post.excerpt_en) return post.excerpt_en;
+    if (lang !== 'en') return post.excerpt;
+    if (post.excerpt_en) return post.excerpt_en;
+    const mirror = mirrorPosts.get(post.slug);
+    if (mirror?.excerpt) return mirror.excerpt;
     return post.excerpt;
   };
 
@@ -292,7 +306,7 @@ onClick={() => navigate(`/${lang === 'en' && post.translation_slug ? post.transl
               >
                 {post.cover && (
                   <div className="blogpage-card-cover">
-                    <img src={post.cover} alt={post.title} loading="lazy" />
+                    <img src={post.cover} alt={getDisplayTitle(post)} loading="lazy" />
                   </div>
                 )}
                 <div className="blogpage-card-category">
@@ -360,7 +374,7 @@ onClick={() => navigate(`/${lang === 'en' && post.translation_slug ? post.transl
             <ul className="blogpage-sidebar-list">
               {recentPosts.map(post => (
                 <li key={post.slug} className="blogpage-sidebar-item blogpage-sidebar-post" onClick={() => navigate(`/${lang === 'en' && post.translation_slug ? post.translation_slug : post.slug}`)}>
-                  <span className="blogpage-sidebar-post-title">{post.title}</span>
+                  <span className="blogpage-sidebar-post-title">{getDisplayTitle(post)}</span>
                   <time className="blogpage-sidebar-post-date">{formatDate(post.date)}</time>
                 </li>
               ))}

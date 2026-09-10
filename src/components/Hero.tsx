@@ -19,14 +19,6 @@ function Hero() {
       <CosmicBackground />
       <ThreeBackground />
       <div className="hero-content">
-        <motion.img
-          src="/images/avatar-round.png"
-          alt="Ismael Douglas"
-          className="hero-avatar"
-          width="112"
-          height="112"
-          {...FI(0.05)}
-        />
         <motion.span className="hero-badge" {...FI(0.1)}>
           <FaCheckCircle aria-hidden="true" />
           {t.hero.disponivel}
