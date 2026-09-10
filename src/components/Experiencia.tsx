@@ -1,13 +1,15 @@
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { useRef } from 'react';
 import { useTranslation } from '../i18n';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 function Experiencia() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  // Linha da timeline desenhada pelo scroll — desligada no mobile (transform por-frame).
   const { scrollY } = useScroll();
-
-  const lineScaleY = useTransform(scrollY, [0, 1500], [0, 1]);
+  const lineScaleY = useTransform(scrollY, [0, 1500], [isMobile ? 1 : 0, 1]);
 
   const entryVariants: Variants = {
     hidden: { opacity: 0, x: -20 },

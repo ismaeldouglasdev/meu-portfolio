@@ -1,12 +1,15 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaCode, FaUsers, FaRocket } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
+import { useIsMobile } from '../hooks/useIsMobile';
 import { WireGlobe } from './Y2KDecor';
 
 function Sobre() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 800], [0, 60]);
+  // Parallax sutil no conteúdo — desligado no mobile (custo de scroll por-frame).
+  const y = useTransform(scrollY, [0, 800], [0, isMobile ? 0 : 60]);
 
   const highlights = [
     { icon: <FaCode aria-hidden="true" />, text: t.sobre.highlight1 },

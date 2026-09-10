@@ -3431,3 +3431,25 @@ pre:hover .blogpost-copy-btn {
     height: 44px;
   }
 }
+
+/* ============================================
+   Mobile scroll performance
+   Reduz custo de composição no scroll em devices fracos
+   ============================================ */
+@media (max-width: 768px) {
+  /* Blur 56px fullscreen força repaint caro a cada frame de scroll */
+  .app-bg::before {
+    filter: blur(16px);
+  }
+
+  .y2k-globe {
+    display: none;
+  }
+}
+
+/* Reduced motion: também desliga o blur pesado do fundo */
+@media (prefers-reduced-motion: reduce) {
+  .app-bg::before {
+    filter: blur(12px);
+  }
+}
