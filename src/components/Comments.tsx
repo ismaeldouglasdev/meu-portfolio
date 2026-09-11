@@ -18,7 +18,7 @@ declare global {
 }
 
 const API_BASE = 'https://blog-analytics.y2kgif.workers.dev';
-const TURNSTILE_SITEKEY = import.meta.env.VITE_TURNSTILE_SITEKEY as string;
+const TURNSTILE_SITEKEY = (import.meta.env.VITE_TURNSTILE_SITEKEY as string) || '';
 
 interface Comment {
   id: number;
@@ -86,7 +86,7 @@ function Comments({ path, lang }: CommentsProps) {
   // Render Turnstile widget
   useEffect(() => {
     const container = turnstileRef.current;
-    if (!container) return;
+    if (!container || !TURNSTILE_SITEKEY) return;
 
     const tryRender = () => {
       if (!window.turnstile || turnstileWidgetId.current) return false;

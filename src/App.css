@@ -2128,6 +2128,36 @@ section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
   color: var(--text);
 }
 
+.blogpage-footer-copy {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.blogpage-footer-cnpj {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.blogpage-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.blogpage-footer-links a {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.blogpage-footer-links a:hover {
+  color: var(--text);
+}
+
 .blogpage-loading {
   display: flex;
   flex-direction: column;

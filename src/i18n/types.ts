@@ -231,5 +231,6 @@ export interface Translation {
     commentsCharCount: string;
     commentsAuthorCharCount: string;
     likeCount: string;
+    tags: Record<string, string>;
   };
 }

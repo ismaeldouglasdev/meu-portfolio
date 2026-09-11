@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import { useTranslation } from '../i18n';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import ptBRLang from '../i18n/pt-BR';
 import enLang from '../i18n/en';
 import type { BlogPost } from '../types/blog';
@@ -449,6 +450,16 @@ function BlogPostPage() {
             </button>
           </div>
           <a href="/" className="blogpage-back">{t.blog.backToBlog}</a>
+          <p className="blogpage-footer-copy">© {new Date().getFullYear()} Ismael Douglas · {t.footer.direitos}</p>
+          <p className="blogpage-footer-cnpj">{t.privacy.cnpj}</p>
+          <div className="blogpage-footer-links">
+            <a href="https://github.com/ismaeldouglasdev" target="_blank" rel="noopener noreferrer" aria-label="GitHub (abre em nova aba)">
+              <FaGithub aria-hidden="true" />
+            </a>
+            <a href="https://linkedin.com/in/ismael-douglas-dev" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova aba)">
+              <FaLinkedin aria-hidden="true" />
+            </a>
+          </div>
         </footer>
       </article>
     </div>

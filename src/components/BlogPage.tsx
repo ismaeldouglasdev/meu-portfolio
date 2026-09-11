@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useTranslation } from '../i18n';
 import type { BlogPost } from '../types/blog';
 import { track } from '../lib/analytics';
@@ -175,6 +176,8 @@ function BlogPage() {
     return labels[category] || category;
   };
 
+  const getTagLabel = (tag: string) => t.blog.tags?.[tag] || tag;
+
   const getDisplayTitle = (post: BlogPost) => {
     if (lang !== 'en') return post.title;
     if (post.title_en) return post.title_en;
@@ -290,7 +293,7 @@ function BlogPage() {
                   className={`blogpage-tag ${activeTag === tag ? 'blogpage-tag-active' : ''}`}
                   onClick={() => handleTagClick(tag)}
                 >
-                  {tag}
+                  {getTagLabel(tag)}
                   <span className="blogpage-chip-count">{count}</span>
                 </button>
               ))}
@@ -321,7 +324,7 @@ onClick={() => navigate(`/${lang === 'en' && post.translation_slug ? post.transl
                 {post.tags && post.tags.length > 0 && (
                   <div className="blogpage-card-tags">
                     {post.tags.slice(0, 3).map(tag => (
-                      <span key={tag} className="blogpage-card-tag">{tag}</span>
+                      <span key={tag} className="blogpage-card-tag">{getTagLabel(tag)}</span>
                     ))}
                   </div>
                 )}
@@ -385,6 +388,16 @@ onClick={() => navigate(`/${lang === 'en' && post.translation_slug ? post.transl
 
       <footer className="blogpage-footer">
         <a onClick={handlePortfolioExit} href="https://ismaeltech.com/" className="blogpage-back">{t.blog.backToPortfolio}</a>
+        <p className="blogpage-footer-copy">© {new Date().getFullYear()} Ismael Douglas · {t.footer.direitos}</p>
+        <p className="blogpage-footer-cnpj">{t.privacy.cnpj}</p>
+        <div className="blogpage-footer-links">
+          <a href="https://github.com/ismaeldouglasdev" target="_blank" rel="noopener noreferrer" aria-label="GitHub (abre em nova aba)">
+            <FaGithub aria-hidden="true" />
+          </a>
+          <a href="https://linkedin.com/in/ismael-douglas-dev" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova aba)">
+            <FaLinkedin aria-hidden="true" />
+          </a>
+        </div>
       </footer>
     </div>
   );
