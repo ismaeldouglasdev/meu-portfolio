@@ -38,7 +38,6 @@ function BlogPostPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [liked, setLiked] = useState(false);
-  const [fb, setFb] = useState<'up' | 'down' | null>(null);
   const [views, setViews] = useState<number | null>(null);
 
   useEffect(() => {
@@ -58,8 +57,6 @@ function BlogPostPage() {
   useEffect(() => {
     if (slug) {
       setLiked(localStorage.getItem(`blog_liked_${slug}`) === '1');
-      const saved = localStorage.getItem(`blog_fb_${slug}`);
-      setFb(saved === 'up' || saved === 'down' ? saved : null);
     }
   }, [slug]);
 
@@ -89,13 +86,6 @@ function BlogPostPage() {
       // storage bloqueado/cheio: o like é registrado no analytics mesmo sem persistir
     }
     track('like', window.location.pathname, { slug });
-  };
-
-  const handleFeedback = (v: 'up' | 'down') => {
-    if (fb || !slug) return;
-    localStorage.setItem(`blog_fb_${slug}`, v);
-    setFb(v);
-    track(v === 'up' ? 'feedback_up' : 'feedback_down', window.location.pathname, { slug });
   };
 
   const navigate = useNavigate();
@@ -249,14 +239,32 @@ function BlogPostPage() {
   };
 
   const splitSources = (md: string): { article: string; sources: string } => {
-    const sourcesRegex = /^##\s+(?:Fontes|Sources|Refer[êe]ncias|References)\s*\n([\s\S]*?)(?=^##\s|\Z)/m;
-    const match = md.match(sourcesRegex);
-    if (match) {
-      const article = md.slice(0, match.index).trim();
-      const sources = match[1].trim();
-      return { article, sources };
+    const lines = md.split('\n');
+    let sourcesIndex = -1;
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (/^##\s+(?:Fontes|Sources|Refer[êe]ncias|References)\s*$/i.test(line)) {
+        sourcesIndex = i;
+        break;
+      }
     }
-    return { article: md, sources: '' };
+    
+    if (sourcesIndex === -1) {
+      return { article: md.trim(), sources: '' };
+    }
+    
+    const sourcesLines: string[] = [];
+    for (let i = sourcesIndex + 1; i < lines.length; i++) {
+      if (/^##\s/.test(lines[i].trim())) break;
+      sourcesLines.push(lines[i]);
+    }
+    const sources = sourcesLines.join('\n').trim();
+    
+    const articleLines = lines.slice(0, sourcesIndex);
+    const article = articleLines.join('\n').trim();
+    
+    return { article, sources };
   };
 
   const getCategoryLabel = (category: string) => {
@@ -434,21 +442,6 @@ function BlogPostPage() {
           </div>
         </section>
         <footer className="blogpost-footer">
-          <div className="blogpost-feedback" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-            <span style={{ fontSize: '0.85rem', opacity: 0.8 }}>
-              {fb ? (t.blog?.feedbackThanks ?? 'Obrigado pelo feedback!') : (t.blog?.feedbackUpLabel ?? 'Helpful') + ' / ' + (t.blog?.feedbackDownLabel ?? 'Not really') + '?'}
-            </span>
-            <button type="button" className="blogpost-feedback-btn" aria-pressed={fb === 'up'} disabled={!!fb}
-              onClick={() => handleFeedback('up')}
-              style={{ padding: '8px 14px', borderRadius: '8px', border: '1px solid var(--border, #333)', background: 'transparent', color: 'inherit', cursor: fb ? 'default' : 'pointer', fontSize: '0.9rem' }}>
-              👍 {t.blog?.feedbackUpLabel ?? 'Helpful'}
-            </button>
-            <button type="button" className="blogpost-feedback-btn" aria-pressed={fb === 'down'} disabled={!!fb}
-              onClick={() => handleFeedback('down')}
-              style={{ padding: '8px 14px', borderRadius: '8px', border: '1px solid var(--border, #333)', background: 'transparent', color: 'inherit', cursor: fb ? 'default' : 'pointer', fontSize: '0.9rem' }}>
-              👎 {t.blog?.feedbackDownLabel ?? 'Not really'}
-            </button>
-          </div>
           <a href="/" className="blogpage-back">{t.blog.backToBlog}</a>
           <p className="blogpage-footer-copy">© {new Date().getFullYear()} Ismael Douglas · {t.footer.direitos}</p>
           <p className="blogpage-footer-cnpj">{t.privacy.cnpj}</p>

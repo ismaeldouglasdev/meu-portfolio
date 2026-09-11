@@ -203,9 +203,6 @@ export interface Translation {
     copiedBtn: string;
     likeLabel: string;
     likedLabel: string;
-    feedbackUpLabel: string;
-    feedbackDownLabel: string;
-    feedbackThanks: string;
     writtenBy: string;
     aboutAuthorTitle: string;
     aboutAuthorBio: string;

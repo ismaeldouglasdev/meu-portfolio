@@ -27,11 +27,6 @@ interface Comment {
   created_at: string;
 }
 
-interface CommentReaction {
-  reaction: string;
-  count: number;
-}
-
 interface CommentsProps {
   path: string;
   lang: string;
@@ -40,7 +35,6 @@ interface CommentsProps {
 function Comments({ path, lang }: CommentsProps) {
   const { t } = useTranslation();
   const [comments, setComments] = useState<Comment[]>([]);
-  const [likeCount, setLikeCount] = useState(0);
   const [author, setAuthor] = useState('');
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
@@ -64,23 +58,8 @@ function Comments({ path, lang }: CommentsProps) {
     }
   };
 
-  const fetchReactions = async () => {
-    try {
-      const res = await fetch(`${API_BASE}/api/reactions?path=${encodeURIComponent(path)}`);
-      if (res.ok) {
-        const data = await res.json();
-        const results = data?.reactions?.results || data?.results || [];
-        const likeReaction = results.find((r: CommentReaction) => r.reaction === 'like');
-        setLikeCount(likeReaction?.count || 0);
-      }
-    } catch {
-      // silent fail
-    }
-  };
-
   useEffect(() => {
     fetchComments();
-    fetchReactions();
   }, [path]);
 
   // Render Turnstile widget
@@ -158,19 +137,6 @@ function Comments({ path, lang }: CommentsProps) {
     }
   };
 
-  const handleLike = async () => {
-    try {
-      const res = await fetch(`${API_BASE}/api/reactions`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path, reaction: 'like' }),
-      });
-      if (res.ok) setLikeCount((c) => c + 1);
-    } catch {
-      // silent
-    }
-  };
-
   const formatDate = (dateStr: string) => {
     const locale = lang === 'en' ? 'en-US' : 'pt-BR';
     return new Date(dateStr).toLocaleDateString(locale, {
@@ -183,14 +149,6 @@ function Comments({ path, lang }: CommentsProps) {
   return (
     <section className="blogpost-comments">
       <h2>{blogT.commentsTitle}</h2>
-
-      {/* Like count */}
-      <div className="blogpost-like-count">
-        <button type="button" onClick={handleLike} aria-label="Like">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </button>
-        <span>{likeCount > 0 ? blogT.likeCount.replace('{0}', String(likeCount)) : ''}</span>
-      </div>
 
       {/* Comments list */}
       {comments.length === 0 ? (
