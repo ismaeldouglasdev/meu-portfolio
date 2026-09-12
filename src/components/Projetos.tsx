@@ -43,9 +43,9 @@ const curatedRepoMeta: Record<string, { lang: string; stars: number; deploy_url?
 
 const projectScreenshots: Record<string, string | { pt: string; en: string }> = {
   Engram: '/images/engram-landing.webp',
-  'Cronograma-Projeto': {
-    pt: '/images/cronograma-ptbr.webp',
-    en: '/images/cronograma-en.webp',
+'Cronograma-Projeto': {
+    pt: '/images/cronograma-ptbr-v2.webp',
+    en: '/images/cronograma-en-v2.webp',
   },
   'mensageiros-da-esperanca': {
     pt: '/images/mensageiros-ptbr.webp',

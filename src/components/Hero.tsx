@@ -31,7 +31,7 @@ function Hero() {
         </motion.span>
 
         <motion.h1 className="hero-title typewriter-line" {...FI(0.35)}>
-          <Typewriter phrases={t.hero.phrases} speed={65} deleteSpeed={35} pauseAfter={2500} />
+          <Typewriter phrases={t.hero.phrases} speed={45} deleteSpeed={30} pauseAfter={4000} />
         </motion.h1>
 
         <motion.p className="hero-subtitle" {...FI(0.5)}>

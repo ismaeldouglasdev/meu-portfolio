@@ -1377,8 +1377,8 @@ section.visible .skill-item,
 section.visible .sobre-highlight,
 section.visible .contato-link {
   opacity: 0;
-  transform: translateY(16px);
-  animation: cardFadeIn 0.5s ease forwards;
+  transform: translateY(8px);
+  animation: cardFadeIn 0.35s ease forwards;
 }
 
 section.visible .servico-card:nth-child(1),
@@ -1390,7 +1390,7 @@ section.visible .journey-entry:nth-child(1),
 section.visible .skill-item:nth-child(1),
 section.visible .sobre-highlight:nth-child(1),
 section.visible .contato-link:nth-child(1),
-section.visible .caso-card:nth-child(1) { animation-delay: 0.05s; }
+section.visible .caso-card:nth-child(1) { animation-delay: 0.02s; }
 section.visible .servico-card:nth-child(2),
 section.visible .processo-card:nth-child(2),
 section.visible .projeto-card:nth-child(2),
@@ -1400,7 +1400,7 @@ section.visible .journey-entry:nth-child(2),
 section.visible .skill-item:nth-child(2),
 section.visible .sobre-highlight:nth-child(2),
 section.visible .contato-link:nth-child(2),
-section.visible .caso-card:nth-child(2) { animation-delay: 0.1s; }
+section.visible .caso-card:nth-child(2) { animation-delay: 0.04s; }
 section.visible .servico-card:nth-child(3),
 section.visible .processo-card:nth-child(3),
 section.visible .projeto-card:nth-child(3),
@@ -1408,28 +1408,28 @@ section.visible .beneficio-card:nth-child(3),
 section.visible .depoimento-card:nth-child(3),
 section.visible .journey-entry:nth-child(3),
 section.visible .skill-item:nth-child(3),
-section.visible .sobre-highlight:nth-child(3) { animation-delay: 0.15s; }
+section.visible .sobre-highlight:nth-child(3) { animation-delay: 0.06s; }
 section.visible .servico-card:nth-child(4),
 section.visible .projeto-card:nth-child(4),
 section.visible .depoimento-card:nth-child(4),
-section.visible .skill-item:nth-child(4) { animation-delay: 0.2s; }
+section.visible .skill-item:nth-child(4) { animation-delay: 0.08s; }
 section.visible .servico-card:nth-child(5),
 section.visible .projeto-card:nth-child(5),
-section.visible .skill-item:nth-child(5) { animation-delay: 0.25s; }
+section.visible .skill-item:nth-child(5) { animation-delay: 0.1s; }
 section.visible .servico-card:nth-child(6),
 section.visible .projeto-card:nth-child(6),
-section.visible .skill-item:nth-child(6) { animation-delay: 0.3s; }
-section.visible .skill-item:nth-child(7) { animation-delay: 0.35s; }
-section.visible .skill-item:nth-child(8) { animation-delay: 0.4s; }
-section.visible .skill-item:nth-child(9) { animation-delay: 0.45s; }
-section.visible .skill-item:nth-child(10) { animation-delay: 0.5s; }
-section.visible .skill-item:nth-child(11) { animation-delay: 0.55s; }
-section.visible .skill-item:nth-child(12) { animation-delay: 0.6s; }
-section.visible .skill-item:nth-child(13) { animation-delay: 0.65s; }
-section.visible .skill-item:nth-child(14) { animation-delay: 0.7s; }
-section.visible .skill-item:nth-child(15) { animation-delay: 0.75s; }
-section.visible .skill-item:nth-child(16) { animation-delay: 0.8s; }
-section.visible .skill-item:nth-child(17) { animation-delay: 0.85s; }
+section.visible .skill-item:nth-child(6) { animation-delay: 0.12s; }
+section.visible .skill-item:nth-child(7) { animation-delay: 0.14s; }
+section.visible .skill-item:nth-child(8) { animation-delay: 0.16s; }
+section.visible .skill-item:nth-child(9) { animation-delay: 0.18s; }
+section.visible .skill-item:nth-child(10) { animation-delay: 0.2s; }
+section.visible .skill-item:nth-child(11) { animation-delay: 0.22s; }
+section.visible .skill-item:nth-child(12) { animation-delay: 0.24s; }
+section.visible .skill-item:nth-child(13) { animation-delay: 0.26s; }
+section.visible .skill-item:nth-child(14) { animation-delay: 0.28s; }
+section.visible .skill-item:nth-child(15) { animation-delay: 0.3s; }
+section.visible .skill-item:nth-child(16) { animation-delay: 0.32s; }
+section.visible .skill-item:nth-child(17) { animation-delay: 0.34s; }
 
 @keyframes cardFadeIn {
   to {
